@@ -8,21 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "BNRItem.h"
+#import "BNRContainer.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
-        NSMutableArray *items = [[NSMutableArray alloc] init];
+        BNRContainer *items = [BNRContainer randomItem];
         
         for (int i = 0; i < 10; i++) {
-            BNRItem *item = [BNRItem randomItem];
+            BNRItem *item = (i % 2) ? [BNRItem randomItem] : [BNRContainer randomItem];
             
             [items addObject:item];
         }
         
-        for (BNRItem *item in items) {
-            NSLog(@"%@", item);
-        }
+        NSLog(@"%@", items);
         
         items = nil;
         
