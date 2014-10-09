@@ -22,7 +22,7 @@
 
 @implementation ViewController
 
-- (id)init {
+- (id)init:(CGRect)frame {
     
     self = [super initWithNibName:@"ViewController" bundle:nil];
     
@@ -35,11 +35,12 @@
         self.answers = @[@"Answer 1!",
                          @"Answer 2!",
                          @"Answer 3!"];
-        
     }
     
     return self;
 }
+
+
 
 - (IBAction)showQuestion:(id)sender {
     

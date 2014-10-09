@@ -1,13 +1,13 @@
 //
 //  AppDelegate.m
-//  Quiz
+//  BNRHypnosister
 //
-//  Created by Andrei Luca on 10/7/14.
+//  Created by Andrei Luca on 10/9/14.
 //  Copyright (c) 2014 Andrei Luca. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "BNRHypnosisView.h"
 
 @interface AppDelegate ()
 
@@ -21,9 +21,16 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    // just hide console message 
+    self.window.rootViewController = [[UIViewController alloc] init];
     
-    self.window.rootViewController = [[ViewController alloc] init];
+    CGRect firstFrame = self.window.bounds;
     
+    BNRHypnosisView *firstView = [[BNRHypnosisView alloc] initWithFrame:firstFrame];
+
+    [self.window addSubview:firstView];
+    
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
     return YES;
