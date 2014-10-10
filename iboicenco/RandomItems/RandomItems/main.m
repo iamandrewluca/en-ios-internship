@@ -19,12 +19,15 @@ int main(int argc, const char * argv[]) {
             [items addObject:item];
         }
         
+        BNRItem *itemWithNameAndSerial = [[BNRItem alloc]initWithName:@"White Sofa" serialNumber:@"A1B77"];
+        [items addObject:itemWithNameAndSerial];
+        
 //        id lastObj = [items lastObject];
 //        [lastObj count];
         
         for (BNRItem *item in items) {
             NSLog(@"%@", item);
-           // NSLog(@"%@", items[11]);   // Bronze Challange
+           // NSLog(@"%@", items[11]);   // Bronze Challenge
         }
         
 /*

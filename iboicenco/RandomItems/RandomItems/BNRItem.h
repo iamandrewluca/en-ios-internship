@@ -29,6 +29,9 @@
 
 -(instancetype)initWithItemName:(NSString *)name;
 
+// Silver Challenge
+-(instancetype)initWithName:(NSString *)name
+               serialNumber:(NSString *)sNumber;
 
 #pragma mark - accessors methods
 - (void)setItemName:(NSString *)str;

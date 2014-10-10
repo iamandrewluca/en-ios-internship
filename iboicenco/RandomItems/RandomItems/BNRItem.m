@@ -56,6 +56,14 @@
     
 }
 
+#pragma mark - Silver Challenge
+-(instancetype)initWithName:(NSString *)name serialNumber:(NSString *)sNumber
+{
+    return [self initWithItemName:name
+                   valueInDollars:0
+                     serialNumber:sNumber];
+}
+
 #pragma mark - class methods
 +(instancetype)randomItem
 {
