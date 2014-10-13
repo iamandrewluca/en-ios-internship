@@ -41,7 +41,6 @@
 }
 
 #pragma mark - additional initializers
-
 -(instancetype)init
 {
     return  [self initWithItemName:@"Item"];
@@ -96,7 +95,42 @@
     return newItem;
 }
 
+-(void)dealloc
+{
+    NSLog(@"Destroyed: %@", self);
+}
+
 #pragma mark - defining accessors methods
+-(void)setContainedItem:(BNRItem *)containedItem
+{
+    _containedItem = containedItem;
+    self.containedItem.container = self;
+}
+
+/*
+-(void)setContainedItem:(BNRItem *)item
+{
+    _containedItem = item;
+    
+    // When given an item to contain, the contained item will be given a pointer to its container
+    item.container = self;
+}
+
+-(BNRItem *)containedItem
+{
+    return _containedItem;
+}
+
+-(void)setContainer:(BNRItem *)item
+{
+    _container = item;
+}
+
+-(BNRItem *)container
+{
+    return _container;
+}
+
 - (void)setItemName:(NSString *)str
 {
     _itemName = str;
@@ -131,5 +165,6 @@
 {
     return _dateCreated;
 }
+ */
 
 @end
