@@ -13,6 +13,8 @@
 		61611FE019EBFD1C00CC1024 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61611FDF19EBFD1C00CC1024 /* Images.xcassets */; };
 		61611FE319EBFD1C00CC1024 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61611FE119EBFD1C00CC1024 /* LaunchScreen.xib */; };
 		61611FEF19EBFD1D00CC1024 /* HypnosisterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61611FEE19EBFD1D00CC1024 /* HypnosisterTests.m */; };
+		61611FFA19EC0EE100CC1024 /* BNRHypnosisView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61611FF919EC0EE100CC1024 /* BNRHypnosisView.m */; };
+		61D7A18919EE5B6700C8DFF4 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D7A18819EE5B6700C8DFF4 /* logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,9 @@
 		61611FE819EBFD1D00CC1024 /* HypnosisterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HypnosisterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		61611FED19EBFD1D00CC1024 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61611FEE19EBFD1D00CC1024 /* HypnosisterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HypnosisterTests.m; sourceTree = "<group>"; };
+		61611FF819EC0EE100CC1024 /* BNRHypnosisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRHypnosisView.h; sourceTree = "<group>"; };
+		61611FF919EC0EE100CC1024 /* BNRHypnosisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRHypnosisView.m; sourceTree = "<group>"; };
+		61D7A18819EE5B6700C8DFF4 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +85,8 @@
 			children = (
 				61611FDA19EBFD1C00CC1024 /* BNRAppDelegate.h */,
 				61611FDB19EBFD1C00CC1024 /* BNRAppDelegate.m */,
+				61611FF819EC0EE100CC1024 /* BNRHypnosisView.h */,
+				61611FF919EC0EE100CC1024 /* BNRHypnosisView.m */,
 				61611FDD19EBFD1C00CC1024 /* Hypnosister-Prefix.pch */,
 				61611FDF19EBFD1C00CC1024 /* Images.xcassets */,
 				61611FE119EBFD1C00CC1024 /* LaunchScreen.xib */,
@@ -91,6 +98,7 @@
 		61611FD619EBFD1C00CC1024 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				61D7A18819EE5B6700C8DFF4 /* logo.png */,
 				61611FD719EBFD1C00CC1024 /* Info.plist */,
 				61611FD819EBFD1C00CC1024 /* main.m */,
 			);
@@ -194,6 +202,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61D7A18919EE5B6700C8DFF4 /* logo.png in Resources */,
 				61611FDE19EBFD1C00CC1024 /* Hypnosister-Prefix.pch in Resources */,
 				61611FE319EBFD1C00CC1024 /* LaunchScreen.xib in Resources */,
 				61611FE019EBFD1C00CC1024 /* Images.xcassets in Resources */,
@@ -216,6 +225,7 @@
 			files = (
 				61611FDC19EBFD1C00CC1024 /* BNRAppDelegate.m in Sources */,
 				61611FD919EBFD1C00CC1024 /* main.m in Sources */,
+				61611FFA19EC0EE100CC1024 /* BNRHypnosisView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +408,7 @@
 				61611FF419EBFD1D00CC1024 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		61611FF519EBFD1D00CC1024 /* Build configuration list for PBXNativeTarget "HypnosisterTests" */ = {
 			isa = XCConfigurationList;
@@ -406,6 +417,7 @@
 				61611FF719EBFD1D00CC1024 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
