@@ -24,8 +24,6 @@
     
     BNRHypnosisViewController *hvc = [[BNRHypnosisViewController alloc] init];
     
-    NSBundle *appBundle = [NSBundle mainBundle];
-    
     BNRReminderViewController *rvc = [[BNRReminderViewController alloc] init];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
