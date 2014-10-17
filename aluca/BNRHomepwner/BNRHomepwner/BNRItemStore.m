@@ -17,6 +17,11 @@
 
 @implementation BNRItemStore
 
+- (void)removeItem:(BNRItem *)item
+{
+    [self.privateItems removeObjectIdenticalTo:item];
+}
+
 + (instancetype)sharedStore
 {
     static BNRItemStore *sharedStore = nil;
@@ -26,6 +31,7 @@
     }
     
     return  sharedStore;
+    
 }
 
 - (instancetype)init
