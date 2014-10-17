@@ -17,6 +17,22 @@
 
 @implementation BNRItemStore
 
+- (void)moveItemAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex
+{
+    if (fromIndex == toIndex) {
+        
+        return;
+        
+    } else {
+        
+        BNRItem *item = self.privateItems[fromIndex];
+        
+        [self.privateItems removeObjectAtIndex:fromIndex];
+        [self.privateItems insertObject:item atIndex:toIndex];
+        
+    }
+}
+
 - (void)removeItem:(BNRItem *)item
 {
     [self.privateItems removeObjectIdenticalTo:item];
