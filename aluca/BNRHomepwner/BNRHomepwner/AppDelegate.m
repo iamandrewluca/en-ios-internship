@@ -25,6 +25,7 @@
     BNRItemsViewController *itemsViewController = [[BNRItemsViewController alloc] init];
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:itemsViewController];
+    navController.navigationBar.translucent = NO;
     
     self.window.rootViewController = navController;
     
