@@ -15,6 +15,8 @@
 {
     [super viewDidLoad];
     //NSLog(@"BNRHypnosisViewController loaded its view.");
+    self.segmentedControl.layer.cornerRadius = 6.0;
+
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil
@@ -31,12 +33,24 @@
     return self;
 }
 
--(void)loadView
-{
-    // Create a view
-    BNRHypnosisView *backgroundView = [[BNRHypnosisView alloc] init];
-    // Set it as *the* view of this view controller
-    self.view = backgroundView;
+- (IBAction)changeColor:(id)sender {
+    BNRHypnosisView *hypnosisView = (BNRHypnosisView *)self.view;
+    UISegmentedControl *s = (UISegmentedControl *)sender;
+    
+    NSUInteger index = [s selectedSegmentIndex];
+    if (index == 0) {
+        hypnosisView.circleColor = [UIColor redColor];
+    }
+    else if (index == 1) {
+        hypnosisView.circleColor = [UIColor blueColor];
+    }
+    else if (index == 2) {
+        hypnosisView.circleColor = [UIColor greenColor];
+    }
+    else if (index == 3)
+        hypnosisView.circleColor = [UIColor grayColor];
+    
 }
+
 
 @end

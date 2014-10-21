@@ -19,6 +19,7 @@
     [super viewDidLoad];
     //NSLog(@"BNRReminderViewController loaded its view.");
     self.reminder.layer.cornerRadius = 6.0;
+    self.bkgImage.layer.cornerRadius = 16.0;
 }
 
 - (void)viewWillAppear:(BOOL)animated

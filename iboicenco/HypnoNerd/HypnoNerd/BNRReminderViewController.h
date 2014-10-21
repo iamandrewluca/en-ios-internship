@@ -10,5 +10,6 @@
 
 @interface BNRReminderViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *reminder;
+@property (weak, nonatomic) IBOutlet UIImageView *bkgImage;
 
 @end

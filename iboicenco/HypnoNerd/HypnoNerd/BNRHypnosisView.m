@@ -9,7 +9,6 @@
 #import "BNRHypnosisView.h"
 
 @interface BNRHypnosisView ()
-@property (strong, nonatomic) UIColor *circleColor; // class extension
 @end
 
 @implementation BNRHypnosisView
@@ -29,29 +28,20 @@
 - (void)drawRect:(CGRect)rect
 {
     CGRect bounds = self.bounds;
-    CGContextRef currentContext = UIGraphicsGetCurrentContext();  // The current context is an application-wide pointer that is set to point to the context created for a view right before that view is sent drawRect:.
+    // The current context is an application-wide pointer that is set to point to the context
+    // created for a view right before that view is sent drawRect:.
+    //CGContextRef currentContext = UIGraphicsGetCurrentContext();
     
     // Figure out the center of the bounds rectangle
     CGPoint center;
     center.x = bounds.origin.x + bounds.size.width / 2.0;
     center.y = bounds.origin.y + bounds.size.height / 2.0;
     
-    // The circle will be the largest that will fit in the view
-    //float radius = (MIN(bounds.size.width, bounds.size.height) / 2.0);
-    
     // The largest circle will circumscribe the view
     float maxRadius = hypot(bounds.size.width, bounds.size.height) / 2.0;
     
     
     UIBezierPath *path = [[UIBezierPath alloc]init];
-/*
-     // Add an arc to the path at center, with radius of radius from 0 to 2*PI radians (a circle)
-     //    [path addArcWithCenter:center
-     //                    radius:radius
-     //                startAngle:0
-     //                  endAngle:M_PI * 2.0
-     //                 clockwise:YES];
-*/
     for (float currentRadius = maxRadius; currentRadius > 0; currentRadius -= 20) {
         
         // pick up the pencil and move it to the correct spot
@@ -70,11 +60,7 @@
     // Draw the line
     [path stroke];
     
-    // Draw logo image      #### bronze challenge ####
-    //    CGRect logo = CGRectMake(bounds.size.width / 4.0, bounds.size.height / 4.0, bounds.size.width / 2.0, bounds.size.height / 2.0);
-    //    UIImage *logoImage = [UIImage imageNamed:@"logo"];
-    //    [logoImage drawInRect:logo];
-    
+/*
     // Draw shadows - bronze + golden challenge
     CGRect logoRect = CGRectMake(bounds.size.width / 4.0, bounds.size.height / 4.0, bounds.size.width / 2.0, bounds.size.height / 2.0);
     
@@ -110,6 +96,7 @@
     UIImage *logoImage = [UIImage imageNamed:@"logo.png"];
     [logoImage drawInRect:logoRect];
     CGContextRestoreGState(currentContext); // if !restore CGContextState the shadow will not unset
+ */
 }
 
 // Override touchesBegan:withEvent: to change the circleColor to a randomColor... When a finger touches the screen

@@ -25,7 +25,6 @@
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
     }
     
-    // This line will generate a warning, ignore it for now
     BNRHypnosisViewController *hvc = [[BNRHypnosisViewController alloc] init]; // Sending init to a view controller calls initWithNibName:bundle: and passes nil for both arguments.
     BNRReminderViewController *rvc = [[BNRReminderViewController alloc] init];
     BNRQuizViewController     *qvc = [[BNRQuizViewController alloc]init];
