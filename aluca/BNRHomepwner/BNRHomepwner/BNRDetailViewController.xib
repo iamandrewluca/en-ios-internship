@@ -85,6 +85,11 @@
                                 <action selector="takePicture:" destination="-1" id="SQ1-0A-pu1"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem systemItem="trash" id="nN8-F7-YIa">
+                            <connections>
+                                <action selector="removePicture:" destination="-1" id="PyC-S9-0c1"/>
+                            </connections>
+                        </barButtonItem>
                     </items>
                 </toolbar>
             </subviews>
