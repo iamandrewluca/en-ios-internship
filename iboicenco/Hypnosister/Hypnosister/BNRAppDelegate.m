@@ -9,8 +9,8 @@
 #import "BNRAppDelegate.h"
 #import "BNRHypnosisView.h"
 
-@interface BNRAppDelegate ()
-
+@interface BNRAppDelegate () <UIScrollViewDelegate>
+@property (nonatomic, strong) BNRHypnosisView *hypnosisView;
 @end
 
 @implementation BNRAppDelegate
@@ -28,12 +28,15 @@
 */
     // Create CGRects for frames
     CGRect screenRect = self.window.bounds;
-    CGRect bigRect = screenRect;
-    bigRect.size.width  *= 2.0;
-    //bigRect.size.height *= 2.0;
+//    CGRect bigRect = screenRect;
+//    bigRect.size.width  *= 2.0;
+//    bigRect.size.height *= 2.0;
     
     // Create a screen-sized scrollView and add it to the window;
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:screenRect];
+    scrollView.delegate = self;
+    scrollView.minimumZoomScale = 1.0;
+    scrollView.maximumZoomScale = 2.0;
     scrollView.pagingEnabled = YES; // force scrollView to snap
     [self.window addSubview:scrollView];
     
@@ -42,22 +45,27 @@
     // [scrollView addSubview:hypnosisView];
     
     // Create a screen-sized hypnosis view and add it to the scroll view
-    BNRHypnosisView *hypnosisView = [[BNRHypnosisView alloc] initWithFrame:screenRect];
-    [scrollView addSubview:hypnosisView];
+    self.hypnosisView = [[BNRHypnosisView alloc] initWithFrame:screenRect];
+    [scrollView addSubview:self.hypnosisView];
     
     // Add a second screen-sized hypnosis view just off screen to the right
     //screenRect.origin.y += screenRect.size.height;
-    screenRect.origin.x += screenRect.size.width;
-    BNRHypnosisView *anotherView = [[BNRHypnosisView alloc] initWithFrame:screenRect];
-    [scrollView addSubview:anotherView];
+//    screenRect.origin.x += screenRect.size.width;
+//    BNRHypnosisView *anotherView = [[BNRHypnosisView alloc] initWithFrame:screenRect];
+//    [scrollView addSubview:anotherView];
     
     // Tell the scroll view how big its content area is
-    scrollView.contentSize = bigRect.size;
+    scrollView.contentSize = screenRect.size;
     
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.hypnosisView;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
