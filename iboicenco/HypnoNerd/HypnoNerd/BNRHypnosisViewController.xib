@@ -31,7 +31,7 @@
                 </segmentedControl>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="235" y="411"/>
+            <point key="canvasLocation" x="291" y="617"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

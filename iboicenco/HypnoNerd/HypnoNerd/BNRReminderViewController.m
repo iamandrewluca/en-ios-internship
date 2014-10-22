@@ -28,8 +28,7 @@
     self.datePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:60];
 }
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil
-                         bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil
                        bundle:nibBundleOrNil];

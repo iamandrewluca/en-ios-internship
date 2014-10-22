@@ -19,18 +19,16 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLK-it-y9F">
                     <rect key="frame" x="40" y="279" width="241" height="66"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="18"/>
-                    <state key="normal" title="Remind me!">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
+                    <state key="normal" title="Remind me!"/>
                     <connections>
                         <action selector="addReminder:" destination="-1" eventType="touchUpInside" id="bWI-Ru-eah"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hI8-DH-Ph3">
                     <rect key="frame" x="8" y="44" width="304" height="176"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
                 <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="zrh-3Z-d4Y">
                     <rect key="frame" x="8" y="51" width="304" height="162"/>
@@ -41,13 +39,7 @@
                 </datePicker>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
-            <point key="canvasLocation" x="601" y="366"/>
-        </view>
-        <view contentMode="scaleToFill" id="n7k-h6-JmG">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="941" y="562"/>
+            <point key="canvasLocation" x="1069" y="493"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
