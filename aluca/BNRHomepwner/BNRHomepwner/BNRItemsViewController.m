@@ -10,6 +10,7 @@
 #import "BNRItemStore.h"
 #import "BNRItem.h"
 #import "BNRDetailViewController.h"
+#import "BNRItemCell.h"
 
 @interface BNRItemsViewController ()
 
@@ -98,13 +99,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    BNRItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BNRItemCell" forIndexPath:indexPath];
     
     NSArray *items = [[BNRItemStore sharedStore] allItems];
     
     BNRItem *item = items[indexPath.row];
     
-    cell.textLabel.text = [item description];
+    cell.nameLabel.text = item.itemName;
+    cell.serialNumberLabel.text = item.serialNumber;
+    cell.valueLabel.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
+    cell.thumbnailView.image = item.thumbnail;
     
     return cell;
 }
@@ -113,7 +117,9 @@
 {
     [super viewDidLoad];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];     
+    UINib *nib = [UINib nibWithNibName:@"BNRItemCell" bundle:nil];
+    
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"BNRItemCell"];
 }
 
 @end
