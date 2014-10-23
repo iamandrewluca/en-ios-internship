@@ -112,6 +112,15 @@
     cell.nameLabel.text = item.itemName;
     cell.serialNumberLabel.text = item.serialNumber;
     cell.valueLabel.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
+    
+    if (item.valueInDollars > 50) {
+        cell.valueLabel.textColor = [UIColor greenColor];
+    } else if (item.valueInDollars < 50) {
+        cell.valueLabel.textColor = [UIColor redColor];
+    } else {
+        cell.valueLabel.textColor = [UIColor blackColor];
+    }
+    
     cell.thumbnailView.image = item.thumbnail;
     
     __weak BNRItemCell *weakCell = cell;
