@@ -43,8 +43,18 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krm-vI-Ceh">
+                        <rect key="frame" x="10" y="2" width="40" height="40"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="showImage:" destination="LMR-mg-W3Y" eventType="touchUpInside" id="GX7-jb-72s"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="d95-pt-CCO" firstAttribute="bottom" secondItem="krm-vI-Ceh" secondAttribute="bottom" id="1Mq-fZ-CiJ"/>
                     <constraint firstItem="6Ed-uW-ccD" firstAttribute="leading" secondItem="cit-Yy-PeC" secondAttribute="trailing" constant="8" id="7bE-L4-2lE"/>
                     <constraint firstItem="CXH-K4-Sgv" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cit-Yy-PeC" secondAttribute="bottom" constant="5" id="Npu-co-2TJ"/>
                     <constraint firstItem="d95-pt-CCO" firstAttribute="leading" secondItem="6Jk-f1-jrA" secondAttribute="leading" constant="10" id="P2N-KP-mKy"/>
@@ -52,6 +62,9 @@
                     <constraint firstAttribute="trailing" secondItem="6Ed-uW-ccD" secondAttribute="trailing" constant="20" id="VLw-tv-cZO"/>
                     <constraint firstItem="cit-Yy-PeC" firstAttribute="top" secondItem="6Jk-f1-jrA" secondAttribute="top" constant="1" id="aeu-vP-Hlm"/>
                     <constraint firstAttribute="bottom" secondItem="CXH-K4-Sgv" secondAttribute="bottom" constant="1" id="cxK-yt-Ma7"/>
+                    <constraint firstItem="d95-pt-CCO" firstAttribute="trailing" secondItem="krm-vI-Ceh" secondAttribute="trailing" id="g2k-Og-OaO"/>
+                    <constraint firstItem="d95-pt-CCO" firstAttribute="leading" secondItem="krm-vI-Ceh" secondAttribute="leading" id="jja-zL-rUQ"/>
+                    <constraint firstItem="d95-pt-CCO" firstAttribute="top" secondItem="krm-vI-Ceh" secondAttribute="top" id="nZI-ra-uWi"/>
                     <constraint firstItem="6Ed-uW-ccD" firstAttribute="leading" secondItem="CXH-K4-Sgv" secondAttribute="trailing" constant="8" id="ose-C4-my5"/>
                     <constraint firstAttribute="centerY" secondItem="d95-pt-CCO" secondAttribute="centerY" id="rph-3L-wYn"/>
                     <constraint firstAttribute="centerY" secondItem="6Ed-uW-ccD" secondAttribute="centerY" id="s6N-qm-K4A"/>

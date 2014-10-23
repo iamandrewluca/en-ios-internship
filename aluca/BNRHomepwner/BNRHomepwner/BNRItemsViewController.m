@@ -11,8 +11,12 @@
 #import "BNRItem.h"
 #import "BNRDetailViewController.h"
 #import "BNRItemCell.h"
+#import "BNRImageStore.h"
+#import "BNRImageViewController.h"
 
-@interface BNRItemsViewController ()
+@interface BNRItemsViewController () <UIPopoverControllerDelegate>
+
+@property (nonatomic) UIPopoverController *imagePopover;
 
 @end
 
@@ -110,7 +114,45 @@
     cell.valueLabel.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
     cell.thumbnailView.image = item.thumbnail;
     
+    __weak BNRItemCell *weakCell = cell;
+    
+    cell.actionBlock = ^{
+        NSLog(@"Going to show image for %@", item);
+        
+        BNRItemCell *strongCell = weakCell;
+        
+        if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomUnspecified) {
+            
+            NSString *itemKey = item.itemKey;
+            UIImage *img = [[BNRImageStore sharedStore] imageForKey:itemKey];
+            
+            if (!img) {
+                return;
+            }
+            
+            CGRect rect = [self.view convertRect:strongCell.thumbnailView.bounds fromView:strongCell.thumbnailView];
+            
+            BNRImageViewController *ivc = [[BNRImageViewController alloc] init];
+            ivc.image = img;
+            
+            self.imagePopover = [[UIPopoverController alloc] initWithContentViewController:ivc];
+            self.imagePopover.delegate = self;
+            self.imagePopover.popoverContentSize = CGSizeMake(600, 600);
+            
+            [self.imagePopover presentPopoverFromRect:rect
+                                               inView:self.view
+                             permittedArrowDirections:UIPopoverArrowDirectionAny
+                                             animated:YES];
+            
+        }
+    };
+    
     return cell;
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.imagePopover = nil;
 }
 
 - (void)viewDidLoad
