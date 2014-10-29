@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "BNRCoursesViewController.h"
+#import "BNRWebViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,6 +24,10 @@
     
     UINavigationController *masterNav = [[UINavigationController alloc] initWithRootViewController:cvc];
     
+    BNRWebViewController *wvc = [[BNRWebViewController alloc] init];
+    
+    cvc.webViewController = wvc;
+        
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = masterNav;
     self.window.backgroundColor = [UIColor whiteColor];

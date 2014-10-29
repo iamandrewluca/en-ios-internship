@@ -14,6 +14,7 @@
 		75270C631A00BF0700458763 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75270C611A00BF0700458763 /* LaunchScreen.xib */; };
 		75270C6F1A00BF0700458763 /* BNRNerdFeedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75270C6E1A00BF0700458763 /* BNRNerdFeedTests.m */; };
 		75270C7A1A00BFF300458763 /* BNRCoursesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75270C791A00BFF300458763 /* BNRCoursesViewController.m */; };
+		75270C831A00CCA100458763 /* BNRWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75270C821A00CCA100458763 /* BNRWebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,8 @@
 		75270C6E1A00BF0700458763 /* BNRNerdFeedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNRNerdFeedTests.m; sourceTree = "<group>"; };
 		75270C781A00BFF300458763 /* BNRCoursesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRCoursesViewController.h; sourceTree = "<group>"; };
 		75270C791A00BFF300458763 /* BNRCoursesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRCoursesViewController.m; sourceTree = "<group>"; };
+		75270C811A00CCA100458763 /* BNRWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRWebViewController.h; sourceTree = "<group>"; };
+		75270C821A00CCA100458763 /* BNRWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRWebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +85,8 @@
 		75270C511A00BF0700458763 /* BNRNerdFeed */ = {
 			isa = PBXGroup;
 			children = (
+				75270C811A00CCA100458763 /* BNRWebViewController.h */,
+				75270C821A00CCA100458763 /* BNRWebViewController.m */,
 				75270C781A00BFF300458763 /* BNRCoursesViewController.h */,
 				75270C791A00BFF300458763 /* BNRCoursesViewController.m */,
 				75270C561A00BF0700458763 /* AppDelegate.h */,
@@ -223,6 +228,7 @@
 				75270C5B1A00BF0700458763 /* ViewController.m in Sources */,
 				75270C581A00BF0700458763 /* AppDelegate.m in Sources */,
 				75270C7A1A00BFF300458763 /* BNRCoursesViewController.m in Sources */,
+				75270C831A00CCA100458763 /* BNRWebViewController.m in Sources */,
 				75270C551A00BF0700458763 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
