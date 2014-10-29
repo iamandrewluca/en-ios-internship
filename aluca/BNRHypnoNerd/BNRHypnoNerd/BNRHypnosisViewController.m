@@ -11,6 +11,8 @@
 
 @interface BNRHypnosisViewController () <UITextFieldDelegate>
 
+@property (nonatomic) UITextField *textField;
+
 @end
 
 @implementation BNRHypnosisViewController
@@ -99,12 +101,29 @@
     return YES;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [UIView animateWithDuration:2.0
+                          delay:0.0
+         usingSpringWithDamping:0.25
+          initialSpringVelocity:0.0
+                        options:0
+                     animations:^{
+                         
+                         CGRect frame = CGRectMake(40, 70, 240, 30);
+                         self.textField.frame = frame;
+                         
+                     } completion:NULL];
+}
+
 - (void)loadView
 {
     CGRect frame = [UIScreen mainScreen].bounds;
     BNRHypnosisView *backgroundView = [[BNRHypnosisView alloc] initWithFrame:frame];
     
-    CGRect textFieldRect = CGRectMake(40, 70, 240, 30);
+    CGRect textFieldRect = CGRectMake(40, -30, 240, 30);
     UITextField *textField = [[UITextField alloc] initWithFrame:textFieldRect];
     
     textField.borderStyle = UITextBorderStyleRoundedRect;
@@ -116,6 +135,7 @@
     [backgroundView addSubview:textField];
     
     self.view = backgroundView;
+    self.textField = textField;
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
