@@ -9,6 +9,7 @@
 #import "BNRItemStore.h"
 #import "BNRItem.h"
 #import "BNRImageStore.h"
+#import "AppDelegate.h"
 
 @interface BNRItemStore ()
 
@@ -100,6 +101,13 @@
 - (BNRItem *)createItem
 {
     BNRItem *item = [[BNRItem alloc] init];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    item.valueInDollars = (int)[defaults integerForKey:BNRNextItemValuePrefsKey];
+    item.itemName = [defaults valueForKey:BNRNextItemNamePrefsKey];
+    
+    NSLog(@"%@", [defaults dictionaryRepresentation]);
     
     [self.privateItems addObject:item];
     
