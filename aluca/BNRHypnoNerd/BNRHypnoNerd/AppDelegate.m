@@ -28,6 +28,8 @@
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[hvc, rvc];
+    
+    tabBarController.tabBar.translucent = NO;
 
     self.window.rootViewController = tabBarController;
     

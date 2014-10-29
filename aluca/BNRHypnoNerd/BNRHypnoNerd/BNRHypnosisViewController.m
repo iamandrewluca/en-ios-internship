@@ -17,7 +17,7 @@
 
 - (void)drawHypnoticMessage:(NSString *)message
 {
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 50; i++) {
         
         UILabel *messageLabel = [[UILabel alloc] init];
         messageLabel.backgroundColor = [UIColor clearColor];
@@ -36,6 +36,37 @@
         messageLabel.frame = frame;
         
         [self.view addSubview:messageLabel];
+        
+        messageLabel.alpha = 0.0;
+        
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             messageLabel.alpha = 1.0;
+                         } completion:NULL];
+        
+        [UIView animateKeyframesWithDuration:1.0
+                                       delay:0.0
+                                     options:0
+                                  animations:^{
+                                      
+                                      [UIView addKeyframeWithRelativeStartTime:0.0
+                                                              relativeDuration:0.8
+                                                                    animations:^{
+                                                                        messageLabel.center = self.view.center;
+                                                                    }];
+                                      
+                                      [UIView addKeyframeWithRelativeStartTime:0.8
+                                                              relativeDuration:0.2
+                                                                    animations:^{
+                                                                        int x = arc4random() % width;
+                                                                        int y = arc4random() % height;
+                                                                        messageLabel.center = CGPointMake(x, y);
+                                                                    }];
+                                  } completion:^(BOOL finished) {
+                                      NSLog(@"Animation Finished");
+                                  }];
         
         // Not working on simulation device
         UIInterpolatingMotionEffect *motionEffect;
