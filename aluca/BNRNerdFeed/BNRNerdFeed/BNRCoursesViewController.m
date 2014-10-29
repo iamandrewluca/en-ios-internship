@@ -9,7 +9,7 @@
 #import "BNRCoursesViewController.h"
 #import "BNRWebViewController.h"
 
-@interface BNRCoursesViewController () <UITableViewDelegate>
+@interface BNRCoursesViewController () <UITableViewDelegate, NSURLSessionDataDelegate>
 
 @property (nonatomic) NSURLSession *session;
 @property (nonatomic) NSArray *courses;
@@ -18,11 +18,20 @@
 
 @implementation BNRCoursesViewController
 
+#pragma mark URLSession
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler
+{
+    NSURLCredential *cred = [NSURLCredential credentialWithUser:@"BigNerdRanch" password:@"AchieveNerdvana" persistence:NSURLCredentialPersistenceForSession];
+    
+    completionHandler(NSURLSessionAuthChallengeUseCredential, cred);
+}
+
 #pragma mark Other
 
 - (void)fetchFeed
 {
-    NSString *requestString = @"http://bookapi.bignerdranch.com/courses.json";
+    NSString *requestString = @"https://bookapi.bignerdranch.com/private/courses.json";
     NSURL *url = [NSURL URLWithString:requestString];
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     
@@ -31,6 +40,8 @@
         NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         
         self.courses = jsonObject[@"courses"];
+        
+        NSLog(@"%@", jsonObject);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -61,7 +72,7 @@
         self.navigationItem.title = @"BNRCourses";
         
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-        _session = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:nil];
+        _session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:nil];
         
         [self fetchFeed];
         
