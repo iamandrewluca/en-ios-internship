@@ -104,10 +104,8 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    item.valueInDollars = (int)[defaults integerForKey:BNRNextItemValuePrefsKey];
+    item.valueInDollars = [[defaults objectForKey:BNRNextItemValuePrefsKey] intValue];
     item.itemName = [defaults valueForKey:BNRNextItemNamePrefsKey];
-    
-    NSLog(@"%@", [defaults dictionaryRepresentation]);
     
     [self.privateItems addObject:item];
     
