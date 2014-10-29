@@ -11,6 +11,7 @@
 @interface BNRCoursesViewController () <UITableViewDelegate>
 
 @property (nonatomic) NSURLSession *session;
+@property (nonatomic) NSArray *courses;
 
 @end
 
@@ -26,12 +27,26 @@
     
     NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:req completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
-        NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"%@", json);
+        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        
+        self.courses = jsonObject[@"courses"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
         
     }];
     
     [dataTask resume];
+}
+
+#pragma mark View
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
 }
 
 #pragma  mark Init
@@ -58,12 +73,18 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return [self.courses count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    
+    NSDictionary *course = self.courses[indexPath.row];
+    
+    cell.textLabel.text = course[@"title"];
+    
+    return cell;
 }
 
 @end
