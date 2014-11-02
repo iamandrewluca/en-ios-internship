@@ -118,8 +118,45 @@
                      } completion:NULL];
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    UISegmentedControl *sc = [[UISegmentedControl alloc] initWithItems:@[@"Red", @"Green", @"Blue"]];
+    
+    sc.tintColor = [UIColor blackColor];
+    
+    CGRect scFrame = CGRectMake(self.view.bounds.origin.x + 8,
+                                self.view.bounds.size.height - 88,
+                                self.view.bounds.size.width - 16, 30);
+    sc.frame = scFrame;
+    
+    [sc addTarget:self action:@selector(colorSelected:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:sc];
+}
+
+- (void)colorSelected:(UISegmentedControl *)sender
+{
+    switch (sender.selectedSegmentIndex) {
+    case 0:
+        [self.view setValue:[UIColor redColor] forKey:@"circleColor"];
+        break;
+    case 1:
+        [self.view setValue:[UIColor greenColor] forKey:@"circleColor"];
+        break;
+    case 2:
+        [self.view setValue:[UIColor blueColor] forKey:@"circleColor"];
+        break;
+    default:
+        [self.view setValue:[UIColor blackColor] forKey:@"circleColor"];
+        break;
+    }
+}
+
 - (void)loadView
 {
+    [super loadView];
+    
     CGRect frame = [UIScreen mainScreen].bounds;
     BNRHypnosisView *backgroundView = [[BNRHypnosisView alloc] initWithFrame:frame];
     
@@ -155,10 +192,4 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    NSLog(@"Hypnosis loaded its view");
-}
 @end

@@ -110,31 +110,91 @@
     
     NSString *question = self.questions[self.currentQuestionIndex];
     
-    self.questionLabel.text = question;
+    CGRect nextlabelFrame = self.questionLabel.frame;
+    nextlabelFrame.origin.x -= nextlabelFrame.size.width;
     
-    self.answerLabel.text = @"???";
+    UILabel *nextLabel = [[UILabel alloc] initWithFrame:nextlabelFrame];
+    [nextLabel setBackgroundColor:self.questionLabel.backgroundColor];
+    [nextLabel setTextAlignment:self.questionLabel.textAlignment];
+    [nextLabel setText:question];
+    [nextLabel setAlpha:0.0];
     
+    [self.view addSubview:nextLabel];
+    
+    CGPoint questionCenter = self.questionLabel.center;
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        
+        nextLabel.alpha = 1.0;
+        nextLabel.center = questionCenter;
+        
+        CGFloat labelWidth = self.questionLabel.bounds.size.width;
+        
+        self.questionLabel.alpha = 0.0;
+        self.leftConstraintQuestionLabel.constant = labelWidth;
+        self.rightConstraintQuestionLabel.constant = -labelWidth;
+        
+        [self.view layoutIfNeeded];
+        
+    } completion:^(BOOL finished) {
+        
+        self.questionLabel.text = question;
+        self.leftConstraintQuestionLabel.constant = 8;
+        self.rightConstraintQuestionLabel.constant = 8;
+        self.questionLabel.alpha = 1.0;
+        
+        [self.view layoutIfNeeded];
+        
+        [nextLabel removeFromSuperview];
+        
+        self.answerLabel.text = @"???";
+        
+    }];
 }
 
 - (IBAction)showAnswer:(id)sender {
     
     NSString *answer = self.answers[self.currentQuestionIndex];
     
+    if (self.answerLabel.text == answer) return;
+    
     CGRect nextlabelFrame = self.answerLabel.frame;
-    nextlabelFrame.origin.y += 100;
+    nextlabelFrame.origin.x -= nextlabelFrame.size.width;
     
     UILabel *nextLabel = [[UILabel alloc] initWithFrame:nextlabelFrame];
     [nextLabel setBackgroundColor:self.answerLabel.backgroundColor];
     [nextLabel setTextAlignment:self.answerLabel.textAlignment];
     [nextLabel setText:answer];
+    [nextLabel setAlpha:0.0];
     
-    [self.view addSubview:nextLabel];    
+    [self.view addSubview:nextLabel];
     
+    CGPoint answerCenter = self.answerLabel.center;
     
     [UIView animateWithDuration:1.0 animations:^{
-        //animation
+        
+        nextLabel.alpha = 1.0;
+        nextLabel.center = answerCenter;
+        
+        CGFloat labelWidth = self.answerLabel.bounds.size.width;
+        
+        self.answerLabel.alpha = 0.0;
+        self.leftConstraintAnswerLabel.constant = labelWidth;
+        self.rightConstraintAnswerLabel.constant = -labelWidth;
+        
+        [self.view layoutIfNeeded];
+        
     } completion:^(BOOL finished) {
-        //completion
+        
+        self.answerLabel.text = answer;
+        self.leftConstraintAnswerLabel.constant = 8;
+        self.rightConstraintAnswerLabel.constant = 8;
+        self.answerLabel.alpha = 1.0;
+        
+        [self.view layoutIfNeeded];
+        
+        [nextLabel removeFromSuperview];
+        
     }];
 }
 
