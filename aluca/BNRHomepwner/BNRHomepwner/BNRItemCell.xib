@@ -25,7 +25,7 @@
                             <constraint firstAttribute="height" constant="21" id="ZE5-bG-aSk"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ed-uW-ccD">
@@ -40,7 +40,7 @@
                             <constraint firstAttribute="height" constant="15" id="cLi-MJ-T6q"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krm-vI-Ceh">
@@ -71,13 +71,14 @@
                     <constraint firstItem="CXH-K4-Sgv" firstAttribute="leading" secondItem="d95-pt-CCO" secondAttribute="trailing" constant="8" id="tXY-5g-XpS"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="nameLabel" destination="cit-Yy-PeC" id="SOY-rs-svt"/>
                 <outlet property="serialNumberLabel" destination="CXH-K4-Sgv" id="6hE-AU-Ut8"/>
                 <outlet property="thumbnailView" destination="d95-pt-CCO" id="QbX-zJ-H9J"/>
                 <outlet property="valueLabel" destination="6Ed-uW-ccD" id="5Jx-7F-5hZ"/>
             </connections>
-            <point key="canvasLocation" x="560" y="579"/>
+            <point key="canvasLocation" x="217" y="220"/>
         </tableViewCell>
     </objects>
 </document>

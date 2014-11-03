@@ -14,6 +14,8 @@
 @interface BNRItemStore ()
 
 @property (nonatomic) NSMutableArray *privateItems;
+@property (nonatomic) NSMutableArray *privateItemsBelow50;
+@property (nonatomic) NSMutableArray *privateItemsAbove50;
 
 @end
 
@@ -56,6 +58,23 @@
     [[BNRImageStore sharedStore] deleteImageForKey:key];
     
     [self.privateItems removeObjectIdenticalTo:item];
+    
+    if (item.valueInDollars <= 50) {
+        [self.privateItemsBelow50 removeObjectIdenticalTo:item];
+    } else if (item.valueInDollars > 50) {
+        [self.privateItemsAbove50 removeObjectIdenticalTo:item];
+    }
+}
+
+- (void)switchItem:(BNRItem *)item
+{
+    if (item.valueInDollars <= 50) {
+        [self.privateItemsBelow50 removeObjectIdenticalTo:item];
+        [self.privateItemsAbove50 addObject:item];
+    } else if (item.valueInDollars > 50) {
+        [self.privateItemsAbove50 removeObjectIdenticalTo:item];
+        [self.privateItemsBelow50 addObject:item];
+    }
 }
 
 + (instancetype)sharedStore
@@ -85,9 +104,23 @@
         NSString *path = [self itemArchivePath];
         _privateItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
         
+        _privateItemsBelow50 = [[NSMutableArray alloc] init];
+        _privateItemsAbove50 = [[NSMutableArray alloc] init];
+        
         if (!_privateItems) {
             _privateItems = [[NSMutableArray alloc] init];
         }
+        
+        if (_privateItems) {
+            for (BNRItem *item in _privateItems) {
+                if (item.valueInDollars <= 50) {
+                    [self.privateItemsBelow50 addObject:item];
+                } else if (item.valueInDollars > 50) {
+                    [self.privateItemsAbove50 addObject:item];
+                }
+            }
+        } // end if
+        
     }
     
     return self;
@@ -96,6 +129,16 @@
 - (NSArray *)allItems
 {
     return self.privateItems;
+}
+
+- (NSArray *)itemsAbove50
+{
+    return self.privateItemsAbove50;
+}
+
+- (NSArray *)itemsBelow50
+{
+    return self.privateItemsBelow50;
 }
 
 - (BNRItem *)createItem
@@ -108,6 +151,12 @@
     item.itemName = [defaults valueForKey:BNRNextItemNamePrefsKey];
     
     [self.privateItems addObject:item];
+    
+    if (item.valueInDollars <= 50) {
+        [self.privateItemsBelow50 addObject:item];
+    } else if (item.valueInDollars > 50) {
+        [self.privateItemsAbove50 addObject:item];
+    }
     
     return item;
 }

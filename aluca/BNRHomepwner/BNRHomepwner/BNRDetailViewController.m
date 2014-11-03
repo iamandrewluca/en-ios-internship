@@ -10,6 +10,7 @@
 #import "BNRItem.h"
 #import "BNRImageStore.h"
 #import "AppDelegate.h"
+#import "BNRItemStore.h"
 
 @interface BNRDetailViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
@@ -89,6 +90,16 @@
     int newValue = [self.valueField.text intValue];
     
     if (newValue != item.valueInDollars) {
+        
+        if (newValue <= 50 && item.valueInDollars > 50) {
+            
+            [[BNRItemStore sharedStore] switchItem:item];
+            
+        } else if (newValue > 50 && item.valueInDollars <= 50) {
+            
+            [[BNRItemStore sharedStore] switchItem:item];
+            
+        }
         
         item.valueInDollars = newValue;
         

@@ -22,6 +22,22 @@
 
 @implementation BNRItemsViewController
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return @"Items below $50";
+            break;
+        case 1:
+            return @"Items above $50";
+            break;
+            
+        default:
+            return @"All items";
+            break;
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -29,11 +45,38 @@
     [self.tableView reloadData];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return [[[BNRItemStore sharedStore] itemsBelow50] count];
+            break;
+        case 1:
+            return [[[BNRItemStore sharedStore] itemsAbove50] count];
+            
+        default:
+            return [[[BNRItemStore sharedStore] allItems] count];
+            break;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BNRDetailViewController *detailViewController = [[BNRDetailViewController alloc] init];
     
-    NSArray *items = [[BNRItemStore sharedStore] allItems];
+    NSArray *items;
+    
+    if (indexPath.section == 0) {
+        items = [[BNRItemStore sharedStore] itemsBelow50];
+    } else if (indexPath.section == 1) {
+        items = [[BNRItemStore sharedStore] itemsAbove50];
+    }
+    
     BNRItem *selectedItem = items[indexPath.row];
     
     detailViewController.item = selectedItem;
@@ -48,14 +91,47 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    [[BNRItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
+    if (sourceIndexPath.section == destinationIndexPath.section) {
+        [[BNRItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60.0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 44.0;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    return @"No more items!";
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
+{
+    if (sourceIndexPath.section != proposedDestinationIndexPath.section) {
+        return sourceIndexPath;
+    } else {
+        return proposedDestinationIndexPath;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        NSArray *items = [[BNRItemStore sharedStore] allItems];
+        NSArray *items;
+        
+        if (indexPath.section == 0) {
+            items = [[BNRItemStore sharedStore] itemsBelow50];
+        } else if (indexPath.section == 1) {
+            items = [[BNRItemStore sharedStore] itemsAbove50];
+        }
+        
         BNRItem *item = items[indexPath.row];
         
         [[BNRItemStore sharedStore] removeItem:item];
@@ -68,8 +144,19 @@
 - (IBAction)addNewItem:(id)sender
 {
     BNRItem *newItem = [[BNRItemStore sharedStore] createItem];
-    NSInteger lastRow = [[[BNRItemStore sharedStore] allItems] indexOfObject:newItem];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:lastRow inSection:0];
+    
+    NSInteger section = -1;
+    NSInteger lastRow = -1;
+    
+    if (newItem.valueInDollars <= 50) {
+        section = 0;
+        lastRow = [[[BNRItemStore sharedStore] itemsBelow50] indexOfObject:newItem];
+    } else if (newItem.valueInDollars > 50) {
+        section = 1;
+        lastRow = [[[BNRItemStore sharedStore] itemsAbove50] indexOfObject:newItem];
+    }
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:lastRow inSection:section];
     
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
 }
@@ -96,16 +183,19 @@
     return [self init];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [[[BNRItemStore sharedStore] allItems] count];
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BNRItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BNRItemCell" forIndexPath:indexPath];
     
-    NSArray *items = [[BNRItemStore sharedStore] allItems];
+    cell.nameLabel.font = [UIFont fontWithName:@"Arial" size:20.0];
+    
+    NSArray *items;
+    
+    if (indexPath.section == 0) {
+        items = [[BNRItemStore sharedStore] itemsBelow50];
+    } else if (indexPath.section == 1) {
+        items = [[BNRItemStore sharedStore] itemsAbove50];
+    }
     
     BNRItem *item = items[indexPath.row];
     
@@ -115,7 +205,7 @@
     
     if (item.valueInDollars > 50) {
         cell.valueLabel.textColor = [UIColor greenColor];
-    } else if (item.valueInDollars < 50) {
+    } else if (item.valueInDollars <= 50) {
         cell.valueLabel.textColor = [UIColor redColor];
     } else {
         cell.valueLabel.textColor = [UIColor blackColor];
@@ -167,6 +257,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
+    [backgroundImage setFrame:self.tableView.frame];
+    
+    self.tableView.backgroundView = backgroundImage;
     
     UINib *nib = [UINib nibWithNibName:@"BNRItemCell" bundle:nil];
     
