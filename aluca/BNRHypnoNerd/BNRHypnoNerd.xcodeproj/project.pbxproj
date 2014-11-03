@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A74423361A03E49900563A8D /* BNRQuizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A74423341A03E49900563A8D /* BNRQuizViewController.m */; };
+		A74423371A03E49900563A8D /* BNRQuizViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74423351A03E49900563A8D /* BNRQuizViewController.xib */; };
 		A7B98E7219EBF8B300287665 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B98E7119EBF8B300287665 /* main.m */; };
 		A7B98E7519EBF8B300287665 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B98E7419EBF8B300287665 /* AppDelegate.m */; };
 		A7B98E7D19EBF8B400287665 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7B98E7C19EBF8B400287665 /* Images.xcassets */; };
@@ -28,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A74423331A03E49900563A8D /* BNRQuizViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRQuizViewController.h; sourceTree = "<group>"; };
+		A74423341A03E49900563A8D /* BNRQuizViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRQuizViewController.m; sourceTree = "<group>"; };
+		A74423351A03E49900563A8D /* BNRQuizViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRQuizViewController.xib; sourceTree = "<group>"; };
 		A7B98E6C19EBF8B300287665 /* BNRHypnoNerd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BNRHypnoNerd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7B98E7019EBF8B300287665 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7B98E7119EBF8B300287665 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -85,6 +90,9 @@
 		A7B98E6E19EBF8B300287665 /* BNRHypnoNerd */ = {
 			isa = PBXGroup;
 			children = (
+				A74423331A03E49900563A8D /* BNRQuizViewController.h */,
+				A74423341A03E49900563A8D /* BNRQuizViewController.m */,
+				A74423351A03E49900563A8D /* BNRQuizViewController.xib */,
 				A7B98EA419EBFACF00287665 /* BNRHypnosisViewController.h */,
 				A7B98EA519EBFACF00287665 /* BNRHypnosisViewController.m */,
 				A7B98E9519EBF98500287665 /* BNRHypnosisView.h */,
@@ -207,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7B98E7D19EBF8B400287665 /* Images.xcassets in Resources */,
+				A74423371A03E49900563A8D /* BNRQuizViewController.xib in Resources */,
 				A7B98EAB19EC032000287665 /* BNRReminderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A74423361A03E49900563A8D /* BNRQuizViewController.m in Sources */,
 				A7B98EA619EBFACF00287665 /* BNRHypnosisViewController.m in Sources */,
 				A7B98E7519EBF8B300287665 /* AppDelegate.m in Sources */,
 				A7B98E7219EBF8B300287665 /* main.m in Sources */,
@@ -334,6 +344,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = BNRHypnoNerd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -345,6 +356,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = BNRHypnoNerd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -405,6 +417,7 @@
 				A7B98E9119EBF8B400287665 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A7B98E9219EBF8B400287665 /* Build configuration list for PBXNativeTarget "BNRHypnoNerdTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +426,7 @@
 				A7B98E9419EBF8B400287665 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
