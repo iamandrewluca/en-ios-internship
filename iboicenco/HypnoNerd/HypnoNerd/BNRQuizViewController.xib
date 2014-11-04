@@ -15,15 +15,24 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+<<<<<<< HEAD:iboicenco/HypnoNerd/HypnoNerd/BNRQuizViewController.xib
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdd-Oe-nL4">
                     <rect key="frame" x="8" y="20" width="304" height="63"/>
+=======
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="???" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaB-wX-MTY">
+                    <rect key="frame" x="8" y="370" width="584" height="21"/>
+>>>>>>> develop:aluca/Quiz/Quiz/ViewController.xib
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+<<<<<<< HEAD:iboicenco/HypnoNerd/HypnoNerd/BNRQuizViewController.xib
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="???" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azl-2W-cRc">
                     <rect key="frame" x="8" y="254" width="304" height="60"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -33,6 +42,10 @@
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tex-4o-XfW">
                     <rect key="frame" x="74" y="322" width="172" height="47"/>
                     <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
+=======
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cb3-jh-vJS">
+                    <rect key="frame" x="8" y="399" width="584" height="30"/>
+>>>>>>> develop:aluca/Quiz/Quiz/ViewController.xib
                     <state key="normal" title="Show Answer">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -40,9 +53,20 @@
                         <action selector="showAnswer:" destination="-1" eventType="touchUpInside" id="usG-eP-nNc"/>
                     </connections>
                 </button>
+<<<<<<< HEAD:iboicenco/HypnoNerd/HypnoNerd/BNRQuizViewController.xib
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mw9-lB-hn7">
                     <rect key="frame" x="74" y="91" width="172" height="47"/>
                     <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+=======
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xp9-S4-eVR">
+                    <rect key="frame" x="8" y="73" width="584" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3k-5d-es7">
+                    <rect key="frame" x="8" y="102" width="584" height="30"/>
+>>>>>>> develop:aluca/Quiz/Quiz/ViewController.xib
                     <state key="normal" title="Show Question">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -51,8 +75,26 @@
                     </connections>
                 </button>
             </subviews>
+<<<<<<< HEAD:iboicenco/HypnoNerd/HypnoNerd/BNRQuizViewController.xib
             <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.25098040699958801" alpha="1" colorSpace="calibratedRGB"/>
             <point key="canvasLocation" x="186" y="413"/>
+=======
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Xp9-S4-eVR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="73" id="734-Vc-bzx"/>
+                <constraint firstAttribute="trailing" secondItem="Xp9-S4-eVR" secondAttribute="trailing" constant="8" id="AnT-NO-dEr"/>
+                <constraint firstAttribute="trailing" secondItem="Cb3-jh-vJS" secondAttribute="trailing" constant="8" id="JVe-6y-S73"/>
+                <constraint firstItem="h3k-5d-es7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Qhs-tg-Cpx"/>
+                <constraint firstItem="Xp9-S4-eVR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="TRP-Ns-jgv"/>
+                <constraint firstItem="kaB-wX-MTY" firstAttribute="top" secondItem="h3k-5d-es7" secondAttribute="bottom" constant="238" id="XGC-hl-NRZ"/>
+                <constraint firstItem="Cb3-jh-vJS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="ZEY-Sc-bo0"/>
+                <constraint firstItem="Cb3-jh-vJS" firstAttribute="top" secondItem="kaB-wX-MTY" secondAttribute="bottom" constant="8" id="Zik-Zr-tFu"/>
+                <constraint firstItem="h3k-5d-es7" firstAttribute="top" secondItem="Xp9-S4-eVR" secondAttribute="bottom" constant="8" id="c7e-ro-cYp"/>
+                <constraint firstAttribute="trailing" secondItem="kaB-wX-MTY" secondAttribute="trailing" constant="8" id="dBD-X2-vzm"/>
+                <constraint firstItem="kaB-wX-MTY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="otm-Uh-Qy4"/>
+                <constraint firstAttribute="trailing" secondItem="h3k-5d-es7" secondAttribute="trailing" constant="8" id="uGb-9U-OXH"/>
+            </constraints>
+>>>>>>> develop:aluca/Quiz/Quiz/ViewController.xib
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

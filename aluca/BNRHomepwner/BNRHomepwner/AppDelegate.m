@@ -1,15 +1,17 @@
 //
 //  AppDelegate.m
-//  HypnoNerd
+//  BNRHomepwner
 //
-//  Created by iboicenco on 10/16/14.
-//  Copyright (c) 2014 iboicenco. All rights reserved.
+//  Created by Andrei Luca on 10/16/14.
+//  Copyright (c) 2014 Andrei Luca. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "BNRHypnosisViewController.h"
-#import "BNRReminderViewController.h"
-#import "BNRQuizViewController.h"
+#import "BNRItemsViewController.h"
+#import "BNRItemStore.h"
+
+NSString * const BNRNextItemValuePrefsKey = @"NextItemValue";
+NSString * const BNRNextItemNamePrefsKey = @"NextItemName";
 
 @interface AppDelegate ()
 
@@ -17,31 +19,31 @@
 
 @implementation AppDelegate
 
++ (void)initialize
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSDictionary *factorySettings = @{BNRNextItemValuePrefsKey: @75, BNRNextItemNamePrefsKey: @"Coffe Cup"};
+    
+    [defaults registerDefaults:factorySettings];
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Override point for customization after application launch.
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-<<<<<<< HEAD:iboicenco/HypnoNerd/HypnoNerd/AppDelegate.m
-    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)])
-    {
-        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
-    }
+    BNRItemsViewController *itemsViewController = [[BNRItemsViewController alloc] init];
     
-    BNRHypnosisViewController *hvc = [[BNRHypnosisViewController alloc] init]; // Sending init to a view controller calls initWithNibName:bundle: and passes nil for both arguments.
-    BNRReminderViewController *rvc = [[BNRReminderViewController alloc] init];
-    BNRQuizViewController     *qvc = [[BNRQuizViewController alloc]init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:itemsViewController];
+    navController.navigationBar.translucent = NO;
     
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[hvc, rvc, qvc];
-    
-    self.window.rootViewController = tabBarController;
-=======
-    
-    self.window.rootViewController = [[ViewController alloc] init];
->>>>>>> develop:aluca/Quiz/Quiz/AppDelegate.m
+    self.window.rootViewController = navController;
     
     self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
     
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -53,6 +55,14 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    BOOL success = [[BNRItemStore sharedStore] saveChanges];
+    
+    if (success) {
+        NSLog(@"Saved all of the BNRItems");
+    } else {
+        NSLog(@"Could not save any of the BNRItems");
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
