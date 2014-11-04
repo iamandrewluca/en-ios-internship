@@ -11,6 +11,7 @@
 #import "BNRImageStore.h"
 #import "AppDelegate.h"
 #import "BNRItemStore.h"
+#import "BNRChangeDateController.h"
 
 @interface BNRDetailViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
@@ -24,6 +25,16 @@
 @end
 
 @implementation BNRDetailViewController
+
+- (IBAction)changeDate:(id)sender
+{
+    BNRChangeDateController *changeDateController = [[BNRChangeDateController alloc] init];
+
+    
+    changeDateController.item = self.item;
+    
+    [self.navigationController pushViewController:changeDateController animated:YES];
+}
 
 - (IBAction)removePicture:(id)sender
 {
