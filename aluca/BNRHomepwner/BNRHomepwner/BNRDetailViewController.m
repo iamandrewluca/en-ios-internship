@@ -29,6 +29,7 @@
 {
     [[BNRImageStore sharedStore] deleteImageForKey:self.item.itemKey];
     self.imageView.image = nil;
+    self.item.thumbnail = nil;
 }
 
 - (IBAction)backgroundTapped:(id)sender
