@@ -11,6 +11,10 @@
 
 @interface BNRAppDelegate () <UIScrollViewDelegate>
 @property (nonatomic, strong) BNRHypnosisView *hypnosisView;
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
 @end
 
 @implementation BNRAppDelegate
@@ -30,7 +34,11 @@
     CGRect screenRect = self.window.bounds;
 //    CGRect bigRect = screenRect;
 //    bigRect.size.width  *= 2.0;
+<<<<<<< HEAD
 //    bigRect.size.height *= 2.0;
+=======
+    //bigRect.size.height *= 2.0;
+>>>>>>> develop
     
     // Create a screen-sized scrollView and add it to the window;
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:screenRect];
