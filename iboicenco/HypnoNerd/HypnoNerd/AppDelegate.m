@@ -1,13 +1,15 @@
 //
 //  AppDelegate.m
-//  Quiz
+//  HypnoNerd
 //
-//  Created by Andrei Luca on 10/7/14.
-//  Copyright (c) 2014 Andrei Luca. All rights reserved.
+//  Created by iboicenco on 10/16/14.
+//  Copyright (c) 2014 iboicenco. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "BNRHypnosisViewController.h"
+#import "BNRReminderViewController.h"
+#import "BNRQuizViewController.h"
 
 @interface AppDelegate ()
 
@@ -15,15 +17,29 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+<<<<<<< HEAD:iboicenco/HypnoNerd/HypnoNerd/AppDelegate.m
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)])
+    {
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    }
+    
+    BNRHypnosisViewController *hvc = [[BNRHypnosisViewController alloc] init]; // Sending init to a view controller calls initWithNibName:bundle: and passes nil for both arguments.
+    BNRReminderViewController *rvc = [[BNRReminderViewController alloc] init];
+    BNRQuizViewController     *qvc = [[BNRQuizViewController alloc]init];
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = @[hvc, rvc, qvc];
+    
+    self.window.rootViewController = tabBarController;
+=======
     
     self.window.rootViewController = [[ViewController alloc] init];
+>>>>>>> develop:aluca/Quiz/Quiz/AppDelegate.m
     
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
     return YES;
