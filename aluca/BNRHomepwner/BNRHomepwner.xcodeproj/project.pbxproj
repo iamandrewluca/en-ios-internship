@@ -19,7 +19,6 @@
 		A76280E019F0067A009CEE02 /* BNRItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76280DF19F0067A009CEE02 /* BNRItemsViewController.m */; };
 		A76280E919F008F8009CEE02 /* BNRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A76280E819F008F8009CEE02 /* BNRItem.m */; };
 		A76280EC19F00F68009CEE02 /* BNRItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A76280EB19F00F68009CEE02 /* BNRItemStore.m */; };
-		A7AD39241A0909DC002526C1 /* UIImage+EncodeOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = A7AD39231A0909DC002526C1 /* UIImage+EncodeOverride.m */; };
 		A7AD39281A0919D2002526C1 /* BNRChangeDateController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7AD39261A0919D2002526C1 /* BNRChangeDateController.m */; };
 		A7AD39291A0919D2002526C1 /* BNRChangeDateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7AD39271A0919D2002526C1 /* BNRChangeDateController.xib */; };
 		A7C7230A1A01191300D4D1A3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A7C723091A01191300D4D1A3 /* Settings.bundle */; };
@@ -60,8 +59,6 @@
 		A76280E819F008F8009CEE02 /* BNRItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItem.m; sourceTree = "<group>"; };
 		A76280EA19F00F68009CEE02 /* BNRItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItemStore.h; sourceTree = "<group>"; };
 		A76280EB19F00F68009CEE02 /* BNRItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItemStore.m; sourceTree = "<group>"; };
-		A7AD39221A0909DC002526C1 /* UIImage+EncodeOverride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EncodeOverride.h"; sourceTree = "<group>"; };
-		A7AD39231A0909DC002526C1 /* UIImage+EncodeOverride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+EncodeOverride.m"; sourceTree = "<group>"; };
 		A7AD39251A0919D2002526C1 /* BNRChangeDateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRChangeDateController.h; sourceTree = "<group>"; };
 		A7AD39261A0919D2002526C1 /* BNRChangeDateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRChangeDateController.m; sourceTree = "<group>"; };
 		A7AD39271A0919D2002526C1 /* BNRChangeDateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRChangeDateController.xib; sourceTree = "<group>"; };
@@ -109,8 +106,6 @@
 		A76280B719F00553009CEE02 /* BNRHomepwner */ = {
 			isa = PBXGroup;
 			children = (
-				A7AD39221A0909DC002526C1 /* UIImage+EncodeOverride.h */,
-				A7AD39231A0909DC002526C1 /* UIImage+EncodeOverride.m */,
 				A756CF3219F526340071AB75 /* BNRDetailViewController.h */,
 				A756CF3319F526340071AB75 /* BNRDetailViewController.m */,
 				A7AD39251A0919D2002526C1 /* BNRChangeDateController.h */,
@@ -277,7 +272,6 @@
 				A76280E919F008F8009CEE02 /* BNRItem.m in Sources */,
 				A76280BE19F00553009CEE02 /* AppDelegate.m in Sources */,
 				A76280BB19F00553009CEE02 /* main.m in Sources */,
-				A7AD39241A0909DC002526C1 /* UIImage+EncodeOverride.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
