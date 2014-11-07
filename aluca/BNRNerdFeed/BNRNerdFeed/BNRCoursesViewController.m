@@ -41,8 +41,6 @@
         
         self.courses = jsonObject[@"courses"];
         
-        NSLog(@"%@", jsonObject);
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
@@ -100,11 +98,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    // UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"UITableViewCell"];
     
     NSDictionary *course = self.courses[indexPath.row];
     
-    cell.textLabel.text = course[@"title"];
+    cell.detailTextLabel.text = course[@"title"];
+    
+    if ([course objectForKey:@"upcoming"]) {
+        cell.textLabel.text = course[@"upcoming"][0][@"start_date"];
+    }
     
     return cell;
 }
