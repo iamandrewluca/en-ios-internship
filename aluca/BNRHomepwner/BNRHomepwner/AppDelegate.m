@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "BNRItemsViewController.h"
 #import "BNRItemStore.h"
+#import "BNRImageStore.h"
 
 NSString * const BNRNextItemValuePrefsKey = @"NextItemValue";
 NSString * const BNRNextItemNamePrefsKey = @"NextItemName";
@@ -31,6 +32,8 @@ NSString * const BNRNextItemNamePrefsKey = @"NextItemName";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    NSLog(@"%@", NSHomeDirectory());
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -56,12 +59,19 @@ NSString * const BNRNextItemNamePrefsKey = @"NextItemName";
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-    BOOL success = [[BNRItemStore sharedStore] saveChanges];
+    BOOL successSavingItems = [[BNRItemStore sharedStore] saveChanges];
+    BOOL succesSavingImages = [[BNRImageStore sharedStore] saveChanges];
     
-    if (success) {
+    if (successSavingItems) {
         NSLog(@"Saved all of the BNRItems");
     } else {
         NSLog(@"Could not save any of the BNRItems");
+    }
+    
+    if (succesSavingImages) {
+        NSLog(@"Saved all of the BNRImageStore");
+    } else {
+        NSLog(@"Could not save any of the BNRImageStore");
     }
 }
 

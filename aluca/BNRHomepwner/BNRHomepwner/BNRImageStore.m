@@ -16,6 +16,21 @@
 
 @implementation BNRImageStore
 
+- (BOOL)saveChanges
+{
+    NSString *path = [self itemArchivePath];
+    
+    return [NSKeyedArchiver archiveRootObject:self.dictionary toFile:path];
+}
+
+- (NSString *)itemArchivePath
+{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [documentDirectories firstObject];
+    
+    return [documentDirectory stringByAppendingPathComponent:@"images.archive"];
+}
+
 + (instancetype)sharedStore
 {
     static BNRImageStore *sharedStore = nil;
@@ -39,7 +54,13 @@
     self = [super init];
     
     if (self) {
-        _dictionary = [[NSMutableDictionary alloc] init];
+        NSString *path = [self itemArchivePath];
+        _dictionary = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        
+        if (!_dictionary) {
+            _dictionary = [[NSMutableDictionary alloc] init];
+        }
+        
     }
     
     return self;

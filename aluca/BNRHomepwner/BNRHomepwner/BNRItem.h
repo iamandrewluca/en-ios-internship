@@ -14,7 +14,7 @@
 @property (nonatomic, copy) NSString *itemName;
 @property (nonatomic, copy) NSString *serialNumber;
 @property (nonatomic) int valueInDollars;
-@property (nonatomic, readonly) NSDate *dateCreated;
+@property (nonatomic) NSDate *dateCreated;
 @property (nonatomic, copy) NSString *itemKey;
 @property (nonatomic) UIImage *thumbnail;
 

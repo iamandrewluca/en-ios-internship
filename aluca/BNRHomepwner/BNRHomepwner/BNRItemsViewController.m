@@ -236,7 +236,7 @@
             
             self.imagePopover = [[UIPopoverController alloc] initWithContentViewController:ivc];
             self.imagePopover.delegate = self;
-            self.imagePopover.popoverContentSize = CGSizeMake(600, 600);
+            self.imagePopover.popoverContentSize = CGSizeMake(300, 300);
             
             [self.imagePopover presentPopoverFromRect:rect
                                                inView:self.view
@@ -266,6 +266,7 @@
     UINib *nib = [UINib nibWithNibName:@"BNRItemCell" bundle:nil];
     
     [self.tableView registerNib:nib forCellReuseIdentifier:@"BNRItemCell"];
+    
 }
 
 @end
