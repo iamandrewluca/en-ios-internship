@@ -1,0 +1,421 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */; };
+		A72183011A10E950006E47E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A72183001A10E950006E47E3 /* main.m */; };
+		A72183041A10E950006E47E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A72183031A10E950006E47E3 /* AppDelegate.m */; };
+		A721830C1A10E950006E47E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A721830B1A10E950006E47E3 /* Images.xcassets */; };
+		A721830F1A10E950006E47E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A721830D1A10E950006E47E3 /* LaunchScreen.xib */; };
+		A721831B1A10E950006E47E3 /* ENoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A721831A1A10E950006E47E3 /* ENoteTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A72183151A10E950006E47E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A72182F31A10E950006E47E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A72182FA1A10E950006E47E3;
+			remoteInfo = ENote;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A71D04111A1112DB00308DD0 /* NotebooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebooksTableViewController.h; sourceTree = "<group>"; };
+		A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebooksTableViewController.m; sourceTree = "<group>"; };
+		A72182FB1A10E950006E47E3 /* ENote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ENote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A72182FF1A10E950006E47E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A72183001A10E950006E47E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A72183021A10E950006E47E3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A72183031A10E950006E47E3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A721830B1A10E950006E47E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A721830E1A10E950006E47E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		A72183141A10E950006E47E3 /* ENoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ENoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A72183191A10E950006E47E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A721831A1A10E950006E47E3 /* ENoteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ENoteTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A72182F81A10E950006E47E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A72183111A10E950006E47E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A72182F21A10E950006E47E3 = {
+			isa = PBXGroup;
+			children = (
+				A72182FD1A10E950006E47E3 /* ENote */,
+				A72183171A10E950006E47E3 /* ENoteTests */,
+				A72182FC1A10E950006E47E3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A72182FC1A10E950006E47E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A72182FB1A10E950006E47E3 /* ENote.app */,
+				A72183141A10E950006E47E3 /* ENoteTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A72182FD1A10E950006E47E3 /* ENote */ = {
+			isa = PBXGroup;
+			children = (
+				A71D04111A1112DB00308DD0 /* NotebooksTableViewController.h */,
+				A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */,
+				A72183021A10E950006E47E3 /* AppDelegate.h */,
+				A72183031A10E950006E47E3 /* AppDelegate.m */,
+				A721830B1A10E950006E47E3 /* Images.xcassets */,
+				A721830D1A10E950006E47E3 /* LaunchScreen.xib */,
+				A72182FE1A10E950006E47E3 /* Supporting Files */,
+			);
+			path = ENote;
+			sourceTree = "<group>";
+		};
+		A72182FE1A10E950006E47E3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A72182FF1A10E950006E47E3 /* Info.plist */,
+				A72183001A10E950006E47E3 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A72183171A10E950006E47E3 /* ENoteTests */ = {
+			isa = PBXGroup;
+			children = (
+				A721831A1A10E950006E47E3 /* ENoteTests.m */,
+				A72183181A10E950006E47E3 /* Supporting Files */,
+			);
+			path = ENoteTests;
+			sourceTree = "<group>";
+		};
+		A72183181A10E950006E47E3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A72183191A10E950006E47E3 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A72182FA1A10E950006E47E3 /* ENote */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A721831E1A10E950006E47E3 /* Build configuration list for PBXNativeTarget "ENote" */;
+			buildPhases = (
+				A72182F71A10E950006E47E3 /* Sources */,
+				A72182F81A10E950006E47E3 /* Frameworks */,
+				A72182F91A10E950006E47E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ENote;
+			productName = ENote;
+			productReference = A72182FB1A10E950006E47E3 /* ENote.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A72183131A10E950006E47E3 /* ENoteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A72183211A10E950006E47E3 /* Build configuration list for PBXNativeTarget "ENoteTests" */;
+			buildPhases = (
+				A72183101A10E950006E47E3 /* Sources */,
+				A72183111A10E950006E47E3 /* Frameworks */,
+				A72183121A10E950006E47E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A72183161A10E950006E47E3 /* PBXTargetDependency */,
+			);
+			name = ENoteTests;
+			productName = ENoteTests;
+			productReference = A72183141A10E950006E47E3 /* ENoteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A72182F31A10E950006E47E3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = Endava;
+				TargetAttributes = {
+					A72182FA1A10E950006E47E3 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					A72183131A10E950006E47E3 = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = A72182FA1A10E950006E47E3;
+					};
+				};
+			};
+			buildConfigurationList = A72182F61A10E950006E47E3 /* Build configuration list for PBXProject "ENote" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A72182F21A10E950006E47E3;
+			productRefGroup = A72182FC1A10E950006E47E3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A72182FA1A10E950006E47E3 /* ENote */,
+				A72183131A10E950006E47E3 /* ENoteTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A72182F91A10E950006E47E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A721830F1A10E950006E47E3 /* LaunchScreen.xib in Resources */,
+				A721830C1A10E950006E47E3 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A72183121A10E950006E47E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A72182F71A10E950006E47E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */,
+				A72183041A10E950006E47E3 /* AppDelegate.m in Sources */,
+				A72183011A10E950006E47E3 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A72183101A10E950006E47E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A721831B1A10E950006E47E3 /* ENoteTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A72183161A10E950006E47E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A72182FA1A10E950006E47E3 /* ENote */;
+			targetProxy = A72183151A10E950006E47E3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A721830D1A10E950006E47E3 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A721830E1A10E950006E47E3 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A721831C1A10E950006E47E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A721831D1A10E950006E47E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A721831F1A10E950006E47E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = ENote/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A72183201A10E950006E47E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = ENote/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A72183221A10E950006E47E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ENoteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ENote.app/ENote";
+			};
+			name = Debug;
+		};
+		A72183231A10E950006E47E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ENoteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ENote.app/ENote";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A72182F61A10E950006E47E3 /* Build configuration list for PBXProject "ENote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A721831C1A10E950006E47E3 /* Debug */,
+				A721831D1A10E950006E47E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A721831E1A10E950006E47E3 /* Build configuration list for PBXNativeTarget "ENote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A721831F1A10E950006E47E3 /* Debug */,
+				A72183201A10E950006E47E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A72183211A10E950006E47E3 /* Build configuration list for PBXNativeTarget "ENoteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A72183221A10E950006E47E3 /* Debug */,
+				A72183231A10E950006E47E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A72182F31A10E950006E47E3 /* Project object */;
+}
