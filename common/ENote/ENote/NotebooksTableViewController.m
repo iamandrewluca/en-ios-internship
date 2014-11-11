@@ -7,6 +7,9 @@
 //
 
 #import "NotebooksTableViewController.h"
+#import "NotebooksStore.h"
+#import "Notebook.h"
+#import "NotebooksTableViewCell.h"
 
 @interface NotebooksTableViewController ()
 
@@ -23,7 +26,12 @@
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
                                                  style:UIAlertActionStyleDefault
                                                handler:^(UIAlertAction *action) {
-                                                   NSLog(@"%@", [[[alert textFields] objectAtIndex:0] text]);
+                                                   
+                                                   NSString *nameFromModal = [[alert.textFields objectAtIndex:0] text];
+                                                   [[NotebooksStore sharedStore] createNotebookWithName:nameFromModal];
+                                                   
+                                                   [self.tableView reloadData];
+                                                   
                                                }];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
@@ -40,7 +48,6 @@
     }];
     
     [self presentViewController:alert animated:YES completion:nil];
-
 }
 
 - (void)viewDidLoad {
@@ -58,6 +65,9 @@
     
     self.navigationItem.title = @"Notebooks";
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    UINib *nib = [UINib nibWithNibName:@"NotebooksTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"NotebooksTableViewCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,26 +78,29 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [[[NotebooksStore sharedStore] allNotebooks] count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    NotebooksTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"NotebooksTableViewCell"];
+    Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
     
-    // Configure the cell...
+    cell.nameLabel.text = notebook.name;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterNoStyle];
+    
+    cell.datelabel.text = [formatter stringFromDate:notebook.dateCreated];
+    cell.notesNumberLabel.text = [NSString stringWithFormat:@"%lu", [notebook.notes count]];
     
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.
