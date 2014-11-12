@@ -12,6 +12,10 @@
 @interface Note : NSObject
 
 @property (nonatomic, copy) NSString *text;
+@property (nonatomic, copy) NSString *noteFolder;
+@property (nonatomic, readonly, copy) NSDate *dateCreated;
+
+- (instancetype)initWithText:(NSString *)text;
 
 // for future features )
 // @property (nonatomic) UIImage *image;

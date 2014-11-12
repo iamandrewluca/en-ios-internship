@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class Note;
+
 @interface NotesStore : NSObject
 
 @property (nonatomic) NSArray *allNotes;
+
+- (Note *)createNote;
+- (Note *)createNoteWithText:(NSString *)text;
+- (void)removeNote:(Note *)note;
 
 @end
