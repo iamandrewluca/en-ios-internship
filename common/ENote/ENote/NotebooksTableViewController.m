@@ -9,25 +9,19 @@
 #import "NotebooksTableViewController.h"
 #import "NotebooksStore.h"
 #import "Notebook.h"
-#import "NotebooksTableViewCell.h"
-#import "NotesStore.h"
+#import "NotebooksTableViewDataSource.h"
+#import "NotebooksTableViewDelegate.h"
 
 @class NotesCollectionViewController;
 
-@interface NotebooksTableViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface NotebooksTableViewController ()
+
+@property (nonatomic) NotebooksTableViewDataSource *dataSource;
+@property (nonatomic) NotebooksTableViewDelegate *delegate;
 
 @end
 
 @implementation NotebooksTableViewController
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-//    NotesCollectionViewController *notes = [[NotesCollectionViewController alloc] init];
-//    notes.notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
-//    
-//    [self.navigationController pushViewController:notes animated:YES];
-    
-}
 
 - (void)addNewNotebook {
     
@@ -65,10 +59,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.dataSource = [[NotebooksTableViewDataSource alloc] init];
+    self.delegate = [[NotebooksTableViewDelegate alloc] init];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    self.tableView.dataSource = self.dataSource;
+    self.tableView.delegate = self.delegate;
+    
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
@@ -81,81 +77,5 @@
     UINib *nib = [UINib nibWithNibName:@"NotebooksTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"NotebooksTableViewCell"];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[NotebooksStore sharedStore] allNotebooks] count];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NotebooksTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"NotebooksTableViewCell"];
-    Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
-    
-    cell.nameLabel.text = notebook.name;
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
-    [formatter setTimeStyle:NSDateFormatterNoStyle];
-    
-    cell.datelabel.text = [formatter stringFromDate:notebook.dateCreated];
-    [cell.notesNumberLabel setTitle:[NSString stringWithFormat:@"%lu", [[notebook.notes allNotes] count]] forState:UIControlStateNormal];
-    
-    return cell;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
-
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
-        Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
-        
-        [[NotebooksStore sharedStore] removeNotebook:notebook];
-        
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

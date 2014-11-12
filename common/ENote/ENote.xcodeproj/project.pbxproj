@@ -20,6 +20,8 @@
 		A7D9ACC41A1357A900B8376A /* NotebooksTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7D9ACC31A1357A900B8376A /* NotebooksTableViewController.xib */; };
 		A7D9ACC71A136BB000B8376A /* NotesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACC61A136BB000B8376A /* NotesStore.m */; };
 		A7D9ACCA1A136BBF00B8376A /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACC91A136BBF00B8376A /* Note.m */; };
+		A7D9ACCD1A13754400B8376A /* NotebooksTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACCC1A13754400B8376A /* NotebooksTableViewDataSource.m */; };
+		A7D9ACD01A13777C00B8376A /* NotebooksTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACCF1A13777C00B8376A /* NotebooksTableViewDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,10 @@
 		A7D9ACC61A136BB000B8376A /* NotesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesStore.m; sourceTree = "<group>"; };
 		A7D9ACC81A136BBF00B8376A /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		A7D9ACC91A136BBF00B8376A /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		A7D9ACCB1A13754400B8376A /* NotebooksTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebooksTableViewDataSource.h; sourceTree = "<group>"; };
+		A7D9ACCC1A13754400B8376A /* NotebooksTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebooksTableViewDataSource.m; sourceTree = "<group>"; };
+		A7D9ACCE1A13777C00B8376A /* NotebooksTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebooksTableViewDelegate.h; sourceTree = "<group>"; };
+		A7D9ACCF1A13777C00B8376A /* NotebooksTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebooksTableViewDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +122,10 @@
 				A72183031A10E950006E47E3 /* AppDelegate.m */,
 				A721830B1A10E950006E47E3 /* Images.xcassets */,
 				A721830D1A10E950006E47E3 /* LaunchScreen.xib */,
+				A7D9ACCB1A13754400B8376A /* NotebooksTableViewDataSource.h */,
+				A7D9ACCC1A13754400B8376A /* NotebooksTableViewDataSource.m */,
+				A7D9ACCE1A13777C00B8376A /* NotebooksTableViewDelegate.h */,
+				A7D9ACCF1A13777C00B8376A /* NotebooksTableViewDelegate.m */,
 				A72182FE1A10E950006E47E3 /* Supporting Files */,
 			);
 			path = ENote;
@@ -250,10 +260,12 @@
 			files = (
 				A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */,
 				A72183041A10E950006E47E3 /* AppDelegate.m in Sources */,
+				A7D9ACCD1A13754400B8376A /* NotebooksTableViewDataSource.m in Sources */,
 				A7D9ACC71A136BB000B8376A /* NotesStore.m in Sources */,
 				A7D9ACB31A1246D600B8376A /* Notebook.m in Sources */,
 				A72183011A10E950006E47E3 /* main.m in Sources */,
 				A7D9ACBF1A12511700B8376A /* NotebooksTableViewCell.m in Sources */,
+				A7D9ACD01A13777C00B8376A /* NotebooksTableViewDelegate.m in Sources */,
 				A7D9ACB61A12486300B8376A /* NotebooksStore.m in Sources */,
 				A7D9ACCA1A136BBF00B8376A /* Note.m in Sources */,
 			);
