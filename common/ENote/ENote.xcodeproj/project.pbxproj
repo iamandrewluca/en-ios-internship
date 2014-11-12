@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6155EC451A1377BD00BE143B /* concrete_wall.png in Resources */ = {isa = PBXBuildFile; fileRef = 6155EC431A1377BD00BE143B /* concrete_wall.png */; };
+		6155EC461A1377BD00BE143B /* concrete_wall@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 6155EC441A1377BD00BE143B /* concrete_wall@2X.png */; };
+		6155EC4C1A137C3E00BE143B /* NotesStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6155EC491A137C3E00BE143B /* NotesStorage.m */; };
+		6155EC4D1A137C3E00BE143B /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 6155EC4B1A137C3E00BE143B /* Note.m */; };
+		6190C2271A124CE70046F016 /* NotesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C2251A124CE70046F016 /* NotesCollectionViewController.m */; };
+		6190C2281A124CE70046F016 /* NotesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6190C2261A124CE70046F016 /* NotesCollectionViewController.xib */; };
+		6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C22B1A124EBA0046F016 /* NotesLayout.m */; };
+		6190C2301A1254920046F016 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C22F1A1254920046F016 /* NoteCell.m */; };
 		A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */; };
 		A72183011A10E950006E47E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A72183001A10E950006E47E3 /* main.m */; };
 		A72183041A10E950006E47E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A72183031A10E950006E47E3 /* AppDelegate.m */; };
@@ -26,6 +34,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6155EC431A1377BD00BE143B /* concrete_wall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = concrete_wall.png; sourceTree = "<group>"; };
+		6155EC441A1377BD00BE143B /* concrete_wall@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "concrete_wall@2X.png"; sourceTree = "<group>"; };
+		6155EC481A137C3E00BE143B /* NotesStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesStorage.h; sourceTree = "<group>"; };
+		6155EC491A137C3E00BE143B /* NotesStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesStorage.m; sourceTree = "<group>"; };
+		6155EC4A1A137C3E00BE143B /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		6155EC4B1A137C3E00BE143B /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		6190C2241A124CE70046F016 /* NotesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesCollectionViewController.h; sourceTree = "<group>"; };
+		6190C2251A124CE70046F016 /* NotesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesCollectionViewController.m; sourceTree = "<group>"; };
+		6190C2261A124CE70046F016 /* NotesCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesCollectionViewController.xib; sourceTree = "<group>"; };
+		6190C22A1A124EBA0046F016 /* NotesLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesLayout.h; sourceTree = "<group>"; };
+		6190C22B1A124EBA0046F016 /* NotesLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesLayout.m; sourceTree = "<group>"; };
+		6190C22E1A1254920046F016 /* NoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCell.h; sourceTree = "<group>"; };
+		6190C22F1A1254920046F016 /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
 		A71D04111A1112DB00308DD0 /* NotebooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebooksTableViewController.h; sourceTree = "<group>"; };
 		A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebooksTableViewController.m; sourceTree = "<group>"; };
 		A72182FB1A10E950006E47E3 /* ENote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ENote.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +79,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6155EC421A1377A400BE143B /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				6155EC431A1377BD00BE143B /* concrete_wall.png */,
+				6155EC441A1377BD00BE143B /* concrete_wall@2X.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		6155EC471A137C3600BE143B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6155EC481A137C3E00BE143B /* NotesStorage.h */,
+				6155EC491A137C3E00BE143B /* NotesStorage.m */,
+				6155EC4A1A137C3E00BE143B /* Note.h */,
+				6155EC4B1A137C3E00BE143B /* Note.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6190C2291A124DEC0046F016 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6190C2241A124CE70046F016 /* NotesCollectionViewController.h */,
+				6190C2251A124CE70046F016 /* NotesCollectionViewController.m */,
+				6190C2261A124CE70046F016 /* NotesCollectionViewController.xib */,
+				6190C22A1A124EBA0046F016 /* NotesLayout.h */,
+				6190C22B1A124EBA0046F016 /* NotesLayout.m */,
+				6190C22E1A1254920046F016 /* NoteCell.h */,
+				6190C22F1A1254920046F016 /* NoteCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		A72182F21A10E950006E47E3 = {
 			isa = PBXGroup;
 			children = (
@@ -81,10 +136,9 @@
 			children = (
 				A71D04111A1112DB00308DD0 /* NotebooksTableViewController.h */,
 				A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */,
-				A72183021A10E950006E47E3 /* AppDelegate.h */,
-				A72183031A10E950006E47E3 /* AppDelegate.m */,
+				6155EC471A137C3600BE143B /* Model */,
+				6190C2291A124DEC0046F016 /* View */,
 				A721830B1A10E950006E47E3 /* Images.xcassets */,
-				A721830D1A10E950006E47E3 /* LaunchScreen.xib */,
 				A72182FE1A10E950006E47E3 /* Supporting Files */,
 			);
 			path = ENote;
@@ -93,6 +147,10 @@
 		A72182FE1A10E950006E47E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6155EC421A1377A400BE143B /* Images */,
+				A72183021A10E950006E47E3 /* AppDelegate.h */,
+				A72183031A10E950006E47E3 /* AppDelegate.m */,
+				A721830D1A10E950006E47E3 /* LaunchScreen.xib */,
 				A72182FF1A10E950006E47E3 /* Info.plist */,
 				A72183001A10E950006E47E3 /* main.m */,
 			);
@@ -197,7 +255,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A721830F1A10E950006E47E3 /* LaunchScreen.xib in Resources */,
+				6190C2281A124CE70046F016 /* NotesCollectionViewController.xib in Resources */,
+				6155EC451A1377BD00BE143B /* concrete_wall.png in Resources */,
 				A721830C1A10E950006E47E3 /* Images.xcassets in Resources */,
+				6155EC461A1377BD00BE143B /* concrete_wall@2X.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,8 +276,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6155EC4D1A137C3E00BE143B /* Note.m in Sources */,
 				A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */,
+				6190C2301A1254920046F016 /* NoteCell.m in Sources */,
+				6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */,
+				6155EC4C1A137C3E00BE143B /* NotesStorage.m in Sources */,
 				A72183041A10E950006E47E3 /* AppDelegate.m in Sources */,
+				6190C2271A124CE70046F016 /* NotesCollectionViewController.m in Sources */,
 				A72183011A10E950006E47E3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "NotebooksTableViewController.h"
+#import "NotesCollectionViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,17 +18,19 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
-    NotebooksTableViewController *notebooks = [[NotebooksTableViewController alloc] init];
-    
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:notebooks];
+//    NotebooksTableViewController *notebooks = [[NotebooksTableViewController alloc] init];
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    self.window.rootViewController = nav;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = nav;
     
+    UICollectionView *collection = [[NotesCollectionViewController alloc] initWithNibName:@"NotesCollectionViewController" bundle:nil];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:collection];
+    self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
+    return YES;
     
     return YES;
 }
