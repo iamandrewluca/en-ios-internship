@@ -22,17 +22,17 @@
     if (self) {
         
         _name = name;
-        _folderName = [[NSUUID UUID] UUIDString];
+        _notebookFolder = [[NSUUID UUID] UUIDString];
         _dateCreated = [NSDate date];
         _notes = [[NotesStore alloc] init];
+        
+        for (int i = 0; i < rand() % (999 - 0) + 0; i++) {
+            [_notes createNote];
+        }
         
     }
     
     return self;
-}
-
-- (NSString *)description {
-    return _name;
 }
 
 @end

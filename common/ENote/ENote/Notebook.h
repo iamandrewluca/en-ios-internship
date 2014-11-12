@@ -13,7 +13,7 @@
 @interface Notebook : NSObject
 
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *folderName;
+@property (nonatomic, copy) NSString *notebookFolder;
 @property (nonatomic, copy, readonly) NSDate *dateCreated;
 @property (nonatomic) NotesStore *notes;
 

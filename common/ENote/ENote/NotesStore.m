@@ -7,6 +7,7 @@
 //
 
 #import "NotesStore.h"
+#import "Note.h"
 
 @interface NotesStore ()
 
@@ -15,6 +16,23 @@
 @end
 
 @implementation NotesStore
+
+- (void)removeNote:(Note *)note {
+    [self.privateNotes removeObject:note];    
+}
+
+- (Note *)createNote {
+    return [self createNoteWithText:@"Just a Note"];
+}
+
+- (Note *)createNoteWithText:(NSString *)text {
+    
+    Note *note = [[Note alloc] initWithText:text];
+    
+    [self.privateNotes addObject:note];
+    
+    return note;
+}
 
 - (instancetype)init {
     
