@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class NotesStore;
+
 @interface Notebook : NSObject
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *folderName;
 @property (nonatomic, copy, readonly) NSDate *dateCreated;
-@property (nonatomic) NSMutableArray *notes;
+@property (nonatomic) NotesStore *notes;
 
 - (instancetype)initWithName:(NSString *)name;
 

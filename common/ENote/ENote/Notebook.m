@@ -7,6 +7,7 @@
 //
 
 #import "Notebook.h"
+#import "NotesStore.h"
 
 @implementation Notebook
 
@@ -23,7 +24,7 @@
         _name = name;
         _folderName = [[NSUUID UUID] UUIDString];
         _dateCreated = [NSDate date];
-        _notes = [[NSMutableArray alloc] init];
+        _notes = [[NotesStore alloc] init];
         
     }
     

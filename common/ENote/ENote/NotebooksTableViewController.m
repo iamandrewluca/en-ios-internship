@@ -10,12 +10,24 @@
 #import "NotebooksStore.h"
 #import "Notebook.h"
 #import "NotebooksTableViewCell.h"
+#import "NotesStore.h"
 
-@interface NotebooksTableViewController ()
+@class NotesCollectionViewController;
+
+@interface NotebooksTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 
 @implementation NotebooksTableViewController
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+//    NotesCollectionViewController *notes = [[NotesCollectionViewController alloc] init];
+//    notes.notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
+//    
+//    [self.navigationController pushViewController:notes animated:YES];
+    
+}
 
 - (void)addNewNotebook {
     
@@ -97,7 +109,7 @@
     [formatter setTimeStyle:NSDateFormatterNoStyle];
     
     cell.datelabel.text = [formatter stringFromDate:notebook.dateCreated];
-    [cell.notesNumberLabel setTitle:[NSString stringWithFormat:@"%lu", [notebook.notes count]] forState:UIControlStateNormal];
+    [cell.notesNumberLabel setTitle:[NSString stringWithFormat:@"%lu", [[notebook.notes allNotes] count]] forState:UIControlStateNormal];
     
     return cell;
 }
