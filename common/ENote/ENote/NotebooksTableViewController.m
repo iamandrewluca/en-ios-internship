@@ -25,7 +25,7 @@
 
 - (void)addNewNotebook {
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Enter name"
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Enter new name"
                                                                    message:@""
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
