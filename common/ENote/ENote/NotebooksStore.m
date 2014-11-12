@@ -36,6 +36,11 @@
     return notebook;
 }
 
+- (void)removeNotebook:(Notebook *)notebook {
+    
+    [self.privateNotebooks removeObject:notebook];
+}
+
 + (instancetype)sharedStore {
     
     static NotebooksStore *sharedStore = nil;

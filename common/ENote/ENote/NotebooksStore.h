@@ -17,5 +17,6 @@
 + (instancetype)sharedStore;
 - (Notebook *)createNotebook;
 - (Notebook *)createNotebookWithName:(NSString *)name;
+- (void)removeNotebook:(Notebook *)notebook;
 
 @end

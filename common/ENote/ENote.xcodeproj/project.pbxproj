@@ -17,6 +17,7 @@
 		A7D9ACB61A12486300B8376A /* NotebooksStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACB51A12486300B8376A /* NotebooksStore.m */; };
 		A7D9ACBF1A12511700B8376A /* NotebooksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACBD1A12511700B8376A /* NotebooksTableViewCell.m */; };
 		A7D9ACC01A12511700B8376A /* NotebooksTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7D9ACBE1A12511700B8376A /* NotebooksTableViewCell.xib */; };
+		A7D9ACC41A1357A900B8376A /* NotebooksTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7D9ACC31A1357A900B8376A /* NotebooksTableViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		A7D9ACBC1A12511700B8376A /* NotebooksTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebooksTableViewCell.h; sourceTree = "<group>"; };
 		A7D9ACBD1A12511700B8376A /* NotebooksTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebooksTableViewCell.m; sourceTree = "<group>"; };
 		A7D9ACBE1A12511700B8376A /* NotebooksTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotebooksTableViewCell.xib; sourceTree = "<group>"; };
+		A7D9ACC31A1357A900B8376A /* NotebooksTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotebooksTableViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				A7D9ACBE1A12511700B8376A /* NotebooksTableViewCell.xib */,
 				A71D04111A1112DB00308DD0 /* NotebooksTableViewController.h */,
 				A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */,
+				A7D9ACC31A1357A900B8376A /* NotebooksTableViewController.xib */,
 				A7D9ACB11A1246D600B8376A /* Notebook.h */,
 				A7D9ACB21A1246D600B8376A /* Notebook.m */,
 				A7D9ACB41A12486300B8376A /* NotebooksStore.h */,
@@ -214,6 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7D9ACC41A1357A900B8376A /* NotebooksTableViewController.xib in Resources */,
 				A721830F1A10E950006E47E3 /* LaunchScreen.xib in Resources */,
 				A7D9ACC01A12511700B8376A /* NotebooksTableViewCell.xib in Resources */,
 				A721830C1A10E950006E47E3 /* Images.xcassets in Resources */,
