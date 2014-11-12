@@ -7,12 +7,27 @@
 //
 
 #import "NotebooksTableViewController.h"
+#import "NotebooksStore.h"
+#import "Notebook.h"
+#import "NotebooksTableViewCell.h"
+#import "NotesStore.h"
 
-@interface NotebooksTableViewController ()
+@class NotesCollectionViewController;
+
+@interface NotebooksTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 
 @implementation NotebooksTableViewController
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+//    NotesCollectionViewController *notes = [[NotesCollectionViewController alloc] init];
+//    notes.notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
+//    
+//    [self.navigationController pushViewController:notes animated:YES];
+    
+}
 
 - (void)addNewNotebook {
     
@@ -23,7 +38,12 @@
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
                                                  style:UIAlertActionStyleDefault
                                                handler:^(UIAlertAction *action) {
-                                                   NSLog(@"%@", [[[alert textFields] objectAtIndex:0] text]);
+                                                   
+                                                   NSString *nameFromModal = [[alert.textFields objectAtIndex:0] text];
+                                                   [[NotebooksStore sharedStore] createNotebookWithName:nameFromModal];
+                                                   
+                                                   [self.tableView reloadData];
+                                                   
                                                }];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
@@ -40,7 +60,6 @@
     }];
     
     [self presentViewController:alert animated:YES completion:nil];
-
 }
 
 - (void)viewDidLoad {
@@ -58,6 +77,9 @@
     
     self.navigationItem.title = @"Notebooks";
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    UINib *nib = [UINib nibWithNibName:@"NotebooksTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"NotebooksTableViewCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,46 +90,49 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [[[NotebooksStore sharedStore] allNotebooks] count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    NotebooksTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"NotebooksTableViewCell"];
+    Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
     
-    // Configure the cell...
+    cell.nameLabel.text = notebook.name;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterNoStyle];
+    
+    cell.datelabel.text = [formatter stringFromDate:notebook.dateCreated];
+    [cell.notesNumberLabel setTitle:[NSString stringWithFormat:@"%lu", [[notebook.notes allNotes] count]] forState:UIControlStateNormal];
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
+
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+        
+        Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
+        
+        [[NotebooksStore sharedStore] removeNotebook:notebook];
+        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
 /*
 // Override to support rearranging the table view.

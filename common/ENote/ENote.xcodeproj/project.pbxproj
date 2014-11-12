@@ -13,6 +13,13 @@
 		A721830C1A10E950006E47E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A721830B1A10E950006E47E3 /* Images.xcassets */; };
 		A721830F1A10E950006E47E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A721830D1A10E950006E47E3 /* LaunchScreen.xib */; };
 		A721831B1A10E950006E47E3 /* ENoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A721831A1A10E950006E47E3 /* ENoteTests.m */; };
+		A7D9ACB31A1246D600B8376A /* Notebook.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACB21A1246D600B8376A /* Notebook.m */; };
+		A7D9ACB61A12486300B8376A /* NotebooksStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACB51A12486300B8376A /* NotebooksStore.m */; };
+		A7D9ACBF1A12511700B8376A /* NotebooksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACBD1A12511700B8376A /* NotebooksTableViewCell.m */; };
+		A7D9ACC01A12511700B8376A /* NotebooksTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7D9ACBE1A12511700B8376A /* NotebooksTableViewCell.xib */; };
+		A7D9ACC41A1357A900B8376A /* NotebooksTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7D9ACC31A1357A900B8376A /* NotebooksTableViewController.xib */; };
+		A7D9ACC71A136BB000B8376A /* NotesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACC61A136BB000B8376A /* NotesStore.m */; };
+		A7D9ACCA1A136BBF00B8376A /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACC91A136BBF00B8376A /* Note.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +45,18 @@
 		A72183141A10E950006E47E3 /* ENoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ENoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72183191A10E950006E47E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A721831A1A10E950006E47E3 /* ENoteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ENoteTests.m; sourceTree = "<group>"; };
+		A7D9ACB11A1246D600B8376A /* Notebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notebook.h; sourceTree = "<group>"; };
+		A7D9ACB21A1246D600B8376A /* Notebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notebook.m; sourceTree = "<group>"; };
+		A7D9ACB41A12486300B8376A /* NotebooksStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebooksStore.h; sourceTree = "<group>"; };
+		A7D9ACB51A12486300B8376A /* NotebooksStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebooksStore.m; sourceTree = "<group>"; };
+		A7D9ACBC1A12511700B8376A /* NotebooksTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebooksTableViewCell.h; sourceTree = "<group>"; };
+		A7D9ACBD1A12511700B8376A /* NotebooksTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebooksTableViewCell.m; sourceTree = "<group>"; };
+		A7D9ACBE1A12511700B8376A /* NotebooksTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotebooksTableViewCell.xib; sourceTree = "<group>"; };
+		A7D9ACC31A1357A900B8376A /* NotebooksTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotebooksTableViewController.xib; sourceTree = "<group>"; };
+		A7D9ACC51A136BB000B8376A /* NotesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesStore.h; sourceTree = "<group>"; };
+		A7D9ACC61A136BB000B8376A /* NotesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesStore.m; sourceTree = "<group>"; };
+		A7D9ACC81A136BBF00B8376A /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		A7D9ACC91A136BBF00B8376A /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +98,20 @@
 		A72182FD1A10E950006E47E3 /* ENote */ = {
 			isa = PBXGroup;
 			children = (
+				A7D9ACBC1A12511700B8376A /* NotebooksTableViewCell.h */,
+				A7D9ACBD1A12511700B8376A /* NotebooksTableViewCell.m */,
+				A7D9ACBE1A12511700B8376A /* NotebooksTableViewCell.xib */,
 				A71D04111A1112DB00308DD0 /* NotebooksTableViewController.h */,
 				A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */,
+				A7D9ACC31A1357A900B8376A /* NotebooksTableViewController.xib */,
+				A7D9ACC51A136BB000B8376A /* NotesStore.h */,
+				A7D9ACC61A136BB000B8376A /* NotesStore.m */,
+				A7D9ACC81A136BBF00B8376A /* Note.h */,
+				A7D9ACC91A136BBF00B8376A /* Note.m */,
+				A7D9ACB11A1246D600B8376A /* Notebook.h */,
+				A7D9ACB21A1246D600B8376A /* Notebook.m */,
+				A7D9ACB41A12486300B8376A /* NotebooksStore.h */,
+				A7D9ACB51A12486300B8376A /* NotebooksStore.m */,
 				A72183021A10E950006E47E3 /* AppDelegate.h */,
 				A72183031A10E950006E47E3 /* AppDelegate.m */,
 				A721830B1A10E950006E47E3 /* Images.xcassets */,
@@ -196,7 +227,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7D9ACC41A1357A900B8376A /* NotebooksTableViewController.xib in Resources */,
 				A721830F1A10E950006E47E3 /* LaunchScreen.xib in Resources */,
+				A7D9ACC01A12511700B8376A /* NotebooksTableViewCell.xib in Resources */,
 				A721830C1A10E950006E47E3 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,7 +250,12 @@
 			files = (
 				A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */,
 				A72183041A10E950006E47E3 /* AppDelegate.m in Sources */,
+				A7D9ACC71A136BB000B8376A /* NotesStore.m in Sources */,
+				A7D9ACB31A1246D600B8376A /* Notebook.m in Sources */,
 				A72183011A10E950006E47E3 /* main.m in Sources */,
+				A7D9ACBF1A12511700B8376A /* NotebooksTableViewCell.m in Sources */,
+				A7D9ACB61A12486300B8376A /* NotebooksStore.m in Sources */,
+				A7D9ACCA1A136BBF00B8376A /* Note.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

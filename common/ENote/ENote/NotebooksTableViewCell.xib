@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotebooksTableViewCell" id="KGk-i7-Jjw" customClass="NotebooksTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkG-SS-8D4">
+                        <rect key="frame" x="279" y="9" width="33" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="49f-WU-kbs"/>
+                            <constraint firstAttribute="height" constant="25" id="oC4-wt-AZc"/>
+                        </constraints>
+                        <inset key="contentEdgeInsets" minX="6" minY="0.0" maxX="6" maxY="0.0"/>
+                        <state key="normal" title="99" backgroundImage="badge">
+                            <color key="titleColor" red="0.97254901959999995" green="0.58039215690000001" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="oC4-wt-AZc"/>
+                            </mask>
+                        </variation>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Nov 99, 9999" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yzN-Ez-d4h">
+                        <rect key="frame" x="185" y="9" width="86" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="9H6-ub-ugq"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiT-Hy-cbW">
+                        <rect key="frame" x="8" y="11" width="169" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Nw9-xQ-SAC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fkG-SS-8D4" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="8oM-qN-8HO"/>
+                    <constraint firstItem="yzN-Ez-d4h" firstAttribute="leading" secondItem="tiT-Hy-cbW" secondAttribute="trailing" constant="8" id="Cea-Jx-Zb0"/>
+                    <constraint firstAttribute="centerY" secondItem="fkG-SS-8D4" secondAttribute="centerY" id="OSa-uF-eS4"/>
+                    <constraint firstItem="tiT-Hy-cbW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="VkC-Zh-QJT"/>
+                    <constraint firstAttribute="centerY" secondItem="tiT-Hy-cbW" secondAttribute="centerY" id="iKB-WC-p3b"/>
+                    <constraint firstItem="fkG-SS-8D4" firstAttribute="leading" secondItem="yzN-Ez-d4h" secondAttribute="trailing" constant="8" id="kfm-N3-PyV"/>
+                    <constraint firstAttribute="centerY" secondItem="yzN-Ez-d4h" secondAttribute="centerY" id="mXC-FU-Rgu"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="datelabel" destination="yzN-Ez-d4h" id="1Je-om-JG1"/>
+                <outlet property="nameLabel" destination="tiT-Hy-cbW" id="Byh-f9-n1C"/>
+                <outlet property="notesNumberLabel" destination="fkG-SS-8D4" id="riB-QE-oAX"/>
+            </connections>
+            <point key="canvasLocation" x="453" y="244"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="badge" width="24" height="24"/>
+    </resources>
+</document>
