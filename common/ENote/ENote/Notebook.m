@@ -26,7 +26,7 @@
         _dateCreated = [NSDate date];
         _notes = [[NotesStore alloc] init];
         
-        for (int i = 0; i < rand() % (999 - 0) + 0; i++) {
+        for (int i = 0; i < rand() % (10 - 0) + 0; i++) {
             [_notes createNote];
         }
         

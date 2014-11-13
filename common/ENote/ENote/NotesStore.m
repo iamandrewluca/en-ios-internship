@@ -48,7 +48,7 @@
 }
 
 - (NSArray *)allNotes {
-    return _privateNotes;
+    return self.privateNotes;
 }
 
 @end
