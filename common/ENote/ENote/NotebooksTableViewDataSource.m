@@ -58,6 +58,12 @@
         
         [[NotebooksStore sharedStore] removeNotebook:notebook];
         
+        NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentDirectory = [documentDirectories firstObject];
+        NSString *notebookFolder = [NSString stringWithFormat:@"%@/%@", documentDirectory, notebook.notebookFolder];
+        
+        [[NSFileManager defaultManager] removeItemAtPath:notebookFolder error:nil];
+        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
