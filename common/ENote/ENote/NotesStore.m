@@ -26,8 +26,12 @@
 }
 
 - (Note *)createNoteWithText:(NSString *)text {
+    return [self createNoteWithText:text atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
+}
+
+- (Note *)createNoteWithText:(NSString *)text atDate:(NSDate *)date andFolder:(NSString *)folder {
     
-    Note *note = [[Note alloc] initWithText:text];
+    Note *note = [[Note alloc] initWithText:text atDate:date andFolder:folder];
     
     [self.privateNotes addObject:note];
     

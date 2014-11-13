@@ -16,6 +16,7 @@
 @property (nonatomic, readonly, copy) NSDate *dateCreated;
 
 - (instancetype)initWithText:(NSString *)text;
+- (instancetype)initWithText:(NSString *)text atDate:(NSDate *)date andFolder:(NSString *)folder;
 
 // for future features )
 // @property (nonatomic) UIImage *image;

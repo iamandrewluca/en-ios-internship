@@ -49,8 +49,8 @@
     NSString *documentDirectory = [documentDirectories firstObject];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
-    [formatter setTimeStyle:NSDateFormatterNoStyle];
+    [formatter setDateStyle:NSDateFormatterLongStyle];
+    [formatter setTimeStyle:NSDateFormatterLongStyle];
     
     NSMutableArray *notebooks = [[NSMutableArray alloc] init];
     

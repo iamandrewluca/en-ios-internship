@@ -18,5 +18,6 @@
 @property (nonatomic) NotesStore *notes;
 
 - (instancetype)initWithName:(NSString *)name;
+- (instancetype)initWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder;
 
 @end

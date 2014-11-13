@@ -15,14 +15,18 @@
 }
 
 - (instancetype)initWithText:(NSString *)text {
+    return [self initWithText:text atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
+}
+
+- (instancetype)initWithText:(NSString *)text atDate:(NSDate *)date andFolder:(NSString *)folder {
     
     self = [super init];
     
     if (self) {
         
         _text = text;
-        _noteFolder = [[NSUUID UUID] UUIDString];
-        _dateCreated = [NSDate date];
+        _noteFolder = folder;
+        _dateCreated = date;
         
     }
     

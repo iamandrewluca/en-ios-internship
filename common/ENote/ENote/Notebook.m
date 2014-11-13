@@ -16,14 +16,18 @@
 }
 
 - (instancetype)initWithName:(NSString *)name {
+    return [self initWithName:name atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
+}
+
+- (instancetype)initWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder {
     
     self = [super init];
     
     if (self) {
         
         _name = name;
-        _notebookFolder = [[NSUUID UUID] UUIDString];
-        _dateCreated = [NSDate date];
+        _notebookFolder = folder;
+        _dateCreated = date;
         _notes = [[NotesStore alloc] init];
         
         for (int i = 0; i < rand() % (10 - 0) + 0; i++) {

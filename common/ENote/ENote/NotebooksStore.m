@@ -8,6 +8,8 @@
 
 #import "NotebooksStore.h"
 #import "Notebook.h"
+#import "NotesStore.h"
+#import "Note.h"
 
 @interface NotebooksStore ()
 
@@ -28,12 +30,17 @@
 }
 
 - (Notebook *)createNotebookWithName:(NSString *)name {
+    return [self createNotebookWithName:name atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
+}
+
+- (Notebook *)createNotebookWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder {
     
-    Notebook *notebook = [[Notebook alloc] initWithName:name];
+    Notebook *notebook = [[Notebook alloc] initWithName:name atDate:date andFolder:folder];
     
     [self.privateNotebooks addObject:notebook];
     
     return notebook;
+    
 }
 
 - (void)removeNotebook:(Notebook *)notebook {
@@ -66,8 +73,44 @@
     if (self) {
         _privateNotebooks = [[NSMutableArray alloc] init];
         
-        for (int i = 0; i < 5; i++) {
-            [self createNotebook];
+        NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentDirectory = [documentDirectories firstObject];
+        NSString *indexPath = [NSString stringWithFormat:@"%@/%@", documentDirectory, @"index.json"];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:indexPath]) {
+            
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateStyle:NSDateFormatterLongStyle];
+            [formatter setTimeStyle:NSDateFormatterLongStyle];
+            
+            NSData *notebooksData = [[NSFileManager defaultManager] contentsAtPath:indexPath];
+            NSDictionary *notebooksDictionary = [NSJSONSerialization JSONObjectWithData:notebooksData options:NSJSONReadingMutableContainers error:nil];
+            
+            NSMutableArray *notebooks = notebooksDictionary[@"notebooks"];
+            
+            for (int i = 0; i < [notebooks count]; i++) {
+                
+                NSDictionary *notebookDictionary = notebooks[i];
+                
+                NSString *notebookName = notebookDictionary[@"name"];
+                NSDate *notebookDate = [formatter dateFromString:notebookDictionary[@"dateCreated"]];
+                NSString *notebookFolder = notebookDictionary[@"notebookFolder"];
+                
+                Notebook *notebook = [self createNotebookWithName:notebookName atDate:notebookDate andFolder:notebookFolder];
+                
+                NSMutableArray *notes = notebookDictionary[@"notes"];
+                
+                for (int j = 0; j < [notes count]; j++) {
+                    
+                    NSDictionary *noteDictionary = notes[i];
+                    
+                    NSString *noteText = noteDictionary[@"text"];
+                    NSDate *noteDate = [formatter dateFromString:noteDictionary[@"dateCreated"]];
+                    NSString *noteFolder = noteDictionary[@"notebookFolder"];
+                    
+                    [notebook.notes createNoteWithText:noteText atDate:noteDate andFolder:noteFolder];
+                }
+            }
         }
     }
     
