@@ -33,8 +33,7 @@
                                                        NSString *nameFromModal = [[alert.textFields objectAtIndex:0] text];
                                                        notebook.name = nameFromModal;
                                                        
-                                                       [tableView reloadData];
-                                                       
+                                                       [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];                                                       
                                                    }];
         
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"

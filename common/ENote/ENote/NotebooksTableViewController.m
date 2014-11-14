@@ -34,10 +34,13 @@
                                                handler:^(UIAlertAction *action) {
                                                    
                                                    NSString *nameFromModal = [[alert.textFields objectAtIndex:0] text];
-                                                   [[NotebooksStore sharedStore] createNotebookWithName:nameFromModal];
+                                                   Notebook *notebook = [[NotebooksStore sharedStore] createNotebookWithName:nameFromModal];
                                                    
-                                                   [self.tableView reloadData];
+                                                   NSInteger lastRow = [[[NotebooksStore sharedStore] allNotebooks] indexOfObject:notebook];
                                                    
+                                                   NSIndexPath *indexPath = [NSIndexPath indexPathForItem:lastRow inSection:0];
+                                                   
+                                                   [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];                                                   
                                                }];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
