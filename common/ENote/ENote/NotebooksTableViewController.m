@@ -14,7 +14,10 @@
 
 @class NotesCollectionViewController;
 
-@interface NotebooksTableViewController ()
+@interface NotebooksTableViewController () <UITextFieldDelegate>
+{
+    void(^addNotebook)(void);
+}
 
 @property (nonatomic) NotebooksTableViewDataSource *dataSource;
 @property (nonatomic) NotebooksTableViewDelegate *delegate;
@@ -29,34 +32,46 @@
                                                                    message:@""
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.returnKeyType = UIReturnKeyDone;
+        textField.placeholder = @"Notebook name";
+        textField.delegate = self;
+    }];
+    
+    __weak UITableView *weakTableView = self.tableView;
+    addNotebook = ^{
+        NSString *nameFromModal = [[alert.textFields objectAtIndex:0] text];
+        Notebook *notebook = [[NotebooksStore sharedStore] createNotebookWithName:nameFromModal];
+        
+        NSInteger lastRow = [[[NotebooksStore sharedStore] allNotebooks] indexOfObject:notebook];
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:lastRow inSection:0];
+        
+        [weakTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+    };
+    
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
                                                  style:UIAlertActionStyleDefault
                                                handler:^(UIAlertAction *action) {
-                                                   
-                                                   NSString *nameFromModal = [[alert.textFields objectAtIndex:0] text];
-                                                   Notebook *notebook = [[NotebooksStore sharedStore] createNotebookWithName:nameFromModal];
-                                                   
-                                                   NSInteger lastRow = [[[NotebooksStore sharedStore] allNotebooks] indexOfObject:notebook];
-                                                   
-                                                   NSIndexPath *indexPath = [NSIndexPath indexPathForItem:lastRow inSection:0];
-                                                   
-                                                   [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];                                                   
+                                                   addNotebook();
                                                }];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:^(UIAlertAction *action) {
-                                                       [alert dismissViewControllerAnimated:YES completion:nil];
-                                                   }];
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:nil];
     
     [alert addAction:ok];
     [alert addAction:cancel];
     
-    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Notebook name";
-    }];
+    
     
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    addNotebook();
+    return YES;
 }
 
 - (void)viewDidLoad {

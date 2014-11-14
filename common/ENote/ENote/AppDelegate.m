@@ -23,6 +23,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    NSLog(@"%@", NSHomeDirectory());
+    
     NotebooksTableViewController *notebooks = [[NotebooksTableViewController alloc] init];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:notebooks];

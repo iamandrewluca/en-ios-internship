@@ -11,7 +11,11 @@
 #import "Notebook.h"
 #import "NotebooksStore.h"
 
-@interface NotebooksTableViewDelegate ()
+@interface NotebooksTableViewDelegate () <UITextFieldDelegate>
+{
+    void(^renameNotebook)(void);
+}
+
 @end
 
 @implementation NotebooksTableViewDelegate
@@ -26,28 +30,30 @@
                                                                        message:@""
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         
+        
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.returnKeyType = UIReturnKeyDone;
+            textField.placeholder = @"Notebook name";
+            textField.delegate = self;
+        }];
+        
+        renameNotebook = ^{
+            notebook.name = [[[alert textFields] objectAtIndex:0] text];
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        };
+        
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
                                                      style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction *action) {
-                                                       
-                                                       NSString *nameFromModal = [[alert.textFields objectAtIndex:0] text];
-                                                       notebook.name = nameFromModal;
-                                                       
-                                                       [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];                                                       
+                                                       renameNotebook();                                                       
                                                    }];
         
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction *action) {
-                                                           [alert dismissViewControllerAnimated:YES completion:nil];
-                                                       }];
+                                                         style:UIAlertActionStyleCancel
+                                                       handler:nil];
         
         [alert addAction:ok];
         [alert addAction:cancel];
-        
-        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            textField.placeholder = @"Notebook name";
-        }];
         
         [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentViewController:alert animated:YES completion:nil];
         
@@ -57,6 +63,11 @@
 //        
 //        [self.navigationController pushViewController:notes animated:YES];
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    renameNotebook();
+    return YES;
 }
 
 @end
