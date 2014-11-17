@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */; };
+		A71D34FD1A1A314A00EA301B /* NSObject+NSDictionaryRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D34FC1A1A314A00EA301B /* NSObject+NSDictionaryRepresentation.m */; };
 		A72183011A10E950006E47E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A72183001A10E950006E47E3 /* main.m */; };
 		A72183041A10E950006E47E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A72183031A10E950006E47E3 /* AppDelegate.m */; };
 		A721830C1A10E950006E47E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A721830B1A10E950006E47E3 /* Images.xcassets */; };
@@ -37,6 +38,8 @@
 /* Begin PBXFileReference section */
 		A71D04111A1112DB00308DD0 /* NotebooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebooksTableViewController.h; sourceTree = "<group>"; };
 		A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebooksTableViewController.m; sourceTree = "<group>"; };
+		A71D34FB1A1A314A00EA301B /* NSObject+NSDictionaryRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSDictionaryRepresentation.h"; sourceTree = "<group>"; };
+		A71D34FC1A1A314A00EA301B /* NSObject+NSDictionaryRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSDictionaryRepresentation.m"; sourceTree = "<group>"; };
 		A72182FB1A10E950006E47E3 /* ENote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ENote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72182FF1A10E950006E47E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A72183001A10E950006E47E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -126,6 +129,8 @@
 				A7D9ACCC1A13754400B8376A /* NotebooksTableViewDataSource.m */,
 				A7D9ACCE1A13777C00B8376A /* NotebooksTableViewDelegate.h */,
 				A7D9ACCF1A13777C00B8376A /* NotebooksTableViewDelegate.m */,
+				A71D34FB1A1A314A00EA301B /* NSObject+NSDictionaryRepresentation.h */,
+				A71D34FC1A1A314A00EA301B /* NSObject+NSDictionaryRepresentation.m */,
 				A72182FE1A10E950006E47E3 /* Supporting Files */,
 			);
 			path = ENote;
@@ -265,6 +270,7 @@
 				A7D9ACB31A1246D600B8376A /* Notebook.m in Sources */,
 				A72183011A10E950006E47E3 /* main.m in Sources */,
 				A7D9ACBF1A12511700B8376A /* NotebooksTableViewCell.m in Sources */,
+				A71D34FD1A1A314A00EA301B /* NSObject+NSDictionaryRepresentation.m in Sources */,
 				A7D9ACD01A13777C00B8376A /* NotebooksTableViewDelegate.m in Sources */,
 				A7D9ACB61A12486300B8376A /* NotebooksStore.m in Sources */,
 				A7D9ACCA1A136BBF00B8376A /* Note.m in Sources */,
