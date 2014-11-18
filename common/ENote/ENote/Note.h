@@ -1,9 +1,8 @@
+//  Note.h
+//  ENote
 //
-//  BHPhoto.h
-//  CollectionViewTutorial
-//
-//  Created by Bryan Hansen on 11/3/12.
-//  Copyright (c) 2012 Bryan Hansen. All rights reserved.
+//  Created by Andrei Luca on 11/12/14.
+//  Copyright (c) 2014 Endava. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,11 +10,13 @@
 
 @interface Note : NSObject
 
-@property (nonatomic, strong, readonly) NSURL *imageURL;
-@property (nonatomic, strong, readonly) UIImage *image;
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic, copy) NSString *noteFolder;
+@property (nonatomic, readonly, copy) NSDate *dateCreated;
 
-+ (Note *)noteWithImageURL:(NSURL *)imageURL;
+- (instancetype)initWithText:(NSString *)text;
 
-- (id)initWithImageURL:(NSURL *)imageURL;
+// for future features )
+// @property (nonatomic) UIImage *image;
 
 @end

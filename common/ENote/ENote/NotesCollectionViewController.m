@@ -9,57 +9,78 @@
 #import "NotesCollectionViewController.h"
 #import "NotesLayout.h"
 #import "NoteCell.h"
+#import "NotesDetailViewController.h"
+#import "NoteTitleReusableView.h"
+#import "Notebook.h"
 
 static NSString * const NoteCellIdentifier = @"NoteCell";
+static NSString * const NoteTitleIdentifier = @"Notetitle";
 
 @interface NotesCollectionViewController ()
 @property (nonatomic, weak) IBOutlet NotesLayout *notesLayout;
+@property (nonatomic, strong) NSMutableArray *notes;
 
 @end
 
 @implementation NotesCollectionViewController
-
-static NSString * const reuseIdentifier = @"Cell";
-
+#pragma mark - Lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Controller View";
-    // ??
-    UIImage *patternImage = [UIImage imageNamed:@"concrete_wall"];
-    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:patternImage];
+    //    UIImage *patternImage = [UIImage imageNamed:@"concrete_wall"];
+    self.navigationItem.title = self.notebook.name;
     
-    // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    [[self navigationController] setNavigationBarHidden:NO animated:NO];
+    self.collectionView.backgroundColor = [UIColor colorWithRed:235.0/255.0 green:134.0/255.0 blue:13.0/255.0 alpha:1.0];
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    // Do any additional setup after loading the view.
-    self.collectionView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
-    [self.collectionView registerClass:[NoteCell class]
-            forCellWithReuseIdentifier:NoteCellIdentifier];
+    // Register cell and title classes with the collection view
+    [self.collectionView registerClass:[NoteCell class] forCellWithReuseIdentifier:NoteCellIdentifier];
+    [self.collectionView registerClass:[NoteTitleReusableView class] forSupplementaryViewOfKind:NoteLayoutTitleKind
+                   withReuseIdentifier:NoteTitleIdentifier];
+/*
+     //    NSInteger photoIndex = 0;
+     //
+     //    for (NSInteger n = 0; n < 8; n++) {
+     //        NotesStorage *note = [[NotesStorage alloc] init];
+     //        note.name = [NSString stringWithFormat:@"Note Folder: %ld",n + 1];
+     //
+     //        [self.notes addObject:note];
+     //
+     //    }
+     //    photoIndex ++;
+     */
+    
+/*
+     //    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
+     //                                                                      style:UIBarButtonItemStylePlain
+     //                                                                     target:self
+     //                                                                     action:@selector(refreshPropertyList:)];
+     */
+    
 }
-
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
+//-(void)refreshPropertyList:(id)sender
+//{
+//    UIAlertView *edit = [[UIAlertView alloc]initWithTitle:@"EditNote"
+//                                                  message:@""
+//                                                 delegate:self
+//                                        cancelButtonTitle:@"cancel"
+//                                        otherButtonTitles:nil];
+//    [edit show];
+//}
+//
 */
 
 #pragma mark <UICollectionViewDataSource>
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 9;
+    return 8;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return 3;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -69,8 +90,32 @@ static NSString * const reuseIdentifier = @"Cell";
     return noteCell;
 }
 
-#pragma mark - View Rotation
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
+    [[self navigationController] pushViewController:nvc animated:YES];
+    
+}
 
+/*
+ //- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+ //           viewForSupplementaryElementOfKind:(NSString *)kind
+ //                                 atIndexPath:(NSIndexPath *)indexPath;
+ //{
+ //    NoteTitleReusableView *titleView =
+ //    [collectionView dequeueReusableSupplementaryViewOfKind:kind
+ //                                       withReuseIdentifier:NoteTitleIdentifier
+ //                                              forIndexPath:indexPath];
+ //
+ //    NotesStorage *note = self.notes[indexPath.section];
+ //
+ //    titleView.titleLabel.text = note.name;
+ //
+ //    return titleView;
+ //}
+*/
+
+#pragma mark - View Rotation
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                 duration:(NSTimeInterval)duration
 {
@@ -92,23 +137,26 @@ static NSString * const reuseIdentifier = @"Cell";
 
 /*
 // Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
 	return YES;
 }
-*/
 
-/*
+//Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return YES;
+}
+
+
+
 // Uncomment this method to specify if the specified item should be selected
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
-*/
 
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
+
 
 - (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
 	return NO;

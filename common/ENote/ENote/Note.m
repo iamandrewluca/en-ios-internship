@@ -1,9 +1,8 @@
+//  Note.m
+//  ENote
 //
-//  BHPhoto.m
-//  CollectionViewTutorial
-//
-//  Created by Bryan Hansen on 11/3/12.
-//  Copyright (c) 2012 Bryan Hansen. All rights reserved.
+//  Created by Andrei Luca on 11/12/14.
+//  Copyright (c) 2014 Endava. All rights reserved.
 //
 
 #import "Note.h"
@@ -17,33 +16,22 @@
 
 @implementation Note
 
-#pragma mark - Properties
+- (instancetype)init {
+    return [self initWithText:@"Just a Note"];
+}
 
-- (UIImage *)image
-{
-    if (!_noteImage && self.imageURL) {
-        NSData *imageData = [NSData dataWithContentsOfURL:self.imageURL];
-        UIImage *noteImage = [UIImage imageWithData:imageData scale:[UIScreen mainScreen].scale];
+- (instancetype)initWithText:(NSString *)text {
+    
+    self = [super init];
+    
+    if (self) {
         
-        _noteImage = noteImage;
+        _text = text;
+        _noteFolder = [[NSUUID UUID] UUIDString];
+        _dateCreated = [NSDate date];
+        
     }
     
-    return _noteImage;
-}
-
-#pragma mark - Lifecycle
-
-+ (Note *)noteWithImageURL:(NSURL *)imageURL
-{
-    return [[self alloc] initWithImageURL:imageURL];
-}
-
-- (id)initWithImageURL:(NSURL *)imageURL
-{
-    self = [super init];
-    if (self) {
-        self.imageURL = imageURL;
-    }
     return self;
 }
 

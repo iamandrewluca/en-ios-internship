@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Notebook.h"
 
 @interface NotesCollectionViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (nonatomic) Notebook *notebook;
 
 @end

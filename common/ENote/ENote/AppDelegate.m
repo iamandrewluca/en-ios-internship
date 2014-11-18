@@ -26,8 +26,10 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    UICollectionView *collection = [[NotesCollectionViewController alloc] initWithNibName:@"NotesCollectionViewController" bundle:nil];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:collection];
+    NotebooksTableViewController *notebooks = [[NotebooksTableViewController alloc] init];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:notebooks];
+    
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     return YES;

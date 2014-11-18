@@ -1,9 +1,9 @@
 //
-//  BHAlbum.h
-//  CollectionViewTutorial
+//  Note.h
+//  ENote
 //
-//  Created by Bryan Hansen on 11/3/12.
-//  Copyright (c) 2012 Bryan Hansen. All rights reserved.
+//  Created by Andrei Luca on 11/12/14.
+//  Copyright (c) 2014 Endava. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

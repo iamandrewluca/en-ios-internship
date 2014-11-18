@@ -20,7 +20,7 @@
                 <outlet property="dataSource" destination="-1" id="vS3-ND-Ic3"/>
                 <outlet property="delegate" destination="-1" id="Srt-yO-5LI"/>
             </connections>
-            <point key="canvasLocation" x="725" y="512"/>
+            <point key="canvasLocation" x="830" y="570"/>
         </collectionView>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
