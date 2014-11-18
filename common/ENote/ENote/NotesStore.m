@@ -40,6 +40,11 @@
 }
 
 - (void)removeNote:(Note *)note {
+    
+    NSString *notePath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder, note.noteFolder];
+    
+    [[NSFileManager defaultManager] removeItemAtPath:notePath error:nil];
+    
     [self.privateNotes removeObject:note];    
 }
 
@@ -48,7 +53,16 @@
 }
 
 - (Note *)createNoteWithText:(NSString *)text {
-    return [self createNoteWithText:text atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
+    Note *note = [self createNoteWithText:text atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
+    
+    NSString *notePath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder, note.noteFolder];
+    
+    [[NSFileManager defaultManager] createDirectoryAtPath:notePath
+                              withIntermediateDirectories:NO
+                                               attributes:nil
+                                                    error:nil];
+    
+    return note;
 }
 
 - (Note *)createNoteWithText:(NSString *)text atDate:(NSDate *)date andFolder:(NSString *)folder {
@@ -62,7 +76,9 @@
 
 - (Note *)createNoteWithDictionary:(NSDictionary *)dictionary {
     
-    Note *note = [self createNoteWithText:dictionary[@"text"] atDate:[NSDate dateWithTimeIntervalSince1970:[dictionary[@"dateCreated"] doubleValue]] andFolder:dictionary[@"noteFolder"]];
+    Note *note = [self createNoteWithText:dictionary[@"text"]
+                                   atDate:[NSDate dateWithTimeIntervalSince1970:[dictionary[@"dateCreated"] doubleValue]]
+                                andFolder:dictionary[@"noteFolder"]];
     
     return note;
 }
@@ -76,18 +92,22 @@
         _privateNotes = [[NSMutableArray alloc] init];
         _notebookFolder = notebookFolder;
         
-        NSString *indexPath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder, [[ENoteCommons shared] indexFile]];
+        NSString *indexPath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], notebookFolder, [[ENoteCommons shared] indexFile]];
         
         if ([[NSFileManager defaultManager] fileExistsAtPath:indexPath]) {
             
             NSData *notesData = [[NSFileManager defaultManager] contentsAtPath:indexPath];
             NSDictionary *notesDictionary = [NSJSONSerialization JSONObjectWithData:notesData options:NSJSONReadingMutableContainers error:nil];
             
-            NSMutableArray *notes = notesDictionary[@"notebooks"];
+            NSMutableArray *notes = notesDictionary[@"notes"];
             
             for (int i = 0; i < [notes count]; i++) {
                 [self createNoteWithDictionary:notes[i]];
             }
+        }
+        
+        for (int i = 0; i < rand() % 10; i++) {
+            [self createNoteWithText:[NSString stringWithFormat:@"Note %d", i]];
         }
         
     }

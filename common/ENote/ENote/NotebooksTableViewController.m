@@ -60,7 +60,7 @@
     [self.alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.returnKeyType = UIReturnKeyDone;
         textField.placeholder = @"Notebook name";
-        textField.tag = 0;
+        textField.tag = -1;
     }];
     
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
@@ -83,7 +83,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    if (textField.tag == 0) {
+    if (textField.tag == -1) {
         [self createNotebook];
     } else {
         [self renameNotebookAtRow:textField.tag];

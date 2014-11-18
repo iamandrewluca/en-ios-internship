@@ -37,30 +37,13 @@
     if (self) {
         
         _name = name;
-        
         _notebookFolder = folder;
-        
-        [[NSFileManager defaultManager] createDirectoryAtPath:[NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder]
-                                  withIntermediateDirectories:NO
-                                                   attributes:nil
-                                                        error:nil];
-
         _dateCreated = date;
-        _notesStore = [[NotesStore alloc] initInNotebookFolder:_notebookFolder];
-        
-        
-        
-        for (int i = 0; i < rand() % (10 - 0) + 0; i++) {
-            [_notesStore createNote];
-        }
+        _notesStore = [[NotesStore alloc] initInNotebookFolder:folder];
         
     }
     
     return self;
-}
-
-- (void)dealloc {    
-    [[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder] error:nil];
 }
 
 @end

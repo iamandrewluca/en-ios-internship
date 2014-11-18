@@ -51,7 +51,17 @@
 }
 
 - (Notebook *)createNotebookWithName:(NSString *)name {
-    return [self createNotebookWithName:name atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
+    
+    Notebook *notebook = [self createNotebookWithName:name atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
+    
+    NSString *notebookPath = [NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], notebook.notebookFolder];
+    
+    [[NSFileManager defaultManager] createDirectoryAtPath:notebookPath
+                              withIntermediateDirectories:NO
+                                               attributes:nil
+                                                    error:nil];
+    
+    return notebook;
 }
 
 - (Notebook *)createNotebookWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder {
@@ -65,13 +75,21 @@
 
 - (Notebook *)createNotebookWithDictionary:(NSDictionary *)dictionary {
     
-    Notebook *notebook = [self createNotebookWithName:dictionary[@"name"] atDate:[NSDate dateWithTimeIntervalSince1970:[dictionary[@"dateCreated"] doubleValue]] andFolder:dictionary[@"notebookName"]];
+    Notebook *notebook = [self createNotebookWithName:dictionary[@"name"]
+                                               atDate:[NSDate dateWithTimeIntervalSince1970:[dictionary[@"dateCreated"] doubleValue]]
+                                            andFolder:dictionary[@"notebookName"]];
     
     return notebook;
 }
 
 - (void)removeNotebook:(Notebook *)notebook {
+    
+    NSString *notebookPath = [NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], notebook.notebookFolder];
+    
+    [[NSFileManager defaultManager] removeItemAtPath:notebookPath error:nil];
+    
     [self.privateNotebooks removeObject:notebook];
+    
 }
 
 + (instancetype)sharedStore {

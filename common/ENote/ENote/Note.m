@@ -42,12 +42,6 @@
         
         _text = text;
         _noteFolder = folder;
-        
-        [[NSFileManager defaultManager] createDirectoryAtPath:[NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder]
-                                  withIntermediateDirectories:NO
-                                                   attributes:nil
-                                                        error:nil];
-
         _dateCreated = date;
         
     }
