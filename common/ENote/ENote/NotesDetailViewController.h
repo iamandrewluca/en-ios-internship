@@ -13,8 +13,8 @@
 
 @property (nonatomic) Note *note;
 
-@property (nonatomic, strong) NSString *string;
 @property (nonatomic, strong) IBOutlet UITextView *noteTextView;
+@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 
 @property (weak, nonatomic) IBOutlet UIButton *decolor;
 @property (weak, nonatomic) IBOutlet UIButton *outlineButton;

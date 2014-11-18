@@ -15,7 +15,7 @@
 
 @property (nonatomic) NSMutableArray *privateNotes;
 
-@property (nonatomic, readonly) NSString *notebookFolder;
+@property (nonatomic, readonly, copy) NSString *notebookFolder;
 
 @end
 
@@ -49,13 +49,16 @@
 }
 
 - (Note *)createNote {
-    return [self createNoteWithText:@"Just a Note"];
+    return [self createNoteWithName:@"Just a Note"];
 }
 
-- (Note *)createNoteWithText:(NSString *)text {
-    Note *note = [self createNoteWithText:text atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
+- (Note *)createNoteWithName:(NSString *)name {
+    
+    Note *note = [self createNoteWithName:name withText:@"" atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
     
     NSString *notePath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder, note.noteFolder];
+    
+    NSLog(@"%@", _notebookFolder);
     
     [[NSFileManager defaultManager] createDirectoryAtPath:notePath
                               withIntermediateDirectories:NO
@@ -65,9 +68,9 @@
     return note;
 }
 
-- (Note *)createNoteWithText:(NSString *)text atDate:(NSDate *)date andFolder:(NSString *)folder {
+- (Note *)createNoteWithName:(NSString *)name withText:(NSString *)text atDate:(NSDate *)date andFolder:(NSString *)folder {
     
-    Note *note = [[Note alloc] initWithText:text atDate:date andFolder:folder];
+    Note *note = [[Note alloc] initWithName:name withText:text atDate:date andFolder:folder];
     
     [self.privateNotes addObject:note];
     
@@ -76,7 +79,8 @@
 
 - (Note *)createNoteWithDictionary:(NSDictionary *)dictionary {
     
-    Note *note = [self createNoteWithText:dictionary[@"text"]
+    Note *note = [self createNoteWithName:dictionary[@"name"]
+                                 withText:dictionary[@"text"]
                                    atDate:[NSDate dateWithTimeIntervalSince1970:[dictionary[@"dateCreated"] doubleValue]]
                                 andFolder:dictionary[@"noteFolder"]];
     
@@ -107,7 +111,7 @@
         }
         
         for (int i = 0; i < rand() % 10; i++) {
-            [self createNoteWithText:[NSString stringWithFormat:@"Note %d", i]];
+            [self createNoteWithName:[NSString stringWithFormat:@"Note %d", i]];
         }
         
     }

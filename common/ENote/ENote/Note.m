@@ -19,6 +19,7 @@
 - (NSDictionary *)dictionaryRepresentation {
     
     return @{
+             @"name": _name,
              @"text": _text,
              @"notebookFolder": _noteFolder,
              @"dateCreated": [NSString stringWithFormat:@"%.0f", [_dateCreated timeIntervalSince1970]]
@@ -27,19 +28,20 @@
 }
 
 - (instancetype)init {
-    return [self initWithText:@"Just a Note"];
+    return [self initWithName:@"Just a Note"];
 }
 
-- (instancetype)initWithText:(NSString *)text {
-    return [self initWithText:text atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
+- (instancetype)initWithName:(NSString *)name {
+    return [self initWithName:name withText:@"" atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
 }
 
-- (instancetype)initWithText:(NSString *)text atDate:(NSDate *)date andFolder:(NSString *)folder {
+- (instancetype)initWithName:(NSString *)name withText:text atDate:(NSDate *)date andFolder:(NSString *)folder {
     
     self = [super init];
     
     if (self) {
         
+        _name = name;
         _text = text;
         _noteFolder = folder;
         _dateCreated = date;

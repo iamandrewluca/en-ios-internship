@@ -94,7 +94,7 @@ static NSString * const NoteTitleIdentifier = @"Notetitle";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
-    nvc.note = [[self.notebook.notesStore allNotes] objectAtIndex:indexPath.row];
+    nvc.note = [[self.notebook.notesStore allNotes] objectAtIndex:indexPath.section];
     [[self navigationController] pushViewController:nvc animated:YES];
     
 }

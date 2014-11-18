@@ -18,7 +18,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = self.note.text;
+    self.navigationItem.title = self.note.name;
+    self.titleTextField.text = _note.name;
+    self.noteTextView.text = _note.text;
+    
     self.view.backgroundColor = [UIColor colorWithWhite:0.75f alpha:1.0f];
     
     // noteTextView customization
@@ -29,13 +32,6 @@
     self.noteTextView.layer.shadowRadius = 18.0f;
     self.noteTextView.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
     self.noteTextView.layer.shadowOpacity = 0.8f;
-    
-    // Save text
-    self.string = [[NSUserDefaults standardUserDefaults] objectForKey:@"text"];
-    self.noteTextView.text = self.string;
-    self.noteTextView.delegate = self;
-    
-    [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateString) userInfo:nil repeats:YES];
     
     // Customize text
     NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:self.outlineButton.currentTitle];
@@ -61,13 +57,6 @@
     self.navigationItem.rightBarButtonItem = addButton;
     
     
-}
-
-// Saves the updated string in the user defaults
--(void)updateString{
-    
-    
-    [[NSUserDefaults standardUserDefaults] setObject:self.noteTextView.text forKey:@"text"];
 }
 
 // Dismisses the keyboard
@@ -102,6 +91,7 @@
                                                    name:UIContentSizeCategoryDidChangeNotification
                                                  object:nil];
     
+    self.note.name = self.titleTextField.text;
     self.note.text = self.noteTextView.text;
     
 }

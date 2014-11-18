@@ -77,7 +77,7 @@
     
     Notebook *notebook = [self createNotebookWithName:dictionary[@"name"]
                                                atDate:[NSDate dateWithTimeIntervalSince1970:[dictionary[@"dateCreated"] doubleValue]]
-                                            andFolder:dictionary[@"notebookName"]];
+                                            andFolder:dictionary[@"notebookFolder"]];
     
     return notebook;
 }
