@@ -111,14 +111,18 @@
                     [notebook.notes createNoteWithText:noteText atDate:noteDate andFolder:noteFolder];
                 }
             }
+        }
 
         for (int i = 0; i < 3; i++) {
             [self createNotebook];
+            
         }
     }
     
     return self;
 }
+
+
 
 
 
