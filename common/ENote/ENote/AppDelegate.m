@@ -36,6 +36,8 @@
     NotebooksTableViewController *notebooks = [[NotebooksTableViewController alloc] init];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:notebooks];
+    nav.navigationBar.translucent = NO;
+    nav.navigationBar.opaque = YES;
     
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
