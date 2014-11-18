@@ -14,7 +14,5 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) NotesCollectionViewController *viewController;
-
 @end
 

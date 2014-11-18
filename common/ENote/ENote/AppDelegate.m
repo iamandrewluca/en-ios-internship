@@ -8,12 +8,7 @@
 
 #import "AppDelegate.h"
 #import "NotebooksTableViewController.h"
-
 #import "NotebooksStore.h"
-#import "NotesStore.h"
-#import "Notebook.h"
-#import "Note.h"
-#import "NotesCollectionViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,11 +18,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-//    NotebooksTableViewController *notebooks = [[NotebooksTableViewController alloc] init];
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    self.window.rootViewController = nav;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -41,7 +31,6 @@
     
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
-    return YES;
     
     return YES;
 }
@@ -55,66 +44,7 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [documentDirectories firstObject];
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterLongStyle];
-    [formatter setTimeStyle:NSDateFormatterLongStyle];
-    
-    NSMutableArray *notebooks = [[NSMutableArray alloc] init];
-    
-    for (Notebook *notebook in [[NotebooksStore sharedStore] allNotebooks]) {
-        
-        NSMutableDictionary *notebookDictionary = [[NSMutableDictionary alloc] init];
-        [notebookDictionary setValue:notebook.name forKey:@"name"];
-        [notebookDictionary setValue:notebook.notebookFolder forKey:@"notebookFolder"];
-        [notebookDictionary setValue:[formatter stringFromDate:notebook.dateCreated] forKey:@"dateCreated"];
-        
-        NSString *notebookFolder = [NSString stringWithFormat:@"%@/%@", documentDirectory, notebook.notebookFolder];
-        
-        [[NSFileManager defaultManager] createDirectoryAtPath:notebookFolder
-                                  withIntermediateDirectories:NO
-                                                   attributes:nil
-                                                        error:nil];
-        
-        [notebooks addObject:notebookDictionary];
-        
-        NSMutableArray  *notes = [[NSMutableArray alloc] init];
-        
-        for (Note *note in [[notebook notes] allNotes]) {
-            
-            NSMutableDictionary *noteDictionary = [[NSMutableDictionary alloc] init];
-            [noteDictionary setValue:note.text forKey:@"text"];
-            [noteDictionary setValue:note.noteFolder forKey:@"noteFolder"];
-            [noteDictionary setValue:[formatter stringFromDate:note.dateCreated] forKey:@"dateCreated"];
-            
-            NSString *noteFolder = [NSString stringWithFormat:@"%@/%@", notebookFolder, note.noteFolder];
-            
-            [[NSFileManager defaultManager] createDirectoryAtPath:noteFolder
-                                      withIntermediateDirectories:NO
-                                                       attributes:nil
-                                                            error:nil];
-            
-            [notes addObject:noteDictionary];
-        }
-        
-        NSMutableDictionary *notesDictionary = [[NSMutableDictionary alloc] init];
-        
-        [notesDictionary setValue:notes forKey:@"notes"];
-        
-        NSData *notesData = [NSJSONSerialization dataWithJSONObject:notesDictionary options:NSJSONWritingPrettyPrinted error:nil];
-        
-        [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@/%@", notebookFolder, @"index.json"] contents:notesData attributes:nil];
-    }
-    
-    NSMutableDictionary *notebooksDictionary = [[NSMutableDictionary alloc] init];
-    
-    [notebooksDictionary setValue:notebooks forKey:@"notebooks"];
-    
-    NSData *notebooksData = [NSJSONSerialization dataWithJSONObject:notebooksDictionary options:NSJSONWritingPrettyPrinted error:nil];
-    
-    [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@/%@", documentDirectory, @"index.json"] contents:notebooksData attributes:nil];
+    [[NotebooksStore sharedStore] saveNotebooks];
     
 }
 

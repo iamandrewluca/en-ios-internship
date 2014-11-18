@@ -16,6 +16,7 @@
 
 - (instancetype)initWithText:(NSString *)text;
 - (instancetype)initWithText:(NSString *)text atDate:(NSDate *)date andFolder:(NSString *)folder;
+- (NSDictionary *)dictionaryRepresentation;
 
 // for future features )
 // @property (nonatomic) UIImage *image;

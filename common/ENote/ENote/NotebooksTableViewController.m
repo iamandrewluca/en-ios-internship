@@ -12,12 +12,9 @@
 #import "NotebooksTableViewDataSource.h"
 #import "NotesCollectionViewController.h"
 
-@class NotesCollectionViewController;
-
 @interface NotebooksTableViewController () <UITextFieldDelegate, UITableViewDelegate>
 
 @property (nonatomic) UIAlertController *alert;
-
 @property (nonatomic) NotebooksTableViewDataSource *dataSource;
 
 @end
@@ -26,23 +23,32 @@
 
 - (void)renameNotebookAtRow:(NSInteger)row {
     
-    Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:row];
-    notebook.name = [[[self.alert textFields] objectAtIndex:0] text];
+    NSString *nameFromModal = [[[self.alert textFields] objectAtIndex:0] text];
     
-    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    if (![nameFromModal isEqualToString:@""]) {
+        Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:row];
+        notebook.name = nameFromModal;
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [[NotebooksStore sharedStore] saveNotebooks];
+    }
 }
 
 - (void)createNotebook {
     
     NSString *nameFromModal = [[self.alert.textFields objectAtIndex:0] text];
     
-    Notebook *notebook = [[NotebooksStore sharedStore] createNotebookWithName:nameFromModal];
-    
-    NSInteger lastRow = [[[NotebooksStore sharedStore] allNotebooks] indexOfObject:notebook];
-    
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:lastRow inSection:0];
-    
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+    if (![nameFromModal isEqualToString:@""]) {
+        Notebook *notebook = [[NotebooksStore sharedStore] createNotebookWithName:nameFromModal];
+        
+        NSInteger lastRow = [[[NotebooksStore sharedStore] allNotebooks] indexOfObject:notebook];
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:lastRow inSection:0];
+        
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+        
+        [[NotebooksStore sharedStore] saveNotebooks];
+    }
 }
 
 - (void)addNewNotebook {

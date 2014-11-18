@@ -19,5 +19,6 @@
 - (Notebook *)createNotebookWithName:(NSString *)name;
 - (Notebook *)createNotebookWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder;
 - (void)removeNotebook:(Notebook *)notebook;
+- (void)saveNotebooks;
 
 @end

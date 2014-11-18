@@ -23,6 +23,7 @@
 		A721830C1A10E950006E47E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A721830B1A10E950006E47E3 /* Images.xcassets */; };
 		A721830F1A10E950006E47E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A721830D1A10E950006E47E3 /* LaunchScreen.xib */; };
 		A721831B1A10E950006E47E3 /* ENoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A721831A1A10E950006E47E3 /* ENoteTests.m */; };
+		A74FE0B81A1B86BA0005F74D /* ENoteCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = A74FE0B71A1B86BA0005F74D /* ENoteCommons.m */; };
 		A7D9ACB31A1246D600B8376A /* Notebook.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACB21A1246D600B8376A /* Notebook.m */; };
 		A7D9ACB61A12486300B8376A /* NotebooksStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACB51A12486300B8376A /* NotebooksStore.m */; };
 		A7D9ACBF1A12511700B8376A /* NotebooksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACBD1A12511700B8376A /* NotebooksTableViewCell.m */; };
@@ -72,6 +73,8 @@
 		A72183141A10E950006E47E3 /* ENoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ENoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72183191A10E950006E47E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A721831A1A10E950006E47E3 /* ENoteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ENoteTests.m; sourceTree = "<group>"; };
+		A74FE0B61A1B86BA0005F74D /* ENoteCommons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ENoteCommons.h; sourceTree = "<group>"; };
+		A74FE0B71A1B86BA0005F74D /* ENoteCommons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ENoteCommons.m; sourceTree = "<group>"; };
 		A7D9ACB11A1246D600B8376A /* Notebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notebook.h; sourceTree = "<group>"; };
 		A7D9ACB21A1246D600B8376A /* Notebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notebook.m; sourceTree = "<group>"; };
 		A7D9ACB41A12486300B8376A /* NotebooksStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebooksStore.h; sourceTree = "<group>"; };
@@ -215,6 +218,8 @@
 				6155EC421A1377A400BE143B /* Images */,
 				A72182FF1A10E950006E47E3 /* Info.plist */,
 				A72183001A10E950006E47E3 /* main.m */,
+				A74FE0B61A1B86BA0005F74D /* ENoteCommons.h */,
+				A74FE0B71A1B86BA0005F74D /* ENoteCommons.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -339,6 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A74FE0B81A1B86BA0005F74D /* ENoteCommons.m in Sources */,
 				6155EC4D1A137C3E00BE143B /* Note.m in Sources */,
 				A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */,
 				6190C2301A1254920046F016 /* NoteCell.m in Sources */,

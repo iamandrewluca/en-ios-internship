@@ -76,7 +76,7 @@ static NSString * const NoteTitleIdentifier = @"Notetitle";
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [[self.notebook.notes allNotes] count];
+    return [[self.notebook.notesStore allNotes] count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -94,7 +94,7 @@ static NSString * const NoteTitleIdentifier = @"Notetitle";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
-    nvc.note = [[self.notebook.notes allNotes] objectAtIndex:indexPath.row];
+    nvc.note = [[self.notebook.notesStore allNotes] objectAtIndex:indexPath.row];
     [[self navigationController] pushViewController:nvc animated:YES];
     
 }

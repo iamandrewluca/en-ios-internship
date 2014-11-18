@@ -8,8 +8,19 @@
 
 #import "Notebook.h"
 #import "NotesStore.h"
+#import "ENoteCommons.h"
 
 @implementation Notebook
+
+- (NSDictionary *)dictionaryRepresentation {
+    
+    return @{
+             @"name": _name,
+             @"notebookFolder": _notebookFolder,
+             @"dateCreated": [NSString stringWithFormat:@"%.0f", [_dateCreated timeIntervalSince1970]]
+             };
+    
+}
 
 - (instancetype)init {
     return [self initWithName:@"Sample Notebook"];
@@ -26,17 +37,30 @@
     if (self) {
         
         _name = name;
+        
         _notebookFolder = folder;
+        
+        [[NSFileManager defaultManager] createDirectoryAtPath:[NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder]
+                                  withIntermediateDirectories:NO
+                                                   attributes:nil
+                                                        error:nil];
+
         _dateCreated = date;
-        _notes = [[NotesStore alloc] init];
+        _notesStore = [[NotesStore alloc] initInNotebookFolder:_notebookFolder];
+        
+        
         
         for (int i = 0; i < rand() % (10 - 0) + 0; i++) {
-            [_notes createNote];
+            [_notesStore createNote];
         }
         
     }
     
     return self;
+}
+
+- (void)dealloc {    
+    [[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder] error:nil];
 }
 
 @end

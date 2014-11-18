@@ -14,9 +14,11 @@
 
 @property (nonatomic) NSArray *allNotes;
 
+- (instancetype)initInNotebookFolder:(NSString *)notebookFolder;
 - (Note *)createNote;
 - (Note *)createNoteWithText:(NSString *)text;
 - (Note *)createNoteWithText:(NSString *)text atDate:(NSDate *)date andFolder:(NSString *)folder;
 - (void)removeNote:(Note *)note;
+- (void)saveNotes;
 
 @end

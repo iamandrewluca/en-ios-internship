@@ -39,7 +39,7 @@
     [formatter setTimeStyle:NSDateFormatterNoStyle];
     
     cell.datelabel.text = [formatter stringFromDate:notebook.dateCreated];
-    [cell.notesNumberLabel setTitle:[NSString stringWithFormat:@"%lu", [[notebook.notes allNotes] count]] forState:UIControlStateNormal];
+    [cell.notesNumberLabel setTitle:[NSString stringWithFormat:@"%lu", [[notebook.notesStore allNotes] count]] forState:UIControlStateNormal];
     
     return cell;
 }
@@ -58,13 +58,10 @@
         
         [[NotebooksStore sharedStore] removeNotebook:notebook];
         
-        NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentDirectory = [documentDirectories firstObject];
-        NSString *notebookFolder = [NSString stringWithFormat:@"%@/%@", documentDirectory, notebook.notebookFolder];
-        
-        [[NSFileManager defaultManager] removeItemAtPath:notebookFolder error:nil];
-        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [[NotebooksStore sharedStore] saveNotebooks];
+        
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }

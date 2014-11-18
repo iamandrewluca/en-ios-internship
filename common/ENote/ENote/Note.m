@@ -16,6 +16,16 @@
 
 @implementation Note
 
+- (NSDictionary *)dictionaryRepresentation {
+    
+    return @{
+             @"text": _text,
+             @"notebookFolder": _noteFolder,
+             @"dateCreated": [NSString stringWithFormat:@"%.0f", [_dateCreated timeIntervalSince1970]]
+             };
+    
+}
+
 - (instancetype)init {
     return [self initWithText:@"Just a Note"];
 }
@@ -32,6 +42,12 @@
         
         _text = text;
         _noteFolder = folder;
+        
+        [[NSFileManager defaultManager] createDirectoryAtPath:[NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder]
+                                  withIntermediateDirectories:NO
+                                                   attributes:nil
+                                                        error:nil];
+
         _dateCreated = date;
         
     }
