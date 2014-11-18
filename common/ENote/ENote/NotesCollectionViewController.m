@@ -12,6 +12,7 @@
 #import "NotesDetailViewController.h"
 #import "NoteTitleReusableView.h"
 #import "Notebook.h"
+#import "NotesStore.h"
 
 static NSString * const NoteCellIdentifier = @"NoteCell";
 static NSString * const NoteTitleIdentifier = @"Notetitle";
@@ -75,12 +76,12 @@ static NSString * const NoteTitleIdentifier = @"Notetitle";
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 8;
+    return [[self.notebook.notes allNotes] count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 3;
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -93,6 +94,7 @@ static NSString * const NoteTitleIdentifier = @"Notetitle";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
+    nvc.note = [[self.notebook.notes allNotes] objectAtIndex:indexPath.row];
     [[self navigationController] pushViewController:nvc animated:YES];
     
 }

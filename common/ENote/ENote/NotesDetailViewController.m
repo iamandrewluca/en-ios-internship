@@ -7,6 +7,7 @@
 //
 
 #import "NotesDetailViewController.h"
+#import "Note.h"
 
 @interface NotesDetailViewController () <UITextViewDelegate>
 @property (weak, nonatomic) UINavigationBar *navigationBar;
@@ -17,7 +18,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"Notes";
+    self.navigationItem.title = self.note.text;
     self.view.backgroundColor = [UIColor colorWithWhite:0.75f alpha:1.0f];
     
     // noteTextView customization
@@ -100,6 +101,8 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self
                                                    name:UIContentSizeCategoryDidChangeNotification
                                                  object:nil];
+    
+    self.note.text = self.noteTextView.text;
     
 }
 

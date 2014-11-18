@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Note.h"
+
 @interface NotesDetailViewController : UIViewController
+
+@property (nonatomic) Note *note;
 
 @property (nonatomic, strong) NSString *string;
 @property (nonatomic, strong) IBOutlet UITextView *noteTextView;
