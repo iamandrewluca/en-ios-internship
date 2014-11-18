@@ -11,4 +11,6 @@
 
 @interface NotebooksTableViewDelegate : NSObject <UITableViewDelegate>
 
+@property (nonatomic) id parent;
+
 @end

@@ -8,10 +8,12 @@
 
 #import "AppDelegate.h"
 #import "NotebooksTableViewController.h"
+
 #import "NotebooksStore.h"
 #import "NotesStore.h"
 #import "Notebook.h"
 #import "Note.h"
+#import "NotesCollectionViewController.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +23,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+//    NotebooksTableViewController *notebooks = [[NotebooksTableViewController alloc] init];
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    self.window.rootViewController = nav;
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     NSLog(@"%@", NSHomeDirectory());
     
@@ -29,11 +37,9 @@
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:notebooks];
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = nav;
-    
     [self.window makeKeyAndVisible];
+    return YES;
     
     return YES;
 }

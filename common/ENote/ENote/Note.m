@@ -1,4 +1,3 @@
-//
 //  Note.m
 //  ENote
 //
@@ -7,6 +6,13 @@
 //
 
 #import "Note.h"
+
+@interface Note ()
+
+@property (nonatomic, strong, readwrite) NSURL *imageURL;
+@property (nonatomic, strong, readwrite) UIImage *noteImage;
+
+@end
 
 @implementation Note
 

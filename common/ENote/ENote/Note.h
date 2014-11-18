@@ -1,4 +1,3 @@
-//
 //  Note.h
 //  ENote
 //

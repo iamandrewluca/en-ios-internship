@@ -80,6 +80,8 @@
     self.dataSource = [[NotebooksTableViewDataSource alloc] init];
     self.delegate = [[NotebooksTableViewDelegate alloc] init];
     
+    self.delegate.parent = self;
+    
     self.tableView.dataSource = self.dataSource;
     self.tableView.delegate = self.delegate;
     

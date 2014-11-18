@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "Notebook.h"
 #import "NotebooksStore.h"
+#import "NotesCollectionViewController.h"
 
 @interface NotebooksTableViewDelegate () <UITextFieldDelegate>
 {
@@ -58,10 +59,10 @@
         [[[[[UIApplication sharedApplication] delegate] window] rootViewController] presentViewController:alert animated:YES completion:nil];
         
     } else {
-//        NotesCollectionViewController *notes = [[NotesCollectionViewController alloc] init];
-//        notes.notebook = notebook;
-//        
-//        [self.navigationController pushViewController:notes animated:YES];
+        NotesCollectionViewController *notes = [[NotesCollectionViewController alloc] initWithNibName:@"NotesCollectionViewController" bundle:nil];
+        notes.notebook = notebook;
+        
+        [[self.parent navigationController] pushViewController:notes animated:YES];
     }
 }
 
