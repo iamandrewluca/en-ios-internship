@@ -22,6 +22,22 @@
 
 #pragma mark Notebook Related
 
+- (void)loadNotebooks {
+    NSString *indexPath = [NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], [[ENoteCommons shared] indexFile]];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:indexPath]) {
+        
+        NSData *notebooksData = [[NSFileManager defaultManager] contentsAtPath:indexPath];
+        NSDictionary *notebooksDictionary = [NSJSONSerialization JSONObjectWithData:notebooksData options:NSJSONReadingMutableContainers error:nil];
+        
+        NSMutableArray *notebooks = notebooksDictionary[@"notebooks"];
+        
+        for (int i = 0; i < [notebooks count]; i++) {
+            [self createNotebookWithDictionary:notebooks[i]];
+        }
+    }
+}
+
 - (void)saveNotebooks {
    
     NSMutableArray *notebooks = [[NSMutableArray alloc] init];
@@ -116,19 +132,7 @@
     if (self) {
         _privateNotebooks = [[NSMutableArray alloc] init];
         
-        NSString *indexPath = [NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], [[ENoteCommons shared] indexFile]];
-        
-        if ([[NSFileManager defaultManager] fileExistsAtPath:indexPath]) {
-            
-            NSData *notebooksData = [[NSFileManager defaultManager] contentsAtPath:indexPath];
-            NSDictionary *notebooksDictionary = [NSJSONSerialization JSONObjectWithData:notebooksData options:NSJSONReadingMutableContainers error:nil];
-            
-            NSMutableArray *notebooks = notebooksDictionary[@"notebooks"];
-            
-            for (int i = 0; i < [notebooks count]; i++) {
-                [self createNotebookWithDictionary:notebooks[i]];
-            }
-        }
+        [self loadNotebooks];
     }
     
     return self;

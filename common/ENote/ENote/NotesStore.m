@@ -58,10 +58,8 @@
     
     NSString *notePath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder, note.noteFolder];
     
-    NSLog(@"%@", _notebookFolder);
-    
     [[NSFileManager defaultManager] createDirectoryAtPath:notePath
-                              withIntermediateDirectories:NO
+                              withIntermediateDirectories:YES
                                                attributes:nil
                                                     error:nil];
     
@@ -108,10 +106,6 @@
             for (int i = 0; i < [notes count]; i++) {
                 [self createNoteWithDictionary:notes[i]];
             }
-        }
-        
-        for (int i = 0; i < rand() % 10; i++) {
-            [self createNoteWithName:[NSString stringWithFormat:@"Note %d", i]];
         }
         
     }

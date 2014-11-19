@@ -18,12 +18,12 @@
 
 - (NSDictionary *)dictionaryRepresentation {
     
-    return @{
-             @"name": _name,
-             @"text": _text,
-             @"notebookFolder": _noteFolder,
-             @"dateCreated": [NSString stringWithFormat:@"%.0f", [_dateCreated timeIntervalSince1970]]
-             };
+    NSDictionary *dict = @{@"name": _name,
+                           @"text": _text,
+                           @"noteFolder": _noteFolder,
+                           @"dateCreated": [NSString stringWithFormat:@"%.0f", [_dateCreated timeIntervalSince1970]]};
+    
+    return dict;
     
 }
 
