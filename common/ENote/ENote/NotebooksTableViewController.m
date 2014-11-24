@@ -12,7 +12,7 @@
 #import "NotebooksTableViewDataSource.h"
 #import "NotesCollectionViewController.h"
 
-@interface NotebooksTableViewController () <UITextFieldDelegate, UITableViewDelegate>
+@interface NotebooksTableViewController () <UITableViewDelegate>
 
 @property (nonatomic) UIAlertController *alert;
 @property (nonatomic) NotebooksTableViewDataSource *dataSource;
@@ -60,7 +60,6 @@
     [self.alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.returnKeyType = UIReturnKeyDone;
         textField.placeholder = @"Notebook name";
-        textField.tag = -1;
     }];
     
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
@@ -76,21 +75,7 @@
     [self.alert addAction:cancel];
     [self.alert addAction:ok];
     
-    
-    
     [self presentViewController:self.alert animated:YES completion:nil];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
-    if (textField.tag == -1) {
-        [self createNotebook];
-    } else {
-        [self renameNotebookAtRow:textField.tag];
-    }
-    
-    [self.alert dismissViewControllerAnimated:YES completion:nil];
-    return YES;
 }
 
 - (void)viewDidLoad {
@@ -111,6 +96,12 @@
     
     UINib *nib = [UINib nibWithNibName:@"NotebooksTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"NotebooksTableViewCell"];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark TableView Delegate

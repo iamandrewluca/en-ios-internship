@@ -47,16 +47,41 @@ static NSString * const NoteTitleIdentifier = @"Notetitle";
     
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.collectionView reloadData];
+}
+
 -(void)addNewNote
 {
-    UIAlertView *edit = [[UIAlertView alloc]initWithTitle:@"Add Note"
-                                                  message:@""
-                                                 delegate:self
-                                        cancelButtonTitle:@"Cancel"
-                                        otherButtonTitles:@"Ok",nil];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Enter note title"
+                                                     message:@""
+                                              preferredStyle:UIAlertControllerStyleAlert];
     
-    [edit show];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.returnKeyType = UIReturnKeyDone;
+        textField.placeholder = @"Note title";
+    }];
     
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                 style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction *action) {
+                                                   NSString *titleFromModal = [[[alert textFields] firstObject] text];
+                                                   
+                                                   [self.notebook.notesStore createNoteWithName:titleFromModal];
+                                                   
+                                                   [self.collectionView reloadData];
+                                               }];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:nil];
+    
+    [alert addAction:cancel];
+    [alert addAction:ok];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
@@ -76,9 +101,8 @@ static NSString * const NoteTitleIdentifier = @"Notetitle";
     UICollectionViewCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteCellIdentifier forIndexPath:indexPath];
     UILabel *label = [[UILabel alloc] initWithFrame:noteCell.bounds];
     label.textAlignment  = NSTextAlignmentCenter;
-    label.text = @"Note";
+    label.text = [[[self.notebook.notesStore allNotes] objectAtIndex:indexPath.section] name];
     [noteCell.contentView addSubview:label];
-    
     
     return noteCell;
 }
