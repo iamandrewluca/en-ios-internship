@@ -98,11 +98,8 @@ static NSString * const NoteTitleIdentifier = @"Notetitle";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteCellIdentifier forIndexPath:indexPath];
-    UILabel *label = [[UILabel alloc] initWithFrame:noteCell.bounds];
-    label.textAlignment  = NSTextAlignmentCenter;
-    label.text = [[[self.notebook.notesStore allNotes] objectAtIndex:indexPath.section] name];
-    [noteCell.contentView addSubview:label];
+    NoteCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteCellIdentifier forIndexPath:indexPath];
+    noteCell.nameLabel.text = [[[self.notebook.notesStore allNotes] objectAtIndex:indexPath.section] name];
     
     return noteCell;
 }
