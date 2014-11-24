@@ -13,13 +13,13 @@
 #import "NoteTitleReusableView.h"
 #import "Notebook.h"
 #import "NotesStore.h"
+#import "Note.h"
 
 static NSString * const NoteCellIdentifier = @"NoteCell";
 static NSString * const NoteTitleIdentifier = @"Notetitle";
 
 @interface NotesCollectionViewController ()
 @property (nonatomic, weak) IBOutlet NotesLayout *notesLayout;
-@property (nonatomic, strong) NSMutableArray *notes;
 
 @end
 
@@ -38,40 +38,27 @@ static NSString * const NoteTitleIdentifier = @"Notetitle";
     [self.collectionView registerClass:[NoteCell class] forCellWithReuseIdentifier:NoteCellIdentifier];
     [self.collectionView registerClass:[NoteTitleReusableView class] forSupplementaryViewOfKind:NoteLayoutTitleKind
                    withReuseIdentifier:NoteTitleIdentifier];
-/*
-     //    NSInteger photoIndex = 0;
-     //
-     //    for (NSInteger n = 0; n < 8; n++) {
-     //        NotesStorage *note = [[NotesStorage alloc] init];
-     //        note.name = [NSString stringWithFormat:@"Note Folder: %ld",n + 1];
-     //
-     //        [self.notes addObject:note];
-     //
-     //    }
-     //    photoIndex ++;
-     */
+
+    UIBarButtonItem *addNote = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                     target:self
+                                                                     action:@selector(addNewNote)];
     
-/*
-     //    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
-     //                                                                      style:UIBarButtonItemStylePlain
-     //                                                                     target:self
-     //                                                                     action:@selector(refreshPropertyList:)];
-     */
+    self.navigationItem.rightBarButtonItem = addNote;
     
 }
 
-/*
-//-(void)refreshPropertyList:(id)sender
-//{
-//    UIAlertView *edit = [[UIAlertView alloc]initWithTitle:@"EditNote"
-//                                                  message:@""
-//                                                 delegate:self
-//                                        cancelButtonTitle:@"cancel"
-//                                        otherButtonTitles:nil];
-//    [edit show];
-//}
-//
-*/
+-(void)addNewNote
+{
+    UIAlertView *edit = [[UIAlertView alloc]initWithTitle:@"Add Note"
+                                                  message:@""
+                                                 delegate:self
+                                        cancelButtonTitle:@"Cancel"
+                                        otherButtonTitles:@"Ok",nil];
+    
+    [edit show];
+    
+}
+
 
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -81,12 +68,17 @@ static NSString * const NoteTitleIdentifier = @"Notetitle";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 1;
+    return 3;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteCellIdentifier forIndexPath:indexPath];
+    UILabel *label = [[UILabel alloc] initWithFrame:noteCell.bounds];
+    label.textAlignment  = NSTextAlignmentCenter;
+    label.text = @"Note";
+    [noteCell.contentView addSubview:label];
+    
     
     return noteCell;
 }

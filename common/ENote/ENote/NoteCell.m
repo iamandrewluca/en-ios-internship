@@ -16,7 +16,7 @@
     if (self) {
         self.backgroundColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
         self.layer.borderColor = [UIColor darkGrayColor].CGColor;
-        self.layer.borderWidth = 2.0f;
+        self.layer.borderWidth = 1.5f;
         self.layer.shadowColor = [UIColor blackColor].CGColor;
         self.layer.shadowRadius = 4.0f;
         self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);

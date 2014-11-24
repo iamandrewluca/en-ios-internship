@@ -106,6 +106,10 @@
             for (int i = 0; i < [notes count]; i++) {
                 [self createNoteWithDictionary:notes[i]];
             }
+            
+            for (int i = 0; i < 4; i++) {
+                [self createNoteWithName:@"asdas"];
+            }
         }
         
     }
