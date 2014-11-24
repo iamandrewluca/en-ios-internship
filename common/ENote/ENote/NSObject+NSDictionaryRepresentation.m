@@ -20,7 +20,7 @@
     
     for (int i = 0; i < count; i++) {
         NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
-        NSString *value = [self valueForKey:key];
+        NSDictionary *value = [[self valueForKey:key] dictionaryRepresentation];
         
         // Only add to the NSDictionary if it's not nil.
         if (value)

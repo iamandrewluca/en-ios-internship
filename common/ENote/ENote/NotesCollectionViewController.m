@@ -71,6 +71,8 @@ static NSString * const NoteTitleIdentifier = @"Notetitle";
                                                    
                                                    [self.notebook.notesStore createNoteWithName:titleFromModal];
                                                    
+                                                   [self.notebook.notesStore saveNotes];
+                                                   
                                                    [self.collectionView reloadData];
                                                }];
     
