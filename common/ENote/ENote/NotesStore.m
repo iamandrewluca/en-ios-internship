@@ -40,6 +40,22 @@
     }
 }
 
+- (void)saveNote:(Note *)note {
+    
+    NSString *notePath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder, note.noteFolder];
+    
+    [[NSFileManager defaultManager] createDirectoryAtPath:notePath
+                              withIntermediateDirectories:YES
+                                               attributes:nil
+                                                    error:nil];
+    
+    NSData *noteData = [NSJSONSerialization dataWithJSONObject:[note dictionaryRepresentation] options:NSJSONWritingPrettyPrinted error:nil];
+    
+    NSString *indexPath = [NSString stringWithFormat:@"%@/%@", notePath, [[ENoteCommons shared] indexFile]];
+    
+    [[NSFileManager defaultManager] createFileAtPath:indexPath contents:noteData attributes:nil];
+}
+
 - (void)removeNote:(Note *)note {
     
     NSString *notePath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder, note.noteFolder];
@@ -57,18 +73,7 @@
     
     Note *note = [self createNoteWithName:name withText:@"" atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
     
-    NSString *notePath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder, note.noteFolder];
-    
-    [[NSFileManager defaultManager] createDirectoryAtPath:notePath
-                              withIntermediateDirectories:YES
-                                               attributes:nil
-                                                    error:nil];
-    
-    NSData *noteData = [NSJSONSerialization dataWithJSONObject:[note dictionaryRepresentation] options:NSJSONWritingPrettyPrinted error:nil];
-    
-    NSString *indexPath = [NSString stringWithFormat:@"%@/%@", notePath, [[ENoteCommons shared] indexFile]];
-    
-    [[NSFileManager defaultManager] createFileAtPath:indexPath contents:noteData attributes:nil];
+    [self saveNote:note];
     
     return note;
 }
