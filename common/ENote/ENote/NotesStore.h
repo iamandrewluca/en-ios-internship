@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Store.h"
 
 @class Note;
 
-@interface NotesStore : NSObject
+@interface NotesStore : Store
 
 @property (nonatomic) NSArray *allNotes;
 

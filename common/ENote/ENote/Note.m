@@ -6,6 +6,7 @@
 //
 
 #import "Note.h"
+#import <UIKit/UIKit.h>
 
 @interface Note ()
 

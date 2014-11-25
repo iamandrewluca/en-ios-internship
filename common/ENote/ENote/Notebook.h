@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "StoreItem.h"
 
 @class NotesStore;
 
-@interface Notebook : NSObject
+@interface Notebook : StoreItem
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *notebookFolder;

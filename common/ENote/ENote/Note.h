@@ -6,9 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "StoreItem.h"
 
-@interface Note : NSObject
+@interface Note : StoreItem
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *text;
