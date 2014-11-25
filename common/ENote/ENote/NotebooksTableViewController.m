@@ -29,8 +29,6 @@
         Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:row];
         notebook.name = nameFromModal;
         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-        
-        [[NotebooksStore sharedStore] saveNotebooks];
     }
 }
 
@@ -46,8 +44,6 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:lastRow inSection:0];
         
         [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
-        
-        [[NotebooksStore sharedStore] saveNotebooks];
     }
 }
 
@@ -76,21 +72,7 @@
     [self.alert addAction:cancel];
     [self.alert addAction:ok];
     
-    
-    
     [self presentViewController:self.alert animated:YES completion:nil];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
-    if (textField.tag == -1) {
-        [self createNotebook];
-    } else {
-        [self renameNotebookAtRow:textField.tag];
-    }
-    
-    [self.alert dismissViewControllerAnimated:YES completion:nil];
-    return YES;
 }
 
 - (void)viewDidLoad {

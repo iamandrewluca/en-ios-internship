@@ -23,39 +23,21 @@
 #pragma mark Notebook Related
 
 - (void)loadNotebooks {
-    NSString *indexPath = [NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], [[ENoteCommons shared] indexFile]];
     
-    if ([[NSFileManager defaultManager] fileExistsAtPath:indexPath]) {
+    NSArray *notebooksPaths = [ENoteCommons getValidPathsAtPath:[[ENoteCommons shared] documentDirectory]];
+    
+    for (NSString *notebookPath in notebooksPaths) {
         
-        NSData *notebooksData = [[NSFileManager defaultManager] contentsAtPath:indexPath];
-        NSDictionary *notebooksDictionary = [NSJSONSerialization JSONObjectWithData:notebooksData options:NSJSONReadingMutableContainers error:nil];
+        NSString *indexPath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], notebookPath, [[ENoteCommons shared] indexFile]];
         
-        NSMutableArray *notebooks = notebooksDictionary[@"notebooks"];
-        
-        for (int i = 0; i < [notebooks count]; i++) {
-            [self createNotebookWithDictionary:notebooks[i]];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:indexPath]) {
+            
+            NSData *notebookData = [[NSFileManager defaultManager] contentsAtPath:indexPath];
+            NSDictionary *notebookDictionary = [NSJSONSerialization JSONObjectWithData:notebookData options:NSJSONReadingMutableContainers error:nil];
+            
+            [self createNotebookWithDictionary:notebookDictionary];
         }
     }
-}
-
-- (void)saveNotebooks {
-   
-    NSMutableArray *notebooks = [[NSMutableArray alloc] init];
-    
-    for (Notebook *notebook in [[NotebooksStore sharedStore] allNotebooks]) {
-        
-        [notebook.notesStore saveNotes];
-        [notebooks addObject:[notebook dictionaryRepresentation]];
-        
-    }
-    
-    NSMutableDictionary *notebooksDictionary = [[NSMutableDictionary alloc] init];
-    
-    [notebooksDictionary setValue:notebooks forKey:@"notebooks"];
-    
-    NSData *notebooksData = [NSJSONSerialization dataWithJSONObject:notebooksDictionary options:NSJSONWritingPrettyPrinted error:nil];
-    
-    [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], [[ENoteCommons shared] indexFile]] contents:notebooksData attributes:nil];
 }
 
 - (NSArray *)allNotebooks {
@@ -76,6 +58,12 @@
                               withIntermediateDirectories:NO
                                                attributes:nil
                                                     error:nil];
+    
+    NSData *notebookData = [NSJSONSerialization dataWithJSONObject:[notebook dictionaryRepresentation] options:NSJSONWritingPrettyPrinted error:nil];
+    
+    NSString *indexPath = [NSString stringWithFormat:@"%@/%@", notebookPath, [[ENoteCommons shared] indexFile]];
+    
+    [[NSFileManager defaultManager] createFileAtPath:indexPath contents:notebookData attributes:nil];
     
     return notebook;
 }

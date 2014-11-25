@@ -8,7 +8,6 @@
 
 #import "NotesStore.h"
 #import "Note.h"
-#import "NSObject+NSDictionaryRepresentation.h"
 #import "ENoteCommons.h"
 
 @interface NotesStore ()
@@ -21,22 +20,24 @@
 
 @implementation NotesStore
 
-- (void)saveNotes {
+- (void)loadNotes {
     
-    NSMutableArray *notes = [[NSMutableArray alloc] init];
+    NSString *notesPath = [NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder];
     
-    for (Note *note in _privateNotes) {
-        [notes addObject:[note dictionaryRepresentation]];
+    NSArray *notesPaths = [ENoteCommons getValidPathsAtPath:notesPath];
+    
+    for (NSString *notePath in notesPaths) {
+        
+        NSString *indexPath = [NSString stringWithFormat:@"%@/%@/%@", notesPath, notePath, [[ENoteCommons shared] indexFile]];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:indexPath]) {
+            
+            NSData *noteData = [[NSFileManager defaultManager] contentsAtPath:indexPath];
+            NSDictionary *noteDictionary = [NSJSONSerialization JSONObjectWithData:noteData options:NSJSONReadingMutableContainers error:nil];
+            
+            [self createNoteWithDictionary:noteDictionary];
+        }
     }
-    
-    NSMutableDictionary *notesDictionary = [[NSMutableDictionary alloc] init];
-    
-    [notesDictionary setValue:notes forKey:@"notes"];
-    
-    NSData *notesData = [NSJSONSerialization dataWithJSONObject:notesDictionary options:NSJSONWritingPrettyPrinted error:nil];
-    
-    [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebookFolder, [[ENoteCommons shared] indexFile]] contents:notesData attributes:nil];
-    
 }
 
 - (void)removeNote:(Note *)note {
@@ -62,6 +63,12 @@
                               withIntermediateDirectories:YES
                                                attributes:nil
                                                     error:nil];
+    
+    NSData *noteData = [NSJSONSerialization dataWithJSONObject:[note dictionaryRepresentation] options:NSJSONWritingPrettyPrinted error:nil];
+    
+    NSString *indexPath = [NSString stringWithFormat:@"%@/%@", notePath, [[ENoteCommons shared] indexFile]];
+    
+    [[NSFileManager defaultManager] createFileAtPath:indexPath contents:noteData attributes:nil];
     
     return note;
 }
@@ -94,20 +101,7 @@
         _privateNotes = [[NSMutableArray alloc] init];
         _notebookFolder = notebookFolder;
         
-        NSString *indexPath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], notebookFolder, [[ENoteCommons shared] indexFile]];
-        
-        if ([[NSFileManager defaultManager] fileExistsAtPath:indexPath]) {
-            
-            NSData *notesData = [[NSFileManager defaultManager] contentsAtPath:indexPath];
-            NSDictionary *notesDictionary = [NSJSONSerialization JSONObjectWithData:notesData options:NSJSONReadingMutableContainers error:nil];
-            
-            NSMutableArray *notes = notesDictionary[@"notes"];
-            
-            for (int i = 0; i < [notes count]; i++) {
-                [self createNoteWithDictionary:notes[i]];
-            }
-        }
-        
+        [self loadNotes];
     }
     
     return self;

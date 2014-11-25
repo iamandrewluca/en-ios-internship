@@ -13,13 +13,11 @@
 @implementation Notebook
 
 - (NSDictionary *)dictionaryRepresentation {
-    
     return @{
              @"name": _name,
              @"notebookFolder": _notebookFolder,
              @"dateCreated": [NSString stringWithFormat:@"%.0f", [_dateCreated timeIntervalSince1970]]
              };
-    
 }
 
 - (instancetype)init {

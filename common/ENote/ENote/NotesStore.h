@@ -19,6 +19,5 @@
 - (Note *)createNoteWithName:(NSString *)name;
 - (Note *)createNoteWithName:(NSString *)name withText:(NSString *)text atDate:(NSDate *)date andFolder:(NSString *)folder;
 - (void)removeNote:(Note *)note;
-- (void)saveNotes;
 
 @end
