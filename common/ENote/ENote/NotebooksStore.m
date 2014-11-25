@@ -44,13 +44,13 @@
     return self.privateNotebooks;
 }
 
-- (Notebook *)createNotebook {
-    return [self createNotebookWithName:@"Sample Notebook"];
+- (void)renameNotebook:(Notebook *)notebook withName:(NSString *)name {
+    notebook.name = name;
+    
+    [self saveNotebook:notebook];
 }
 
-- (Notebook *)createNotebookWithName:(NSString *)name {
-    
-    Notebook *notebook = [self createNotebookWithName:name atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
+- (void)saveNotebook:(Notebook *)notebook {
     
     NSString *notebookPath = [NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], notebook.notebookFolder];
     
@@ -64,6 +64,18 @@
     NSString *indexPath = [NSString stringWithFormat:@"%@/%@", notebookPath, [[ENoteCommons shared] indexFile]];
     
     [[NSFileManager defaultManager] createFileAtPath:indexPath contents:notebookData attributes:nil];
+    
+}
+
+- (Notebook *)createNotebook {
+    return [self createNotebookWithName:@"Sample Notebook"];
+}
+
+- (Notebook *)createNotebookWithName:(NSString *)name {
+    
+    Notebook *notebook = [self createNotebookWithName:name atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
+    
+    [self saveNotebook:notebook];
     
     return notebook;
 }

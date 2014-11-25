@@ -21,32 +21,6 @@
 
 @implementation NotebooksTableViewController
 
-- (void)renameNotebookAtRow:(NSInteger)row {
-    
-    NSString *nameFromModal = [[[self.alert textFields] objectAtIndex:0] text];
-    
-    if (![nameFromModal isEqualToString:@""]) {
-        Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:row];
-        notebook.name = nameFromModal;
-        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-    }
-}
-
-- (void)createNotebook {
-    
-    NSString *nameFromModal = [[self.alert.textFields objectAtIndex:0] text];
-    
-    if (![nameFromModal isEqualToString:@""]) {
-        Notebook *notebook = [[NotebooksStore sharedStore] createNotebookWithName:nameFromModal];
-        
-        NSInteger lastRow = [[[NotebooksStore sharedStore] allNotebooks] indexOfObject:notebook];
-        
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:lastRow inSection:0];
-        
-        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
-    }
-}
-
 - (void)addNewNotebook {
     
     self.alert = [UIAlertController alertControllerWithTitle:@"Enter new name"
@@ -56,13 +30,23 @@
     [self.alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.returnKeyType = UIReturnKeyDone;
         textField.placeholder = @"Notebook name";
-        textField.tag = -1;
     }];
     
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
                                                  style:UIAlertActionStyleDefault
                                                handler:^(UIAlertAction *action) {
-                                                   [self createNotebook];
+                                                   
+                                                   NSString *nameFromModal = [[self.alert.textFields objectAtIndex:0] text];
+                                                   
+                                                   if (![nameFromModal isEqualToString:@""]) {
+                                                       Notebook *notebook = [[NotebooksStore sharedStore] createNotebookWithName:nameFromModal];
+                                                       
+                                                       NSInteger lastRow = [[[NotebooksStore sharedStore] allNotebooks] indexOfObject:notebook];
+                                                       
+                                                       NSIndexPath *indexPath = [NSIndexPath indexPathForItem:lastRow inSection:0];
+                                                       
+                                                       [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+                                                   }
                                                }];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
@@ -108,13 +92,21 @@
         [self.alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
             textField.returnKeyType = UIReturnKeyDone;
             textField.placeholder = @"Notebook name";
-            textField.tag = indexPath.row;
         }];
         
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
                                                      style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction *action) {
-                                                       [self renameNotebookAtRow:indexPath.row];
+                                                       
+                                                       NSString *nameFromModal = [[[self.alert textFields] objectAtIndex:0] text];
+                                                       
+                                                       if (![nameFromModal isEqualToString:@""]) {
+                                                           Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
+                                                           
+                                                           [[NotebooksStore sharedStore] renameNotebook:notebook withName:nameFromModal];
+                                                           
+                                                           [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+                                                       }
                                                    }];
         
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
