@@ -24,8 +24,12 @@
 
 static NSString * const NoteCellIdentifier = @"NoteCell";
 
-@interface NotesCollectionViewController ()
+@interface NotesCollectionViewController () {
+    UIBarButtonItem *addNote;
+}
+
 @property (nonatomic, weak) IBOutlet NotesLayout *notesLayout;
+@property (nonatomic) NSMutableArray *selectedItems;
 @end
 
 @implementation NotesCollectionViewController {
@@ -38,7 +42,6 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 {
     [super viewDidLoad];
     self.navigationItem.title = self.notebook.name;
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.collectionView.backgroundColor = [UIColor colorWithRed:235.0/255.0 green:134.0/255.0 blue:13.0/255.0 alpha:1.0];
     
     // Register cell and title classes with the collection view
@@ -58,13 +61,17 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     
 
     // Add new note
-    UIBarButtonItem *addNote = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+    addNote = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                      target:self
                                                                      action:@selector(addNewNote)];
     
     self.navigationItem.rightBarButtonItem = addNote;
     
+    
+    self.selectedItems = [[NSMutableArray alloc] init];
+    
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -91,7 +98,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
                                                handler:^(UIAlertAction *action) {
                                                    NSString *titleFromModal = [[[alert textFields] firstObject] text];
                                                    [self.notebook.notesStore createNoteWithName:titleFromModal];
-                                                   [self.notebook.notesStore saveNotes];
+                                                   
                                                    [self.collectionView reloadData];
                                                }];
     
@@ -110,12 +117,12 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     [super setEditing:editing animated:animated];
     
     if (!editing) {
-        UIBarButtonItem *addNote = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                                 target:self
-                                                                                 action:@selector(addNewNote)];
         self.navigationItem.rightBarButtonItem = addNote;
+        [self deleteNotes];
     } else {
+        self.editButtonItem.title = @"Remove";
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
+        
     }
 }
 
@@ -171,6 +178,17 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     return noteCell;
 }
 
+- (void)deleteNotes {
+    
+    for (NSIndexPath *indexPath in self.selectedItems) {
+        Note *note = [[self.notebook.notesStore allNotes] objectAtIndex:indexPath.section];
+        
+        [self.notebook.notesStore removeNote:note];
+        
+        [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+    }
+}
+
 
 
 #pragma mark <UICollectionViewDelegate>
@@ -179,14 +197,18 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     
     if (self.editing) {
+        
+        [self.selectedItems addObject:indexPath];
+        
+        
         [self setCellSelection:cell selected:YES];
         
         //-------------- Delete Note ---------------//
-        NotesStore *notesStore = self.notebook.notesStore;
-        Note *note = [[notesStore allNotes] objectAtIndex:indexPath.row];
-        [notesStore removeNote:note];
-        [notesStore saveNotes];
-        [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+//        NotesStore *notesStore = self.notebook.notesStore;
+//        Note *note = [[notesStore allNotes] objectAtIndex:indexPath.row];
+//        [notesStore removeNote:note];
+//        
+//        [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
     }
     else {
         NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
@@ -199,6 +221,8 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 {
     if (self.editing) {
         UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+        
+        [self.selectedItems removeObject:indexPath];
         [self setCellSelection:cell selected:NO];
     }
 }
