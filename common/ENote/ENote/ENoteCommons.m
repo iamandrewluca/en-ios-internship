@@ -41,27 +41,4 @@
     return self;
 }
 
-+ (NSArray *)getValidPathsAtPath:(NSString *)path {
-    
-    NSMutableArray *allPaths = [NSMutableArray
-                                arrayWithArray:[[NSFileManager defaultManager] contentsOfDirectoryAtPath:path
-                                                                                                   error:nil]];
-    
-    NSString *pattern = @"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$";
-    NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
-    
-    for (int i = 0; i < allPaths.count; i++) {
-        
-        NSString *path = allPaths[i];
-        NSUInteger count = [regex numberOfMatchesInString:path options:0 range:NSMakeRange(0, path.length)];
-        
-        if (count == 0) {
-            [allPaths removeObject:path];
-        }
-    }
-    
-    return allPaths;
-}
-
-
 @end

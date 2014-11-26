@@ -14,6 +14,5 @@
 @property (nonatomic, readonly) NSString *indexFile;
 
 + (instancetype)shared;
-+ (NSArray *)getValidPathsAtPath:(NSString *)path;
 
 @end

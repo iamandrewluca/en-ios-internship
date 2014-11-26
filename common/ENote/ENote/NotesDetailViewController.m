@@ -18,7 +18,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = self.note.name;
+    self.navigationItem.title = _note.name;
     self.titleTextField.text = _note.name;
     self.noteTextView.text = _note.text;
     
@@ -36,10 +36,13 @@
 
 
     // the nav bar's custom Done button right view
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:nil];
-    self.navigationItem.rightBarButtonItem = addButton;
-    
-    
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveNote)];
+    self.navigationItem.rightBarButtonItem = saveButton;
+}
+
+- (void)saveNote {
+    self.note.name = self.titleTextField.text;
+    self.note.text = self.noteTextView.text;
 }
 
 // Dismisses the keyboard
@@ -62,10 +65,6 @@
                                             selector:@selector(preferredFontsChanged:)
                                                 name:UIContentSizeCategoryDidChangeNotification
                                               object:nil];
-    
-    
-
-
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -74,10 +73,6 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self
                                                    name:UIContentSizeCategoryDidChangeNotification
                                                  object:nil];
-    
-    self.note.name = self.titleTextField.text;
-    self.note.text = self.noteTextView.text;
-    
 }
 
 -(void)preferredFontsChanged:(NSNotification *)notification

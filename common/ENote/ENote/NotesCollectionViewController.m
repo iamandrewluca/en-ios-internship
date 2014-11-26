@@ -96,8 +96,10 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
                                                  style:UIAlertActionStyleDefault
                                                handler:^(UIAlertAction *action) {
+                                                   
                                                    NSString *titleFromModal = [[[alert textFields] firstObject] text];
-                                                   [self.notebook.notesStore createNoteWithName:titleFromModal];
+                                                   
+                                                   [self.notebook.notesStore createStoreItemWithName:titleFromModal];
                                                    
                                                    [self.collectionView reloadData];
                                                }];
@@ -141,18 +143,18 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [[self.notebook.notesStore allNotes] count];
+    return [[self.notebook.notesStore allStoreItems] count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 3;
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NoteCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteCellIdentifier forIndexPath:indexPath];
-    noteCell.nameLabel.text = [[[self.notebook.notesStore allNotes] objectAtIndex:indexPath.section] name];
+    noteCell.nameLabel.text = [[[self.notebook.notesStore allStoreItems] objectAtIndex:indexPath.section] name];
     
     if (![noteCell viewWithTag:selectedTag])
     {
@@ -180,13 +182,12 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 
 - (void)deleteNotes {
     
-    for (NSIndexPath *indexPath in self.selectedItems) {
-        Note *note = [[self.notebook.notesStore allNotes] objectAtIndex:indexPath.section];
-        
-        [self.notebook.notesStore removeNote:note];
-        
-        [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+    for (int i = 0; i < self.selectedItems.count; i++) {
+        [self.notebook.notesStore removeStoreItem:self.selectedItems[i]];
     }
+    
+    [self.selectedItems removeAllObjects];
+    [self.collectionView reloadData];
 }
 
 
@@ -198,7 +199,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     
     if (self.editing) {
         
-        [self.selectedItems addObject:indexPath];
+        [self.selectedItems addObject:[[self.notebook.notesStore allStoreItems] objectAtIndex:indexPath.section]];
         
         
         [self setCellSelection:cell selected:YES];
@@ -212,7 +213,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     }
     else {
         NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
-        nvc.note = [[self.notebook.notesStore allNotes] objectAtIndex:indexPath.section];
+        nvc.note = [[self.notebook.notesStore allStoreItems] objectAtIndex:indexPath.section];
         [[self navigationController] pushViewController:nvc animated:YES];
     }
 }
@@ -222,7 +223,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     if (self.editing) {
         UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
         
-        [self.selectedItems removeObject:indexPath];
+        [self.selectedItems removeObject:[[self.notebook.notesStore allStoreItems] objectAtIndex:indexPath.section]];
         [self setCellSelection:cell selected:NO];
     }
 }
@@ -231,9 +232,6 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 {
     return YES;
 }
-
-
-
 
 #pragma mark - Cell selection module
 - (void)setCellSelection:(UICollectionViewCell *)cell selected:(bool)selected

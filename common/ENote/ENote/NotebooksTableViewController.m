@@ -39,9 +39,9 @@
                                                    NSString *nameFromModal = [[self.alert.textFields objectAtIndex:0] text];
                                                    
                                                    if (![nameFromModal isEqualToString:@""]) {
-                                                       Notebook *notebook = [[NotebooksStore sharedStore] createNotebookWithName:nameFromModal];
+                                                       StoreItem *notebook = [[NotebooksStore sharedStore] createStoreItemWithName:nameFromModal];
                                                        
-                                                       NSInteger lastRow = [[[NotebooksStore sharedStore] allNotebooks] indexOfObject:notebook];
+                                                       NSInteger lastRow = [[[NotebooksStore sharedStore] allStoreItems] indexOfObject:notebook];
                                                        
                                                        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:lastRow inSection:0];
                                                        
@@ -106,9 +106,9 @@
                                                        NSString *nameFromModal = [[[self.alert textFields] objectAtIndex:0] text];
                                                        
                                                        if (![nameFromModal isEqualToString:@""]) {
-                                                           Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
+                                                           StoreItem *notebook = [[[NotebooksStore sharedStore] allStoreItems] objectAtIndex:indexPath.row];
                                                            
-                                                           [[NotebooksStore sharedStore] renameNotebook:notebook withName:nameFromModal];
+                                                           [[NotebooksStore sharedStore] renameStoreItem:notebook withName:nameFromModal];
                                                            
                                                            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
                                                        }
@@ -127,7 +127,7 @@
         
         NotesCollectionViewController *notes = [[NotesCollectionViewController alloc] initWithNibName:@"NotesCollectionViewController" bundle:nil];
         
-        Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
+        Notebook *notebook = [[[NotebooksStore sharedStore] allStoreItems] objectAtIndex:indexPath.row];
         
         notes.notebook = notebook;
         

@@ -19,6 +19,5 @@
 }
 
 @property (nonatomic) Notebook *notebook;
-@property (nonatomic) Note *note;
 
 @end

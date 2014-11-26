@@ -21,7 +21,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    //NSLog(@"%@", NSHomeDirectory());
+    NSLog(@"%@", NSHomeDirectory());
     
     NotebooksTableViewController *notebooks = [[NotebooksTableViewController alloc] init];
     

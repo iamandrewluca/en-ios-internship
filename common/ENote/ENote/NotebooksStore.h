@@ -7,17 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Store.h"
 
-@class Notebook;
-
-@interface NotebooksStore : NSObject
-
-@property (nonatomic, readonly) NSArray *allNotebooks;
+@interface NotebooksStore : Store
 
 + (instancetype)sharedStore;
-- (Notebook *)createNotebook;
-- (Notebook *)createNotebookWithName:(NSString *)name;
-- (Notebook *)createNotebookWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder;
-- (void)removeNotebook:(Notebook *)notebook;
-- (void)renameNotebook:(Notebook *)notebook withName:(NSString *)name;
+
 @end
