@@ -10,10 +10,7 @@
 
 @interface Note : StoreItem
 
-@property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic, copy) NSString *noteFolder;
-@property (nonatomic, readonly, copy) NSDate *dateCreated;
 
 - (instancetype)initWithName:(NSString *)name;
 - (instancetype)initWithName:(NSString *)name withText:(NSString *)text atDate:(NSDate *)date andFolder:(NSString *)folder;

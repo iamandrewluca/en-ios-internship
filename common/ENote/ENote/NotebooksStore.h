@@ -13,8 +13,6 @@
 
 @interface NotebooksStore : Store
 
-@property (nonatomic, readonly) NSArray *allNotebooks;
-
 + (instancetype)sharedStore;
 - (Notebook *)createNotebook;
 - (Notebook *)createNotebookWithName:(NSString *)name;

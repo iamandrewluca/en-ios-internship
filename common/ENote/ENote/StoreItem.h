@@ -10,4 +10,8 @@
 
 @interface StoreItem : NSObject
 
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *itemFolder;
+@property (nonatomic, copy, readonly) NSDate *dateCreated;
+
 @end

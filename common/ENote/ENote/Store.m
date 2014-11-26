@@ -8,6 +8,12 @@
 
 #import "Store.h"
 
+@interface Store ()
+
+@property (nonatomic, readonly) NSArray *allPrivateItems;
+
+@end
+
 @implementation Store
 
 @end

@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class StoreItem;
+
 @interface Store : NSObject
+
++ (instancetype)sharedStore;
+- (StoreItem *)createStoreItem;
+- (StoreItem *)createStoreItemWithName:(NSString *)name;
+- (StoreItem *)createStoreItemWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder;
+- (void)removeStoreItem:(StoreItem *)storeItem;
+- (void)renameStoreItem:(StoreItem *)storeItem withName:(NSString *)name;
 
 @end
