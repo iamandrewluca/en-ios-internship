@@ -14,4 +14,8 @@
 @property (nonatomic, copy) NSString *itemFolder;
 @property (nonatomic, copy, readonly) NSDate *dateCreated;
 
+- (instancetype)initWithName:(NSString *)name;
+- (instancetype)initWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder;
+- (NSMutableDictionary *)dictionaryRepresentation;
+
 @end

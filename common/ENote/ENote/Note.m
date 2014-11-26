@@ -10,43 +10,24 @@
 
 @interface Note ()
 
-@property (nonatomic, strong, readwrite) NSURL *imageURL;
-@property (nonatomic, strong, readwrite) UIImage *noteImage;
-
 @end
 
 @implementation Note
 
-- (NSDictionary *)dictionaryRepresentation {
+- (NSMutableDictionary *)dictionaryRepresentation {
     
-    NSDictionary *dict = @{@"name": _name,
-                           @"text": _text,
-                           @"noteFolder": _noteFolder,
-                           @"dateCreated": [NSString stringWithFormat:@"%.0f", [_dateCreated timeIntervalSince1970]]};
+    NSMutableDictionary *dictionaryRepresentation = [super dictionaryRepresentation];
+    [dictionaryRepresentation setValue:_text forKey:@"text"];
     
-    return dict;
-    
-}
-
-- (instancetype)init {
-    return [self initWithName:@"Just a Note"];
-}
-
-- (instancetype)initWithName:(NSString *)name {
-    return [self initWithName:name withText:@"" atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
+    return dictionaryRepresentation;
 }
 
 - (instancetype)initWithName:(NSString *)name withText:text atDate:(NSDate *)date andFolder:(NSString *)folder {
     
-    self = [super init];
+    self = [super initWithName:name atDate:date andFolder:folder];
     
     if (self) {
-        
-        _name = name;
         _text = text;
-        _noteFolder = folder;
-        _dateCreated = date;
-        
     }
     
     return self;

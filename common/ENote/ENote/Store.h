@@ -12,6 +12,8 @@
 
 @interface Store : NSObject
 
+@property (nonatomic) NSArray *allStoreItems;
+
 + (instancetype)sharedStore;
 - (StoreItem *)createStoreItem;
 - (StoreItem *)createStoreItemWithName:(NSString *)name;

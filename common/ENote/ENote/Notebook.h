@@ -13,13 +13,6 @@
 
 @interface Notebook : StoreItem
 
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *notebookFolder;
-@property (nonatomic, copy, readonly) NSDate *dateCreated;
 @property (nonatomic) NotesStore *notesStore;
-
-- (instancetype)initWithName:(NSString *)name;
-- (instancetype)initWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder;
-- (NSDictionary *)dictionaryRepresentation;
 
 @end

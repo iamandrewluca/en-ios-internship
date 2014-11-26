@@ -10,7 +10,7 @@
 
 @interface Store ()
 
-@property (nonatomic, readonly) NSArray *allPrivateItems;
+@property (nonatomic, readonly) NSArray *allPrivateStoreItems;
 
 @end
 
