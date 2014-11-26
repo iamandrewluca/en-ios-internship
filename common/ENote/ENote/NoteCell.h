@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NoteCell : UICollectionViewCell
+@property (nonatomic) UILabel *nameLabel;
 @end

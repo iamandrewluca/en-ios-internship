@@ -12,7 +12,7 @@
 #import "NotebooksTableViewDataSource.h"
 #import "NotesCollectionViewController.h"
 
-@interface NotebooksTableViewController () <UITextFieldDelegate, UITableViewDelegate>
+@interface NotebooksTableViewController () <UITableViewDelegate>
 
 @property (nonatomic) UIAlertController *alert;
 @property (nonatomic) NotebooksTableViewDataSource *dataSource;
@@ -77,6 +77,11 @@
     
     UINib *nib = [UINib nibWithNibName:@"NotebooksTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"NotebooksTableViewCell"];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 #pragma mark TableView Delegate

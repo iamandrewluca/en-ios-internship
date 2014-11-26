@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Note.h"
+#import "Notebook.h"
+
 
 @interface NotesDetailViewController : UIViewController
 
@@ -16,14 +18,7 @@
 @property (nonatomic, strong) IBOutlet UITextView *noteTextView;
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 
-@property (weak, nonatomic) IBOutlet UIButton *decolor;
-@property (weak, nonatomic) IBOutlet UIButton *outlineButton;
-@property (weak, nonatomic) IBOutlet UIButton *unoutlineButton;
-
-@property (weak, nonatomic) IBOutlet UIButton *redRoundCorner;
-@property (weak, nonatomic) IBOutlet UIButton *greenRoundCorner;
-@property (weak, nonatomic) IBOutlet UIButton *orangeRoundCorner;
-@property (weak, nonatomic) IBOutlet UIButton *purpleRoundCorner;
+@property (nonatomic) Notebook *notebook;
 
 
 @end
