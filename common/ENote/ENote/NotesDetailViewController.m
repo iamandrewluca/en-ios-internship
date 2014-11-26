@@ -63,7 +63,8 @@
                                                 name:UIContentSizeCategoryDidChangeNotification
                                               object:nil];
     
-    //self.noteTextView.text = self.noteTextView.text;
+    
+
 
 }
 
@@ -86,7 +87,6 @@
 
 -(void)usePreferredFonts {
     self.noteTextView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    //self.headline.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
 }
 
 @end

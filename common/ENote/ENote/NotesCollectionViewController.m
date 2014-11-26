@@ -70,6 +70,7 @@ static NSString * const NoteTitleIdentifier = @"Notetitle";
                                                    NSString *titleFromModal = [[[alert textFields] firstObject] text];
                                                    
                                                    [self.notebook.notesStore createNoteWithName:titleFromModal];
+                                                   //[self.notebook.notesStore
                                                    
                                                    [self.notebook.notesStore saveNotes];
                                                    
@@ -113,24 +114,6 @@ static NSString * const NoteTitleIdentifier = @"Notetitle";
     [[self navigationController] pushViewController:nvc animated:YES];
     
 }
-
-/*
- //- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
- //           viewForSupplementaryElementOfKind:(NSString *)kind
- //                                 atIndexPath:(NSIndexPath *)indexPath;
- //{
- //    NoteTitleReusableView *titleView =
- //    [collectionView dequeueReusableSupplementaryViewOfKind:kind
- //                                       withReuseIdentifier:NoteTitleIdentifier
- //                                              forIndexPath:indexPath];
- //
- //    NotesStorage *note = self.notes[indexPath.section];
- //
- //    titleView.titleLabel.text = note.name;
- //
- //    return titleView;
- //}
-*/
 
 #pragma mark - View Rotation
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation

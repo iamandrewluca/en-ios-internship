@@ -9,8 +9,8 @@
 #import "NotesLayout.h"
 
 static NSUInteger const RotationCount = 32;
-static NSUInteger const RotationStride = 3;
 static NSUInteger const NoteCellBaseZIndex = 100;
+//static NSUInteger const RotationStride = 3;
 
 static NSString * const NoteLayoutCellKind = @"NoteCell";
 NSString * const NoteLayoutTitleKind = @"NoteTitle";
@@ -142,9 +142,9 @@ NSString * const NoteLayoutTitleKind = @"NoteTitle";
             
             UICollectionViewLayoutAttributes *itemAttributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
             itemAttributes.frame = [self frameForNoteAtIndexPath:indexPath];
-            itemAttributes.transform3D = [self transformNoteAtIndex:indexPath];
             itemAttributes.zIndex = NoteCellBaseZIndex + itemCount - item;
-            
+//            itemAttributes.transform3D = [self transformNoteAtIndex:indexPath];
+
             cellLayoutInfo[indexPath] = itemAttributes;
             
             if (indexPath.item == 0)
@@ -236,12 +236,12 @@ NSString * const NoteLayoutTitleKind = @"NoteTitle";
     return CGRectMake(originX, originY, self.itemSize.width, self.itemSize.height);
 }
 
-- (CATransform3D)transformNoteAtIndex:(NSIndexPath *)indexPath
-{
-    NSInteger offset = (indexPath.section * RotationStride + indexPath.item);
-    return [self.rotations[offset % RotationCount] CATransform3DValue];
-}
-
+//- (CATransform3D)transformNoteAtIndex:(NSIndexPath *)indexPath
+//{
+//    NSInteger offset = (indexPath.section * RotationStride + indexPath.item);
+//    return [self.rotations[offset % RotationCount] CATransform3DValue];
+//}
+//
 
 @end
 
