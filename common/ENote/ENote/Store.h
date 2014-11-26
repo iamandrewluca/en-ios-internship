@@ -13,12 +13,15 @@
 @interface Store : NSObject
 
 @property (nonatomic) NSArray *allStoreItems;
+@property (nonatomic, copy, readonly) NSString *storePath;
 
-+ (instancetype)sharedStore;
+- (instancetype)initInFolder:(NSString *)folder;
 - (StoreItem *)createStoreItem;
 - (StoreItem *)createStoreItemWithName:(NSString *)name;
-- (StoreItem *)createStoreItemWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder;
+- (StoreItem *)createStoreItemWithDictionary:(NSDictionary *)dictionary;
+- (void)saveStoreItem:(StoreItem *)storeItem;
 - (void)removeStoreItem:(StoreItem *)storeItem;
 - (void)renameStoreItem:(StoreItem *)storeItem withName:(NSString *)name;
+- (NSArray *)getValidStoreItemsPaths;
 
 @end

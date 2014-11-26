@@ -17,7 +17,7 @@
     self = [super initWithName:name atDate:date andFolder:folder];
     
     if (self) {
-        _notesStore = [[NotesStore alloc] initInNotebookFolder:folder];        
+        _notesStore = [[NotesStore alloc] initInFolder:folder];
     }
     
     return self;

@@ -38,7 +38,7 @@
 - (NSMutableDictionary *)dictionaryRepresentation {
     return [[NSMutableDictionary alloc] initWithDictionary:@{
                                                              @"name": _name,
-                                                             @"notebookFolder": _itemFolder,
+                                                             @"itemFolder": _itemFolder,
                                                              @"dateCreated": [NSString stringWithFormat:@"%.0f", [_dateCreated timeIntervalSince1970]]
                                                              }];
 }
