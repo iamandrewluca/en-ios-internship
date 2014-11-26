@@ -8,6 +8,7 @@
 
 #import "NotebooksStore.h"
 #import "ENoteCommons.h"
+#import "Notebook.h"
 
 @interface NotebooksStore ()
 
@@ -30,6 +31,16 @@
 
 - (instancetype)init {
     @throw [NSException exceptionWithName:@"Singleton" reason:@"Use +[NotebooksStore sharedStore]" userInfo:nil];
+}
+
+
+- (StoreItem *)createStoreItemWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder {
+    
+    Notebook *storeItem = [[Notebook alloc] initWithName:name atDate:date andFolder:folder];
+    
+    [self.allStoreItems addObject:storeItem];
+    
+    return storeItem;
 }
 
 @end
