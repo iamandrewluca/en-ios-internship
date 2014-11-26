@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "Notebook.h"
+#import "Note.h"
 
 @interface NotesCollectionViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+{
+    CGPoint dragStartPt;
+    bool dragging;
+    
+    NSMutableDictionary *selectedIdx;
+}
 
 @property (nonatomic) Notebook *notebook;
+@property (nonatomic) Note *note;
 
 @end

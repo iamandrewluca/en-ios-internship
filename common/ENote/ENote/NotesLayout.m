@@ -236,12 +236,13 @@ NSString * const NoteLayoutTitleKind = @"NoteTitle";
     return CGRectMake(originX, originY, self.itemSize.width, self.itemSize.height);
 }
 
+/*
 //- (CATransform3D)transformNoteAtIndex:(NSIndexPath *)indexPath
 //{
 //    NSInteger offset = (indexPath.section * RotationStride + indexPath.item);
 //    return [self.rotations[offset % RotationCount] CATransform3DValue];
 //}
-//
+*/
 
 @end
 
