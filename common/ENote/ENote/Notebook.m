@@ -12,12 +12,12 @@
 
 @implementation Notebook
 
-- (instancetype)initWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder {
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     
-    self = [super initWithName:name atDate:date andFolder:folder];
+    self = [super initWithDictionary:dictionary];
     
     if (self) {
-        _notesStore = [[NotesStore alloc] initInFolder:[NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], folder]];
+        _notesStore = [[NotesStore alloc] initInFolder:[NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], dictionary[@"itemFolder"]]];
     }
     
     return self;

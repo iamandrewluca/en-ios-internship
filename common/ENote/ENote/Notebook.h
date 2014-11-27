@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "StoreItem.h"
+#import "NotesStore.h"
 
 @class Store;
 
 @interface Notebook : StoreItem
 
-@property (nonatomic) Store *notesStore;
+@property (nonatomic) NotesStore *notesStore;
 
 @end

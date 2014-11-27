@@ -8,18 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "Note.h"
-#import "Notebook.h"
+#import "NotesStore.h"
 
 
 @interface NotesDetailViewController : UIViewController
 
 @property (nonatomic) Note *note;
+@property (nonatomic) NotesStore *store;
 
 @property (nonatomic, strong) IBOutlet UITextView *noteTextView;
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
-
-@property (nonatomic) Notebook *notebook;
-
 
 @end
  

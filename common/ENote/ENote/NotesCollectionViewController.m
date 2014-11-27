@@ -210,9 +210,8 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
         NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
         Note *note = [[self.notebook.notesStore allStoreItems] objectAtIndex:indexPath.section];
         nvc.note = note;
+        nvc.store = self.notebook.notesStore;
         [[self navigationController] pushViewController:nvc animated:YES];
-        
-        [self.notebook.notesStore saveStoreItem:note];
     }
 }
 

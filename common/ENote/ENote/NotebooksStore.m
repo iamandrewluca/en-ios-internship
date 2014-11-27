@@ -34,7 +34,7 @@
 }
 
 - (StoreItem *)storeItemFromDictionary:(NSDictionary *)dictionary {
-    return [[Notebook alloc] initWithName:dictionary[@"name"] atDate:dictionary[@"dateCreated"] andFolder:dictionary[@"itemFolder"]];
+    return [[Notebook alloc] initWithDictionary:dictionary];
 }
 
 @end

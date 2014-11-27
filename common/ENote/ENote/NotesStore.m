@@ -17,7 +17,7 @@
 @implementation NotesStore
 
 - (StoreItem *)storeItemFromDictionary:(NSDictionary *)dictionary {
-    return [[Note alloc] initWithName:dictionary[@"name"] withText:dictionary[@"text"] atDate:dictionary[@"dateCreated"] andFolder:dictionary[@"itemFolder"]];
+    return [[Note alloc] initWithDictionary:dictionary];
 }
 
 @end

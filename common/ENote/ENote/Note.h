@@ -12,6 +12,4 @@
 
 @property (nonatomic, copy) NSString *text;
 
-- (instancetype)initWithName:(NSString *)name withText:text atDate:(NSDate *)date andFolder:(NSString *)folder;
-
 @end

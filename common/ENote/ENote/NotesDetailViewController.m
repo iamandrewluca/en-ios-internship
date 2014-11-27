@@ -43,6 +43,8 @@
 - (void)saveNote {
     self.note.name = self.titleTextField.text;
     self.note.text = self.noteTextView.text;
+    
+    [self.store saveStoreItem:self.note];
 }
 
 // Dismisses the keyboard

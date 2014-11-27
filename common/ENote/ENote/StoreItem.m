@@ -33,6 +33,10 @@
     return self;
 }
 
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+    return [self initWithName:dictionary[@"name"] atDate:[NSDate dateWithTimeIntervalSince1970:[dictionary[@"dateCreated"] doubleValue]] andFolder:dictionary[@"itemFolder"]];
+}
+
 #pragma mark Other forms
 
 - (NSMutableDictionary *)dictionaryRepresentation {

@@ -22,12 +22,23 @@
     return dictionaryRepresentation;
 }
 
-- (instancetype)initWithName:(NSString *)name withText:text atDate:(NSDate *)date andFolder:(NSString *)folder {
+- (instancetype)initWithName:(NSString *)name {
     
-    self = [super initWithName:name atDate:date andFolder:folder];
+    self = [super initWithName:name];
     
     if (self) {
-        _text = text;
+        _text = [[NSString alloc] init];
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+    
+    self = [super initWithDictionary:dictionary];
+    
+    if (self) {
+        _text = dictionary[@"text"];
     }
     
     return self;

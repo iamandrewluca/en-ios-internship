@@ -117,7 +117,7 @@
 }
 
 - (StoreItem *) storeItemFromDictionary:(NSDictionary *)dictionary {
-    return [[StoreItem alloc] initWithName:dictionary[@"name"] atDate:dictionary[@"dateCreated"] andFolder:dictionary[@"itemFolder"]];
+    return [[StoreItem alloc] initWithDictionary:dictionary];
 }
 
 @end
