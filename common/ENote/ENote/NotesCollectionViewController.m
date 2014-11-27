@@ -99,7 +99,9 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
                                                    
                                                    NSString *titleFromModal = [[[alert textFields] firstObject] text];
                                                    
-                                                   [self.notebook.notesStore createStoreItemWithName:titleFromModal];
+                                                   Note *note = [[Note alloc] initWithName:titleFromModal];
+                                                   
+                                                   [self.notebook.notesStore addStoreItem:note];
                                                    
                                                    [self.collectionView reloadData];
                                                }];
@@ -203,18 +205,14 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
         
         
         [self setCellSelection:cell selected:YES];
-        
-        //-------------- Delete Note ---------------//
-//        NotesStore *notesStore = self.notebook.notesStore;
-//        Note *note = [[notesStore allNotes] objectAtIndex:indexPath.row];
-//        [notesStore removeNote:note];
-//        
-//        [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
     }
     else {
         NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
-        nvc.note = [[self.notebook.notesStore allStoreItems] objectAtIndex:indexPath.section];
+        Note *note = [[self.notebook.notesStore allStoreItems] objectAtIndex:indexPath.section];
+        nvc.note = note;
         [[self navigationController] pushViewController:nvc animated:YES];
+        
+        [self.notebook.notesStore saveStoreItem:note];
     }
 }
 

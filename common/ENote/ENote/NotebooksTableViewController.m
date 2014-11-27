@@ -39,7 +39,9 @@
                                                    NSString *nameFromModal = [[self.alert.textFields objectAtIndex:0] text];
                                                    
                                                    if (![nameFromModal isEqualToString:@""]) {
-                                                       StoreItem *notebook = [[NotebooksStore sharedStore] createStoreItemWithName:nameFromModal];
+                                                       Notebook *notebook = [[Notebook alloc] initWithName:nameFromModal];
+                                                       
+                                                       [[NotebooksStore sharedStore] addStoreItem:notebook];
                                                        
                                                        NSInteger lastRow = [[[NotebooksStore sharedStore] allStoreItems] indexOfObject:notebook];
                                                        
@@ -106,9 +108,11 @@
                                                        NSString *nameFromModal = [[[self.alert textFields] objectAtIndex:0] text];
                                                        
                                                        if (![nameFromModal isEqualToString:@""]) {
-                                                           StoreItem *notebook = [[[NotebooksStore sharedStore] allStoreItems] objectAtIndex:indexPath.row];
+                                                           Notebook *notebook = [[[NotebooksStore sharedStore] allStoreItems] objectAtIndex:indexPath.row];
                                                            
-                                                           [[NotebooksStore sharedStore] renameStoreItem:notebook withName:nameFromModal];
+                                                           notebook.name = nameFromModal;
+                                                           
+                                                           [[NotebooksStore sharedStore] saveStoreItem:notebook];
                                                            
                                                            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
                                                        }

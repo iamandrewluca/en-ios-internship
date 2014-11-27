@@ -39,37 +39,12 @@
     return self;
 }
 
-#pragma mark StoreItem Creation
-
-- (StoreItem *)createStoreItem {
-    return [self createStoreItemWithName:@"StoreItem Sample"];
-}
-
-- (StoreItem *)createStoreItemWithName:(NSString *)name {
-    
-    StoreItem *storeItem = [self createStoreItemWithName:name atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
-    
-    [self saveStoreItem:storeItem];
-    
-    return storeItem;
-}
-
-- (StoreItem *)createStoreItemWithDictionary:(NSDictionary *)dictionary {
-    return [self createStoreItemWithName:dictionary[@"name"]
-                                  atDate:[NSDate dateWithTimeIntervalSince1970:[dictionary[@"dateCreated"] doubleValue]]
-                               andFolder:dictionary[@"itemFolder"]];
-}
-
-- (StoreItem *)createStoreItemWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder {
-    
-    StoreItem *storeItem = [[StoreItem alloc] initWithName:name atDate:date andFolder:folder];
-    
-    [_allPrivateStoreItems addObject:storeItem];
-    
-    return storeItem;
-}
-
 #pragma mark StoreItem Related
+
+- (void)addStoreItem:(StoreItem *)storeItem {
+    [_allPrivateStoreItems addObject:storeItem];
+    [self saveStoreItem:storeItem];
+}
 
 - (NSArray *)allStoreItems {
     return _allPrivateStoreItems;
@@ -118,7 +93,7 @@
             NSData *storeItemData = [[NSFileManager defaultManager] contentsAtPath:indexPath];
             NSDictionary *storeItemDictionary = [NSJSONSerialization JSONObjectWithData:storeItemData options:0 error:nil];
             
-            [self createStoreItemWithDictionary:storeItemDictionary];
+            [_allPrivateStoreItems addObject:[self storeItemFromDictionary:storeItemDictionary]];
         }
     }
 }
@@ -141,11 +116,8 @@
     [[NSFileManager defaultManager] createFileAtPath:indexPath contents:storeItemData attributes:nil];
 }
 
-- (void)renameStoreItem:(StoreItem *)storeItem withName:(NSString *)name {
-    
-    storeItem.name = name;
-    
-    [self saveStoreItem:storeItem];
+- (StoreItem *) storeItemFromDictionary:(NSDictionary *)dictionary {
+    return [[StoreItem alloc] initWithName:dictionary[@"name"] atDate:dictionary[@"dateCreated"] andFolder:dictionary[@"itemFolder"]];
 }
 
 @end

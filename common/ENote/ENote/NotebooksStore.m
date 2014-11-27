@@ -33,14 +33,8 @@
     @throw [NSException exceptionWithName:@"Singleton" reason:@"Use +[NotebooksStore sharedStore]" userInfo:nil];
 }
 
-
-- (StoreItem *)createStoreItemWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder {
-    
-    Notebook *storeItem = [[Notebook alloc] initWithName:name atDate:date andFolder:folder];
-    
-    [self.allStoreItems addObject:storeItem];
-    
-    return storeItem;
+- (StoreItem *)storeItemFromDictionary:(NSDictionary *)dictionary {
+    return [[Notebook alloc] initWithName:dictionary[@"name"] atDate:dictionary[@"dateCreated"] andFolder:dictionary[@"itemFolder"]];
 }
 
 @end
