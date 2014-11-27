@@ -12,6 +12,17 @@
 
 @implementation Notebook
 
+- (instancetype)initWithName:(NSString *)name {
+    
+    self = [super initWithName:name];
+    
+    if (self) {
+        _notesStore = [[NotesStore alloc] initInFolder:[NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], self.itemFolder]];
+    }
+    
+    return self;
+}
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     
     self = [super initWithDictionary:dictionary];
