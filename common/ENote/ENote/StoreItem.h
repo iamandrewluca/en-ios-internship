@@ -16,7 +16,6 @@
 
 - (instancetype)initWithName:(NSString *)name;
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
-- (instancetype)initWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder;
 - (NSMutableDictionary *)dictionaryRepresentation;
 
 @end
