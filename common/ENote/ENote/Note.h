@@ -6,9 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "StoreItem.h"
+#import "Item.h"
 
-@interface Note : StoreItem
+@interface Note : Item
 
 @property (nonatomic, copy) NSString *text;
 

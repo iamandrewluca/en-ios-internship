@@ -14,14 +14,6 @@
 
 @implementation Note
 
-- (NSMutableDictionary *)dictionaryRepresentation {
-    
-    NSMutableDictionary *dictionaryRepresentation = [super dictionaryRepresentation];
-    [dictionaryRepresentation setValue:_text forKey:@"text"];
-    
-    return dictionaryRepresentation;
-}
-
 - (instancetype)initWithName:(NSString *)name {
     
     self = [super initWithName:name];
@@ -42,6 +34,14 @@
     }
     
     return self;
+}
+
+- (NSMutableDictionary *)dictionaryRepresentation {
+    
+    NSMutableDictionary *dictionaryRepresentation = [super dictionaryRepresentation];
+    [dictionaryRepresentation setValue:_text forKey:@"text"];
+    
+    return dictionaryRepresentation;
 }
 
 @end
