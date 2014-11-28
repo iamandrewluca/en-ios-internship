@@ -115,16 +115,10 @@
 		6155EC471A137C3600BE143B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A71D35001A1B744100EA301B /* NotesStore.h */,
-				A71D35011A1B744100EA301B /* NotesStore.m */,
 				A7D9ACB11A1246D600B8376A /* Notebook.h */,
 				A7D9ACB21A1246D600B8376A /* Notebook.m */,
-				A7D9ACB41A12486300B8376A /* NotebooksStore.h */,
-				A7D9ACB51A12486300B8376A /* NotebooksStore.m */,
 				6155EC4A1A137C3E00BE143B /* Note.h */,
 				6155EC4B1A137C3E00BE143B /* Note.m */,
-				A756D0BF1A24D49500A7F374 /* Store.h */,
-				A756D0C01A24D49500A7F374 /* Store.m */,
 				A756D0C21A24D4A200A7F374 /* StoreItem.h */,
 				A756D0C31A24D4A200A7F374 /* StoreItem.m */,
 			);
@@ -217,6 +211,7 @@
 		A72182FD1A10E950006E47E3 /* ENote */ = {
 			isa = PBXGroup;
 			children = (
+				A7AEEB5C1A28BC600091FE09 /* Stores */,
 				6155EC471A137C3600BE143B /* Model */,
 				6190C2291A124DEC0046F016 /* View */,
 				A721830B1A10E950006E47E3 /* Images.xcassets */,
@@ -232,8 +227,6 @@
 				A72183031A10E950006E47E3 /* AppDelegate.m */,
 				A74FE0B61A1B86BA0005F74D /* ENoteCommons.h */,
 				A74FE0B71A1B86BA0005F74D /* ENoteCommons.m */,
-				A71D34FB1A1A314A00EA301B /* NSObject+NSDictionaryRepresentation.h */,
-				A71D34FC1A1A314A00EA301B /* NSObject+NSDictionaryRepresentation.m */,
 				A721830D1A10E950006E47E3 /* LaunchScreen.xib */,
 				6155EC421A1377A400BE143B /* Images */,
 				A72182FF1A10E950006E47E3 /* Info.plist */,
@@ -257,6 +250,19 @@
 				A72183191A10E950006E47E3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A7AEEB5C1A28BC600091FE09 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				A71D35001A1B744100EA301B /* NotesStore.h */,
+				A71D35011A1B744100EA301B /* NotesStore.m */,
+				A7D9ACB41A12486300B8376A /* NotebooksStore.h */,
+				A7D9ACB51A12486300B8376A /* NotebooksStore.m */,
+				A756D0BF1A24D49500A7F374 /* Store.h */,
+				A756D0C01A24D49500A7F374 /* Store.m */,
+			);
+			name = Stores;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
