@@ -232,8 +232,6 @@
 				A72183031A10E950006E47E3 /* AppDelegate.m */,
 				A74FE0B61A1B86BA0005F74D /* ENoteCommons.h */,
 				A74FE0B71A1B86BA0005F74D /* ENoteCommons.m */,
-				A71D34FB1A1A314A00EA301B /* NSObject+NSDictionaryRepresentation.h */,
-				A71D34FC1A1A314A00EA301B /* NSObject+NSDictionaryRepresentation.m */,
 				A721830D1A10E950006E47E3 /* LaunchScreen.xib */,
 				6155EC421A1377A400BE143B /* Images */,
 				A72182FF1A10E950006E47E3 /* Info.plist */,

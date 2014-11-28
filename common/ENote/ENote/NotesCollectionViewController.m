@@ -42,7 +42,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 {
     [super viewDidLoad];
     self.navigationItem.title = self.notebook.name;
-    self.collectionView.backgroundColor = [UIColor colorWithRed:235.0/255.0 green:134.0/255.0 blue:13.0/255.0 alpha:1.0];
+    self.collectionView.backgroundColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
     
     // Register cell and title classes with the collection view
     [self.collectionView registerClass:[NoteCell class] forCellWithReuseIdentifier:NoteCellIdentifier];
@@ -80,7 +80,6 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 }
 
 
-
 #pragma mark - Button actions
 -(void)addNewNote
 {
@@ -116,6 +115,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
@@ -124,9 +124,8 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
         self.navigationItem.rightBarButtonItem = addNote;
         [self deleteNotes];
     } else {
-        self.editButtonItem.title = @"Remove";
+        self.editButtonItem.image = [UIImage imageNamed:@"trash"];
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
-        
     }
 }
 
@@ -150,7 +149,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 1;
+    return 2;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
