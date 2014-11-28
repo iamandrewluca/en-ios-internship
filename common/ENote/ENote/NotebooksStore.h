@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Store.h"
+#import "ItemsStore.h"
 
-@interface NotebooksStore : Store
+@interface NotebooksStore : ItemsStore
 
 + (instancetype)sharedStore;
 

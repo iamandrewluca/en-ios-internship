@@ -25,6 +25,8 @@
 		A756D0C11A24D49500A7F374 /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = A756D0C01A24D49500A7F374 /* Store.m */; };
 		A756D0C41A24D4A200A7F374 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = A756D0C31A24D4A200A7F374 /* Item.m */; };
 		A7AEEB621A28C4460091FE09 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = A7AEEB611A28C4460091FE09 /* Tag.m */; };
+		A7AEEB651A28C9C90091FE09 /* ItemsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A7AEEB641A28C9C90091FE09 /* ItemsStore.m */; };
+		A7AEEB681A28CEBF0091FE09 /* TagsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A7AEEB671A28CEBF0091FE09 /* TagsStore.m */; };
 		A7D9ACB31A1246D600B8376A /* Notebook.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACB21A1246D600B8376A /* Notebook.m */; };
 		A7D9ACB61A12486300B8376A /* NotebooksStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACB51A12486300B8376A /* NotebooksStore.m */; };
 		A7D9ACBF1A12511700B8376A /* NotebooksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D9ACBD1A12511700B8376A /* NotebooksTableViewCell.m */; };
@@ -78,6 +80,10 @@
 		A756D0C31A24D4A200A7F374 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		A7AEEB601A28C4460091FE09 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		A7AEEB611A28C4460091FE09 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		A7AEEB631A28C9C90091FE09 /* ItemsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsStore.h; sourceTree = "<group>"; };
+		A7AEEB641A28C9C90091FE09 /* ItemsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsStore.m; sourceTree = "<group>"; };
+		A7AEEB661A28CEBF0091FE09 /* TagsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsStore.h; sourceTree = "<group>"; };
+		A7AEEB671A28CEBF0091FE09 /* TagsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsStore.m; sourceTree = "<group>"; };
 		A7D9ACB11A1246D600B8376A /* Notebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notebook.h; sourceTree = "<group>"; };
 		A7D9ACB21A1246D600B8376A /* Notebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notebook.m; sourceTree = "<group>"; };
 		A7D9ACB41A12486300B8376A /* NotebooksStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebooksStore.h; sourceTree = "<group>"; };
@@ -264,6 +270,10 @@
 				A71D35011A1B744100EA301B /* NotesStore.m */,
 				A7D9ACB41A12486300B8376A /* NotebooksStore.h */,
 				A7D9ACB51A12486300B8376A /* NotebooksStore.m */,
+				A7AEEB631A28C9C90091FE09 /* ItemsStore.h */,
+				A7AEEB641A28C9C90091FE09 /* ItemsStore.m */,
+				A7AEEB661A28CEBF0091FE09 /* TagsStore.h */,
+				A7AEEB671A28CEBF0091FE09 /* TagsStore.m */,
 				A756D0BF1A24D49500A7F374 /* Store.h */,
 				A756D0C01A24D49500A7F374 /* Store.m */,
 			);
@@ -380,6 +390,7 @@
 				6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */,
 				A72183041A10E950006E47E3 /* AppDelegate.m in Sources */,
 				6190C2271A124CE70046F016 /* NotesCollectionViewController.m in Sources */,
+				A7AEEB681A28CEBF0091FE09 /* TagsStore.m in Sources */,
 				A7AEEB621A28C4460091FE09 /* Tag.m in Sources */,
 				A7D9ACCD1A13754400B8376A /* NotebooksTableViewDataSource.m in Sources */,
 				A7D9ACB31A1246D600B8376A /* Notebook.m in Sources */,
@@ -389,6 +400,7 @@
 				A7D9ACBF1A12511700B8376A /* NotebooksTableViewCell.m in Sources */,
 				A71D35021A1B744100EA301B /* NotesStore.m in Sources */,
 				A7D9ACB61A12486300B8376A /* NotebooksStore.m in Sources */,
+				A7AEEB651A28C9C90091FE09 /* ItemsStore.m in Sources */,
 				A756D0C11A24D49500A7F374 /* Store.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

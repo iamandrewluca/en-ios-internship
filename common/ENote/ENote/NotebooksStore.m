@@ -7,7 +7,6 @@
 //
 
 #import "NotebooksStore.h"
-#import "ENoteCommons.h"
 #import "Notebook.h"
 
 @interface NotebooksStore ()
@@ -22,19 +21,42 @@
     
     if (!sharedStore) {
         
-        sharedStore = [[super alloc] initInFolder:[[ENoteCommons shared] documentDirectory]];
+        sharedStore = [[NotebooksStore alloc] initPrivate];
         
     }
     
     return  sharedStore;
 }
 
+- (instancetype)initPrivate {
+    
+    self = [super init];
+    
+    if (self) {
+        // load notes stores
+    }
+    
+    return self;
+}
+
 - (instancetype)init {
     @throw [NSException exceptionWithName:@"Singleton" reason:@"Use +[NotebooksStore sharedStore]" userInfo:nil];
 }
 
-- (StoreItem *)storeItemFromDictionary:(NSDictionary *)dictionary {
+- (instancetype)initInFolder:(NSString *)folder {
+    @throw [NSException exceptionWithName:@"Singleton" reason:@"Use +[NotebooksStore sharedStore]" userInfo:nil];
+}
+
+- (Item *)itemFromDictionary:(NSDictionary *)dictionary {
     return [[Notebook alloc] initWithDictionary:dictionary];
+}
+
+- (void)addNotebook:(Notebook *)notebook {
+    [self addItem:notebook];
+}
+
+- (void)removeNotebook:(Notebook *)notebook {
+    [self removeItem:notebook];
 }
 
 @end

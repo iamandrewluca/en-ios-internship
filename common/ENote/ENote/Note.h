@@ -7,9 +7,12 @@
 
 #import <Foundation/Foundation.h>
 #import "Item.h"
+#import "Notebook.h"
 
 @interface Note : Item
 
 @property (nonatomic, copy) NSString *text;
+@property (nonatomic) NSMutableArray *tagsIDs;
+@property (nonatomic, weak) Notebook *notebook;
 
 @end

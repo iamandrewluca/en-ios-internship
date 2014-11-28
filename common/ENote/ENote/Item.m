@@ -10,8 +10,6 @@
 
 @implementation Item
 
-#pragma mark Initialization
-
 - (instancetype)init {
     return [self initWithName:@"Item Sample"];
 }
@@ -36,8 +34,6 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     return [self initWithName:dictionary[@"name"] withID:dictionary[@"ID"] atDate:[NSDate dateWithTimeIntervalSince1970:[dictionary[@"dateCreated"] doubleValue]]];
 }
-
-#pragma mark Other forms
 
 - (NSMutableDictionary *)dictionaryRepresentation {
     return [[NSMutableDictionary alloc] initWithDictionary:@{

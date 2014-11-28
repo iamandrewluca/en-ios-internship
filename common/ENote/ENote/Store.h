@@ -8,18 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class StoreItem;
+@class Item;
 
 @interface Store : NSObject
 
-@property (nonatomic) NSArray *allStoreItems;
-@property (nonatomic, copy, readonly) NSString *storePath;
+@property (nonatomic) NSArray *allItems;
 
-- (instancetype)initInFolder:(NSString *)folder;
-- (void)addStoreItem:(StoreItem *)storeItem;
-- (StoreItem *)storeItemFromDictionary:(NSDictionary *)dictionary;
-- (void)saveStoreItem:(StoreItem *)storeItem;
-- (void)removeStoreItem:(StoreItem *)storeItem;
-- (NSArray *)getValidStoreItemsPaths;
+- (void)addItem:(Item *)item;
+- (void)removeItem:(Item *)item;
+- (Item *)itemFromDictionary:(NSDictionary *)dictionary;
 
 @end

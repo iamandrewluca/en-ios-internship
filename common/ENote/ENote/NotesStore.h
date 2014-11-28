@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Store.h"
+#import "ItemsStore.h"
+#import "Notebook.h"
 
-@interface NotesStore : Store
+@interface NotesStore : ItemsStore
+
+@property (nonatomic, weak) Notebook *notebook;
 
 @end

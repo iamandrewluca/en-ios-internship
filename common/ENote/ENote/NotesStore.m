@@ -7,7 +7,6 @@
 //
 
 #import "NotesStore.h"
-#import "ENoteCommons.h"
 #import "Note.h"
 
 @interface NotesStore ()
@@ -16,7 +15,15 @@
 
 @implementation NotesStore
 
-- (StoreItem *)storeItemFromDictionary:(NSDictionary *)dictionary {
+- (void)addNote:(Note *)note {
+    [self addItem:note];
+}
+
+- (void)removeNote:(Note *)note {
+    [self removeItem:note];
+}
+
+- (Item *)itemFromDictionary:(NSDictionary *)dictionary {
     return [[Note alloc] initWithDictionary:dictionary];
 }
 
