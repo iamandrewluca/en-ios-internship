@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "ItemsStore.h"
-#import "Notebook.h"
+
+@class Note;
 
 @interface NotesStore : ItemsStore
 
-@property (nonatomic, weak) Notebook *notebook;
+- (NSArray *)allNotes;
+- (void)addNote:(Note *)note;
+- (void)removeNote:(Note *)note;
+- (void)saveNote:(Note *)note;
 
 @end

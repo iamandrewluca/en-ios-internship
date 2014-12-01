@@ -10,4 +10,34 @@
 
 @implementation Notebook
 
+- (instancetype)initWithName:(NSString *)name {
+    
+    self = [super initWithName:name];
+    
+    if (self) {
+        _notesIDs = [[NSMutableArray alloc] init];
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+    
+    self = [super initWithDictionary:dictionary];
+    
+    if (self) {
+        _notesIDs = dictionary[@"notesIDs"];
+    }
+    
+    return self;
+}
+
+- (NSMutableDictionary *)dictionaryRepresentation {
+    
+    NSMutableDictionary *dictionaryRepresentation = [super dictionaryRepresentation];
+    [dictionaryRepresentation setValue:_notesIDs forKey:@"notesIDs"];
+    
+    return dictionaryRepresentation;
+}
+
 @end

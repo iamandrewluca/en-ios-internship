@@ -9,7 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "ItemsStore.h"
 
+@class Notebook;
+@class NotesStore;
+
 @interface NotebooksStore : ItemsStore
+
+- (NSArray *)allNotebooks;
+- (void)addNotebook:(Notebook *)notebook;
+- (void)removeNotebook:(Notebook *)notebook;
+- (void)saveNotebook:(Notebook *)notebook;
+- (NotesStore *)storeForNotebook:(Notebook *)notebook;
 
 + (instancetype)sharedStore;
 

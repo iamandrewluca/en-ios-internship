@@ -44,7 +44,7 @@
     self.note.name = self.titleTextField.text;
     self.note.text = self.noteTextView.text;
     
-    [self.store saveStoreItem:self.note];
+    [_store saveNote:_note];
 }
 
 // Dismisses the keyboard

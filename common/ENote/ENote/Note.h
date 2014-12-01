@@ -13,6 +13,5 @@
 
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic) NSMutableArray *tagsIDs;
-@property (nonatomic, weak) Notebook *notebook;
 
 @end

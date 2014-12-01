@@ -11,4 +11,6 @@
 
 @interface Notebook : Item
 
+@property (nonatomic) NSMutableArray *notesIDs;
+
 @end

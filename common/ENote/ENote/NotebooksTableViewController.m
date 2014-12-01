@@ -41,9 +41,9 @@
                                                    if (![nameFromModal isEqualToString:@""]) {
                                                        Notebook *notebook = [[Notebook alloc] initWithName:nameFromModal];
                                                        
-                                                       [[NotebooksStore sharedStore] addStoreItem:notebook];
+                                                       [[NotebooksStore sharedStore] addNotebook:notebook];
                                                        
-                                                       NSInteger lastRow = [[[NotebooksStore sharedStore] allStoreItems] indexOfObject:notebook];
+                                                       NSInteger lastRow = [[[NotebooksStore sharedStore] allNotebooks] indexOfObject:notebook];
                                                        
                                                        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:lastRow inSection:0];
                                                        
@@ -108,11 +108,11 @@
                                                        NSString *nameFromModal = [[[self.alert textFields] objectAtIndex:0] text];
                                                        
                                                        if (![nameFromModal isEqualToString:@""]) {
-                                                           Notebook *notebook = [[[NotebooksStore sharedStore] allStoreItems] objectAtIndex:indexPath.row];
+                                                           Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
                                                            
                                                            notebook.name = nameFromModal;
                                                            
-                                                           [[NotebooksStore sharedStore] saveStoreItem:notebook];
+                                                           [[NotebooksStore sharedStore] saveNotebook:notebook];
                                                            
                                                            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
                                                        }
@@ -131,9 +131,9 @@
         
         NotesCollectionViewController *notes = [[NotesCollectionViewController alloc] initWithNibName:@"NotesCollectionViewController" bundle:nil];
         
-        Notebook *notebook = [[[NotebooksStore sharedStore] allStoreItems] objectAtIndex:indexPath.row];
-        
+        Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
         notes.notebook = notebook;
+        notes.store = [[NotebooksStore sharedStore] storeForNotebook:notebook];
         
         [[self navigationController] pushViewController:notes animated:YES];
     }

@@ -13,6 +13,7 @@
 #import "Notebook.h"
 #import "NoteCell.h"
 #import "Note.h"
+#import "NotebooksStore.h"
 
 #define selectedTag 100
 #define cellSize 99
@@ -101,7 +102,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
                                                    
                                                    Note *note = [[Note alloc] initWithName:titleFromModal];
                                                    
-                                                   [self.notebook.notesStore addStoreItem:note];
+                                                   [_store addNote:note];
                                                    
                                                    [self.collectionView reloadData];
                                                }];
@@ -145,7 +146,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [[self.notebook.notesStore allStoreItems] count];
+    return [_notebook.notesIDs count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -156,7 +157,8 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NoteCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteCellIdentifier forIndexPath:indexPath];
-    noteCell.nameLabel.text = [[[self.notebook.notesStore allStoreItems] objectAtIndex:indexPath.section] name];
+    
+    noteCell.nameLabel.text = [[[_store allNotes] objectAtIndex:indexPath.section] name];
     
     if (![noteCell viewWithTag:selectedTag])
     {
@@ -185,7 +187,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 - (void)deleteNotes {
     
     for (int i = 0; i < self.selectedItems.count; i++) {
-        [self.notebook.notesStore removeStoreItem:self.selectedItems[i]];
+        [_store removeNote:self.selectedItems[i]];
     }
     
     [self.selectedItems removeAllObjects];
@@ -201,16 +203,16 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     
     if (self.editing) {
         
-        [self.selectedItems addObject:[[self.notebook.notesStore allStoreItems] objectAtIndex:indexPath.section]];
+        [self.selectedItems addObject:[[_store allNotes] objectAtIndex:indexPath.section]];
         
         
         [self setCellSelection:cell selected:YES];
     }
     else {
         NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
-        Note *note = [[self.notebook.notesStore allStoreItems] objectAtIndex:indexPath.section];
+        Note *note = [[_store allNotes] objectAtIndex:indexPath.section];
         nvc.note = note;
-        nvc.store = self.notebook.notesStore;
+        nvc.store = _store;
         [[self navigationController] pushViewController:nvc animated:YES];
     }
 }
@@ -220,7 +222,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     if (self.editing) {
         UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
         
-        [self.selectedItems removeObject:[[self.notebook.notesStore allStoreItems] objectAtIndex:indexPath.section]];
+        [self.selectedItems removeObject:[[_store allNotes] objectAtIndex:indexPath.section]];
         [self setCellSelection:cell selected:NO];
     }
 }

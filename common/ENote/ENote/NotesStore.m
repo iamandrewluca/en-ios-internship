@@ -15,12 +15,20 @@
 
 @implementation NotesStore
 
+- (NSArray *)allNotes {
+    return [self allItems];
+}
+
 - (void)addNote:(Note *)note {
     [self addItem:note];
 }
 
 - (void)removeNote:(Note *)note {
     [self removeItem:note];
+}
+
+- (void)saveNote:(Note *)note {
+    [self saveItem:note];
 }
 
 - (Item *)itemFromDictionary:(NSDictionary *)dictionary {

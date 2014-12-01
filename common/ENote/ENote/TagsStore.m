@@ -11,6 +11,34 @@
 
 @implementation TagsStore
 
++ (instancetype)sharedStore {
+    
+    static TagsStore *sharedStore = nil;
+    
+    if (!sharedStore) {
+        
+        sharedStore = [[TagsStore alloc] initPrivate];
+        
+    }
+    
+    return sharedStore;
+}
+
+- (instancetype)initPrivate {
+    
+    self = [super init];
+    
+    if (self) {
+        [self loadTags];
+    }
+    
+    return self;
+}
+
+- (instancetype)init {
+    @throw [NSException exceptionWithName:@"Singleton" reason:@"Use +[NotebooksStore sharedStore]" userInfo:nil];
+}
+
 - (void)addTag:(Tag *)tag {
     [self addItem:tag];
     [self saveTags];
@@ -21,12 +49,29 @@
     [self saveTags];
 }
 
+- (Tag *)getTagWithID:(NSString *)ID {
+    
+    NSMutableArray *allTags = [self valueForKey:@"_allPrivateItems"];
+    
+    for (Tag *tag in allTags) {
+        if ([ID isEqualToString:tag.ID]) {
+            return tag;
+        }
+    }
+    
+    return nil;
+}
+
 - (Item *)itemFromDictionary:(NSDictionary *)dictionary {
     return [[Tag alloc] initWithDictionary:dictionary];
 }
 
 - (void)saveTags {
-    // separare tagsStore complet
+    // save
+}
+
+- (void)loadTags {
+    // load
 }
 
 @end

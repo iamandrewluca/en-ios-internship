@@ -7,7 +7,15 @@
 //
 
 #import "Store.h"
+#import "Tag.h"
 
 @interface TagsStore : Store
+
+- (void)addTag:(Tag *)tag;
+- (void)removeTag:(Tag *)tag;
+
+- (Tag *)getTagWithID:(NSString *)ID;
+
++ (instancetype)sharedStore;
 
 @end

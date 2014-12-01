@@ -20,6 +20,7 @@
     
     if (self) {
         _text = [[NSString alloc] init];
+        _tagsIDs = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -31,6 +32,7 @@
     
     if (self) {
         _text = dictionary[@"text"];
+        _tagsIDs = dictionary[@"tagsIDs"];
     }
     
     return self;
@@ -40,6 +42,7 @@
     
     NSMutableDictionary *dictionaryRepresentation = [super dictionaryRepresentation];
     [dictionaryRepresentation setValue:_text forKey:@"text"];
+    [dictionaryRepresentation setValue:_tagsIDs forKey:@"tagsIDs"];
     
     return dictionaryRepresentation;
 }

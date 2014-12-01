@@ -8,10 +8,13 @@
 
 #import "Store.h"
 
+@class Item;
+
 @interface ItemsStore : Store
 
 @property (nonatomic, copy, readonly) NSString *storePath;
 
 - (instancetype)initInFolder:(NSString *)folder;
+- (void)saveItem:(Item *)item;
 
 @end
