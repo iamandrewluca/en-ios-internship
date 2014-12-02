@@ -7,18 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ItemsStore.h"
 
 @class Notebook;
 @class NotesStore;
 
-@interface NotebooksStore : ItemsStore
+@interface NotebooksStore : NSObject
 
-- (NSArray *)allNotebooks;
+@property (nonatomic, readonly) NSArray *allNotebooks;
+
 - (void)addNotebook:(Notebook *)notebook;
 - (void)removeNotebook:(Notebook *)notebook;
 - (void)saveNotebook:(Notebook *)notebook;
-- (NotesStore *)storeForNotebook:(Notebook *)notebook;
+- (void)saveNotebookWithID:(NSString *)ID;
+- (Notebook *)createNotebookWithName:(NSString *)name;
+- (Notebook *)notebookWithID:(NSString *)ID;
 
 + (instancetype)sharedStore;
 

@@ -7,11 +7,18 @@
 
 #import <Foundation/Foundation.h>
 #import "Item.h"
-#import "Notebook.h"
+
+@class Notebook;
 
 @interface Note : Item
 
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic) NSMutableArray *tagsIDs;
+@property (nonatomic, readonly) NSArray *tagsIDs;
+@property (nonatomic, copy, readonly) NSString *notebookID;
+
+- (instancetype)initWithName:(NSString *)name forNotebookID:(NSString *)ID;
+
+- (void)addTagID:(NSString *)ID;
+- (void)removeTagID:(NSString *)ID;
 
 @end

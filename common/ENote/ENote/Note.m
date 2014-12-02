@@ -10,17 +10,32 @@
 
 @interface Note ()
 
+@property (nonatomic) NSMutableArray *privateTagsIDs;
+
 @end
 
 @implementation Note
 
-- (instancetype)initWithName:(NSString *)name {
+- (void)addTagID:(NSString *)ID {
+    [_privateTagsIDs addObject:ID];
+}
+
+- (void)removeTagID:(NSString *)ID {
+    [_privateTagsIDs removeObject:ID];
+}
+
+- (NSArray *)tagsIDs {
+    return _privateTagsIDs;
+}
+
+- (instancetype)initWithName:(NSString *)name forNotebookID:(NSString *)ID {
     
-    self = [super initWithName:name];
+    self = [self initWithName:name];
     
     if (self) {
         _text = [[NSString alloc] init];
-        _tagsIDs = [[NSMutableArray alloc] init];
+        _privateTagsIDs = [[NSMutableArray alloc] init];
+        _notebookID = ID;
     }
     
     return self;
@@ -32,7 +47,7 @@
     
     if (self) {
         _text = dictionary[@"text"];
-        _tagsIDs = dictionary[@"tagsIDs"];
+        _privateTagsIDs = dictionary[@"tagsIDs"];
     }
     
     return self;
@@ -42,7 +57,7 @@
     
     NSMutableDictionary *dictionaryRepresentation = [super dictionaryRepresentation];
     [dictionaryRepresentation setValue:_text forKey:@"text"];
-    [dictionaryRepresentation setValue:_tagsIDs forKey:@"tagsIDs"];
+    [dictionaryRepresentation setValue:_privateTagsIDs forKey:@"tagsIDs"];
     
     return dictionaryRepresentation;
 }

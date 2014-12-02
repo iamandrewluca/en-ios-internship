@@ -42,7 +42,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = self.notebook.name;
+    self.navigationItem.title = _notebook.name;
     self.collectionView.backgroundColor = [UIColor colorWithRed:235.0/255.0 green:134.0/255.0 blue:13.0/255.0 alpha:1.0];
     
     // Register cell and title classes with the collection view
@@ -100,9 +100,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
                                                    
                                                    NSString *titleFromModal = [[[alert textFields] firstObject] text];
                                                    
-                                                   Note *note = [[Note alloc] initWithName:titleFromModal];
-                                                   
-                                                   [_store addNote:note];
+                                                   [[NotesStore sharedStore] createNoteWithName:titleFromModal forNotebook:_notebook];
                                                    
                                                    [self.collectionView reloadData];
                                                }];
@@ -158,7 +156,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 {
     NoteCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteCellIdentifier forIndexPath:indexPath];
     
-    noteCell.nameLabel.text = [[[_store allNotes] objectAtIndex:indexPath.section] name];
+    noteCell.nameLabel.text = [[[NotesStore sharedStore] noteWithID:[[_notebook notesIDs] objectAtIndex:indexPath.row]] name];
     
     if (![noteCell viewWithTag:selectedTag])
     {
@@ -180,14 +178,13 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     // highlight the selected cell
     bool cellSelected = [selectedIdx objectForKey:[NSString stringWithFormat:@"%li", indexPath.section]];
     [self setCellSelection:noteCell selected:cellSelected];
-    
     return noteCell;
 }
 
 - (void)deleteNotes {
     
     for (int i = 0; i < self.selectedItems.count; i++) {
-        [_store removeNote:self.selectedItems[i]];
+        [[NotesStore sharedStore] removeNote:self.selectedItems[i]];
     }
     
     [self.selectedItems removeAllObjects];
@@ -203,16 +200,15 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     
     if (self.editing) {
         
-        [self.selectedItems addObject:[[_store allNotes] objectAtIndex:indexPath.section]];
+        [self.selectedItems addObject:[[[NotesStore sharedStore] allNotes] objectAtIndex:indexPath.section]];
         
         
         [self setCellSelection:cell selected:YES];
     }
     else {
         NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
-        Note *note = [[_store allNotes] objectAtIndex:indexPath.section];
+        Note *note = [[[NotesStore sharedStore] allNotes] objectAtIndex:indexPath.section];
         nvc.note = note;
-        nvc.store = _store;
         [[self navigationController] pushViewController:nvc animated:YES];
     }
 }
@@ -222,7 +218,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     if (self.editing) {
         UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
         
-        [self.selectedItems removeObject:[[_store allNotes] objectAtIndex:indexPath.section]];
+        [self.selectedItems removeObject:[[[NotesStore sharedStore] allNotes] objectAtIndex:indexPath.section]];
         [self setCellSelection:cell selected:NO];
     }
 }

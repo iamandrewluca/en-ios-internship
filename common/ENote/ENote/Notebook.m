@@ -8,14 +8,32 @@
 
 #import "Notebook.h"
 
+@interface Notebook ()
+
+@property (nonatomic) NSMutableArray *privateNotesIDs;
+
+@end
+
 @implementation Notebook
+
+- (void)addNoteID:(NSString *)ID {
+    [_privateNotesIDs addObject:ID];
+}
+
+- (void)removeNoteID:(NSString *)ID {
+    [_privateNotesIDs removeObject:ID];
+}
+
+- (NSArray *)notesIDs {
+    return _privateNotesIDs;
+}
 
 - (instancetype)initWithName:(NSString *)name {
     
     self = [super initWithName:name];
     
     if (self) {
-        _notesIDs = [[NSMutableArray alloc] init];
+        _privateNotesIDs = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -26,7 +44,7 @@
     self = [super initWithDictionary:dictionary];
     
     if (self) {
-        _notesIDs = dictionary[@"notesIDs"];
+        _privateNotesIDs = dictionary[@"notesIDs"];
     }
     
     return self;
@@ -35,7 +53,9 @@
 - (NSMutableDictionary *)dictionaryRepresentation {
     
     NSMutableDictionary *dictionaryRepresentation = [super dictionaryRepresentation];
-    [dictionaryRepresentation setValue:_notesIDs forKey:@"notesIDs"];
+    [dictionaryRepresentation setValue:_privateNotesIDs forKey:@"notesIDs"];
+    
+    NSLog(@"%@", dictionaryRepresentation);
     
     return dictionaryRepresentation;
 }

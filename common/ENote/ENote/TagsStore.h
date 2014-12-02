@@ -6,12 +6,16 @@
 //  Copyright (c) 2014 Endava. All rights reserved.
 //
 
-#import "Store.h"
-#import "Tag.h"
+#import <Foundation/Foundation.h>
 
-@interface TagsStore : Store
+@class Tag;
 
-- (void)addTag:(Tag *)tag;
+@interface TagsStore : NSObject
+
+@property (nonatomic, readonly) NSArray *allTags;
+
+- (Tag *)createTagWithName:(NSString *)name;
+
 - (void)removeTag:(Tag *)tag;
 
 - (Tag *)getTagWithID:(NSString *)ID;

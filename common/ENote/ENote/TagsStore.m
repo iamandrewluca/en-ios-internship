@@ -8,8 +8,30 @@
 
 #import "TagsStore.h"
 #import "Tag.h"
+#import "ENoteCommons.h"
+
+@interface TagsStore ()
+
+@property (nonatomic) NSMutableArray *allPrivateTags;
+
+@end
 
 @implementation TagsStore
+
+- (Tag *)createTagWithName:(NSString *)name {
+    
+    for (Tag *tag in _allPrivateTags) {
+        if ([tag.name isEqualToString:name]) {
+            return tag;
+        }
+    }
+    
+    Tag *tag = [[Tag alloc] initWithName:name];
+    
+    [self addTag:tag];
+    
+    return tag;
+}
 
 + (instancetype)sharedStore {
     
@@ -29,6 +51,9 @@
     self = [super init];
     
     if (self) {
+        
+        _allPrivateTags = [[NSMutableArray alloc] init];
+        
         [self loadTags];
     }
     
@@ -36,24 +61,22 @@
 }
 
 - (instancetype)init {
-    @throw [NSException exceptionWithName:@"Singleton" reason:@"Use +[NotebooksStore sharedStore]" userInfo:nil];
+    @throw [NSException exceptionWithName:@"Singleton" reason:@"Use +[TagsStore sharedStore]" userInfo:nil];
 }
 
 - (void)addTag:(Tag *)tag {
-    [self addItem:tag];
+    [_allPrivateTags addObject:tag];
     [self saveTags];
 }
 
 - (void)removeTag:(Tag *)tag {
-    [self removeItem:tag];
+    [_allPrivateTags removeObject:tag];
     [self saveTags];
 }
 
 - (Tag *)getTagWithID:(NSString *)ID {
     
-    NSMutableArray *allTags = [self valueForKey:@"_allPrivateItems"];
-    
-    for (Tag *tag in allTags) {
+    for (Tag *tag in _allPrivateTags) {
         if ([ID isEqualToString:tag.ID]) {
             return tag;
         }
@@ -62,16 +85,46 @@
     return nil;
 }
 
-- (Item *)itemFromDictionary:(NSDictionary *)dictionary {
-    return [[Tag alloc] initWithDictionary:dictionary];
+- (void)addTagFromDictionary:(NSDictionary *)dictionary {
+    [_allPrivateTags addObject:[[Tag alloc] initWithDictionary:dictionary]];
+}
+
+- (NSArray *)allTags {
+    return _allPrivateTags;
 }
 
 - (void)saveTags {
-    // save
+    
+    NSMutableArray *tags = [[NSMutableArray alloc] init];
+    
+    for (Tag *tag in _allPrivateTags) {
+        [tags addObject:[tag dictionaryRepresentation]];
+    }
+    
+    NSMutableDictionary *tagsDictionary = [[NSMutableDictionary alloc] init];
+    [tagsDictionary setValue:tags forKey:@"tags"];
+    
+    NSData *tagsData = [NSJSONSerialization dataWithJSONObject:tagsDictionary options:0 error:nil];
+    
+    NSString *tagsPath = [NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], @"tags.json"];
+    
+    [[NSFileManager defaultManager] createFileAtPath:tagsPath contents:tagsData attributes:nil];
+    
 }
 
 - (void)loadTags {
-    // load
+    
+    NSString *tagsPath = [NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], @"tags.json"];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:tagsPath]) {
+        
+        NSData *tagsData = [[NSFileManager defaultManager] contentsAtPath:tagsPath];
+        NSDictionary *tagsDictionary = [NSJSONSerialization JSONObjectWithData:tagsData options:0 error:nil];
+        
+        for (NSDictionary *tagDictionary in tagsDictionary[@"tags"]) {
+            [self addTagFromDictionary:tagDictionary];
+        }
+    }
 }
 
 @end

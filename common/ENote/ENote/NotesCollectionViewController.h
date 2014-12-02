@@ -20,6 +20,5 @@
 }
 
 @property (nonatomic) Notebook *notebook;
-@property (nonatomic) NotesStore *store;
 
 @end

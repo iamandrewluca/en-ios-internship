@@ -11,6 +11,9 @@
 
 @interface Notebook : Item
 
-@property (nonatomic) NSMutableArray *notesIDs;
+@property (nonatomic, readonly) NSArray *notesIDs;
+
+- (void)addNoteID:(NSString *)ID;
+- (void)removeNoteID:(NSString *)ID;
 
 @end
