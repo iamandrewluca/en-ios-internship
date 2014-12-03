@@ -14,6 +14,7 @@
 @interface NotesDetailViewController : UIViewController
 
 @property (nonatomic) Note *note;
+@property (nonatomic) NotesStore *notesStore;
 
 @property (nonatomic, strong) IBOutlet UITextView *noteTextView;
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;

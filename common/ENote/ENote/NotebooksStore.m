@@ -16,6 +16,7 @@
 @interface NotebooksStore ()
 
 @property (nonatomic) NSMutableArray *allPrivateNotebooks;
+@property (nonatomic) NSMutableDictionary *allPrivateNotesStores;
 
 @end
 
@@ -36,21 +37,30 @@
     return sharedStore;
 }
 
-- (instancetype)init {
-    @throw [NSException exceptionWithName:@"Singleton" reason:@"Use +[TagsStore sharedStore]" userInfo:nil];
-}
-
 - (instancetype)initPrivate {
     
     self = [super init];
     
     if (self) {
         _allPrivateNotebooks = [[NSMutableArray alloc] init];
+        _allPrivateNotesStores = [[NSMutableDictionary alloc] init];
         
         [self loadNotebooks];
     }
     
     return self;
+}
+
+- (NotesStore *)notesStoreForNotebook:(Notebook *)notebook {
+    return [_allPrivateNotesStores valueForKey:notebook.ID];
+}
+
+- (NotesStore *)notesStoreForNotebookID:(NSString *)ID {
+    return [_allPrivateNotesStores valueForKey:ID];
+}
+
+- (instancetype)init {
+    @throw [NSException exceptionWithName:@"Singleton" reason:@"Use +[TagsStore sharedStore]" userInfo:nil];
 }
 
 - (Notebook *)notebookWithID:(NSString *)ID {
@@ -63,8 +73,32 @@
     return nil;
 }
 
+- (void)createNotesStoreForNotebook:(Notebook *)notebook {
+    NotesStore *notesStore = [[NotesStore alloc] initWithNotebook:notebook];
+    [_allPrivateNotesStores setValue:notesStore forKey:notebook.ID];
+}
+
+- (void)createNotesStoreForNotebookID:(NSString *)ID {
+    for (Notebook *notebook in _allPrivateNotebooks) {
+        if ([ID isEqualToString:notebook.ID]) {
+            [self createNotesStoreForNotebook:notebook];
+            return;
+        }
+    }
+}
+
+- (void)removeNotesStoreForNotebook:(Notebook *)notebook {
+    [_allPrivateNotesStores removeObjectForKey:notebook.ID];
+}
+
+- (void)removeNotesStoreForNotebookID:(NSString *)ID {
+    [_allPrivateNotesStores removeObjectForKey:ID];
+}
+
 - (Notebook *)createNotebookWithName:(NSString *)name {
     Notebook *notebook = [[Notebook alloc] initWithName:name];
+    [self createNotesStoreForNotebook:notebook];
+    
     [self addNotebook:notebook];
     [self saveNotebook:notebook];
     return notebook;
@@ -75,15 +109,23 @@
 }
 
 - (void)removeNotebook:(Notebook *)notebook {
+    
+    [self removeNotesStoreForNotebook:notebook];
+    
     NSString *itemPath = [NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], notebook.ID];
     
     [[NSFileManager defaultManager] removeItemAtPath:itemPath error:nil];
     
-    for (NSString *noteID in notebook.notesIDs) {
-        [[NotesStore sharedStore] removeNoteWithID:noteID];
-    }
-    
     [_allPrivateNotebooks removeObject:notebook];
+}
+
+- (void)removeNotebookWithID:(NSString *)ID {
+    for (Notebook *notebook in _allPrivateNotebooks) {
+        if ([ID isEqualToString:notebook.ID]) {
+            [self removeNotebook:notebook];
+            return;
+        }
+    }
 }
 
 - (void)saveNotebook:(Notebook *)notebook {
@@ -133,6 +175,8 @@
 - (void)addNotebookWithDictionary:(NSDictionary *)dictionary {
     
     Notebook *notebook = [[Notebook alloc] initWithDictionary:dictionary];
+    
+    [self createNotesStoreForNotebook:notebook];
     
     [_allPrivateNotebooks addObject:notebook];
 }

@@ -48,6 +48,7 @@
     if (self) {
         _text = dictionary[@"text"];
         _privateTagsIDs = dictionary[@"tagsIDs"];
+        _notebookID = dictionary[@"notebookID"];
     }
     
     return self;
@@ -58,6 +59,7 @@
     NSMutableDictionary *dictionaryRepresentation = [super dictionaryRepresentation];
     [dictionaryRepresentation setValue:_text forKey:@"text"];
     [dictionaryRepresentation setValue:_privateTagsIDs forKey:@"tagsIDs"];
+    [dictionaryRepresentation setValue:_notebookID forKey:@"notebookID"];
     
     return dictionaryRepresentation;
 }

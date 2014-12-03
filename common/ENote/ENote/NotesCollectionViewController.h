@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class Notebook;
 @class NotesStore;
 
 @interface NotesCollectionViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate>
@@ -19,6 +18,6 @@
     NSMutableDictionary *selectedIdx;
 }
 
-@property (nonatomic) Notebook *notebook;
+@property (nonatomic) NotesStore *notesStore;
 
 @end

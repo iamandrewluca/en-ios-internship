@@ -15,12 +15,14 @@
 
 @property (nonatomic, readonly) NSArray *allNotebooks;
 
-- (void)addNotebook:(Notebook *)notebook;
 - (void)removeNotebook:(Notebook *)notebook;
+- (void)removeNotebookWithID:(NSString *)ID;
 - (void)saveNotebook:(Notebook *)notebook;
 - (void)saveNotebookWithID:(NSString *)ID;
 - (Notebook *)createNotebookWithName:(NSString *)name;
 - (Notebook *)notebookWithID:(NSString *)ID;
+- (NotesStore *)notesStoreForNotebook:(Notebook *)notebook;
+- (NotesStore *)notesStoreForNotebookID:(NSString *)ID;
 
 + (instancetype)sharedStore;
 

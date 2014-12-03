@@ -55,8 +55,6 @@
     NSMutableDictionary *dictionaryRepresentation = [super dictionaryRepresentation];
     [dictionaryRepresentation setValue:_privateNotesIDs forKey:@"notesIDs"];
     
-    NSLog(@"%@", dictionaryRepresentation);
-    
     return dictionaryRepresentation;
 }
 

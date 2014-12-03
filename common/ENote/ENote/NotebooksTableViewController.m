@@ -129,7 +129,7 @@
         NotesCollectionViewController *notes = [[NotesCollectionViewController alloc] initWithNibName:@"NotesCollectionViewController" bundle:nil];
         
         Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
-        notes.notebook = notebook;
+        notes.notesStore = [[NotebooksStore sharedStore] notesStoreForNotebook:notebook];
         
         [[self navigationController] pushViewController:notes animated:YES];
     }

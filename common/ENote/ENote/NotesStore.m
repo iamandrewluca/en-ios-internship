@@ -20,27 +20,15 @@
 
 @implementation NotesStore
 
-+ (instancetype)sharedStore {
-    
-    static NotesStore *sharedStore = nil;
-    
-    if (!sharedStore) {
-        sharedStore = [[self alloc] initPrivate];
-    }
-    
-    return sharedStore;
-}
-
-- (instancetype)init {
-    @throw [NSException exceptionWithName:@"Singleton" reason:@"Use +[TagsStore sharedStore]" userInfo:nil];
-}
-
-- (instancetype)initPrivate {
+- (instancetype)initWithNotebook:(Notebook *)notebook {
     
     self = [super init];
     
     if (self) {
         _allPrivateNotes = [[NSMutableArray alloc] init];
+        _notebook = notebook;
+
+        [self loadNotes];
     }
     
     return self;
@@ -82,12 +70,13 @@
     [_allPrivateNotes addObject:note];
 }
 
-- (Note *)createNoteWithName:(NSString *)name forNotebook:(Notebook *)notebook {
-    return [self createNoteWithName:name forNotebookID:notebook.ID];
-}
+- (Note *)createNoteWithName:(NSString *)name {
+    
+    Note *note = [[Note alloc] initWithName:name forNotebookID:_notebook.ID];
+    
+    [_notebook addNoteID:note.ID];
+    [[NotebooksStore sharedStore] saveNotebook:_notebook];
 
-- (Note *)createNoteWithName:(NSString *)name forNotebookID:(NSString *)ID {
-    Note *note = [[Note alloc] initWithName:name forNotebookID:ID];
     [self addNote:note];
     [self saveNote:note];
     return note;
@@ -99,15 +88,14 @@
 
 - (void)removeNote:(Note *)note {
     
-    Notebook *notebook = [[NotebooksStore sharedStore] notebookWithID:note.notebookID];
-    [notebook removeNoteID:note.ID];
-    [[NotebooksStore sharedStore] saveNotebook:notebook];
+    [_notebook removeNoteID:note.ID];
+    [[NotebooksStore sharedStore] saveNotebook:_notebook];
     
-    NSString *itemPath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], notebook.ID, note.ID];
+    NSString *itemPath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebook.ID, note.ID];
     
     [[NSFileManager defaultManager] removeItemAtPath:itemPath error:nil];
     
-    [_allPrivateNotes removeObject:notebook];
+    [_allPrivateNotes removeObject:note];
 }
 
 - (void)removeNoteWithID:(NSString *)ID {
@@ -129,13 +117,13 @@
     return nil;
 }
 
-- (void)loadNotesForNotebook:(Notebook *)notebook {
+- (void)loadNotes {
     
-    NSArray *itemPaths = [[ENoteCommons shared] getValidItemsPathsInFolder:[NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], notebook.ID]];
+    NSArray *itemPaths = [[ENoteCommons shared] getValidItemsPathsInFolder:[NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], _notebook.ID]];
     
     for (NSString *itemPath in itemPaths) {
         
-        NSString *indexPath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], itemPath, [[ENoteCommons shared] indexFile]];
+        NSString *indexPath = [NSString stringWithFormat:@"%@/%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebook.ID, itemPath, [[ENoteCommons shared] indexFile]];
         
         if ([[NSFileManager defaultManager] fileExistsAtPath:indexPath]) {
             

@@ -15,11 +15,8 @@
 @property (nonatomic, readonly) NSArray *allTags;
 
 - (Tag *)createTagWithName:(NSString *)name;
-
 - (void)removeTag:(Tag *)tag;
-
 - (Tag *)getTagWithID:(NSString *)ID;
-
 + (instancetype)sharedStore;
 
 @end
