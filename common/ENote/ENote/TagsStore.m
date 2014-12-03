@@ -85,6 +85,15 @@
     return nil;
 }
 
+- (NSArray *)getTagsWithIDs:(NSArray *)IDs {
+    NSMutableArray *tags = [[NSMutableArray alloc] init];
+    for (NSString *tagID in _allPrivateTags) {
+        [tags addObject:[self getTagWithID:tagID]];
+    }
+    
+    return tags;
+}
+
 - (void)addTagFromDictionary:(NSDictionary *)dictionary {
     [_allPrivateTags addObject:[[Tag alloc] initWithDictionary:dictionary]];
 }
