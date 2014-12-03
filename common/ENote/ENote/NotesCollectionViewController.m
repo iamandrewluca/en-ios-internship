@@ -15,7 +15,9 @@
 #import "Note.h"
 
 #define selectedTag 100
-#define cellSize 99
+//#define cellSize 99static int const kCellSize = 99;
+static int const kCellSize = 99;
+
 #define textLabelHeight 20
 #define cellAAcitve 1.0
 #define cellADeactive 0.3
@@ -159,10 +161,10 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     
     if (![noteCell viewWithTag:selectedTag])
     {
-        UILabel *selected = [[UILabel alloc] initWithFrame:CGRectMake(0, cellSize - textLabelHeight, cellSize, textLabelHeight)];
-        selected.backgroundColor = [UIColor blackColor];
-        selected.textColor = [UIColor whiteColor];
-        selected.text = @"PICKED";
+        UILabel *selected = [[UILabel alloc] initWithFrame:CGRectMake(0, kCellSize - textLabelHeight, kCellSize, textLabelHeight)];
+        selected.backgroundColor = [UIColor lightGrayColor];
+        selected.textColor = [UIColor blackColor];
+        selected.text = @"SELECTED";
         selected.textAlignment = NSTextAlignmentCenter;
         selected.font = [UIFont systemFontOfSize:defaultFontSize];
         selected.tag = selectedTag;
