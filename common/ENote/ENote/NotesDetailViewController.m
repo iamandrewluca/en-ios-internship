@@ -7,10 +7,12 @@
 //
 
 #import "NotesDetailViewController.h"
+#import "NotesCollectionViewController.h"
 #import "Note.h"
 
 @interface NotesDetailViewController () <UITextViewDelegate>
 @property (weak, nonatomic) UINavigationBar *navigationBar;
+@property (nonatomic, assign) BOOL delete;
 @end
 
 @implementation NotesDetailViewController
@@ -61,11 +63,46 @@
     
 
     [actionSheet showInView:self.view];
-
-    [_notesStore saveNote:_note];
+    actionSheet.tag = 200;
 }
 
-
+/*
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(actionSheet.tag == 100 && buttonIndex == 1) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Rename note title"
+                                                                       message:@""
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.returnKeyType = UIReturnKeyDone;
+            textField.placeholder = @"Rename title";
+        }];
+        
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction *action) {
+                                                       
+                                                       NSString *titleFromModal = [[[alert textFields] firstObject] text];
+                                                       if (![titleFromModal isEqualToString:@""]) {
+                                                           _note.name = titleFromModal;
+                                                           [_notesStore saveNote:_note];
+                                                           self.navigationItem.title = _note.name;
+                                                       }
+                                                   }];
+        
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                         style:UIAlertActionStyleCancel
+                                                       handler:nil];
+        
+        [alert addAction:cancel];
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+*/
+ 
 -(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if (actionSheet.tag == 100 && buttonIndex == 0) {
         [self deleteConfirmation];
@@ -73,6 +110,15 @@
         NSLog(@"Rename");
     } else if(actionSheet.tag == 100 && buttonIndex == 2) {
         NSLog(@"Move");
+    }
+    if (actionSheet.tag == 200) {
+        if(buttonIndex == 0) {
+            self.delete = YES;
+            if (self.delete == YES) {
+                [self.navigationController popViewControllerAnimated:TRUE];
+                [_notesStore removeNote:self.note];
+            }
+        }
     }
 }
 
@@ -91,7 +137,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self usePreferredFonts]; // sync up with the "world".
+    [self usePreferredFonts];
     
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(preferredFontsChanged:)
@@ -108,6 +154,10 @@
     
     self.note.name = self.titleTextField.text;
     self.note.text = self.noteTextView.text;
+    
+    if (self.delete == NO) {
+        [_notesStore saveNote:_note];
+    }
 }
 
 -(void)preferredFontsChanged:(NSNotification *)notification
