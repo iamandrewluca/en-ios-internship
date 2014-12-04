@@ -26,8 +26,12 @@
     NotebooksTableViewController *notebooks = [[NotebooksTableViewController alloc] init];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:notebooks];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:235.0/255.0 green:134.0/255.0 blue:13.0/255.0 alpha:1.0]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [nav.navigationController.navigationBar setTranslucent:NO];
+    nav.navigationBar.tintColor = [UIColor whiteColor];
+    
     nav.navigationBar.translucent = NO;
-    nav.navigationBar.opaque = YES;
     
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];

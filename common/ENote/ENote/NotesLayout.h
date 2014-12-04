@@ -8,14 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-UIKIT_EXTERN NSString * const NoteLayoutTitleKind;
-
 @interface NotesLayout : UICollectionViewLayout
 
 @property (nonatomic) UIEdgeInsets itemInsets;
 @property (nonatomic) CGSize itemSize;
 @property (nonatomic) CGFloat interItemSpacingY;
 @property (nonatomic) NSInteger numberOfColumns;
-@property (nonatomic) CGFloat titleHeight;
+@property (nonatomic) CGFloat spacingHeight;
 
 @end

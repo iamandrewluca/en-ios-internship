@@ -11,7 +11,7 @@
 #import "NotesStore.h"
 
 
-@interface NotesDetailViewController : UIViewController
+@interface NotesDetailViewController : UIViewController <UIActionSheetDelegate>
 
 @property (nonatomic) Note *note;
 @property (nonatomic) NotesStore *notesStore;
