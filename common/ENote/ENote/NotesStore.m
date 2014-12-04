@@ -67,7 +67,7 @@
 }
 
 - (void)addNote:(Note *)note {
-    [_allPrivateNotes addObject:note];
+    [_allPrivateNotes insertObject:note atIndex:0];
 }
 
 - (Note *)createNoteWithName:(NSString *)name {
@@ -119,11 +119,11 @@
 
 - (void)loadNotes {
     
-    NSArray *itemPaths = [[ENoteCommons shared] getValidItemsPathsInFolder:[NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], _notebook.ID]];
-    
-    for (NSString *itemPath in itemPaths) {
+    for (NSString *noteID in _notebook.notesIDs) {
         
-        NSString *indexPath = [NSString stringWithFormat:@"%@/%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebook.ID, itemPath, [[ENoteCommons shared] indexFile]];
+        NSString *itemPath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebook.ID, noteID];
+        
+        NSString *indexPath = [NSString stringWithFormat:@"%@/%@", itemPath, [[ENoteCommons shared] indexFile]];
         
         if ([[NSFileManager defaultManager] fileExistsAtPath:indexPath]) {
             

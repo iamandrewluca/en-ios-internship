@@ -105,7 +105,7 @@
 }
 
 - (void)addNotebook:(Notebook *)notebook {
-    [_allPrivateNotebooks addObject:notebook];
+    [_allPrivateNotebooks insertObject:notebook atIndex:0];
 }
 
 - (void)removeNotebook:(Notebook *)notebook {

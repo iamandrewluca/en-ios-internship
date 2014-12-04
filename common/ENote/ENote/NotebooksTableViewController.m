@@ -38,12 +38,9 @@
                                                    NSString *nameFromModal = [[alert.textFields objectAtIndex:0] text];
                                                    
                                                    if (![nameFromModal isEqualToString:@""]) {
-                                                       Notebook *notebook = [[NotebooksStore sharedStore] createNotebookWithName:nameFromModal];
                                                        
-                                                       NSInteger lastRow = [[[NotebooksStore sharedStore] allNotebooks] indexOfObject:notebook];
-                                                       
-                                                       NSIndexPath *indexPath = [NSIndexPath indexPathForItem:lastRow inSection:0];
-                                                       
+                                                       [[NotebooksStore sharedStore] createNotebookWithName:nameFromModal];
+                                                       NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
                                                        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
                                                    }
                                                }];

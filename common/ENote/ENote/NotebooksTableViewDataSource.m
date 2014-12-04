@@ -35,11 +35,26 @@
     
     cell.nameLabel.text = notebook.name;
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
-    [formatter setTimeStyle:NSDateFormatterNoStyle];
+    NSDateComponents *todayDate = [[NSCalendar currentCalendar] components:NSCalendarUnitDay|NSCalendarUnitEra|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:[NSDate date]];
+    NSDateComponents *createDate = [[NSCalendar currentCalendar] components:NSCalendarUnitDay|NSCalendarUnitEra|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:notebook.dateCreated];
     
-    cell.datelabel.text = [formatter stringFromDate:notebook.dateCreated];
+    BOOL isToday = (todayDate.era == createDate.era) && (todayDate.year == createDate.year) && (todayDate.month == createDate.month) && (todayDate.day == createDate.day);
+    
+    BOOL isLessThenThreeDays = (todayDate.era == createDate.era) && (todayDate.year == createDate.year) && (todayDate.month == createDate.month) && (createDate.day + 2 >= todayDate.day);
+    
+    if (isToday) {
+        cell.datelabel.text = @"Today";
+    } else if (isLessThenThreeDays) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"EEEE"];
+        cell.datelabel.text = [dateFormatter stringFromDate:notebook.dateCreated];
+    } else {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        cell.datelabel.text = [dateFormatter stringFromDate:notebook.dateCreated];
+    }
+    
     [cell.notesNumberLabel setTitle:[NSString stringWithFormat:@"%lu", [notebook.notesIDs count]] forState:UIControlStateNormal];
     
     return cell;
