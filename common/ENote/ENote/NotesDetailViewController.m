@@ -12,6 +12,7 @@
 
 @interface NotesDetailViewController () <UITextViewDelegate>
 @property (weak, nonatomic) UINavigationBar *navigationBar;
+@property (nonatomic, assign) BOOL delete;
 @end
 
 @implementation NotesDetailViewController
@@ -65,7 +66,43 @@
     actionSheet.tag = 200;
 }
 
-
+/*
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(actionSheet.tag == 100 && buttonIndex == 1) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Rename note title"
+                                                                       message:@""
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.returnKeyType = UIReturnKeyDone;
+            textField.placeholder = @"Rename title";
+        }];
+        
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction *action) {
+                                                       
+                                                       NSString *titleFromModal = [[[alert textFields] firstObject] text];
+                                                       if (![titleFromModal isEqualToString:@""]) {
+                                                           _note.name = titleFromModal;
+                                                           [_notesStore saveNote:_note];
+                                                           self.navigationItem.title = _note.name;
+                                                       }
+                                                   }];
+        
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                         style:UIAlertActionStyleCancel
+                                                       handler:nil];
+        
+        [alert addAction:cancel];
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+*/
+ 
 -(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if (actionSheet.tag == 100 && buttonIndex == 0) {
         [self deleteConfirmation];
@@ -76,8 +113,11 @@
     }
     if (actionSheet.tag == 200) {
         if(buttonIndex == 0) {
-            [self.navigationController popViewControllerAnimated:TRUE];
-            [_notesStore removeNote:self.note];
+            self.delete = YES;
+            if (self.delete == YES) {
+                [self.navigationController popViewControllerAnimated:TRUE];
+                [_notesStore removeNote:self.note];
+            }
         }
     }
 }
@@ -114,8 +154,10 @@
     
     self.note.name = self.titleTextField.text;
     self.note.text = self.noteTextView.text;
-    [_notesStore saveNote:_note];
-
+    
+    if (self.delete == NO) {
+        [_notesStore saveNote:_note];
+    }
 }
 
 -(void)preferredFontsChanged:(NSNotification *)notification
