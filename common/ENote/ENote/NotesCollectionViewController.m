@@ -43,7 +43,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 {
     [super viewDidLoad];
     self.navigationItem.title = _notesStore.notebook.name;
-    self.collectionView.backgroundColor = [UIColor colorWithRed:235.0/255.0 green:134.0/255.0 blue:13.0/255.0 alpha:1.0];
+    self.collectionView.backgroundColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
 
     // Register cell and title classes with the collection view
     [self.collectionView registerClass:[NoteCell class] forCellWithReuseIdentifier:NoteCellIdentifier];
