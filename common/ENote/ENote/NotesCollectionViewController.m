@@ -91,7 +91,10 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
                                                    
                                                    [_notesStore createNoteWithName:titleFromModal];
                                                    
-                                                   [self.collectionView reloadData];
+                                                   NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+                                                   
+                                                   [self.collectionView insertSections:indexSet];
+
                                                }];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
@@ -172,9 +175,12 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 - (void)deleteNotes {
     
     for (int i = 0; i < self.selectedItems.count; i++) {
-        [_notesStore removeNote:self.selectedItems[i]];
+        
+        Note *note = [[_notesStore allNotes] objectAtIndex:[_selectedItems[i] section]];
+        [_notesStore removeNote:note];
+        
     }
-    
+
     [self.selectedItems removeAllObjects];
     [self.collectionView reloadData];
 }
@@ -188,7 +194,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     
     if (self.editing) {
         
-        [self.selectedItems addObject:[[_notesStore allNotes] objectAtIndex:indexPath.section]];
+        [self.selectedItems addObject:indexPath];
         
         
         [self setCellSelection:cell selected:YES];
@@ -207,7 +213,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     if (self.editing) {
         UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
         
-        [self.selectedItems removeObject:[[_notesStore allNotes] objectAtIndex:indexPath.section]];
+        [self.selectedItems removeObject:indexPath];
         [self setCellSelection:cell selected:NO];
     }
 }
