@@ -7,6 +7,7 @@
 //
 
 #import "NotesDetailViewController.h"
+#import "NotesCollectionViewController.h"
 #import "Note.h"
 
 @interface NotesDetailViewController () <UITextViewDelegate>
@@ -61,8 +62,7 @@
     
 
     [actionSheet showInView:self.view];
-
-    [_notesStore saveNote:_note];
+    actionSheet.tag = 200;
 }
 
 
@@ -73,6 +73,12 @@
         NSLog(@"Rename");
     } else if(actionSheet.tag == 100 && buttonIndex == 2) {
         NSLog(@"Move");
+    }
+    if (actionSheet.tag == 200) {
+        if(buttonIndex == 0) {
+            [self.navigationController popViewControllerAnimated:TRUE];
+            [_notesStore removeNote:self.note];
+        }
     }
 }
 
@@ -91,7 +97,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self usePreferredFonts]; // sync up with the "world".
+    [self usePreferredFonts];
     
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(preferredFontsChanged:)
@@ -108,6 +114,8 @@
     
     self.note.name = self.titleTextField.text;
     self.note.text = self.noteTextView.text;
+    [_notesStore saveNote:_note];
+
 }
 
 -(void)preferredFontsChanged:(NSNotification *)notification
