@@ -59,7 +59,10 @@
                                                destructiveButtonTitle:@"Yes, delete it"
                                                     otherButtonTitles:nil];
     
+
     [actionSheet showInView:self.view];
+
+    [_notesStore saveNote:_note];
 }
 
 
@@ -105,8 +108,6 @@
     
     self.note.name = self.titleTextField.text;
     self.note.text = self.noteTextView.text;
-    
-    [self.store saveStoreItem:self.note];
 }
 
 -(void)preferredFontsChanged:(NSNotification *)notification

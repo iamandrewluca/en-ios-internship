@@ -14,7 +14,6 @@
 
 @interface NotebooksTableViewController () <UITableViewDelegate>
 
-@property (nonatomic) UIAlertController *alert;
 @property (nonatomic) NotebooksTableViewDataSource *dataSource;
 
 @end
@@ -23,11 +22,11 @@
 
 - (void)addNewNotebook {
     
-    self.alert = [UIAlertController alertControllerWithTitle:@"Enter new name"
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Enter new name"
                                                                    message:@""
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
-    [self.alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.returnKeyType = UIReturnKeyDone;
         textField.placeholder = @"Notebook name";
     }];
@@ -36,14 +35,12 @@
                                                  style:UIAlertActionStyleDefault
                                                handler:^(UIAlertAction *action) {
                                                    
-                                                   NSString *nameFromModal = [[self.alert.textFields objectAtIndex:0] text];
+                                                   NSString *nameFromModal = [[alert.textFields objectAtIndex:0] text];
                                                    
                                                    if (![nameFromModal isEqualToString:@""]) {
-                                                       Notebook *notebook = [[Notebook alloc] initWithName:nameFromModal];
+                                                       Notebook *notebook = [[NotebooksStore sharedStore] createNotebookWithName:nameFromModal];
                                                        
-                                                       [[NotebooksStore sharedStore] addStoreItem:notebook];
-                                                       
-                                                       NSInteger lastRow = [[[NotebooksStore sharedStore] allStoreItems] indexOfObject:notebook];
+                                                       NSInteger lastRow = [[[NotebooksStore sharedStore] allNotebooks] indexOfObject:notebook];
                                                        
                                                        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:lastRow inSection:0];
                                                        
@@ -55,10 +52,10 @@
                                                      style:UIAlertActionStyleCancel
                                                    handler:nil];
     
-    [self.alert addAction:cancel];
-    [self.alert addAction:ok];
+    [alert addAction:cancel];
+    [alert addAction:ok];
     
-    [self presentViewController:self.alert animated:YES completion:nil];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)viewDidLoad {
@@ -92,11 +89,11 @@
     
     if (tableView.editing) {
         
-        self.alert = [UIAlertController alertControllerWithTitle:@"Enter another name"
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Enter another name"
                                                                        message:@""
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         
-        [self.alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
             textField.returnKeyType = UIReturnKeyDone;
             textField.placeholder = @"Notebook name";
         }];
@@ -105,14 +102,14 @@
                                                      style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction *action) {
                                                        
-                                                       NSString *nameFromModal = [[[self.alert textFields] objectAtIndex:0] text];
+                                                       NSString *nameFromModal = [[[alert textFields] objectAtIndex:0] text];
                                                        
                                                        if (![nameFromModal isEqualToString:@""]) {
-                                                           Notebook *notebook = [[[NotebooksStore sharedStore] allStoreItems] objectAtIndex:indexPath.row];
+                                                           Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
                                                            
                                                            notebook.name = nameFromModal;
                                                            
-                                                           [[NotebooksStore sharedStore] saveStoreItem:notebook];
+                                                           [[NotebooksStore sharedStore] saveNotebook:notebook];
                                                            
                                                            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
                                                        }
@@ -122,18 +119,17 @@
                                                          style:UIAlertActionStyleCancel
                                                        handler:nil];
         
-        [self.alert addAction:cancel];
-        [self.alert addAction:ok];
+        [alert addAction:cancel];
+        [alert addAction:ok];
         
-        [self presentViewController:self.alert animated:YES completion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
         
     } else {
         
         NotesCollectionViewController *notes = [[NotesCollectionViewController alloc] initWithNibName:@"NotesCollectionViewController" bundle:nil];
         
-        Notebook *notebook = [[[NotebooksStore sharedStore] allStoreItems] objectAtIndex:indexPath.row];
-        
-        notes.notebook = notebook;
+        Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
+        notes.notesStore = [[NotebooksStore sharedStore] notesStoreForNotebook:notebook];
         
         [[self navigationController] pushViewController:notes animated:YES];
     }

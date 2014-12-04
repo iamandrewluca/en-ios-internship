@@ -10,24 +10,32 @@
 
 @interface Note ()
 
+@property (nonatomic) NSMutableArray *privateTagsIDs;
+
 @end
 
 @implementation Note
 
-- (NSMutableDictionary *)dictionaryRepresentation {
-    
-    NSMutableDictionary *dictionaryRepresentation = [super dictionaryRepresentation];
-    [dictionaryRepresentation setValue:_text forKey:@"text"];
-    
-    return dictionaryRepresentation;
+- (void)addTagID:(NSString *)ID {
+    [_privateTagsIDs addObject:ID];
 }
 
-- (instancetype)initWithName:(NSString *)name {
+- (void)removeTagID:(NSString *)ID {
+    [_privateTagsIDs removeObject:ID];
+}
+
+- (NSArray *)tagsIDs {
+    return _privateTagsIDs;
+}
+
+- (instancetype)initWithName:(NSString *)name forNotebookID:(NSString *)ID {
     
-    self = [super initWithName:name];
+    self = [self initWithName:name];
     
     if (self) {
         _text = [[NSString alloc] init];
+        _privateTagsIDs = [[NSMutableArray alloc] init];
+        _notebookID = ID;
     }
     
     return self;
@@ -39,9 +47,21 @@
     
     if (self) {
         _text = dictionary[@"text"];
+        _privateTagsIDs = dictionary[@"tagsIDs"];
+        _notebookID = dictionary[@"notebookID"];
     }
     
     return self;
+}
+
+- (NSMutableDictionary *)dictionaryRepresentation {
+    
+    NSMutableDictionary *dictionaryRepresentation = [super dictionaryRepresentation];
+    [dictionaryRepresentation setValue:_text forKey:@"text"];
+    [dictionaryRepresentation setValue:_privateTagsIDs forKey:@"tagsIDs"];
+    [dictionaryRepresentation setValue:_notebookID forKey:@"notebookID"];
+    
+    return dictionaryRepresentation;
 }
 
 @end

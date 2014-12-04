@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "StoreItem.h"
-#import "NotesStore.h"
+#import "Item.h"
 
-@class Store;
+@interface Notebook : Item
 
-@interface Notebook : StoreItem
+@property (nonatomic, readonly) NSArray *notesIDs;
 
-@property (nonatomic) NotesStore *notesStore;
+- (void)addNoteID:(NSString *)ID;
+- (void)removeNoteID:(NSString *)ID;
 
 @end

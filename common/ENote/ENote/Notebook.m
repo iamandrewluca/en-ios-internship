@@ -7,17 +7,33 @@
 //
 
 #import "Notebook.h"
-#import "NotesStore.h"
-#import "ENoteCommons.h"
+
+@interface Notebook ()
+
+@property (nonatomic) NSMutableArray *privateNotesIDs;
+
+@end
 
 @implementation Notebook
+
+- (void)addNoteID:(NSString *)ID {
+    [_privateNotesIDs addObject:ID];
+}
+
+- (void)removeNoteID:(NSString *)ID {
+    [_privateNotesIDs removeObject:ID];
+}
+
+- (NSArray *)notesIDs {
+    return _privateNotesIDs;
+}
 
 - (instancetype)initWithName:(NSString *)name {
     
     self = [super initWithName:name];
     
     if (self) {
-        _notesStore = [[NotesStore alloc] initInFolder:[NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], self.itemFolder]];
+        _privateNotesIDs = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -28,10 +44,18 @@
     self = [super initWithDictionary:dictionary];
     
     if (self) {
-        _notesStore = [[NotesStore alloc] initInFolder:[NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], dictionary[@"itemFolder"]]];
+        _privateNotesIDs = dictionary[@"notesIDs"];
     }
     
     return self;
+}
+
+- (NSMutableDictionary *)dictionaryRepresentation {
+    
+    NSMutableDictionary *dictionaryRepresentation = [super dictionaryRepresentation];
+    [dictionaryRepresentation setValue:_privateNotesIDs forKey:@"notesIDs"];
+    
+    return dictionaryRepresentation;
 }
 
 @end

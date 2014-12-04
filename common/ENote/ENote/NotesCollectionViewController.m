@@ -13,63 +13,52 @@
 #import "Notebook.h"
 #import "NoteCell.h"
 #import "Note.h"
+#import "NotebooksStore.h"
 
-#define selectedTag 100
-//#define cellSize 99static int const kCellSize = 99;
+static int const kSelectedTag = 100;
 static int const kCellSize = 99;
-
-#define textLabelHeight 20
-#define cellAAcitve 1.0
-#define cellADeactive 0.3
-#define cellAHidden 0.0
-#define defaultFontSize 10.0
+static int const kTextLabelHeight = 20;
+static double const kCellaActive = 1.0;
+static double const kCellaDeactive = 0.3;
+static double const kCellaHidden = 0.0;
+static double const kDefaultFontSize = 10.0;
 
 static NSString * const NoteCellIdentifier = @"NoteCell";
 
 @interface NotesCollectionViewController () {
+    UILongPressGestureRecognizer *longPress;
+    NSIndexPath *lastAccessed;
     UIBarButtonItem *addNote;
 }
 
 @property (nonatomic, weak) IBOutlet NotesLayout *notesLayout;
 @property (nonatomic) NSMutableArray *selectedItems;
+
 @end
 
-@implementation NotesCollectionViewController {
-    UILongPressGestureRecognizer *longPress;
-    NSIndexPath *lastAccessed;
-}
+@implementation NotesCollectionViewController
 
 #pragma mark - Lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = self.notebook.name;
-    self.collectionView.backgroundColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
-    
+    self.navigationItem.title = _notesStore.notebook.name;
+    self.collectionView.backgroundColor = [UIColor colorWithRed:235.0/255.0 green:134.0/255.0 blue:13.0/255.0 alpha:1.0];
+
     // Register cell and title classes with the collection view
     [self.collectionView registerClass:[NoteCell class] forCellWithReuseIdentifier:NoteCellIdentifier];
     [self.collectionView setAllowsMultipleSelection:YES];
-    
-    // Selection panGesture
-    UIPanGestureRecognizer *gestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
-                                                                                        action:@selector(handleGesture:)];
-    [self.view addGestureRecognizer:gestureRecognizer];
-    [gestureRecognizer setMinimumNumberOfTouches:1];
-    [gestureRecognizer setMaximumNumberOfTouches:1];
     
     // Long press for entering editing mode
     longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(enterEditMode:)];
     [self.collectionView addGestureRecognizer:longPress];
     
-
     // Add new note
     addNote = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                      target:self
                                                                      action:@selector(addNewNote)];
     
     self.navigationItem.rightBarButtonItem = addNote;
-    
-    
     self.selectedItems = [[NSMutableArray alloc] init];
     
 }
@@ -100,9 +89,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
                                                    
                                                    NSString *titleFromModal = [[[alert textFields] firstObject] text];
                                                    
-                                                   Note *note = [[Note alloc] initWithName:titleFromModal];
-                                                   
-                                                   [self.notebook.notesStore addStoreItem:note];
+                                                   [_notesStore createNoteWithName:titleFromModal];
                                                    
                                                    [self.collectionView reloadData];
                                                }];
@@ -132,7 +119,6 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 }
 
 
-
 #pragma mark - LongPressGesturEeditingMode
 - (void)enterEditMode:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -146,7 +132,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [[self.notebook.notesStore allStoreItems] count];
+    return [[_notesStore allNotes] count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -157,36 +143,36 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NoteCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteCellIdentifier forIndexPath:indexPath];
-    noteCell.nameLabel.text = [[[self.notebook.notesStore allStoreItems] objectAtIndex:indexPath.section] name];
     
-    if (![noteCell viewWithTag:selectedTag])
+    noteCell.nameLabel.text = [[[_notesStore allNotes] objectAtIndex:indexPath.section] name];
+    
+    if (![noteCell viewWithTag:kSelectedTag])
     {
-        UILabel *selected = [[UILabel alloc] initWithFrame:CGRectMake(0, kCellSize - textLabelHeight, kCellSize, textLabelHeight)];
+        UILabel *selected = [[UILabel alloc] initWithFrame:CGRectMake(0, kCellSize - kTextLabelHeight, kCellSize, kTextLabelHeight)];
         selected.backgroundColor = [UIColor lightGrayColor];
         selected.textColor = [UIColor blackColor];
         selected.text = @"SELECTED";
         selected.textAlignment = NSTextAlignmentCenter;
-        selected.font = [UIFont systemFontOfSize:defaultFontSize];
-        selected.tag = selectedTag;
-        selected.alpha = cellAHidden;
+        selected.font = [UIFont systemFontOfSize:kDefaultFontSize];
+        selected.tag = kSelectedTag;
+        selected.alpha = kCellaHidden;
         
         [noteCell.contentView addSubview:selected];
     }
     
-    [[noteCell viewWithTag:selectedTag] setAlpha:cellAHidden];
-    noteCell.backgroundView.alpha = cellADeactive;
+    [[noteCell viewWithTag:kSelectedTag] setAlpha:kCellaHidden];
+    noteCell.backgroundView.alpha = kCellaDeactive;
     
     // highlight the selected cell
     bool cellSelected = [selectedIdx objectForKey:[NSString stringWithFormat:@"%li", indexPath.section]];
     [self setCellSelection:noteCell selected:cellSelected];
-    
     return noteCell;
 }
 
 - (void)deleteNotes {
     
     for (int i = 0; i < self.selectedItems.count; i++) {
-        [self.notebook.notesStore removeStoreItem:self.selectedItems[i]];
+        [_notesStore removeNote:self.selectedItems[i]];
     }
     
     [self.selectedItems removeAllObjects];
@@ -202,16 +188,16 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     
     if (self.editing) {
         
-        [self.selectedItems addObject:[[self.notebook.notesStore allStoreItems] objectAtIndex:indexPath.section]];
+        [self.selectedItems addObject:[[_notesStore allNotes] objectAtIndex:indexPath.section]];
         
         
         [self setCellSelection:cell selected:YES];
     }
     else {
         NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
-        Note *note = [[self.notebook.notesStore allStoreItems] objectAtIndex:indexPath.section];
+        Note *note = [[_notesStore allNotes] objectAtIndex:indexPath.section];
         nvc.note = note;
-        nvc.store = self.notebook.notesStore;
+        nvc.notesStore = _notesStore;
         [[self navigationController] pushViewController:nvc animated:YES];
     }
 }
@@ -221,7 +207,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     if (self.editing) {
         UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
         
-        [self.selectedItems removeObject:[[self.notebook.notesStore allStoreItems] objectAtIndex:indexPath.section]];
+        [self.selectedItems removeObject:[[_notesStore allNotes] objectAtIndex:indexPath.section]];
         [self setCellSelection:cell selected:NO];
     }
 }
@@ -234,42 +220,8 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 #pragma mark - Cell selection module
 - (void)setCellSelection:(UICollectionViewCell *)cell selected:(bool)selected
 {
-    cell.backgroundView.alpha = selected ? cellAAcitve : cellADeactive;
-    [cell viewWithTag:selectedTag].alpha = selected ? cellAAcitve : cellAHidden;
-}
-
-- (void)handleGesture:(UIPanGestureRecognizer *)gestureRecognizer
-{
-    float pointerX = [gestureRecognizer locationInView:self.collectionView].x;
-    float pointerY = [gestureRecognizer locationInView:self.collectionView].y;
-    
-    for (UICollectionViewCell *cell in self.collectionView.visibleCells) {
-        float cellSX = cell.frame.origin.x;
-        float cellEX = cell.frame.origin.x + cell.frame.size.width;
-        float cellSY = cell.frame.origin.y;
-        float cellEY = cell.frame.origin.y + cell.frame.size.height;
-        
-        if (pointerX >= cellSX && pointerX <= cellEX && pointerY >= cellSY && pointerY <= cellEY)
-        {
-            NSIndexPath *touchOver = [self.collectionView indexPathForCell:cell];
-            
-            if (lastAccessed != touchOver)
-            {
-                if (cell.selected)
-                    [self deselectCellForCollectionView:self.collectionView atIndexPath:touchOver];
-                else
-                    [self selectCellForCollectionView:self.collectionView atIndexPath:touchOver];
-            }
-            
-            lastAccessed = touchOver;
-        }
-    }
-    
-    if (gestureRecognizer.state == UIGestureRecognizerStateEnded)
-    {
-        lastAccessed = nil;
-        self.collectionView.scrollEnabled = YES;
-    }
+    cell.backgroundView.alpha = selected ? kCellaActive : kCellaDeactive;
+    [cell viewWithTag:kSelectedTag].alpha = selected ? kCellaActive : kCellaHidden;
 }
 
 - (void)selectCellForCollectionView:(UICollectionView *)collection atIndexPath:(NSIndexPath *)indexPath

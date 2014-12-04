@@ -6,43 +6,39 @@
 //  Copyright (c) 2014 Endava. All rights reserved.
 //
 
-#import "StoreItem.h"
+#import "Item.h"
 
-@implementation StoreItem
-
-#pragma mark Initialization
+@implementation Item
 
 - (instancetype)init {
-    return [self initWithName:@"Just an StoreItem"];
+    return [self initWithName:@"Item Sample"];
 }
 
 - (instancetype)initWithName:(NSString *)name {
-    return [self initWithName:name atDate:[NSDate date] andFolder:[[NSUUID UUID] UUIDString]];
+    return [self initWithName:name withID:[[NSUUID UUID] UUIDString] atDate:[NSDate date]];
 }
 
-- (instancetype)initWithName:(NSString *)name atDate:(NSDate *)date andFolder:(NSString *)folder {
+- (instancetype)initWithName:(NSString *)name withID:(NSString *)ID atDate:(NSDate *)date {
     
     self = [super init];
     
     if (self) {
+        _ID = ID;
         _name = name;
         _dateCreated = date;
-        _itemFolder = folder;
     }
     
     return self;
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-    return [self initWithName:dictionary[@"name"] atDate:[NSDate dateWithTimeIntervalSince1970:[dictionary[@"dateCreated"] doubleValue]] andFolder:dictionary[@"itemFolder"]];
+    return [self initWithName:dictionary[@"name"] withID:dictionary[@"ID"] atDate:[NSDate dateWithTimeIntervalSince1970:[dictionary[@"dateCreated"] doubleValue]]];
 }
-
-#pragma mark Other forms
 
 - (NSMutableDictionary *)dictionaryRepresentation {
     return [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                             @"ID": _ID,
                                                              @"name": _name,
-                                                             @"itemFolder": _itemFolder,
                                                              @"dateCreated": [NSString stringWithFormat:@"%.0f", [_dateCreated timeIntervalSince1970]]
                                                              }];
 }

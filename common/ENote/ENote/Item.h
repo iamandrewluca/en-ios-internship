@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface StoreItem : NSObject
+@interface Item : NSObject
 
+@property (nonatomic, copy, readonly) NSString *ID;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *itemFolder;
 @property (nonatomic, copy, readonly) NSDate *dateCreated;
 
 - (instancetype)initWithName:(NSString *)name;

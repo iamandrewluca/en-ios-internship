@@ -13,6 +13,8 @@
 @property (nonatomic, readonly) NSString *documentDirectory;
 @property (nonatomic, readonly) NSString *indexFile;
 
+- (NSArray *)getValidItemsPathsInFolder:(NSString *)folder;
+
 + (instancetype)shared;
 
 @end

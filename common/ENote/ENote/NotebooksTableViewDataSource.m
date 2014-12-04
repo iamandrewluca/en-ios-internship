@@ -24,14 +24,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[NotebooksStore sharedStore] allStoreItems] count];
+    return [[[NotebooksStore sharedStore] allNotebooks] count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NotebooksTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NotebooksTableViewCell"];
-    Notebook *notebook = [[[NotebooksStore sharedStore] allStoreItems] objectAtIndex:indexPath.row];
+    Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
     
     cell.nameLabel.text = notebook.name;
     
@@ -40,7 +40,7 @@
     [formatter setTimeStyle:NSDateFormatterNoStyle];
     
     cell.datelabel.text = [formatter stringFromDate:notebook.dateCreated];
-    [cell.notesNumberLabel setTitle:[NSString stringWithFormat:@"%lu", [[notebook.notesStore allStoreItems] count]] forState:UIControlStateNormal];
+    [cell.notesNumberLabel setTitle:[NSString stringWithFormat:@"%lu", [notebook.notesIDs count]] forState:UIControlStateNormal];
     
     return cell;
 }
@@ -49,9 +49,9 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        Notebook *notebook = [[[NotebooksStore sharedStore] allStoreItems] objectAtIndex:indexPath.row];
+        Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
         
-        [[NotebooksStore sharedStore] removeStoreItem:notebook];
+        [[NotebooksStore sharedStore] removeNotebook:notebook];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
