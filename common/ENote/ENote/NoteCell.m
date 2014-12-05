@@ -14,12 +14,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        self.nameLabel = [[UILabel alloc] initWithFrame:self.bounds];
-        self.nameLabel.textAlignment = NSTextAlignmentCenter;
-        self.nameLabel.textColor = [UIColor whiteColor];
-        [self.contentView addSubview:self.nameLabel];
-        
         self.backgroundColor = [UIColor colorWithRed:235.0/255.0 green:134.0/255.0 blue:13.0/255.0 alpha:1.0];
         self.layer.borderColor = [UIColor darkGrayColor].CGColor;
         self.layer.borderWidth = 1.5f;

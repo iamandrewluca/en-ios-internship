@@ -15,14 +15,6 @@
 #import "Note.h"
 #import "NotebooksStore.h"
 
-static int const kSelectedTag = 100;
-static int const kCellSize = 99;
-static int const kTextLabelHeight = 20;
-static double const kCellaActive = 1.0;
-static double const kCellaDeactive = 0.3;
-static double const kCellaHidden = 0.0;
-static double const kDefaultFontSize = 10.0;
-
 static NSString * const NoteCellIdentifier = @"NoteCell";
 
 @interface NotesCollectionViewController () {
@@ -46,7 +38,8 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     self.collectionView.backgroundColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
 
     // Register cell and title classes with the collection view
-    [self.collectionView registerClass:[NoteCell class] forCellWithReuseIdentifier:NoteCellIdentifier];
+    UINib *nib = [UINib nibWithNibName:@"NoteCell" bundle:nil];
+    [self.collectionView registerNib:nib forCellWithReuseIdentifier:NoteCellIdentifier];
     [self.collectionView setAllowsMultipleSelection:YES];
     
     // Long press for entering editing mode
@@ -114,10 +107,25 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     
     if (!editing) {
         self.navigationItem.rightBarButtonItem = addNote;
+        
+        for (int i = 0; i < [self.collectionView numberOfSections]; i++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:i];
+            UICollectionViewCell *noteCell = [self.collectionView cellForItemAtIndexPath:indexPath];
+            ((NoteCell *)noteCell).checked.hidden = YES;
+        }
+        
         [self deleteNotes];
-    } else {
+    }
+    else
+    {
         self.editButtonItem.image = [UIImage imageNamed:@"trash"];
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
+        
+        for (int i = 0; i < [self.collectionView numberOfSections]; i++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:i];
+            UICollectionViewCell *noteCell = [self.collectionView cellForItemAtIndexPath:indexPath];
+            ((NoteCell *)noteCell).checked.hidden = NO;
+        }
     }
 }
 
@@ -146,29 +154,16 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NoteCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteCellIdentifier forIndexPath:indexPath];
-    
     noteCell.nameLabel.text = [[[_notesStore allNotes] objectAtIndex:indexPath.section] name];
     
-    if (![noteCell viewWithTag:kSelectedTag])
-    {
-        UILabel *selected = [[UILabel alloc] initWithFrame:CGRectMake(0, kCellSize - kTextLabelHeight, kCellSize, kTextLabelHeight)];
-        selected.backgroundColor = [UIColor lightGrayColor];
-        selected.textColor = [UIColor blackColor];
-        selected.text = @"SELECTED";
-        selected.textAlignment = NSTextAlignmentCenter;
-        selected.font = [UIFont systemFontOfSize:kDefaultFontSize];
-        selected.tag = kSelectedTag;
-        selected.alpha = kCellaHidden;
-        
-        [noteCell.contentView addSubview:selected];
-    }
+    //noteCell.layer.borderWidth = 1.5f;
+    //noteCell.layer.borderColor = [UIColor darkGrayColor].CGColor;
     
-    [[noteCell viewWithTag:kSelectedTag] setAlpha:kCellaHidden];
-    noteCell.backgroundView.alpha = kCellaDeactive;
+    noteCell.layer.shadowColor = [UIColor blackColor].CGColor;
+    noteCell.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    noteCell.layer.shadowRadius = 4.0f;
+    noteCell.layer.shadowOpacity = 0.5f;
     
-    // highlight the selected cell
-    bool cellSelected = [selectedIdx objectForKey:[NSString stringWithFormat:@"%li", indexPath.section]];
-    [self setCellSelection:noteCell selected:cellSelected];
     return noteCell;
 }
 
@@ -178,7 +173,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
         
         Note *note = [[_notesStore allNotes] objectAtIndex:[_selectedItems[i] section]];
         [_notesStore removeNote:note];
-        
+
     }
 
     [self.selectedItems removeAllObjects];
@@ -193,13 +188,9 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     
     if (self.editing) {
-        
         [self.selectedItems addObject:indexPath];
-        
-        
-        [self setCellSelection:cell selected:YES];
-    }
-    else {
+         ((NoteCell *)cell).checked.image = [UIImage imageNamed:@"checked"];
+    } else {
         NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
         Note *note = [[_notesStore allNotes] objectAtIndex:indexPath.section];
         nvc.note = note;
@@ -214,7 +205,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
         UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
         
         [self.selectedItems removeObject:indexPath];
-        [self setCellSelection:cell selected:NO];
+        ((NoteCell *)cell).checked.image = [UIImage imageNamed:@"unchecked"];
     }
 }
 
@@ -223,42 +214,14 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     return YES;
 }
 
-#pragma mark - Cell selection module
-- (void)setCellSelection:(UICollectionViewCell *)cell selected:(bool)selected
-{
-    cell.backgroundView.alpha = selected ? kCellaActive : kCellaDeactive;
-    [cell viewWithTag:kSelectedTag].alpha = selected ? kCellaActive : kCellaHidden;
-}
-
-- (void)selectCellForCollectionView:(UICollectionView *)collection atIndexPath:(NSIndexPath *)indexPath
-{
-    [collection selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-    [self collectionView:collection didSelectItemAtIndexPath:indexPath];
-}
-
-- (void)deselectCellForCollectionView:(UICollectionView *)collection atIndexPath:(NSIndexPath *)indexPath
-{
-    [collection deselectItemAtIndexPath:indexPath animated:YES];
-    [self collectionView:collection didDeselectItemAtIndexPath:indexPath];
-}
-
-
-
 #pragma mark - View Rotation
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                 duration:(NSTimeInterval)duration
 {
     if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
         self.notesLayout.numberOfColumns = 3;
-        
-        // handle insets for iPhone 4 or 5
-        CGFloat sideInset = [UIScreen mainScreen].preferredMode.size.width == 1136.0f ? 45.0f : 25.0f;
-        
-        self.notesLayout.itemInsets = UIEdgeInsetsMake(22.0f, sideInset, 13.0f, sideInset);
-        
     } else {
         self.notesLayout.numberOfColumns = 2;
-        self.notesLayout.itemInsets = UIEdgeInsetsMake(22.0f, 22.0f, 13.0f, 22.0f);
     }
 }
 

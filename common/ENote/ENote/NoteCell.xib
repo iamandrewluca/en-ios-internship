@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NoteCell" id="XhH-x9-exA" customClass="NoteCell">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Name Name Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rse-Zh-lfD">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="21"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="unchecked" translatesAutoresizingMaskIntoConstraints="NO" id="7pi-WO-a1N">
+                        <rect key="frame" x="68" y="68" width="24" height="24"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" red="0.92156862745098034" green="0.52549019607843139" blue="0.050980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Rse-Zh-lfD" firstAttribute="leading" secondItem="XhH-x9-exA" secondAttribute="leading" id="HnQ-8x-yXk"/>
+                <constraint firstItem="Rse-Zh-lfD" firstAttribute="top" secondItem="XhH-x9-exA" secondAttribute="top" id="veW-Pt-t21"/>
+                <constraint firstAttribute="trailing" secondItem="Rse-Zh-lfD" secondAttribute="trailing" id="zM4-eQ-9d7"/>
+            </constraints>
+            <size key="customSize" width="124" height="124"/>
+            <connections>
+                <outlet property="checked" destination="7pi-WO-a1N" id="Nvn-RL-op0"/>
+                <outlet property="nameLabel" destination="Rse-Zh-lfD" id="Xbk-zD-NbA"/>
+            </connections>
+            <point key="canvasLocation" x="-487" y="-56"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="unchecked" width="42" height="42"/>
+    </resources>
+</document>

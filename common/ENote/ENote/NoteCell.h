@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface NoteCell : UICollectionViewCell
-@property (nonatomic) UILabel *nameLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *checked;
+
 @end

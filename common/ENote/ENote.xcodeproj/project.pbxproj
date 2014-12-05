@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6100EA151A31C53800AA6A4B /* NoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6100EA141A31C53800AA6A4B /* NoteCell.xib */; };
 		6150D0A11A14C03300E4590C /* NotesDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6150D09F1A14C03300E4590C /* NotesDetailViewController.m */; };
 		6150D0A21A14C03300E4590C /* NotesDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6150D0A01A14C03300E4590C /* NotesDetailViewController.xib */; };
 		6155EC4D1A137C3E00BE143B /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 6155EC4B1A137C3E00BE143B /* Note.m */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6100EA141A31C53800AA6A4B /* NoteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteCell.xib; sourceTree = "<group>"; };
 		6150D09E1A14C03300E4590C /* NotesDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesDetailViewController.h; sourceTree = "<group>"; };
 		6150D09F1A14C03300E4590C /* NotesDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesDetailViewController.m; sourceTree = "<group>"; };
 		6150D0A01A14C03300E4590C /* NotesDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesDetailViewController.xib; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				6190C22B1A124EBA0046F016 /* NotesLayout.m */,
 				6190C22E1A1254920046F016 /* NoteCell.h */,
 				6190C22F1A1254920046F016 /* NoteCell.m */,
+				6100EA141A31C53800AA6A4B /* NoteCell.xib */,
 			);
 			name = NotesLayout;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6100EA151A31C53800AA6A4B /* NoteCell.xib in Resources */,
 				A7D9ACC41A1357A900B8376A /* NotebooksTableViewController.xib in Resources */,
 				A721830F1A10E950006E47E3 /* LaunchScreen.xib in Resources */,
 				6190C2281A124CE70046F016 /* NotesCollectionViewController.xib in Resources */,
