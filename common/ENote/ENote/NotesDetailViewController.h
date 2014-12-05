@@ -10,14 +10,15 @@
 #import "Note.h"
 #import "NotesStore.h"
 
-
 @interface NotesDetailViewController : UIViewController <UIActionSheetDelegate>
 
 @property (nonatomic) Note *note;
 @property (nonatomic) NotesStore *notesStore;
 
-@property (nonatomic, strong) IBOutlet UITextView *noteTextView;
-@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
+@property (weak, nonatomic) IBOutlet UITextField *addTagTextField;
+@property (weak, nonatomic) IBOutlet UITextView *addNotesTextView;
+@property (weak, nonatomic) IBOutlet UICollectionView *tagsCollectionView;
+
 
 @end
  

@@ -89,7 +89,7 @@ static NSString * const NoteLayoutCellKind = @"NoteCell";
     NSMutableDictionary *cellLayoutInfo = [NSMutableDictionary dictionary];
     
     NSInteger sectionCount = [self.collectionView numberOfSections];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    NSIndexPath *indexPath;
     
     for (NSInteger section = 0; section < sectionCount; section++) {
         NSInteger itemCount = [self.collectionView numberOfItemsInSection:section];

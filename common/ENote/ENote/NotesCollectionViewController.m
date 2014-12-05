@@ -19,7 +19,7 @@ static int const kSelectedTag = 100;
 static int const kCellSize = 99;
 static int const kTextLabelHeight = 20;
 static double const kCellaActive = 1.0;
-static double const kCellaDeactive = 0.3;
+static double const kCellaDeadctive = 0.3;
 static double const kCellaHidden = 0.0;
 static double const kDefaultFontSize = 10.0;
 
@@ -164,7 +164,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     }
     
     [[noteCell viewWithTag:kSelectedTag] setAlpha:kCellaHidden];
-    noteCell.backgroundView.alpha = kCellaDeactive;
+    noteCell.backgroundView.alpha = kCellaDeadctive;
     
     // highlight the selected cell
     bool cellSelected = [selectedIdx objectForKey:[NSString stringWithFormat:@"%li", indexPath.section]];
@@ -173,15 +173,13 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 }
 
 - (void)deleteNotes {
-    
-    for (int i = 0; i < self.selectedItems.count; i++) {
-        
-        Note *note = [[_notesStore allNotes] objectAtIndex:[_selectedItems[i] section]];
-        [_notesStore removeNote:note];
-        
-    }
 
-    [self.selectedItems removeAllObjects];
+    for (int i = 0; i < [_selectedItems count]; i++) {
+        
+        [_notesStore removeNote:_selectedItems[i]];
+    }
+    
+    [_selectedItems removeAllObjects];
     [self.collectionView reloadData];
 }
 
@@ -193,9 +191,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     
     if (self.editing) {
-        
-        [self.selectedItems addObject:indexPath];
-        
+        [self.selectedItems addObject:[[_notesStore allNotes] objectAtIndex:indexPath.section]];
         
         [self setCellSelection:cell selected:YES];
     }
@@ -213,7 +209,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     if (self.editing) {
         UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
         
-        [self.selectedItems removeObject:indexPath];
+        [self.selectedItems removeObject:[[_notesStore allNotes] objectAtIndex:indexPath.section]];
         [self setCellSelection:cell selected:NO];
     }
 }
@@ -226,7 +222,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 #pragma mark - Cell selection module
 - (void)setCellSelection:(UICollectionViewCell *)cell selected:(bool)selected
 {
-    cell.backgroundView.alpha = selected ? kCellaActive : kCellaDeactive;
+    cell.backgroundView.alpha = selected ? kCellaActive : kCellaDeadctive;
     [cell viewWithTag:kSelectedTag].alpha = selected ? kCellaActive : kCellaHidden;
 }
 

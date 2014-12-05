@@ -7,40 +7,140 @@
 //
 
 #import "NotesDetailViewController.h"
-#import "NotesCollectionViewController.h"
-#import "Note.h"
+#import "TagCollectionViewCell.h"
+#import "Tag.h"
+#import "TagsStore.h"
 
-@interface NotesDetailViewController () <UITextViewDelegate>
-@property (weak, nonatomic) UINavigationBar *navigationBar;
-@property (nonatomic, assign) BOOL delete;
+@interface NotesDetailViewController () <UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate>
+
+@property (nonatomic) BOOL noteWasDeleted;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tagsCollectionViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tagsCollectionViewBottomSpace;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomSpace;
+
 @end
 
 @implementation NotesDetailViewController
+{
+    TagCollectionViewCell *_sizingCell;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == _addTagTextField) {
+        
+        if (![textField.text isEqualToString:@""]) {
+            Tag *tag = [[TagsStore sharedStore] createTagWithName:textField.text];
+            
+            BOOL addedTag = [_note addTagID:tag.ID];
+            
+            if (addedTag) {
+                textField.text = @"";
+                [_notesStore saveNote:_note];
+                [_tagsCollectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
+                [textField resignFirstResponder];
+            }
+        }
+    }
+    
+    return NO;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.navigationItem.title = _note.name;
-    self.titleTextField.text = _note.name;
-    self.noteTextView.text = _note.text;
     
-    self.view.backgroundColor = [UIColor colorWithWhite:0.75f alpha:1.0f];
-    
-    // noteTextView customization
-    self.noteTextView.backgroundColor = [UIColor whiteColor];
-    self.noteTextView.layer.borderColor = [UIColor blackColor].CGColor;
-    self.noteTextView.layer.borderWidth = 1.0f;
-    self.noteTextView.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.noteTextView.layer.shadowRadius = 18.0f;
-    self.noteTextView.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
-    self.noteTextView.layer.shadowOpacity = 0.8f;
-    self.noteTextView.layer.cornerRadius = 4.0f;
+    if (![_note.name isEqualToString:@""]) {
+        self.addNotesTextView.text = _note.text;
+    }
+
+    _addTagTextField.delegate = self;
+    _addTagTextField.returnKeyType = UIReturnKeyDone;
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu"]
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
                                                                  action:@selector(actioSheetMenu)];
     self.navigationItem.rightBarButtonItem = menuButton;
+    
+    
+    // Tag registering
+    UINib *cellNib = [UINib nibWithNibName:@"TagCollectionViewCell" bundle:nil];
+    [self.tagsCollectionView registerNib:cellNib forCellWithReuseIdentifier:@"TagCell"];
+    
+    // get a cell as template for sizing
+    _sizingCell = [[cellNib instantiateWithOwner:nil options:nil] objectAtIndex:0];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeNoteTextView:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeNoteTextView:) name:UIKeyboardDidHideNotification object:nil];
+}
+
+- (void)resizeNoteTextView:(NSNotification *)notification
+{
+    if (notification.name == UIKeyboardDidShowNotification) {
+        NSDictionary *keyboardInfo = [notification userInfo];
+        NSValue *keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
+        CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
+        
+        _textViewBottomSpace.constant = 8 + keyboardFrameBeginRect.size.height;
+        
+    } else if (notification.name == UIKeyboardDidHideNotification) {
+        _textViewBottomSpace.constant = 8;
+    }
+    
+    
+    
+    
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *tagID = [_note.tagsIDs objectAtIndex:indexPath.row];
+    [_note removeTagID:tagID];
+    
+    [self.tagsCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+    
+//    if ([_tagsCollectionView numberOfItemsInSection:0] == 0) {
+//        
+//        [UIView animateWithDuration:0.5f animations:^{
+//            _tagsCollectionViewHeight.constant = 0;
+//            _tagsCollectionViewBottomSpace.constant = 0;
+//            
+//            [self.view layoutIfNeeded];
+//        }];
+//    }
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [_note.tagsIDs count];
+}
+
+- (void)_configureCell:(TagCollectionViewCell *)cell forIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *tagID = [[_note tagsIDs] objectAtIndex:indexPath.row];
+    
+    Tag *tag = [[TagsStore sharedStore] getTagWithID:tagID];
+    
+    cell.label.text = tag.name;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    TagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TagCell" forIndexPath:indexPath];
+    
+    [self _configureCell:cell forIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self _configureCell:_sizingCell forIndexPath:indexPath];
+    
+    return [_sizingCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
 }
 
 - (void)actioSheetMenu {
@@ -113,11 +213,9 @@
     }
     if (actionSheet.tag == 200) {
         if(buttonIndex == 0) {
-            self.delete = YES;
-            if (self.delete == YES) {
-                [self.navigationController popViewControllerAnimated:TRUE];
-                [_notesStore removeNote:self.note];
-            }
+            self.noteWasDeleted = YES;
+            [self.navigationController popViewControllerAnimated:TRUE];
+            [_notesStore removeNote:self.note];
         }
     }
 }
@@ -152,10 +250,8 @@
                                                    name:UIContentSizeCategoryDidChangeNotification
                                                  object:nil];
     
-    self.note.name = self.titleTextField.text;
-    self.note.text = self.noteTextView.text;
-    
-    if (self.delete == NO) {
+    if (self.noteWasDeleted == NO) {
+        self.note.text = self.addNotesTextView.text;
         [_notesStore saveNote:_note];
     }
 }
@@ -166,7 +262,7 @@
 }
 
 -(void)usePreferredFonts {
-    self.noteTextView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    self.addNotesTextView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
 }
 
 @end

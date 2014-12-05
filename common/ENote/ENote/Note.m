@@ -16,8 +16,14 @@
 
 @implementation Note
 
-- (void)addTagID:(NSString *)ID {
-    [_privateTagsIDs addObject:ID];
+- (BOOL)addTagID:(NSString *)ID {
+    
+    if ([_privateTagsIDs indexOfObject:ID] == NSNotFound) {
+        [_privateTagsIDs insertObject:ID atIndex:0];
+        return YES;
+    }
+
+    return NO;
 }
 
 - (void)removeTagID:(NSString *)ID {

@@ -1,13 +1,15 @@
 //
 //  TagCollectionViewCell.h
-//  ENote
+//  CustomCollectionViewLayout
 //
-//  Created by Andrei Luca on 12/4/14.
-//  Copyright (c) 2014 Endava. All rights reserved.
+//  Created by Oliver Drobnik on 30.08.13.
+//  Copyright (c) 2013 Cocoanetics. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 @interface TagCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic, weak) IBOutlet UILabel *label;
 
 @end

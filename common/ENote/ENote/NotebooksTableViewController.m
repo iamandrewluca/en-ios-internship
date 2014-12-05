@@ -81,7 +81,7 @@
     [super viewWillAppear:animated];
 
     if (selectedNotebookIndexPath) {
-        [self.tableView reloadRowsAtIndexPaths:@[selectedNotebookIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView reloadRowsAtIndexPaths:@[selectedNotebookIndexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
