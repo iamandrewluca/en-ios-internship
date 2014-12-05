@@ -66,7 +66,7 @@
     actionSheet.tag = 200;
 }
 
-/*
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(actionSheet.tag == 100 && buttonIndex == 1) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Rename note title"
@@ -101,7 +101,7 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
 }
-*/
+
  
 -(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if (actionSheet.tag == 100 && buttonIndex == 0) {
@@ -152,7 +152,7 @@
                                                    name:UIContentSizeCategoryDidChangeNotification
                                                  object:nil];
     
-    self.note.name = self.titleTextField.text;
+    self.note.name = self.navigationItem.title;
     self.note.text = self.noteTextView.text;
     
     if (self.delete == NO) {
