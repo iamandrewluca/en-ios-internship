@@ -12,7 +12,9 @@
 #import "NotebooksTableViewDataSource.h"
 #import "NotesCollectionViewController.h"
 
-@interface NotebooksTableViewController () <UITableViewDelegate>
+@interface NotebooksTableViewController () <UITableViewDelegate> {
+    NSIndexPath *selectedNotebookIndexPath;
+}
 
 @property (nonatomic) NotebooksTableViewDataSource *dataSource;
 
@@ -77,7 +79,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
+
+    if (selectedNotebookIndexPath) {
+        [self.tableView reloadRowsAtIndexPaths:@[selectedNotebookIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
 }
 
 #pragma mark TableView Delegate
@@ -127,6 +132,8 @@
         
         Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
         notes.notesStore = [[NotebooksStore sharedStore] notesStoreForNotebook:notebook];
+        
+        selectedNotebookIndexPath = indexPath;
         
         [[self navigationController] pushViewController:notes animated:YES];
     }

@@ -168,15 +168,13 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 }
 
 - (void)deleteNotes {
-    
-    for (int i = 0; i < self.selectedItems.count; i++) {
+
+    for (int i = 0; i < [_selectedItems count]; i++) {
         
-        Note *note = [[_notesStore allNotes] objectAtIndex:[_selectedItems[i] section]];
-        [_notesStore removeNote:note];
-
+        [_notesStore removeNote:_selectedItems[i]];
     }
-
-    [self.selectedItems removeAllObjects];
+    
+    [_selectedItems removeAllObjects];
     [self.collectionView reloadData];
 }
 
@@ -188,9 +186,11 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     
     if (self.editing) {
-        [self.selectedItems addObject:indexPath];
-         ((NoteCell *)cell).checked.image = [UIImage imageNamed:@"checked"];
-    } else {
+        [self.selectedItems addObject:[[_notesStore allNotes] objectAtIndex:indexPath.section]];
+        
+        ((NoteCell *)cell).checked.image = [UIImage imageNamed:@"checked"];
+    }
+    else {
         NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
         Note *note = [[_notesStore allNotes] objectAtIndex:indexPath.section];
         nvc.note = note;
@@ -204,7 +204,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     if (self.editing) {
         UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
         
-        [self.selectedItems removeObject:indexPath];
+        [self.selectedItems removeObject:[[_notesStore allNotes] objectAtIndex:indexPath.section]];
         ((NoteCell *)cell).checked.image = [UIImage imageNamed:@"unchecked"];
     }
 }

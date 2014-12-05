@@ -18,7 +18,7 @@
 
 - (instancetype)initWithName:(NSString *)name forNotebookID:(NSString *)ID;
 
-- (void)addTagID:(NSString *)ID;
+- (BOOL)addTagID:(NSString *)ID;
 - (void)removeTagID:(NSString *)ID;
 
 @end

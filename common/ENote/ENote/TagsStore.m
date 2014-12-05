@@ -29,7 +29,7 @@
     Tag *tag = [[Tag alloc] initWithName:name];
     
     [self addTag:tag];
-    
+    [self saveTags];
     return tag;
 }
 
