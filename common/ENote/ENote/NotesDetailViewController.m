@@ -25,6 +25,23 @@
     TagCollectionViewCell *_sizingCell;
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeNoteTextView:) name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeNoteTextView:) name:UIKeyboardDidHideNotification object:nil];
+    }
+    
+    return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField == _addTagTextField) {
@@ -74,9 +91,6 @@
     // get a cell as template for sizing
     _sizingCell = [[cellNib instantiateWithOwner:nil options:nil] objectAtIndex:0];
     
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeNoteTextView:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeNoteTextView:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)resizeNoteTextView:(NSNotification *)notification
