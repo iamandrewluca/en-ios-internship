@@ -30,12 +30,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if ([tableView numberOfRowsInSection:0] > 0) {
+        if (![[[tableView.backgroundView subviews] firstObject] isHidden]) {
+            [[[tableView.backgroundView subviews] firstObject] setHidden:YES];
+        }
+    }
+    
     NotebooksTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NotebooksTableViewCell"];
 
     Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
     
     UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, cell.bounds.size.height - 1, tableView.bounds.size.width, 1)];
-    bottomLineView.backgroundColor = [UIColor colorWithRed:235.0/255.0 green:134.0/255.0 blue:13.0/255.0 alpha:1.0];
+    bottomLineView.backgroundColor = [UIColor lightGrayColor];
     [cell.contentView addSubview:bottomLineView];
     
     cell.nameLabel.text = notebook.name;
@@ -61,20 +67,23 @@
     }
     
     [cell.notesNumberLabel setTitle:[NSString stringWithFormat:@"%lu", [notebook.notesIDs count]] forState:UIControlStateNormal];
-    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
         Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
         
         [[NotebooksStore sharedStore] removeNotebook:notebook];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
+        if ([tableView numberOfRowsInSection:0] == 0) {
+            if ([[[tableView.backgroundView subviews] firstObject] isHidden]) {
+                [[[tableView.backgroundView subviews] firstObject] setHidden:NO];
+            }
+        }
     }
 }
 

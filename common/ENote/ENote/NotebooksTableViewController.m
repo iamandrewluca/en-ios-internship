@@ -14,6 +14,7 @@
 
 @interface NotebooksTableViewController () <UITableViewDelegate> {
     NSIndexPath *selectedNotebookIndexPath;
+    UIImageView *emptyTableViewBackground;
 }
 
 @property (nonatomic) NotebooksTableViewDataSource *dataSource;
@@ -60,21 +61,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Setup Data Source
     self.dataSource = [[NotebooksTableViewDataSource alloc] init];
-    
     self.tableView.dataSource = self.dataSource;
     
+    // Setup navigationItem left, center, right items
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                target:self
                                                                                action:@selector(addNewNotebook)];
-    
-    self.navigationItem.title = @"Notebooks";
     self.navigationItem.rightBarButtonItem = addButton;
+    self.navigationItem.title = @"Notebooks";
+
     
+    // Register Cell for TableView
     UINib *nib = [UINib nibWithNibName:@"NotebooksTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"NotebooksTableViewCell"];
+    
+    // Setup tableView background pattern
+    UIImage *pattern = [UIImage imageNamed:@"BackgroundPattern"];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:pattern];
+    
+    // Prepare tableView empty background
+    UIImage *image = [UIImage imageNamed:@"addSomeNotebooks"];
+    emptyTableViewBackground = [[UIImageView alloc] initWithImage:image];
+    
+    self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.frame];
+    
+    [self.tableView.backgroundView addSubview:emptyTableViewBackground];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    // Center emptyTableViewBackground every time layout will change
+    [emptyTableViewBackground setCenter:CGPointMake(self.tableView.center.x, self.tableView.center.y)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -137,10 +159,6 @@
         
         [[self navigationController] pushViewController:notes animated:YES];
     }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 44.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
