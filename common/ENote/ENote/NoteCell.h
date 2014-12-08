@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *checked;
+@property (weak, nonatomic) IBOutlet UIImageView *thumbnailImage;
 
 @end
