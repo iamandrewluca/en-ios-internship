@@ -11,5 +11,6 @@
 @interface TagCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @end

@@ -10,19 +10,12 @@
 
 @implementation TagCollectionViewCell
 
-- (void)drawRect:(CGRect)rect
+- (void)awakeFromNib
 {
-	// inset by half line width to avoid cropping where line touches frame edges
-	CGRect insetRect = CGRectInset(rect, 0.5, 0.5);
-	UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:insetRect cornerRadius:rect.size.height/2.0];
-	
-	// white background
-	[[UIColor whiteColor] setFill];
-	[path fill];
-
-	// red outline
-//	[[UIColor redColor] setStroke];
-//	[path stroke];
+    [super awakeFromNib];
+    
+    _deleteButton.transform = CGAffineTransformRotate(_deleteButton.transform, M_PI / 4);
+    self.layer.cornerRadius = 15.0f;
 }
 
 @end

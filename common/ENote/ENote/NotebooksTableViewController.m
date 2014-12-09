@@ -96,7 +96,7 @@
     [super viewDidLayoutSubviews];
     
     // Center emptyTableViewBackground every time layout will change
-    [emptyTableViewBackground setCenter:CGPointMake(self.tableView.center.x, self.tableView.center.y)];
+    [emptyTableViewBackground setCenter:CGPointMake(self.tableView.center.x, self.tableView.center.y - emptyTableViewBackground.image.size.height / 2)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
