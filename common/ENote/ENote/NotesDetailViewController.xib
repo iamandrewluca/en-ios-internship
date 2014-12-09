@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14C78c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C78c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotesDetailViewController">
             <connections>
                 <outlet property="addNotesTextView" destination="T8x-fQ-2Vh" id="lPG-wf-DTD"/>
-                <outlet property="addTagTextField" destination="mxm-oj-A66" id="rsl-ex-aG2"/>
+                <outlet property="searchBar" destination="ad8-6S-HD8" id="xNy-fn-cs3"/>
+                <outlet property="searchDisplayController" destination="1ud-qF-Ldf" id="Lrf-fl-Pms"/>
                 <outlet property="tagsCollectionView" destination="TdD-ke-QJv" id="5ee-FF-cQ1"/>
-                <outlet property="tagsCollectionViewBottomSpace" destination="nfH-L5-Ijw" id="QTa-8B-EzY"/>
-                <outlet property="tagsCollectionViewHeight" destination="PAZ-hz-VbN" id="8KV-pq-gpZ"/>
                 <outlet property="textViewBottomSpace" destination="DPP-Gu-ePw" id="rUs-5Y-NcO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,25 +19,26 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a tag..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mxm-oj-A66">
-                    <rect key="frame" x="8" y="8" width="304" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add some notes..." translatesAutoresizingMaskIntoConstraints="NO" id="T8x-fQ-2Vh">
-                    <rect key="frame" x="8" y="77" width="304" height="483"/>
+                    <rect key="frame" x="8" y="78" width="304" height="482"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search or Add tags..." translatesAutoresizingMaskIntoConstraints="NO" id="ad8-6S-HD8">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="YGB-D3-XNM"/>
+                    </connections>
+                </searchBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="TdD-ke-QJv">
-                    <rect key="frame" x="0.0" y="46" width="320" height="23"/>
+                    <rect key="frame" x="0.0" y="44" width="320" height="26"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="23" id="LY3-JZ-Bep"/>
-                        <constraint firstAttribute="height" constant="23" id="PAZ-hz-VbN"/>
+                        <constraint firstAttribute="height" constant="26" id="o1F-0U-VcM"/>
                     </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ya9-EP-P2B">
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Ya9-EP-P2B">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -52,19 +52,27 @@
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
-                <constraint firstItem="mxm-oj-A66" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="21j-gg-adw"/>
+                <constraint firstItem="ad8-6S-HD8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ap9-jV-g7t"/>
                 <constraint firstAttribute="bottom" secondItem="T8x-fQ-2Vh" secondAttribute="bottom" constant="8" id="DPP-Gu-ePw"/>
-                <constraint firstItem="mxm-oj-A66" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="I5f-Bc-Diz"/>
+                <constraint firstItem="ad8-6S-HD8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Zlc-9f-ooT"/>
+                <constraint firstAttribute="trailing" secondItem="TdD-ke-QJv" secondAttribute="trailing" id="d7J-QL-xUE"/>
                 <constraint firstAttribute="trailing" secondItem="T8x-fQ-2Vh" secondAttribute="trailing" constant="8" id="eB5-O0-1XN"/>
-                <constraint firstAttribute="trailing" secondItem="mxm-oj-A66" secondAttribute="trailing" constant="8" id="eZk-fE-nYY"/>
-                <constraint firstItem="TdD-ke-QJv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mxZ-g6-lhm"/>
+                <constraint firstItem="TdD-ke-QJv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eFe-qo-kKf"/>
+                <constraint firstItem="TdD-ke-QJv" firstAttribute="top" secondItem="ad8-6S-HD8" secondAttribute="bottom" id="emk-S1-MuS"/>
+                <constraint firstAttribute="trailing" secondItem="ad8-6S-HD8" secondAttribute="trailing" id="kU2-6O-C4z"/>
                 <constraint firstItem="T8x-fQ-2Vh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="n4R-sp-3x2"/>
-                <constraint firstItem="T8x-fQ-2Vh" firstAttribute="top" secondItem="TdD-ke-QJv" secondAttribute="bottom" constant="8" id="nfH-L5-Ijw"/>
-                <constraint firstAttribute="trailing" secondItem="TdD-ke-QJv" secondAttribute="trailing" id="wV6-Pt-kzN"/>
-                <constraint firstItem="TdD-ke-QJv" firstAttribute="top" secondItem="mxm-oj-A66" secondAttribute="bottom" constant="8" id="xTG-Lf-cqa"/>
+                <constraint firstItem="T8x-fQ-2Vh" firstAttribute="top" secondItem="TdD-ke-QJv" secondAttribute="bottom" constant="8" id="p0l-UM-GCF"/>
             </constraints>
             <point key="canvasLocation" x="-86" y="459"/>
         </view>
+        <searchDisplayController id="1ud-qF-Ldf">
+            <connections>
+                <outlet property="delegate" destination="-1" id="Ity-Qh-tJK"/>
+                <outlet property="searchContentsController" destination="-1" id="hJh-I7-EkB"/>
+                <outlet property="searchResultsDataSource" destination="-1" id="G8U-A1-BXK"/>
+                <outlet property="searchResultsDelegate" destination="-1" id="5AD-kn-s0b"/>
+            </connections>
+        </searchDisplayController>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

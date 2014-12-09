@@ -15,10 +15,5 @@
 @property (nonatomic) Note *note;
 @property (nonatomic) NotesStore *notesStore;
 
-@property (weak, nonatomic) IBOutlet UITextField *addTagTextField;
-@property (weak, nonatomic) IBOutlet UITextView *addNotesTextView;
-@property (weak, nonatomic) IBOutlet UICollectionView *tagsCollectionView;
-
-
 @end
  

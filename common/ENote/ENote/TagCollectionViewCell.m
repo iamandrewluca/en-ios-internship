@@ -14,8 +14,13 @@
 {
     [super awakeFromNib];
     
-    _deleteButton.transform = CGAffineTransformRotate(_deleteButton.transform, M_PI / 4);
-    self.layer.cornerRadius = 15.0f;
+    if (rand() % 2 == 0) {
+        _deleteButton.transform = CGAffineTransformRotate(_deleteButton.transform, M_PI / 4);
+        _deleteButton.tintColor = [UIColor redColor];
+
+    }
+    
+    self.container.layer.cornerRadius = 12.0f;
 }
 
 @end

@@ -11,12 +11,15 @@
 #import "Tag.h"
 #import "TagsStore.h"
 
-@interface NotesDetailViewController () <UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate>
+@interface NotesDetailViewController () <UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
 
 @property (nonatomic) BOOL noteWasDeleted;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tagsCollectionViewHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tagsCollectionViewBottomSpace;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomSpace;
+@property (weak, nonatomic) IBOutlet UITextView *addNotesTextView;
+@property (weak, nonatomic) IBOutlet UICollectionView *tagsCollectionView;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
+@property (nonatomic) NSArray *foundTags;
 
 @end
 
@@ -30,6 +33,9 @@
     self = [super init];
     
     if (self) {
+        
+        _foundTags = [NSMutableArray new];
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeNoteTextView:) name:UIKeyboardDidShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeNoteTextView:) name:UIKeyboardDidHideNotification object:nil];
     }
@@ -42,25 +48,29 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    if (textField == _addTagTextField) {
+    if (![searchBar.text isEqualToString:@""]) {
+        Tag *tag = [[TagsStore sharedStore] createTagWithName:searchBar.text];
         
-        if (![textField.text isEqualToString:@""]) {
-            Tag *tag = [[TagsStore sharedStore] createTagWithName:textField.text];
-            
-            BOOL addedTag = [_note addTagID:tag.ID];
-            
-            if (addedTag) {
-                textField.text = @"";
-                [_notesStore saveNote:_note];
-                [_tagsCollectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
-                [textField resignFirstResponder];
-            }
+        BOOL addedTag = [_note addTagID:tag.ID];
+        
+        if (addedTag) {
+            searchBar.text = @"";
+            [_notesStore saveNote:_note];
+            [_tagsCollectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
+            [searchBar resignFirstResponder];
         }
     }
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    _foundTags = [[TagsStore sharedStore] tagsWhichContainText:searchText];
     
-    return NO;
+    if ([_foundTags count]) {
+        [self.tagsCollectionView reloadData];
+    }
 }
 
 - (void)viewDidLoad
@@ -68,12 +78,11 @@
     [super viewDidLoad];
     self.navigationItem.title = _note.name;
     
+    _addNotesTextView.layer.cornerRadius = 12.0f;
+    
     if (![_note.name isEqualToString:@""]) {
         self.addNotesTextView.text = _note.text;
     }
-
-    _addTagTextField.delegate = self;
-    _addTagTextField.returnKeyType = UIReturnKeyDone;
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu"]
                                                                   style:UIBarButtonItemStylePlain
@@ -81,7 +90,6 @@
                                                                  action:@selector(actioSheetMenu)];
     self.navigationItem.rightBarButtonItem = menuButton;
     
-    _addTagTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     _addNotesTextView.autocorrectionType = UITextAutocorrectionTypeNo;
     
     // Tag registering
@@ -91,6 +99,7 @@
     // get a cell as template for sizing
     _sizingCell = [[cellNib instantiateWithOwner:nil options:nil] objectAtIndex:0];
     
+    _searchBar.returnKeyType = UIReturnKeyDone;
 }
 
 - (void)resizeNoteTextView:(NSNotification *)notification
@@ -105,18 +114,15 @@
     } else if (notification.name == UIKeyboardDidHideNotification) {
         _textViewBottomSpace.constant = 8;
     }
-    
-    
-    
-    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *tagID = [_note.tagsIDs objectAtIndex:indexPath.row];
-    [_note removeTagID:tagID];
-    
-    [self.tagsCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+    NSLog(@"select");
+//    NSString *tagID = [_note.tagsIDs objectAtIndex:indexPath.row];
+//    [_note removeTagID:tagID];
+//    
+//    [self.tagsCollectionView deleteItemsAtIndexPaths:@[indexPath]];
     
 //    if ([_tagsCollectionView numberOfItemsInSection:0] == 0) {
 //        
@@ -131,20 +137,28 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [_note.tagsIDs count];
+    if ([_foundTags count] != 0) {
+        return [_foundTags count];
+    } else {
+        return [_note.tagsIDs count];
+    }
 }
 
 - (void)_configureCell:(TagCollectionViewCell *)cell forIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *tagID = [[_note tagsIDs] objectAtIndex:indexPath.row];
-    
-    Tag *tag = [[TagsStore sharedStore] getTagWithID:tagID];
-    
-    cell.label.text = tag.name;
+    if ([_foundTags count] != 0) {
+        Tag *tag = [_foundTags objectAtIndex:indexPath.row];
+        cell.label.text = tag.name;
+    } else {
+        NSString *tagID = [[_note tagsIDs] objectAtIndex:indexPath.row];
+        Tag *tag = [[TagsStore sharedStore] getTagWithID:tagID];
+        cell.label.text = tag.name;
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"cell");
     TagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TagCell" forIndexPath:indexPath];
     
     [self _configureCell:cell forIndexPath:indexPath];
@@ -154,15 +168,16 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"size");
     [self _configureCell:_sizingCell forIndexPath:indexPath];
     
-    return [_sizingCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return [_sizingCell systemLayoutSizeFittingSize:UILayoutFittingExpandedSize];
 }
 
 - (void)actioSheetMenu {
     
     [_addNotesTextView resignFirstResponder];
-    [_addTagTextField resignFirstResponder];
+    [_searchBar resignFirstResponder];
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"What do you want to do with the note?"
                                                              delegate:self

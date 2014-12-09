@@ -136,4 +136,17 @@
     }
 }
 
+- (NSArray *)tagsWhichContainText:(NSString *)text
+{
+    NSMutableArray *foundTags = [NSMutableArray new];
+    
+    for (Tag *tag in _allPrivateTags) {
+        if ([tag.name containsString:text]) {
+            [foundTags addObject:tag];
+        }
+    }
+    
+    return foundTags;
+}
+
 @end
