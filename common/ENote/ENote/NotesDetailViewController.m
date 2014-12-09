@@ -11,7 +11,7 @@
 #import "Tag.h"
 #import "TagsStore.h"
 
-@interface NotesDetailViewController () <UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
+@interface NotesDetailViewController () <TagCellDelegate, UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
 
 @property (nonatomic) BOOL noteWasDeleted;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomSpace;
@@ -48,6 +48,32 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)buttonPressed:(UIButton *)button inCell:(TagCollectionViewCell *)cell
+{
+    //    NSString *tagID = [_note.tagsIDs objectAtIndex:indexPath.row];
+    //    [_note removeTagID:tagID];
+    //
+    //    [self.tagsCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+    
+    //    if ([_tagsCollectionView numberOfItemsInSection:0] == 0) {
+    //
+    //        [UIView animateWithDuration:0.5f animations:^{
+    //            _tagsCollectionViewHeight.constant = 0;
+    //            _tagsCollectionViewBottomSpace.constant = 0;
+    //
+    //            [self.view layoutIfNeeded];
+    //        }];
+    //    }
+    if (button.tintColor == [UIColor redColor]) {
+        NSIndexPath *indexPath = [_tagsCollectionView indexPathForCell:cell];
+        
+        NSString *tagID = [_note.tagsIDs objectAtIndex:indexPath.row];
+        [_note removeTagID:tagID];
+        [_notesStore saveNote:_note];
+        [_tagsCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+    }
+}
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     if (![searchBar.text isEqualToString:@""]) {
@@ -78,7 +104,7 @@
     [super viewDidLoad];
     self.navigationItem.title = _note.name;
     
-    _addNotesTextView.layer.cornerRadius = 12.0f;
+    _addNotesTextView.layer.cornerRadius = 5.0f;
     
     if (![_note.name isEqualToString:@""]) {
         self.addNotesTextView.text = _note.text;
@@ -116,25 +142,6 @@
     }
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"select");
-//    NSString *tagID = [_note.tagsIDs objectAtIndex:indexPath.row];
-//    [_note removeTagID:tagID];
-//    
-//    [self.tagsCollectionView deleteItemsAtIndexPaths:@[indexPath]];
-    
-//    if ([_tagsCollectionView numberOfItemsInSection:0] == 0) {
-//        
-//        [UIView animateWithDuration:0.5f animations:^{
-//            _tagsCollectionViewHeight.constant = 0;
-//            _tagsCollectionViewBottomSpace.constant = 0;
-//            
-//            [self.view layoutIfNeeded];
-//        }];
-//    }
-}
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if ([_foundTags count] != 0) {
@@ -158,8 +165,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"cell");
     TagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TagCell" forIndexPath:indexPath];
+    
+    cell.delegate = self;
     
     [self _configureCell:cell forIndexPath:indexPath];
     
@@ -168,7 +176,6 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"size");
     [self _configureCell:_sizingCell forIndexPath:indexPath];
     
     return [_sizingCell systemLayoutSizeFittingSize:UILayoutFittingExpandedSize];

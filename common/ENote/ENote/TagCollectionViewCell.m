@@ -14,13 +14,14 @@
 {
     [super awakeFromNib];
     
-    if (rand() % 2 == 0) {
-        _deleteButton.transform = CGAffineTransformRotate(_deleteButton.transform, M_PI / 4);
-        _deleteButton.tintColor = [UIColor redColor];
-
-    }
-    
+    _deleteButton.transform = CGAffineTransformRotate(_deleteButton.transform, M_PI / 4);
+    _deleteButton.tintColor = [UIColor redColor];
     self.container.layer.cornerRadius = 12.0f;
+
+}
+
+- (IBAction)buttonPressed:(id)sender {
+    [_delegate buttonPressed:sender inCell:self];
 }
 
 @end
