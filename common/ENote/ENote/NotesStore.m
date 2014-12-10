@@ -11,6 +11,7 @@
 #import "Notebook.h"
 #import "NotebooksStore.h"
 #import "ENoteCommons.h"
+#import "TagsStore.h"
 
 @interface NotesStore ()
 
@@ -83,7 +84,18 @@
 }
 
 - (void)addNoteWithDictionary:(NSDictionary *)dictionary {
-    [self addNote:[[Note alloc] initWithDictionary:dictionary]];
+    Note *note = [[Note alloc] initWithDictionary:dictionary];
+    
+    // maybe forin within SharedStore all tags?
+    for (int i = 0; i < [note.tagsIDs count]; i++) {
+        NSString *tagID = note.tagsIDs[i];
+        
+        if (![[TagsStore sharedStore] getTagWithID:tagID]) {
+            [note removeTagID:tagID];
+        }
+    }
+    
+    [self addNote:note];
 }
 
 - (void)removeNote:(Note *)note {
