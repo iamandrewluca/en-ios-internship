@@ -20,6 +20,8 @@
 {
     [super awakeFromNib];
     
+    self.canBeDeleted = YES;
+    
     self.container.layer.cornerRadius = 12.0f;
 }
 

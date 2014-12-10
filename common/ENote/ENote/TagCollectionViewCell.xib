@@ -8,14 +8,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" reuseIdentifier="TagCell" id="2" customClass="TagCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="186" height="26"/>
+            <rect key="frame" x="0.0" y="0.0" width="106" height="26"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="186" height="26"/>
+                <rect key="frame" x="0.0" y="0.0" width="106" height="26"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i8X-Zu-weR">
-                        <rect key="frame" x="8" y="0.0" width="178" height="26"/>
+                        <rect key="frame" x="8" y="0.0" width="98" height="26"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34">
                                 <rect key="frame" x="2" y="2" width="22" height="22"/>
@@ -31,9 +31,9 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3">
-                                <rect key="frame" x="32" y="2" width="138" height="22"/>
+                                <rect key="frame" x="32" y="2" width="58" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="etT-zS-Hi6"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="etT-zS-Hi6"/>
                                     <constraint firstAttribute="height" constant="22" id="gq2-id-p56"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -61,13 +61,13 @@
                 <constraint firstAttribute="bottom" secondItem="i8X-Zu-weR" secondAttribute="bottom" id="G3j-ri-DJQ"/>
                 <constraint firstItem="i8X-Zu-weR" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="8" id="sJy-X1-RDj"/>
             </constraints>
-            <size key="customSize" width="514" height="390"/>
+            <size key="customSize" width="434" height="390"/>
             <connections>
                 <outlet property="container" destination="i8X-Zu-weR" id="XlC-lb-lP3"/>
                 <outlet property="deleteButton" destination="34" id="l21-hl-2GV"/>
                 <outlet property="label" destination="3" id="KaP-ti-tK3"/>
             </connections>
-            <point key="canvasLocation" x="160" y="453"/>
+            <point key="canvasLocation" x="120" y="453"/>
         </collectionViewCell>
     </objects>
 </document>

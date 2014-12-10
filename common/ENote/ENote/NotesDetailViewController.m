@@ -15,7 +15,9 @@
 @interface NotesDetailViewController () <TagCellDelegate, UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
 
 @property (nonatomic) BOOL noteWasDeleted;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomSpace;
+
 @property (weak, nonatomic) IBOutlet UITextView *addNotesTextView;
 @property (weak, nonatomic) IBOutlet UICollectionView *tagsCollectionView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -50,7 +52,7 @@
 {
     NSIndexPath *indexPath = [_tagsCollectionView indexPathForCell:cell];
     
-    // need optimization ))
+    // nested ifs need optimization ))
     if (cell.canBeDeleted) {
         
         if ([_foundTags count]) {
