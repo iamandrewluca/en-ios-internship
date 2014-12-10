@@ -48,27 +48,31 @@
 
 - (void)buttonPressedInCell:(TagCollectionViewCell *)cell
 {
-    //    NSString *tagID = [_note.tagsIDs objectAtIndex:indexPath.row];
-    //    [_note removeTagID:tagID];
-    //
-    //    [self.tagsCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+    NSIndexPath *indexPath = [_tagsCollectionView indexPathForCell:cell];
     
-    //    if ([_tagsCollectionView numberOfItemsInSection:0] == 0) {
-    //
-    //        [UIView animateWithDuration:0.5f animations:^{
-    //            _tagsCollectionViewHeight.constant = 0;
-    //            _tagsCollectionViewBottomSpace.constant = 0;
-    //
-    //            [self.view layoutIfNeeded];
-    //        }];
-    //    }
+    // need optimization ))
     if (cell.canBeDeleted) {
-        NSIndexPath *indexPath = [_tagsCollectionView indexPathForCell:cell];
         
-        NSString *tagID = [_note.tagsIDs objectAtIndex:indexPath.row];
-        [_note removeTagID:tagID];
+        if ([_foundTags count]) {
+            
+            Tag *tag = [_foundTags objectAtIndex:indexPath.row];
+            [_note removeTagID:tag.ID];
+            [_notesStore saveNote:_note];
+            cell.canBeDeleted = NO;
+            
+        } else {
+            
+            NSString *tagID = [_note.tagsIDs objectAtIndex:indexPath.row];
+            [_note removeTagID:tagID];
+            [_notesStore saveNote:_note];
+            [_tagsCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+        }
+        
+    } else {
+        Tag *tag = [_foundTags objectAtIndex:indexPath.row];
+        [_note addTagID:tag.ID];
         [_notesStore saveNote:_note];
-        [_tagsCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+        cell.canBeDeleted = YES;
     }
 }
 
@@ -82,9 +86,15 @@
         if (addedTag) {
             searchBar.text = @"";
             [_notesStore saveNote:_note];
-            [_tagsCollectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
+            
+            if ([_foundTags count]) {
+                _foundTags = nil;
+                [self.tagsCollectionView reloadData];
+            } else {
+                [_tagsCollectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
+            }
+            
             [searchBar resignFirstResponder];
-            [self.tagsCollectionView reloadData];
         }
     }
 }
