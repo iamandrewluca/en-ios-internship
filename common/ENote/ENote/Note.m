@@ -30,6 +30,11 @@
     [_privateTagsIDs removeObject:ID];
 }
 
+- (BOOL)hasTagID:(NSString *)ID
+{
+    return [_privateTagsIDs indexOfObject:ID] != NSNotFound;
+}
+
 - (NSArray *)tagsIDs {
     return _privateTagsIDs;
 }

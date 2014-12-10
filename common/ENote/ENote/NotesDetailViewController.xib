@@ -22,7 +22,7 @@
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add some notes..." translatesAutoresizingMaskIntoConstraints="NO" id="T8x-fQ-2Vh">
                     <rect key="frame" x="8" y="78" width="304" height="482"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search or Add tags..." translatesAutoresizingMaskIntoConstraints="NO" id="ad8-6S-HD8">

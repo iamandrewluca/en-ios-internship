@@ -12,7 +12,7 @@
 
 @protocol TagCellDelegate <NSObject>
 @optional
-- (void)buttonPressed:(UIButton *)button inCell:(TagCollectionViewCell *)cell;
+- (void)buttonPressedInCell:(TagCollectionViewCell *)cell;
 @end
 
 @interface TagCollectionViewCell : UICollectionViewCell
@@ -21,6 +21,7 @@
 
 @property (nonatomic, weak) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
-@property (weak, nonatomic) IBOutlet UIView *container;
+
+@property (nonatomic) BOOL canBeDeleted;
 
 @end

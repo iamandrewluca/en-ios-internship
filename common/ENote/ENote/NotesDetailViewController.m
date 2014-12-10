@@ -10,6 +10,7 @@
 #import "TagCollectionViewCell.h"
 #import "Tag.h"
 #import "TagsStore.h"
+#import "Note.h"
 
 @interface NotesDetailViewController () <TagCellDelegate, UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
 
@@ -33,9 +34,6 @@
     self = [super init];
     
     if (self) {
-        
-        _foundTags = [NSMutableArray new];
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeNoteTextView:) name:UIKeyboardDidShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeNoteTextView:) name:UIKeyboardDidHideNotification object:nil];
     }
@@ -48,7 +46,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)buttonPressed:(UIButton *)button inCell:(TagCollectionViewCell *)cell
+- (void)buttonPressedInCell:(TagCollectionViewCell *)cell
 {
     //    NSString *tagID = [_note.tagsIDs objectAtIndex:indexPath.row];
     //    [_note removeTagID:tagID];
@@ -64,7 +62,7 @@
     //            [self.view layoutIfNeeded];
     //        }];
     //    }
-    if (button.tintColor == [UIColor redColor]) {
+    if (cell.canBeDeleted) {
         NSIndexPath *indexPath = [_tagsCollectionView indexPathForCell:cell];
         
         NSString *tagID = [_note.tagsIDs objectAtIndex:indexPath.row];
@@ -86,15 +84,18 @@
             [_notesStore saveNote:_note];
             [_tagsCollectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
             [searchBar resignFirstResponder];
+            [self.tagsCollectionView reloadData];
         }
     }
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    NSUInteger foundTagsLastTime = [_foundTags count] != 0;
+    
     _foundTags = [[TagsStore sharedStore] tagsWhichContainText:searchText];
     
-    if ([_foundTags count]) {
+    if ([_foundTags count] || ([_foundTags count] == 0 && foundTagsLastTime)) {
         [self.tagsCollectionView reloadData];
     }
 }
@@ -156,10 +157,17 @@
     if ([_foundTags count] != 0) {
         Tag *tag = [_foundTags objectAtIndex:indexPath.row];
         cell.label.text = tag.name;
+        
+        if ([_note hasTagID:tag.ID]) {
+            cell.canBeDeleted = YES;
+        } else {
+            cell.canBeDeleted = NO;
+        }
     } else {
         NSString *tagID = [[_note tagsIDs] objectAtIndex:indexPath.row];
         Tag *tag = [[TagsStore sharedStore] getTagWithID:tagID];
         cell.label.text = tag.name;
+        cell.canBeDeleted = YES;
     }
 }
 
@@ -174,14 +182,25 @@
     return cell;
 }
 
+// called for each cell to know the size it will take
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self _configureCell:_sizingCell forIndexPath:indexPath];
+    // set cell content
+    if ([_foundTags count] != 0) {
+        Tag *tag = [_foundTags objectAtIndex:indexPath.row];
+        _sizingCell.label.text = tag.name;
+    } else {
+        NSString *tagID = [[_note tagsIDs] objectAtIndex:indexPath.row];
+        Tag *tag = [[TagsStore sharedStore] getTagWithID:tagID];
+        _sizingCell.label.text = tag.name;
+    }
     
+    // return size it will take from default _sizingCell
     return [_sizingCell systemLayoutSizeFittingSize:UILayoutFittingExpandedSize];
 }
 
-- (void)actioSheetMenu {
+- (void)actioSheetMenu
+{
     
     [_addNotesTextView resignFirstResponder];
     [_searchBar resignFirstResponder];
@@ -196,7 +215,8 @@
     actionSheet.tag = 100;
 }
 
--(void)deleteConfirmation {
+-(void)deleteConfirmation
+{
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Really delete the selected note?"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
@@ -209,7 +229,8 @@
 }
 
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     if(actionSheet.tag == 100 && buttonIndex == 1) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Rename note title"
                                                                        message:@""
@@ -245,7 +266,8 @@
 }
 
  
--(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
     if (actionSheet.tag == 100 && buttonIndex == 0) {
         [self deleteConfirmation];
     } else if(actionSheet.tag == 100 && buttonIndex == 1) {
@@ -262,50 +284,15 @@
     }
 }
 
-
-// Dismisses the keyboard
--(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    
-    if([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
-        return NO;
-    }
-    
-    return YES;
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self usePreferredFonts];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self
-                                            selector:@selector(preferredFontsChanged:)
-                                                name:UIContentSizeCategoryDidChangeNotification
-                                              object:nil];
-}
-
--(void)viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter]removeObserver:self
-                                                   name:UIContentSizeCategoryDidChangeNotification
-                                                 object:nil];
     
     if (self.noteWasDeleted == NO) {
 
         self.note.text = self.addNotesTextView.text;
         [_notesStore saveNote:_note];
     }
-}
-
--(void)preferredFontsChanged:(NSNotification *)notification
-{
-    [self usePreferredFonts];
-}
-
--(void)usePreferredFonts {
-    self.addNotesTextView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
 }
 
 @end

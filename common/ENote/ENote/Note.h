@@ -20,5 +20,6 @@
 
 - (BOOL)addTagID:(NSString *)ID;
 - (void)removeTagID:(NSString *)ID;
+- (BOOL)hasTagID:(NSString *)ID;
 
 @end
