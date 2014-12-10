@@ -22,6 +22,8 @@
     
     for (Tag *tag in _allPrivateTags) {
         if ([tag.name isEqualToString:name]) {
+            [_allPrivateTags removeObject:tag];
+            [_allPrivateTags insertObject:tag atIndex:0];
             return tag;
         }
     }
@@ -31,6 +33,17 @@
     [self addTag:tag];
     [self saveTags];
     return tag;
+}
+
+- (Tag *)getTagWithName:(NSString *)name
+{
+    for (Tag *tag in _allPrivateTags) {
+        if ([tag.name isEqualToString:name]) {
+            return tag;
+        }
+    }
+    
+    return  nil;
 }
 
 + (instancetype)sharedStore {
@@ -65,7 +78,7 @@
 }
 
 - (void)addTag:(Tag *)tag {
-    [_allPrivateTags addObject:tag];
+    [_allPrivateTags insertObject:tag atIndex:0];
     [self saveTags];
 }
 

@@ -9,8 +9,11 @@
 #import "AllTagsCollectionViewController.h"
 #import "TagCollectionViewCell.h"
 #import "TagsStore.h"
+#import "Tag.h"
 
-@interface AllTagsCollectionViewController () <UICollectionViewDelegateFlowLayout, TagCellDelegate>
+@interface AllTagsCollectionViewController () <UISearchBarDelegate, UICollectionViewDelegateFlowLayout, TagCellDelegate>
+
+@property (nonatomic) NSArray *foundTags;
 
 @end
 
@@ -59,17 +62,66 @@ static NSString * const reuseIdentifier = @"TagCell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [[[TagsStore sharedStore] allTags] count];
+    if ([_foundTags count] != 0) {
+        return [_foundTags count];
+    } else {
+        return [[[TagsStore sharedStore] allTags] count];
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    cell.label.text = [[[[TagsStore sharedStore] allTags] objectAtIndex:indexPath.row] name];
+    
+    if ([_foundTags count] != 0) {
+        Tag *tag = [_foundTags objectAtIndex:indexPath.row];
+        cell.label.text = tag.name;
+    } else {
+        cell.label.text = [[[[TagsStore sharedStore] allTags] objectAtIndex:indexPath.row] name];
+    }
+    
     cell.delegate = self;
     
     return cell;
 }
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSUInteger foundTagsLastTime = [_foundTags count] != 0;
+    
+    _foundTags = [[TagsStore sharedStore] tagsWhichContainText:searchText];
+    
+    if ([_foundTags count] || ([_foundTags count] == 0 && foundTagsLastTime)) {
+        [self.collectionView reloadData];
+    }
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    if (![searchBar.text isEqualToString:@""]) {
+        
+        searchBar.text = @"";
+        
+        Tag *tag = [[TagsStore sharedStore] getTagWithName:searchBar.text];
+        
+        if (tag) {
+            // move tag to begining in shard store
+            
+        } else {
+            [[TagsStore sharedStore] createTagWithName:searchBar.text];
+            
+            if ([_foundTags count]) {
+                _foundTags = nil;
+                [_collectionView reloadData];
+            } else {
+                [_collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
+            }
+        }
+        
+        [searchBar resignFirstResponder];
+    }
+}
+
 
 @end

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "NotebooksTableViewController.h"
 #import "NotebooksStore.h"
+#import "AllTagsCollectionViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,7 +24,9 @@
     
     NSLog(@"%@", NSHomeDirectory());
     
-    NotebooksTableViewController *notebooks = [[NotebooksTableViewController alloc] init];
+//    NotebooksTableViewController *notebooks = [[NotebooksTableViewController alloc] init];
+    
+    AllTagsCollectionViewController *notebooks = [[AllTagsCollectionViewController alloc] init];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:notebooks];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:235.0/255.0 green:134.0/255.0 blue:13.0/255.0 alpha:1.0]];

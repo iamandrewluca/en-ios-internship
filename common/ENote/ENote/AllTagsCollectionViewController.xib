@@ -6,18 +6,43 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AllTagsCollectionViewController">
             <connections>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="collectionView" destination="i5M-Pr-FkT" id="0nV-he-T4P"/>
+                <outlet property="searchBar" destination="QwL-ff-viG" id="TQU-jR-Czm"/>
+                <outlet property="view" destination="6AT-8y-dnx" id="SqF-Yt-Q7b"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" id="i5M-Pr-FkT">
+        <view contentMode="scaleToFill" id="6AT-8y-dnx">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <collectionViewLayout key="collectionViewLayout" id="8gn-h5-aW4" customClass="UICollectionViewLeftAlignedLayout"/>
-            <connections>
-                <outlet property="dataSource" destination="-1" id="Tng-2m-Rnh"/>
-                <outlet property="delegate" destination="-1" id="9aC-8N-iBw"/>
-            </connections>
-        </collectionView>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search or add tags..." translatesAutoresizingMaskIntoConstraints="NO" id="QwL-ff-viG">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="l9H-IV-0Kc"/>
+                    </connections>
+                </searchBar>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="i5M-Pr-FkT">
+                    <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                    <collectionViewLayout key="collectionViewLayout" id="8gn-h5-aW4" customClass="UICollectionViewLeftAlignedLayout"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="sD5-pm-ryf"/>
+                        <outlet property="delegate" destination="-1" id="MtD-Q1-OSr"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="QwL-ff-viG" secondAttribute="trailing" id="FUp-Yr-9DP"/>
+                <constraint firstItem="QwL-ff-viG" firstAttribute="leading" secondItem="6AT-8y-dnx" secondAttribute="leading" id="WbY-dE-gpf"/>
+                <constraint firstItem="i5M-Pr-FkT" firstAttribute="top" secondItem="QwL-ff-viG" secondAttribute="bottom" id="WfC-MH-i7M"/>
+                <constraint firstItem="i5M-Pr-FkT" firstAttribute="leading" secondItem="6AT-8y-dnx" secondAttribute="leading" id="eeM-aP-yeW"/>
+                <constraint firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="eo9-Ov-BkL"/>
+                <constraint firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="iLK-IQ-Axg"/>
+                <constraint firstItem="QwL-ff-viG" firstAttribute="top" secondItem="6AT-8y-dnx" secondAttribute="top" id="yFk-C4-TdD"/>
+            </constraints>
+            <point key="canvasLocation" x="128" y="453"/>
+        </view>
     </objects>
 </document>

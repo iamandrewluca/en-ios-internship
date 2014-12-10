@@ -17,6 +17,7 @@
 - (Tag *)createTagWithName:(NSString *)name;
 - (void)removeTag:(Tag *)tag;
 - (Tag *)getTagWithID:(NSString *)ID;
+- (Tag *)getTagWithName:(NSString *)name;
 - (NSArray *)tagsWhichContainText:(NSString *)text;
 
 + (instancetype)sharedStore;
