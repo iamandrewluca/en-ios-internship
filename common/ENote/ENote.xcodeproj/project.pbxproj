@@ -15,6 +15,9 @@
 		6190C2281A124CE70046F016 /* NotesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6190C2261A124CE70046F016 /* NotesCollectionViewController.xib */; };
 		6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C22B1A124EBA0046F016 /* NotesLayout.m */; };
 		6190C2301A1254920046F016 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C22F1A1254920046F016 /* NoteCell.m */; };
+		619957DA1A39B1C600AFFDE2 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619957D91A39B1C600AFFDE2 /* SWRevealViewController.m */; };
+		619957DE1A39B1DD00AFFDE2 /* RearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619957DC1A39B1DD00AFFDE2 /* RearViewController.m */; };
+		619957DF1A39B1DD00AFFDE2 /* RearViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619957DD1A39B1DD00AFFDE2 /* RearViewController.xib */; };
 		A70355271A319FC5008742C9 /* TagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A70355251A319FC5008742C9 /* TagCollectionViewCell.m */; };
 		A70355281A319FC5008742C9 /* TagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70355261A319FC5008742C9 /* TagCollectionViewCell.xib */; };
 		A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */; };
@@ -63,6 +66,11 @@
 		6190C22B1A124EBA0046F016 /* NotesLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesLayout.m; sourceTree = "<group>"; };
 		6190C22E1A1254920046F016 /* NoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCell.h; sourceTree = "<group>"; };
 		6190C22F1A1254920046F016 /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
+		619957D81A39B1C600AFFDE2 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		619957D91A39B1C600AFFDE2 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		619957DB1A39B1DD00AFFDE2 /* RearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RearViewController.h; sourceTree = "<group>"; };
+		619957DC1A39B1DD00AFFDE2 /* RearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RearViewController.m; sourceTree = "<group>"; };
+		619957DD1A39B1DD00AFFDE2 /* RearViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RearViewController.xib; sourceTree = "<group>"; };
 		A70355241A319FC5008742C9 /* TagCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagCollectionViewCell.h; sourceTree = "<group>"; };
 		A70355251A319FC5008742C9 /* TagCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagCollectionViewCell.m; sourceTree = "<group>"; };
 		A70355261A319FC5008742C9 /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -141,6 +149,7 @@
 		6190C2291A124DEC0046F016 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				619957D71A39B18800AFFDE2 /* RearViewController */,
 				A7D73BD01A3850C7009A21FA /* AllTagsCVC */,
 				A71D34FE1A1B733A00EA301B /* NotebooksTableView */,
 				61FD75151A25EC41004C344D /* NotesCollectionVC */,
@@ -148,6 +157,25 @@
 				61FD75161A25EE23004C344D /* NotesLayout */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		619957D61A39B15A00AFFDE2 /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				619957D81A39B1C600AFFDE2 /* SWRevealViewController.h */,
+				619957D91A39B1C600AFFDE2 /* SWRevealViewController.m */,
+			);
+			name = SWRevealViewController;
+			sourceTree = "<group>";
+		};
+		619957D71A39B18800AFFDE2 /* RearViewController */ = {
+			isa = PBXGroup;
+			children = (
+				619957DB1A39B1DD00AFFDE2 /* RearViewController.h */,
+				619957DC1A39B1DD00AFFDE2 /* RearViewController.m */,
+				619957DD1A39B1DD00AFFDE2 /* RearViewController.xib */,
+			);
+			name = RearViewController;
 			sourceTree = "<group>";
 		};
 		61FD75151A25EC41004C344D /* NotesCollectionVC */ = {
@@ -245,6 +273,7 @@
 		A72182FD1A10E950006E47E3 /* ENote */ = {
 			isa = PBXGroup;
 			children = (
+				619957D61A39B15A00AFFDE2 /* SWRevealViewController */,
 				A7AEEB5C1A28BC600091FE09 /* Stores */,
 				6155EC471A137C3600BE143B /* Model */,
 				6190C2291A124DEC0046F016 /* View */,
@@ -400,6 +429,7 @@
 			files = (
 				6100EA151A31C53800AA6A4B /* NoteCell.xib in Resources */,
 				A7D73BD51A3850E0009A21FA /* AllTagsCollectionViewController.xib in Resources */,
+				619957DF1A39B1DD00AFFDE2 /* RearViewController.xib in Resources */,
 				A7D9ACC41A1357A900B8376A /* NotebooksTableViewController.xib in Resources */,
 				A70355281A319FC5008742C9 /* TagCollectionViewCell.xib in Resources */,
 				A721830F1A10E950006E47E3 /* LaunchScreen.xib in Resources */,
@@ -430,6 +460,7 @@
 				6190C2301A1254920046F016 /* NoteCell.m in Sources */,
 				A7D73BD91A3855F3009A21FA /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				A7D73BD41A3850E0009A21FA /* AllTagsCollectionViewController.m in Sources */,
+				619957DE1A39B1DD00AFFDE2 /* RearViewController.m in Sources */,
 				6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */,
 				A72183041A10E950006E47E3 /* AppDelegate.m in Sources */,
 				6190C2271A124CE70046F016 /* NotesCollectionViewController.m in Sources */,
@@ -438,6 +469,7 @@
 				A7D9ACCD1A13754400B8376A /* NotebooksTableViewDataSource.m in Sources */,
 				A7D9ACB31A1246D600B8376A /* Notebook.m in Sources */,
 				A72183011A10E950006E47E3 /* main.m in Sources */,
+				619957DA1A39B1C600AFFDE2 /* SWRevealViewController.m in Sources */,
 				6150D0A11A14C03300E4590C /* NotesDetailViewController.m in Sources */,
 				A70355271A319FC5008742C9 /* TagCollectionViewCell.m in Sources */,
 				A756D0C41A24D4A200A7F374 /* Item.m in Sources */,

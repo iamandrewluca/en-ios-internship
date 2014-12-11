@@ -10,8 +10,10 @@
 #import "NotebooksTableViewController.h"
 #import "NotebooksStore.h"
 #import "AllTagsCollectionViewController.h"
+#import "RearViewController.h"
+#import "SWRevealViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <SWRevealViewControllerDelegate>
 
 @end
 
@@ -25,16 +27,25 @@
     NSLog(@"%@", NSHomeDirectory());
     
     NotebooksTableViewController *notebooks = [[NotebooksTableViewController alloc] init];
-    
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:notebooks];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:235.0/255.0 green:134.0/255.0 blue:13.0/255.0 alpha:1.0]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [nav.navigationController.navigationBar setTranslucent:NO];
     nav.navigationBar.tintColor = [UIColor whiteColor];
     
-    nav.navigationBar.translucent = NO;
+    RearViewController *rearViewController = [[RearViewController alloc] init];
+    UINavigationController *rearNavigationController = [[UINavigationController alloc] initWithRootViewController:rearViewController];
     
-    self.window.rootViewController = nav;
+    
+    SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
+                                                    initWithRearViewController:rearNavigationController frontViewController:nav];
+    mainRevealController.delegate = self;
+    
+    
+    self.viewController = mainRevealController;
+    self.window.rootViewController = self.viewController;
+    
+    nav.navigationBar.translucent = NO;
     [self.window makeKeyAndVisible];
     
     return YES;
