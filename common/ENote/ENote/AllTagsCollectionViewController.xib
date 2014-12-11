@@ -25,6 +25,7 @@
                 </searchBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="i5M-Pr-FkT">
                     <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <collectionViewLayout key="collectionViewLayout" id="8gn-h5-aW4" customClass="UICollectionViewLeftAlignedLayout"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="sD5-pm-ryf"/>
