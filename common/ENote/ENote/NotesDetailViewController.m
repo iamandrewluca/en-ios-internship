@@ -12,7 +12,7 @@
 #import "TagsStore.h"
 #import "Note.h"
 
-@interface NotesDetailViewController () <TagCellDelegate, UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
+@interface NotesDetailViewController () <TagCellDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
 
 @property (nonatomic) BOOL noteWasDeleted;
 
@@ -217,11 +217,19 @@
     [_addNotesTextView resignFirstResponder];
     [_searchBar resignFirstResponder];
     
+    NSString *hasImageText = nil;
+    
+    if ([_note.imageName isEqualToString:@""]) {
+        hasImageText = @"Add Image";
+    } else {
+        hasImageText = @"Remove Image";
+    }
+    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"What do you want to do with the note?"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:@"Delete it"
-                                                    otherButtonTitles:@"Rename", @"Move", nil];
+                                                    otherButtonTitles:@"Rename", @"Move", hasImageText, nil];
     
     [actionSheet showInView:self.view];
     actionSheet.tag = 100;
@@ -241,57 +249,115 @@
 }
 
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)renameNote
 {
-    if(actionSheet.tag == 100 && buttonIndex == 1) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Rename note title"
-                                                                       message:@""
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            textField.returnKeyType = UIReturnKeyDone;
-            textField.placeholder = @"Rename title";
-        }];
-        
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:^(UIAlertAction *action) {
-                                                       
-                                                       NSString *titleFromModal = [[[alert textFields] firstObject] text];
-                                                       if (![titleFromModal isEqualToString:@""]) {
-                                                           _note.name = titleFromModal;
-                                                           [_notesStore saveNote:_note];
-                                                           self.navigationItem.title = _note.name;
-                                                       }
-                                                   }];
-        
-        
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
-                                                         style:UIAlertActionStyleCancel
-                                                       handler:nil];
-        
-        [alert addAction:cancel];
-        [alert addAction:ok];
-        
-        [self presentViewController:alert animated:YES completion:nil];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Rename note title"
+                                                                   message:@""
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.returnKeyType = UIReturnKeyDone;
+        textField.placeholder = @"Rename title";
+    }];
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                 style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction *action) {
+                                                   
+                                                   NSString *titleFromModal = [[[alert textFields] firstObject] text];
+                                                   if (![titleFromModal isEqualToString:@""]) {
+                                                       _note.name = titleFromModal;
+                                                       [_notesStore saveNote:_note];
+                                                       self.navigationItem.title = _note.name;
+                                                   }
+                                               }];
+    
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:nil];
+    
+    [alert addAction:cancel];
+    [alert addAction:ok];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"%@", info);
+}
+
+- (void)manageImageSouce
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose image source."
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Camera", @"Gallery", nil];
+    
+    [actionSheet showInView:self.view];
+    actionSheet.tag = 300;
+}
+
+- (void)showImagePickerType:(UIImagePickerControllerSourceType)sourceType
+{
+    UIImagePickerController *ipc = [UIImagePickerController new];
+    ipc.sourceType = sourceType;
+    ipc.delegate = self;
+    
+    [self presentViewController:ipc animated:YES completion:nil];
+}
+
+- (void)addImage
+{
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [self manageImageSouce];
+    } else {
+        [self showImagePickerType:(UIImagePickerControllerSourceTypePhotoLibrary)];
     }
 }
 
- 
+- (void)removeImage
+{
+    // TODO
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (actionSheet.tag == 100 && buttonIndex == 0) {
-        [self deleteConfirmation];
-    } else if(actionSheet.tag == 100 && buttonIndex == 1) {
-        NSLog(@"Rename");
-    } else if(actionSheet.tag == 100 && buttonIndex == 2) {
-        NSLog(@"Move");
+    if (actionSheet.tag == 100) {
+        
+        if (buttonIndex == 0) {
+            [self deleteConfirmation];
+        } else if(buttonIndex == 1) {
+            [self renameNote];
+        } else if(buttonIndex == 2) {
+            NSLog(@"Move note to another notebook");
+        } else if (buttonIndex == 3) {
+            if ([_note.imageName isEqualToString:@""]) {
+                [self addImage];
+            } else {
+                [self removeImage];
+            }
+        }
     }
+    
     if (actionSheet.tag == 200) {
+        
         if(buttonIndex == 0) {
             self.noteWasDeleted = YES;
             [self.navigationController popViewControllerAnimated:TRUE];
             [_notesStore removeNote:self.note];
+        }
+    }
+    
+    if (actionSheet.tag == 300) {
+        
+        if (buttonIndex == 0) {
+            [self showImagePickerType:UIImagePickerControllerSourceTypeCamera];
+        } else if (buttonIndex == 1) {
+            [self showImagePickerType:UIImagePickerControllerSourceTypePhotoLibrary];
         }
     }
 }
@@ -301,7 +367,6 @@
     [super viewWillDisappear:animated];
     
     if (self.noteWasDeleted == NO) {
-
         self.note.text = self.addNotesTextView.text;
         [_notesStore saveNote:_note];
     }

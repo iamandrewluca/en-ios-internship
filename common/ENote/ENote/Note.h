@@ -13,8 +13,10 @@
 @interface Note : Item
 
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic, readonly) NSArray *tagsIDs;
+@property (nonatomic, copy, readonly) NSArray *tagsIDs;
 @property (nonatomic, copy, readonly) NSString *notebookID;
+@property (nonatomic, copy, readonly) NSString *imageName;
+@property (nonatomic, copy, readonly) NSString *thumbImage;
 
 - (instancetype)initWithName:(NSString *)name forNotebookID:(NSString *)ID;
 
