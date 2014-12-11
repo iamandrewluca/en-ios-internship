@@ -21,6 +21,30 @@
 
 @implementation NotesStore
 
+- (void)addImage:(UIImage *)image forNote:(Note *)note
+{
+    note.imageName = [[NSUUID UUID] UUIDString];
+    note.thumbName = [[NSUUID UUID] UUIDString];
+    
+    NSData *imageData = UIImagePNGRepresentation(image);
+    
+    UIImage *thumb = nil;
+    // make thumb
+    NSData *thumbData = UIImagePNGRepresentation(thumb);
+    
+    NSString *notePath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebook.ID, note.ID];
+    
+    [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@/%@.png", notePath, note.imageName] contents:imageData attributes:nil];
+    [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@/%@.png", notePath, note.thumbName] contents:thumbData attributes:nil];
+    
+    
+}
+
+- (void)removeImageForNote:(Note *)note
+{
+    
+}
+
 - (instancetype)initWithNotebook:(Notebook *)notebook {
     
     self = [super init];

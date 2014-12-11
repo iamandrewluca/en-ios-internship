@@ -286,7 +286,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
-    NSLog(@"%@", info);
+    [_notesStore addImage:info[UIImagePickerControllerOriginalImage] forNote:_note];
 }
 
 - (void)manageImageSouce
@@ -321,7 +321,7 @@
 
 - (void)removeImage
 {
-    // TODO
+    [_notesStore removeImageForNote:_note];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex

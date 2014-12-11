@@ -18,6 +18,7 @@
 static NSString * const NoteCellIdentifier = @"NoteCell";
 
 @interface NotesCollectionViewController () {
+    NSIndexPath *selectedNoteIndexPath;
     UILongPressGestureRecognizer *longPress;
     NSIndexPath *lastAccessed;
     UIBarButtonItem *addNote;
@@ -60,7 +61,10 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.collectionView reloadData];
+    
+    if (selectedNoteIndexPath) {
+        [self.collectionView reloadItemsAtIndexPaths:@[selectedNoteIndexPath]];
+    }
 }
 
 
@@ -195,6 +199,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
         Note *note = [[_notesStore allNotes] objectAtIndex:indexPath.section];
         nvc.note = note;
         nvc.notesStore = _notesStore;
+        selectedNoteIndexPath = indexPath;
         [[self navigationController] pushViewController:nvc animated:YES];
     }
 }

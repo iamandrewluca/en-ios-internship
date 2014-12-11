@@ -15,8 +15,8 @@
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, copy, readonly) NSArray *tagsIDs;
 @property (nonatomic, copy, readonly) NSString *notebookID;
-@property (nonatomic, copy, readonly) NSString *imageName;
-@property (nonatomic, copy, readonly) NSString *thumbImage;
+@property (nonatomic, copy) NSString *imageName;
+@property (nonatomic, copy) NSString *thumbName;
 
 - (instancetype)initWithName:(NSString *)name forNotebookID:(NSString *)ID;
 
