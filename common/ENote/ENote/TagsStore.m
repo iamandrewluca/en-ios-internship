@@ -149,7 +149,7 @@
     }
 }
 
-- (NSArray *)tagsWhichContainText:(NSString *)text
+- (NSMutableArray *)tagsWhichContainText:(NSString *)text
 {
     NSMutableArray *foundTags = [NSMutableArray new];
     

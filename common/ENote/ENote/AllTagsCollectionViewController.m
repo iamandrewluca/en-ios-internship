@@ -13,7 +13,7 @@
 
 @interface AllTagsCollectionViewController () <UISearchBarDelegate, UICollectionViewDelegateFlowLayout, TagCellDelegate>
 
-@property (nonatomic) NSArray *foundTags;
+@property (nonatomic) NSMutableArray *foundTags;
 
 @end
 
@@ -28,8 +28,15 @@ static NSString * const reuseIdentifier = @"TagCell";
 {
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
     
-    Tag *tag = [[[TagsStore sharedStore] allTags] objectAtIndex:indexPath.row];
+    Tag *tag = nil;
+
+    if ([_foundTags count]) {
+        tag = [_foundTags objectAtIndex:indexPath.row];
+    } else {
+        tag = [[[TagsStore sharedStore] allTags] objectAtIndex:indexPath.row];
+    }
     
+    [_foundTags removeObject:tag];
     [[TagsStore sharedStore] removeTag:tag];
     
     [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
@@ -37,7 +44,12 @@ static NSString * const reuseIdentifier = @"TagCell";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    _sizingCell.label.text = [[[[TagsStore sharedStore] allTags] objectAtIndex:indexPath.row] name];
+    if ([_foundTags count] != 0) {
+        Tag *tag = [_foundTags objectAtIndex:indexPath.row];
+        _sizingCell.label.text = tag.name;
+    } else {
+        _sizingCell.label.text = [[[[TagsStore sharedStore] allTags] objectAtIndex:indexPath.row] name];
+    }
     
     // return size it will take from default _sizingCell
     return [_sizingCell systemLayoutSizeFittingSize:UILayoutFittingExpandedSize];
@@ -72,8 +84,6 @@ static NSString * const reuseIdentifier = @"TagCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    // Configure the cell
-    
     if ([_foundTags count] != 0) {
         Tag *tag = [_foundTags objectAtIndex:indexPath.row];
         cell.label.text = tag.name;
@@ -88,7 +98,7 @@ static NSString * const reuseIdentifier = @"TagCell";
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    NSUInteger foundTagsLastTime = [_foundTags count] != 0;
+    BOOL foundTagsLastTime = [_foundTags count] != 0;
     
     _foundTags = [[TagsStore sharedStore] tagsWhichContainText:searchText];
     
@@ -99,26 +109,20 @@ static NSString * const reuseIdentifier = @"TagCell";
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    if (![searchBar.text isEqualToString:@""]) {
+    Tag *tag = [[TagsStore sharedStore] getTagWithName:searchBar.text];
+    
+    if (tag) {
         
-        searchBar.text = @"";
+    } else {
+        [[TagsStore sharedStore] createTagWithName:searchBar.text];
         
-        Tag *tag = [[TagsStore sharedStore] getTagWithName:searchBar.text];
-        
-        if (tag) {
-            // move tag to begining in shard store
-            
+        if ([_foundTags count]) {
+            _foundTags = nil;
+            [_collectionView reloadData];
         } else {
-            [[TagsStore sharedStore] createTagWithName:searchBar.text];
-            
-            if ([_foundTags count]) {
-                _foundTags = nil;
-                [_collectionView reloadData];
-            } else {
-                [_collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
-            }
+            [_collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
         }
-        
+        searchBar.text = @"";
         [searchBar resignFirstResponder];
     }
 }
