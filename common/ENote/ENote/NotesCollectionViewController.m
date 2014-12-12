@@ -18,6 +18,7 @@
 static NSString * const NoteCellIdentifier = @"NoteCell";
 
 @interface NotesCollectionViewController () {
+    NSIndexPath *selectedNoteIndexPath;
     UILongPressGestureRecognizer *longPress;
     NSIndexPath *lastAccessed;
     UIBarButtonItem *addNote;
@@ -60,7 +61,10 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.collectionView reloadData];
+    
+    if (selectedNoteIndexPath) {
+        [self.collectionView reloadItemsAtIndexPaths:@[selectedNoteIndexPath]];
+    }
 }
 
 
@@ -85,7 +89,6 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
                                                    [_notesStore createNoteWithName:titleFromModal];
                                                    
                                                    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
-                                                   
                                                    [self.collectionView insertSections:indexSet];
 
                                                }];
@@ -148,21 +151,24 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 2;
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NoteCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteCellIdentifier forIndexPath:indexPath];
-    noteCell.nameLabel.text = [[[_notesStore allNotes] objectAtIndex:indexPath.section] name];
     
-    //noteCell.layer.borderWidth = 1.5f;
-    //noteCell.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    Note *note = [[_notesStore allNotes] objectAtIndex:indexPath.section];
     
-    noteCell.layer.shadowColor = [UIColor blackColor].CGColor;
-    noteCell.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
-    noteCell.layer.shadowRadius = 4.0f;
-    noteCell.layer.shadowOpacity = 0.5f;
+    noteCell.nameLabel.text = note.name;
+    
+    UIImage *thumbImage = [_notesStore imageForNote:note];
+    
+    if (thumbImage) {
+        noteCell.thumbnailImage.image = thumbImage;
+    } else {
+        noteCell.thumbnailImage.image = [UIImage imageNamed:@"racoon-orange"];
+    }
     
     return noteCell;
 }
@@ -195,6 +201,7 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
         Note *note = [[_notesStore allNotes] objectAtIndex:indexPath.section];
         nvc.note = note;
         nvc.notesStore = _notesStore;
+        selectedNoteIndexPath = indexPath;
         [[self navigationController] pushViewController:nvc animated:YES];
     }
 }

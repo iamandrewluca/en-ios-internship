@@ -47,6 +47,9 @@
         _text = [[NSString alloc] init];
         _privateTagsIDs = [[NSMutableArray alloc] init];
         _notebookID = ID;
+        
+        _imageName = [NSString new];
+        _thumbName = [NSString new];
     }
     
     return self;
@@ -60,6 +63,8 @@
         _text = dictionary[@"text"];
         _privateTagsIDs = dictionary[@"tagsIDs"];
         _notebookID = dictionary[@"notebookID"];
+        _imageName = dictionary[@"imageName"];
+        _thumbName = dictionary[@"thumbName"];
     }
     
     return self;
@@ -71,6 +76,8 @@
     [dictionaryRepresentation setValue:_text forKey:@"text"];
     [dictionaryRepresentation setValue:_privateTagsIDs forKey:@"tagsIDs"];
     [dictionaryRepresentation setValue:_notebookID forKey:@"notebookID"];
+    [dictionaryRepresentation setValue:_imageName forKey:@"imageName"];
+    [dictionaryRepresentation setValue:_thumbName forKey:@"thumbName"];
     
     return dictionaryRepresentation;
 }

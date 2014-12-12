@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class Note;
 @class Notebook;
@@ -24,5 +25,9 @@
 - (void)saveNoteWithID:(NSString *)ID;
 - (Note *)createNoteWithName:(NSString *)name;
 - (Note *)noteWithID:(NSString *)ID;
+
+- (void)addImage:(UIImage *)image forNote:(Note *)note;
+- (void)removeImageForNote:(Note *)note;
+- (UIImage *)imageForNote:(Note *)note;
 
 @end

@@ -200,14 +200,6 @@
 			name = NotesLayout;
 			sourceTree = "<group>";
 		};
-		A710482A1A30A3600005470B /* TagsCollectionViewController */ = {
-			isa = PBXGroup;
-			children = (
-				A71048331A30A4630005470B /* TagCollectionViewCell */,
-			);
-			name = TagsCollectionViewController;
-			sourceTree = "<group>";
-		};
 		A71048331A30A4630005470B /* TagCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,7 +236,7 @@
 		A71D35031A1B7B1A00EA301B /* NotesDetailVC */ = {
 			isa = PBXGroup;
 			children = (
-				A710482A1A30A3600005470B /* TagsCollectionViewController */,
+				A71048331A30A4630005470B /* TagCollectionViewCell */,
 				6150D09E1A14C03300E4590C /* NotesDetailViewController.h */,
 				6150D09F1A14C03300E4590C /* NotesDetailViewController.m */,
 				6150D0A01A14C03300E4590C /* NotesDetailViewController.xib */,

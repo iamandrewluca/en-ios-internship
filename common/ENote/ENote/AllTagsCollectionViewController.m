@@ -58,7 +58,7 @@ static NSString * const reuseIdentifier = @"TagCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPattern"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPattern"]];
     
     UINib *nib = [UINib nibWithNibName:@"TagCollectionViewCell" bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
