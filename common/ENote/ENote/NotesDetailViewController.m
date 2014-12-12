@@ -7,6 +7,7 @@
 //
 
 #import "NotesDetailViewController.h"
+#import "AllTagsCollectionViewController.h"
 #import "TagCollectionViewCell.h"
 #import "Tag.h"
 #import "TagsStore.h"
@@ -129,6 +130,16 @@
                                                                  action:@selector(actioSheetMenu)];
     self.navigationItem.rightBarButtonItem = menuButton;
     
+    // tag button
+    UIBarButtonItem *tags = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"tags"]
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:self
+                                                           action:@selector(tagMenu)];
+    
+    NSArray *buttons = @[menuButton, tags];
+    
+    self.navigationItem.rightBarButtonItems = buttons;
+    
     _addNotesTextView.autocorrectionType = UITextAutocorrectionTypeNo;
     
     // Tag registering
@@ -153,6 +164,12 @@
     } else if (notification.name == UIKeyboardDidHideNotification) {
         _textViewBottomSpace.constant = 8;
     }
+}
+
+-(void)tagMenu
+{
+    AllTagsCollectionViewController *tagsVC = [[AllTagsCollectionViewController alloc]init];
+    [self.navigationController pushViewController:tagsVC animated:YES];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -229,7 +246,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:@"Delete it"
-                                                    otherButtonTitles:@"Rename", @"Move", hasImageText, nil];
+                                                    otherButtonTitles:@"Rename", hasImageText, nil];
     
     [actionSheet showInView:self.view];
     actionSheet.tag = 100;

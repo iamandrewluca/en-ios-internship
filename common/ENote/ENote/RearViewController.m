@@ -7,9 +7,10 @@
 //
 
 #import "RearViewController.h"
-
 #import "SWRevealViewController.h"
 #import "NotebooksTableViewController.h"
+#import "AllTagsCollectionViewController.h"
+#import "NotesCollectionViewController.h"
 
 @interface RearViewController()
 {
@@ -86,16 +87,13 @@
 	
     NSString *text = nil;
 	if (row == 0) {
-//        UIImageView *cellIcon = [[UIImageView alloc]initWithFrame:CGRectMake(30,5, 40, 45)];
-//        cellIcon.image = [UIImage imageNamed:@"cellIcon"];
-//        [cell addSubview:cellIcon];
         text = @"Notebooks";
         
 	} else if (row == 1) {
-        text = @"All Notes";
+        text = @"Tags";
 		
     } else if (row == 2) {
-        text = @"Tags";
+        text = @"All Notes";
     }
 
     
@@ -122,12 +120,19 @@
     }
 
     UIViewController *newFrontController = nil;
-    if (row == 0) {
-        NotebooksTableViewController *notebooks = [[NotebooksTableViewController alloc] init];
-        newFrontController = [[UINavigationController alloc] initWithRootViewController:notebooks];
+    
+    if (row == 0)
+    {
+        newFrontController = [[NotebooksTableViewController alloc] init];
     }
     
-    [revealController pushFrontViewController:newFrontController animated:YES];
+    else if (row == 1)
+    {
+        newFrontController = [[AllTagsCollectionViewController alloc] init];
+    }
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newFrontController];
+    [revealController pushFrontViewController:navigationController animated:YES];
     
     _presentedRow = row;  // <- store the presented row
 }

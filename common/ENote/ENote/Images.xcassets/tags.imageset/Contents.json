@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "tags.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "notebookAdd.png"
+      "filename" : "tags-1.png"
     },
     {
       "idiom" : "universal",
