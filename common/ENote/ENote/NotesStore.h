@@ -28,5 +28,6 @@
 
 - (void)addImage:(UIImage *)image forNote:(Note *)note;
 - (void)removeImageForNote:(Note *)note;
+- (UIImage *)imageForNote:(Note *)note;
 
 @end

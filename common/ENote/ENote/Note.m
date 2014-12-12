@@ -49,7 +49,7 @@
         _notebookID = ID;
         
         _imageName = [NSString new];
-        _thumbImage = [NSString new];
+        _thumbName = [NSString new];
     }
     
     return self;
@@ -64,7 +64,7 @@
         _privateTagsIDs = dictionary[@"tagsIDs"];
         _notebookID = dictionary[@"notebookID"];
         _imageName = dictionary[@"imageName"];
-        _thumbImage = dictionary[@"thumbImage"];
+        _thumbName = dictionary[@"thumbName"];
     }
     
     return self;
@@ -77,7 +77,7 @@
     [dictionaryRepresentation setValue:_privateTagsIDs forKey:@"tagsIDs"];
     [dictionaryRepresentation setValue:_notebookID forKey:@"notebookID"];
     [dictionaryRepresentation setValue:_imageName forKey:@"imageName"];
-    [dictionaryRepresentation setValue:_thumbImage forKey:@"thumbImage"];
+    [dictionaryRepresentation setValue:_thumbName forKey:@"thumbName"];
     
     return dictionaryRepresentation;
 }

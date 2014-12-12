@@ -16,6 +16,7 @@
 @interface NotesStore ()
 
 @property (nonatomic) NSMutableArray *allPrivateNotes;
+@property (nonatomic, copy) NSMutableDictionary *notesThumbs;
 
 @end
 
@@ -26,23 +27,73 @@
     note.imageName = [[NSUUID UUID] UUIDString];
     note.thumbName = [[NSUUID UUID] UUIDString];
     
-    NSData *imageData = UIImagePNGRepresentation(image);
+    [self saveNote:note];
     
-    UIImage *thumb = nil;
-    // make thumb
-    NSData *thumbData = UIImagePNGRepresentation(thumb);
+    UIImage *thumb = [self prepareThumbForImage:image];
     
-    NSString *notePath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebook.ID, note.ID];
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0f);
+    NSData *thumbData = UIImageJPEGRepresentation(thumb, 1.0f);
     
-    [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@/%@.png", notePath, note.imageName] contents:imageData attributes:nil];
-    [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@/%@.png", notePath, note.thumbName] contents:thumbData attributes:nil];
+    NSString *notePath = [self pathForNote:note];
     
+    [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@/%@.jpg", notePath, note.imageName] contents:imageData attributes:nil];
+    [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@/%@.jpg", notePath, note.thumbName] contents:thumbData attributes:nil];
     
+    [_notesThumbs setValue:thumb forKey:note.ID];
+}
+
+- (UIImage *)prepareThumbForImage:(UIImage *)image
+{
+    CGSize originalImageSize = image.size;
+    CGRect thumbImageSize = CGRectMake(0, 0, 100, 100);
+    
+    UIGraphicsBeginImageContext(thumbImageSize.size);
+    
+    CGRect projectRect;
+    
+    if (originalImageSize.width > originalImageSize.height) {
+        projectRect.size.height = 100.0f;
+        projectRect.size.width = 100.0f * originalImageSize.width / originalImageSize.height;
+    } else {
+        projectRect.size.width = 100.0f;
+        projectRect.size.height = 100.0f * originalImageSize.height / originalImageSize.width;
+    }
+    
+    projectRect.origin.x = (thumbImageSize.size.width - projectRect.size.width) / 2.0;
+    projectRect.origin.y = (thumbImageSize.size.height - projectRect.size.height) / 2.0;
+    
+    [image drawInRect:projectRect];
+    
+    UIImage *thumbImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return thumbImage;
+}
+
+- (NSString *)pathForNote:(Note *)note
+{
+    return [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebook.ID, note.ID];
 }
 
 - (void)removeImageForNote:(Note *)note
 {
+    [_notesThumbs removeObjectForKey:note.ID];
     
+    NSString *notePath = [self pathForNote:note];
+    
+    [[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat:@"%@/%@.jpg", notePath, note.imageName] error:nil];
+    [[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat:@"%@/%@.jpg", notePath, note.thumbName] error:nil];
+    
+    note.imageName = @"";
+    note.thumbName = @"";
+    
+    [self saveNote:note];
+}
+
+- (UIImage *)imageForNote:(Note *)note
+{
+    return [_notesThumbs valueForKey:note.ID];
 }
 
 - (instancetype)initWithNotebook:(Notebook *)notebook {
@@ -52,6 +103,7 @@
     if (self) {
         _allPrivateNotes = [[NSMutableArray alloc] init];
         _notebook = notebook;
+        _notesThumbs = [NSMutableDictionary new];
 
         [self loadNotes];
     }
@@ -66,7 +118,7 @@
 
 - (void)saveNote:(Note *)note {
     
-    NSString *notePath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], note.notebookID, note.ID];
+    NSString *notePath = [self pathForNote:note];
     
     [[NSFileManager defaultManager] createDirectoryAtPath:notePath
                               withIntermediateDirectories:YES
@@ -107,8 +159,21 @@
     return note;
 }
 
+- (void)loadThumbForNote:(Note *)note
+{
+    NSString *notePath = [self pathForNote:note];
+    
+    NSData *thumbData = [[NSFileManager defaultManager] contentsAtPath:[NSString stringWithFormat:@"%@/%@.jpg", notePath, note.thumbName]];
+    
+    UIImage *thumbImage = [UIImage imageWithData:thumbData];
+    
+    [_notesThumbs setValue:thumbImage forKey:note.ID];
+}
+
 - (void)addNoteWithDictionary:(NSDictionary *)dictionary {
     Note *note = [[Note alloc] initWithDictionary:dictionary];
+    
+    [self loadThumbForNote:note];
     
     // maybe forin within SharedStore all tags?
     for (int i = 0; i < [note.tagsIDs count]; i++) {
@@ -126,6 +191,8 @@
     
     [_notebook removeNoteID:note.ID];
     [[NotebooksStore sharedStore] saveNotebook:_notebook];
+    
+    [_notesThumbs removeObjectForKey:note.ID];
     
     NSString *itemPath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], _notebook.ID, note.ID];
     
