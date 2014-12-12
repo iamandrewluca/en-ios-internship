@@ -350,8 +350,6 @@
         } else if(buttonIndex == 1) {
             [self renameNote];
         } else if(buttonIndex == 2) {
-            NSLog(@"Move note to another notebook");
-        } else if (buttonIndex == 3) {
             if ([_note.imageName isEqualToString:@""]) {
                 [self addImage];
             } else {
@@ -387,6 +385,24 @@
         self.note.text = self.addNotesTextView.text;
         [_notesStore saveNote:_note];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // maybe forin within SharedStore all tags?
+    for (int i = 0; i < [_note.tagsIDs count]; i++) {
+        NSString *tagID = _note.tagsIDs[i];
+        
+        if (![[TagsStore sharedStore] getTagWithID:tagID]) {
+            [_note removeTagID:tagID];
+        }
+    }
+    
+    [_notesStore saveNote:_note];
+    
+    [self.tagsCollectionView reloadData];
 }
 
 @end

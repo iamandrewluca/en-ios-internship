@@ -175,15 +175,6 @@
     
     [self loadThumbForNote:note];
     
-    // maybe forin within SharedStore all tags?
-    for (int i = 0; i < [note.tagsIDs count]; i++) {
-        NSString *tagID = note.tagsIDs[i];
-        
-        if (![[TagsStore sharedStore] getTagWithID:tagID]) {
-            [note removeTagID:tagID];
-        }
-    }
-    
     [self addNote:note];
 }
 
