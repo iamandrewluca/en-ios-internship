@@ -11,8 +11,10 @@
 #import "Notebook.h"
 #import "NotebooksTableViewDataSource.h"
 #import "NotesCollectionViewController.h"
+#import "MMDrawerBarButtonItem.h"
+#import "UIViewController+MMDrawerController.h"
 
-@interface NotebooksTableViewController () <UITableViewDelegate> {
+@interface NotebooksTableViewController () <UITableViewDelegate, UIGestureRecognizerDelegate> {
     NSIndexPath *selectedNotebookIndexPath;
     UIImageView *emptyTableViewBackground;
 }
@@ -58,6 +60,11 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (void)leftBarButtonItemPressed:(id)sender
+{
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -66,7 +73,7 @@
     self.tableView.dataSource = self.dataSource;
     
     // Setup navigationItem left, center, right items
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftBarButtonItemPressed:)];
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                target:self
                                                                                action:@selector(addNewNotebook)];
@@ -89,30 +96,20 @@
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.frame];
     
     [self.tableView.backgroundView addSubview:emptyTableViewBackground];
+    
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 1.0; //seconds
+    lpgr.delegate = self;
+    [self.tableView addGestureRecognizer:lpgr];
 }
 
-- (void)viewDidLayoutSubviews
+- (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
 {
-    [super viewDidLayoutSubviews];
+    CGPoint pointInView = [gestureRecognizer locationInView:self.tableView];
     
-    // Center emptyTableViewBackground every time layout will change
-    [emptyTableViewBackground setCenter:CGPointMake(self.tableView.center.x, self.tableView.center.y - emptyTableViewBackground.image.size.height / 2)];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-    if (selectedNotebookIndexPath) {
-        [self.tableView reloadRowsAtIndexPaths:@[selectedNotebookIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-    }
-}
-
-#pragma mark TableView Delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:pointInView];
     
-    if (tableView.editing) {
-        
+    if (indexPath && gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Enter another name"
                                                                        message:@""
                                                                 preferredStyle:UIAlertControllerStyleAlert];
@@ -147,18 +144,37 @@
         [alert addAction:ok];
         
         [self presentViewController:alert animated:YES completion:nil];
-        
-    } else {
-        
-        NotesCollectionViewController *notes = [[NotesCollectionViewController alloc] initWithNibName:@"NotesCollectionViewController" bundle:nil];
-        
-        Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
-        notes.notesStore = [[NotebooksStore sharedStore] notesStoreForNotebook:notebook];
-        
-        selectedNotebookIndexPath = indexPath;
-        
-        [[self navigationController] pushViewController:notes animated:YES];
     }
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    // Center emptyTableViewBackground every time layout will change
+    [emptyTableViewBackground setCenter:CGPointMake(self.tableView.center.x, self.tableView.center.y - emptyTableViewBackground.image.size.height / 2)];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    if (selectedNotebookIndexPath) {
+        [self.tableView reloadRowsAtIndexPaths:@[selectedNotebookIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
+}
+
+#pragma mark TableView Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NotesCollectionViewController *notes = [[NotesCollectionViewController alloc] initWithNibName:@"NotesCollectionViewController" bundle:nil];
+    
+    Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
+    notes.notesStore = [[NotebooksStore sharedStore] notesStoreForNotebook:notebook];
+    
+    selectedNotebookIndexPath = indexPath;
+    
+    [[self navigationController] pushViewController:notes animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
