@@ -11,7 +11,6 @@
 #import "Notebook.h"
 #import "NotebooksTableViewDataSource.h"
 #import "NotesCollectionViewController.h"
-#import "SWRevealViewController.h"
 
 @interface NotebooksTableViewController () <UITableViewDelegate> {
     NSIndexPath *selectedNotebookIndexPath;
@@ -61,10 +60,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Pan gesture
-    SWRevealViewController *revealController = [self revealViewController];
-    [revealController panGestureRecognizer];
-    [self.tableView addGestureRecognizer:revealController.panGestureRecognizer];
     
     // Setup Data Source
     self.dataSource = [[NotebooksTableViewDataSource alloc] init];
