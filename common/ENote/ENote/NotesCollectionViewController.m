@@ -22,6 +22,7 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
     NSIndexPath *selectedNoteIndexPath;
     UILongPressGestureRecognizer *longPress;
     UIBarButtonItem *addNote;
+    UIImageView *noNotesBack;
 }
 
 @property (nonatomic) NSMutableArray *selectedItems;
@@ -60,8 +61,23 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
     self.navigationItem.rightBarButtonItem = addNote;
     self.selectedItems = [[NSMutableArray alloc] init];
     
+    // Prepare collectionView empty background
+    UIImage *image = [UIImage imageNamed:@"addSomeNotebooks"];
+    noNotesBack = [[UIImageView alloc] initWithImage:image];
+    
+    self.collectionView.backgroundView = [[UIView alloc] initWithFrame:self.collectionView.frame];
+    
+    [self.collectionView.backgroundView addSubview:noNotesBack];
+    
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    // Center emptyTableViewBackground every time layout will change
+    [noNotesBack setCenter:CGPointMake(self.collectionView.center.x, self.collectionView.center.y - noNotesBack.image.size.height / 2)];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -149,11 +165,25 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [[_notesStore allNotes] count] + 1; // plus one for add note cell
+    NSUInteger count = [[_notesStore allNotes] count];
+    
+    if (count == 0) {
+        if ([[[collectionView.backgroundView subviews] firstObject] isHidden]) {
+            [[[collectionView.backgroundView subviews] firstObject] setHidden:NO];
+        }
+    }
+    
+    return count + 1; // plus one for add note cell
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([collectionView numberOfItemsInSection:0] > 1) {
+        if (![[[collectionView.backgroundView subviews] firstObject] isHidden]) {
+            [[[collectionView.backgroundView subviews] firstObject] setHidden:YES];
+        }
+    }
+    
     UICollectionViewCell *cell = nil;
     
     if ([self isLastIndexPath:indexPath]) {
