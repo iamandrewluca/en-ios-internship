@@ -9,22 +9,21 @@
 #import "NotesCollectionViewController.h"
 #import "NotesDetailViewController.h"
 #import "NotesStore.h"
-#import "NotesLayout.h"
 #import "Notebook.h"
 #import "NoteCell.h"
 #import "Note.h"
 #import "NotebooksStore.h"
+#import "NotesAddCell.h"
 
-static NSString * const NoteCellIdentifier = @"NoteCell";
+static NSString *const NoteCellIdentifier = @"NoteCell";
+static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
 
 @interface NotesCollectionViewController () {
     NSIndexPath *selectedNoteIndexPath;
     UILongPressGestureRecognizer *longPress;
-    NSIndexPath *lastAccessed;
     UIBarButtonItem *addNote;
 }
 
-@property (nonatomic, weak) IBOutlet NotesLayout *notesLayout;
 @property (nonatomic) NSMutableArray *selectedItems;
 
 @end
@@ -35,12 +34,18 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.navigationItem.title = _notesStore.notebook.name;
     self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPattern"]];
 
-    // Register cell and title classes with the collection view
-    UINib *nib = [UINib nibWithNibName:@"NoteCell" bundle:nil];
+    // Register cells for collection view
+    UINib *nib = [UINib nibWithNibName:NoteCellIdentifier bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:NoteCellIdentifier];
+    
+    // Regsiter notes add cell for collection viewce
+    nib = [UINib nibWithNibName:AddNoteCellIdentifier bundle:nil];
+    [self.collectionView registerNib:nib forCellWithReuseIdentifier:AddNoteCellIdentifier];
+    
     [self.collectionView setAllowsMultipleSelection:YES];
     
     // Long press for entering editing mode
@@ -67,7 +72,6 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     }
 }
 
-
 #pragma mark - Button actions
 -(void)addNewNote
 {
@@ -88,8 +92,8 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
                                                    
                                                    [_notesStore createNoteWithName:titleFromModal];
                                                    
-                                                   NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
-                                                   [self.collectionView insertSections:indexSet];
+                                                   NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+                                                   [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
 
                                                }];
     
@@ -103,6 +107,19 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (void)hideCheckBoxes:(BOOL)hide
+{
+    for (int i = 0; i < [self.collectionView numberOfItemsInSection:0] - 1; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+        UICollectionViewCell *noteCell = [self.collectionView cellForItemAtIndexPath:indexPath];
+        ((NoteCell *)noteCell).checked.hidden = hide;
+    }
+}
+
+- (void)showCheckBoxes:(BOOL)show
+{
+    [self hideCheckBoxes:!show];
+}
 
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
@@ -110,25 +127,12 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     
     if (!editing) {
         self.navigationItem.rightBarButtonItem = addNote;
-        
-        for (int i = 0; i < [self.collectionView numberOfSections]; i++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:i];
-            UICollectionViewCell *noteCell = [self.collectionView cellForItemAtIndexPath:indexPath];
-            ((NoteCell *)noteCell).checked.hidden = YES;
-        }
-        
+        [self hideCheckBoxes:YES];
         [self deleteNotes];
-    }
-    else
-    {
+    } else {
         self.editButtonItem.image = [UIImage imageNamed:@"trash"];
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
-        
-        for (int i = 0; i < [self.collectionView numberOfSections]; i++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:i];
-            UICollectionViewCell *noteCell = [self.collectionView cellForItemAtIndexPath:indexPath];
-            ((NoteCell *)noteCell).checked.hidden = NO;
-        }
+        [self showCheckBoxes:YES];
     }
 }
 
@@ -141,94 +145,86 @@ static NSString * const NoteCellIdentifier = @"NoteCell";
     }
 }
 
-
-
 #pragma mark <UICollectionViewDataSource>
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return [[_notesStore allNotes] count];
-}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 1;
+    return [[_notesStore allNotes] count] + 1; // plus one for add note cell
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NoteCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteCellIdentifier forIndexPath:indexPath];
+    UICollectionViewCell *cell = nil;
     
-    Note *note = [[_notesStore allNotes] objectAtIndex:indexPath.section];
-    
-    noteCell.nameLabel.text = note.name;
-    
-    UIImage *thumbImage = [_notesStore imageForNote:note];
-    
-    if (thumbImage) {
-        noteCell.thumbnailImage.image = thumbImage;
+    if ([self isLastIndexPath:indexPath]) {
+        // if is last cell
+        cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:AddNoteCellIdentifier forIndexPath:indexPath];
+        [((NotesAddCell *)cell).addNote addTarget:self action:@selector(addNewNote) forControlEvents:UIControlEventTouchUpInside];
     } else {
-        noteCell.thumbnailImage.image = [UIImage imageNamed:@"racoon-orange"];
+        // if is not last cell
+        
+        Note *note = [[_notesStore allNotes] objectAtIndex:indexPath.row];
+        
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteCellIdentifier forIndexPath:indexPath];
+        NoteCell *noteCell = (NoteCell *)cell;
+        noteCell.nameLabel.text = note.name;
+        
+        UIImage *thumbImage = [_notesStore imageForNote:note];
+        
+        if (thumbImage) {
+            noteCell.thumbnailImage.image = thumbImage;
+        } else {
+            noteCell.thumbnailImage.image = [UIImage imageNamed:@"racoon-orange"];
+        }
     }
     
-    return noteCell;
+    return cell;
 }
 
 - (void)deleteNotes {
 
-    for (int i = 0; i < [_selectedItems count]; i++) {
-        
-        [_notesStore removeNote:_selectedItems[i]];
+    for (NSIndexPath *indexPath in _selectedItems) {
+        Note *note = [[_notesStore allNotes] objectAtIndex:indexPath.row];
+        [_notesStore removeNote:note];
     }
+    
+    [self.collectionView deleteItemsAtIndexPaths:_selectedItems];
     
     [_selectedItems removeAllObjects];
-    [self.collectionView reloadData];
 }
 
+- (BOOL)isLastIndexPath:(NSIndexPath *)indexPath
+{
+    return indexPath.row == ([self.collectionView numberOfItemsInSection:0] - 1);
+}
 
-
-#pragma mark <UICollectionViewDelegate>
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    
-    if (self.editing) {
-        [self.selectedItems addObject:[[_notesStore allNotes] objectAtIndex:indexPath.section]];
-        
-        ((NoteCell *)cell).checked.image = [UIImage imageNamed:@"checked"];
-    }
-    else {
-        NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
-        Note *note = [[_notesStore allNotes] objectAtIndex:indexPath.section];
-        nvc.note = note;
-        nvc.notesStore = _notesStore;
-        selectedNoteIndexPath = indexPath;
-        [[self navigationController] pushViewController:nvc animated:YES];
-    }
-}
-
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (self.editing) {
-        UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-        
-        [self.selectedItems removeObject:[[_notesStore allNotes] objectAtIndex:indexPath.section]];
-        ((NoteCell *)cell).checked.image = [UIImage imageNamed:@"unchecked"];
+    if (![self isLastIndexPath:indexPath]) {
+        if (self.editing) {
+            UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+            [self.selectedItems addObject:indexPath];
+            ((NoteCell *)cell).checked.image = [UIImage imageNamed:@"checked"];
+        } else {
+            
+            NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
+            Note *note = [[_notesStore allNotes] objectAtIndex:indexPath.row];
+            nvc.note = note;
+            nvc.notesStore = _notesStore;
+            selectedNoteIndexPath = indexPath;
+            [[self navigationController] pushViewController:nvc animated:YES];
+        }
     }
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
-}
-
-#pragma mark - View Rotation
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-                                duration:(NSTimeInterval)duration
-{
-    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-        self.notesLayout.numberOfColumns = 3;
-    } else {
-        self.notesLayout.numberOfColumns = 2;
+    if (![self isLastIndexPath:indexPath]) {
+        if (self.editing) {
+            UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+            [self.selectedItems removeObject:indexPath];
+            ((NoteCell *)cell).checked.image = [UIImage imageNamed:@"unchecked"];
+        }
     }
 }
 

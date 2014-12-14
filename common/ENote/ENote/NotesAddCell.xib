@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotesCollectionViewController"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NotesAddCell" id="fc1-z9-Ahu" customClass="NotesAddCell">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbJ-Rq-Pj0">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <state key="normal" backgroundImage="AddNote">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="xbJ-Rq-Pj0" secondAttribute="bottom" id="T1A-m2-uOD"/>
+                <constraint firstAttribute="trailing" secondItem="xbJ-Rq-Pj0" secondAttribute="trailing" id="Xfe-nc-GUH"/>
+                <constraint firstItem="xbJ-Rq-Pj0" firstAttribute="top" secondItem="fc1-z9-Ahu" secondAttribute="top" id="by6-m6-U1H"/>
+                <constraint firstItem="xbJ-Rq-Pj0" firstAttribute="leading" secondItem="fc1-z9-Ahu" secondAttribute="leading" id="iBS-0c-FyE"/>
+            </constraints>
+            <connections>
+                <outlet property="addNote" destination="xbJ-Rq-Pj0" id="JiP-4k-HO9"/>
+            </connections>
+            <point key="canvasLocation" x="324" y="356"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="AddNote" width="128" height="128"/>
+    </resources>
+</document>

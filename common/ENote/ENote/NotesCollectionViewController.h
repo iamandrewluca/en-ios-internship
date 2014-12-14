@@ -11,12 +11,6 @@
 @class NotesStore;
 
 @interface NotesCollectionViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate>
-{
-    CGPoint dragStartPt;
-    bool dragging;
-    
-    NSMutableDictionary *selectedIdx;
-}
 
 @property (nonatomic) NotesStore *notesStore;
 

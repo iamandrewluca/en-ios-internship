@@ -18,6 +18,8 @@
 		619957DA1A39B1C600AFFDE2 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619957D91A39B1C600AFFDE2 /* SWRevealViewController.m */; };
 		619957DE1A39B1DD00AFFDE2 /* RearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619957DC1A39B1DD00AFFDE2 /* RearViewController.m */; };
 		619957DF1A39B1DD00AFFDE2 /* RearViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619957DD1A39B1DD00AFFDE2 /* RearViewController.xib */; };
+		75CD431E1A3E259D002141ED /* NotesAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75CD431D1A3E259D002141ED /* NotesAddCell.xib */; };
+		75CD43211A3E2CB8002141ED /* NotesAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CD43201A3E2CB8002141ED /* NotesAddCell.m */; };
 		A70355271A319FC5008742C9 /* TagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A70355251A319FC5008742C9 /* TagCollectionViewCell.m */; };
 		A70355281A319FC5008742C9 /* TagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70355261A319FC5008742C9 /* TagCollectionViewCell.xib */; };
 		A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */; };
@@ -71,6 +73,9 @@
 		619957DB1A39B1DD00AFFDE2 /* RearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RearViewController.h; sourceTree = "<group>"; };
 		619957DC1A39B1DD00AFFDE2 /* RearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RearViewController.m; sourceTree = "<group>"; };
 		619957DD1A39B1DD00AFFDE2 /* RearViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RearViewController.xib; sourceTree = "<group>"; };
+		75CD431D1A3E259D002141ED /* NotesAddCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesAddCell.xib; sourceTree = "<group>"; };
+		75CD431F1A3E2CB8002141ED /* NotesAddCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesAddCell.h; sourceTree = "<group>"; };
+		75CD43201A3E2CB8002141ED /* NotesAddCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesAddCell.m; sourceTree = "<group>"; };
 		A70355241A319FC5008742C9 /* TagCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagCollectionViewCell.h; sourceTree = "<group>"; };
 		A70355251A319FC5008742C9 /* TagCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagCollectionViewCell.m; sourceTree = "<group>"; };
 		A70355261A319FC5008742C9 /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -184,6 +189,7 @@
 				6190C2241A124CE70046F016 /* NotesCollectionViewController.h */,
 				6190C2251A124CE70046F016 /* NotesCollectionViewController.m */,
 				6190C2261A124CE70046F016 /* NotesCollectionViewController.xib */,
+				75CD431C1A3E254C002141ED /* NoteCell */,
 			);
 			name = NotesCollectionVC;
 			sourceTree = "<group>";
@@ -193,11 +199,21 @@
 			children = (
 				6190C22A1A124EBA0046F016 /* NotesLayout.h */,
 				6190C22B1A124EBA0046F016 /* NotesLayout.m */,
-				6190C22E1A1254920046F016 /* NoteCell.h */,
-				6190C22F1A1254920046F016 /* NoteCell.m */,
-				6100EA141A31C53800AA6A4B /* NoteCell.xib */,
 			);
 			name = NotesLayout;
+			sourceTree = "<group>";
+		};
+		75CD431C1A3E254C002141ED /* NoteCell */ = {
+			isa = PBXGroup;
+			children = (
+				6190C22F1A1254920046F016 /* NoteCell.m */,
+				6190C22E1A1254920046F016 /* NoteCell.h */,
+				6100EA141A31C53800AA6A4B /* NoteCell.xib */,
+				75CD431D1A3E259D002141ED /* NotesAddCell.xib */,
+				75CD431F1A3E2CB8002141ED /* NotesAddCell.h */,
+				75CD43201A3E2CB8002141ED /* NotesAddCell.m */,
+			);
+			name = NoteCell;
 			sourceTree = "<group>";
 		};
 		A71048331A30A4630005470B /* TagCollectionViewCell */ = {
@@ -423,6 +439,7 @@
 				A7D73BD51A3850E0009A21FA /* AllTagsCollectionViewController.xib in Resources */,
 				619957DF1A39B1DD00AFFDE2 /* RearViewController.xib in Resources */,
 				A7D9ACC41A1357A900B8376A /* NotebooksTableViewController.xib in Resources */,
+				75CD431E1A3E259D002141ED /* NotesAddCell.xib in Resources */,
 				A70355281A319FC5008742C9 /* TagCollectionViewCell.xib in Resources */,
 				A721830F1A10E950006E47E3 /* LaunchScreen.xib in Resources */,
 				6190C2281A124CE70046F016 /* NotesCollectionViewController.xib in Resources */,
@@ -447,6 +464,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A74FE0B81A1B86BA0005F74D /* ENoteCommons.m in Sources */,
+				75CD43211A3E2CB8002141ED /* NotesAddCell.m in Sources */,
 				6155EC4D1A137C3E00BE143B /* Note.m in Sources */,
 				A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */,
 				6190C2301A1254920046F016 /* NoteCell.m in Sources */,
