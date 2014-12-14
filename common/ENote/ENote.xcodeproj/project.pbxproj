@@ -15,12 +15,12 @@
 		6190C2281A124CE70046F016 /* NotesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6190C2261A124CE70046F016 /* NotesCollectionViewController.xib */; };
 		6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C22B1A124EBA0046F016 /* NotesLayout.m */; };
 		6190C2301A1254920046F016 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C22F1A1254920046F016 /* NoteCell.m */; };
-		619957DE1A39B1DD00AFFDE2 /* RearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619957DC1A39B1DD00AFFDE2 /* RearViewController.m */; };
-		619957DF1A39B1DD00AFFDE2 /* RearViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619957DD1A39B1DD00AFFDE2 /* RearViewController.xib */; };
 		755594E61A3DAE2800B30234 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 755594DE1A3DAE2800B30234 /* MMDrawerBarButtonItem.m */; };
 		755594E71A3DAE2800B30234 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 755594E11A3DAE2800B30234 /* MMDrawerController.m */; };
 		755594E81A3DAE2800B30234 /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = 755594E31A3DAE2800B30234 /* MMDrawerVisualState.m */; };
 		755594E91A3DAE2800B30234 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 755594E51A3DAE2800B30234 /* UIViewController+MMDrawerController.m */; };
+		755594F21A3DB03700B30234 /* RearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 755594F01A3DB03700B30234 /* RearViewController.m */; };
+		755594F31A3DB03700B30234 /* RearViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 755594F11A3DB03700B30234 /* RearViewController.xib */; };
 		A70355271A319FC5008742C9 /* TagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A70355251A319FC5008742C9 /* TagCollectionViewCell.m */; };
 		A70355281A319FC5008742C9 /* TagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70355261A319FC5008742C9 /* TagCollectionViewCell.xib */; };
 		A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */; };
@@ -69,9 +69,6 @@
 		6190C22B1A124EBA0046F016 /* NotesLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesLayout.m; sourceTree = "<group>"; };
 		6190C22E1A1254920046F016 /* NoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCell.h; sourceTree = "<group>"; };
 		6190C22F1A1254920046F016 /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
-		619957DB1A39B1DD00AFFDE2 /* RearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RearViewController.h; sourceTree = "<group>"; };
-		619957DC1A39B1DD00AFFDE2 /* RearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RearViewController.m; sourceTree = "<group>"; };
-		619957DD1A39B1DD00AFFDE2 /* RearViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RearViewController.xib; sourceTree = "<group>"; };
 		755594DD1A3DAE2800B30234 /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
 		755594DE1A3DAE2800B30234 /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
 		755594DF1A3DAE2800B30234 /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
@@ -81,6 +78,9 @@
 		755594E31A3DAE2800B30234 /* MMDrawerVisualState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerVisualState.m; sourceTree = "<group>"; };
 		755594E41A3DAE2800B30234 /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
 		755594E51A3DAE2800B30234 /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
+		755594EF1A3DB03700B30234 /* RearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RearViewController.h; sourceTree = "<group>"; };
+		755594F01A3DB03700B30234 /* RearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RearViewController.m; sourceTree = "<group>"; };
+		755594F11A3DB03700B30234 /* RearViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RearViewController.xib; sourceTree = "<group>"; };
 		A70355241A319FC5008742C9 /* TagCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagCollectionViewCell.h; sourceTree = "<group>"; };
 		A70355251A319FC5008742C9 /* TagCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagCollectionViewCell.m; sourceTree = "<group>"; };
 		A70355261A319FC5008742C9 /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -173,9 +173,9 @@
 		619957D71A39B18800AFFDE2 /* RearViewController */ = {
 			isa = PBXGroup;
 			children = (
-				619957DB1A39B1DD00AFFDE2 /* RearViewController.h */,
-				619957DC1A39B1DD00AFFDE2 /* RearViewController.m */,
-				619957DD1A39B1DD00AFFDE2 /* RearViewController.xib */,
+				755594EF1A3DB03700B30234 /* RearViewController.h */,
+				755594F01A3DB03700B30234 /* RearViewController.m */,
+				755594F11A3DB03700B30234 /* RearViewController.xib */,
 			);
 			name = RearViewController;
 			sourceTree = "<group>";
@@ -438,7 +438,7 @@
 			files = (
 				6100EA151A31C53800AA6A4B /* NoteCell.xib in Resources */,
 				A7D73BD51A3850E0009A21FA /* AllTagsCollectionViewController.xib in Resources */,
-				619957DF1A39B1DD00AFFDE2 /* RearViewController.xib in Resources */,
+				755594F31A3DB03700B30234 /* RearViewController.xib in Resources */,
 				A7D9ACC41A1357A900B8376A /* NotebooksTableViewController.xib in Resources */,
 				A70355281A319FC5008742C9 /* TagCollectionViewCell.xib in Resources */,
 				A721830F1A10E950006E47E3 /* LaunchScreen.xib in Resources */,
@@ -467,11 +467,11 @@
 				6155EC4D1A137C3E00BE143B /* Note.m in Sources */,
 				A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */,
 				755594E61A3DAE2800B30234 /* MMDrawerBarButtonItem.m in Sources */,
+				755594F21A3DB03700B30234 /* RearViewController.m in Sources */,
 				755594E71A3DAE2800B30234 /* MMDrawerController.m in Sources */,
 				6190C2301A1254920046F016 /* NoteCell.m in Sources */,
 				A7D73BD91A3855F3009A21FA /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				A7D73BD41A3850E0009A21FA /* AllTagsCollectionViewController.m in Sources */,
-				619957DE1A39B1DD00AFFDE2 /* RearViewController.m in Sources */,
 				6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */,
 				A72183041A10E950006E47E3 /* AppDelegate.m in Sources */,
 				6190C2271A124CE70046F016 /* NotesCollectionViewController.m in Sources */,

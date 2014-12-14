@@ -8,12 +8,11 @@
 
 #import "AppDelegate.h"
 #import "NotebooksTableViewController.h"
-#import "NotebooksStore.h"
-#import "AllTagsCollectionViewController.h"
 #import "RearViewController.h"
-#import "SWRevealViewController.h"
+#import "MMDrawerController.h"
+#import "MMDrawerVisualState.h"
 
-@interface AppDelegate () <SWRevealViewControllerDelegate>
+@interface AppDelegate ()
 
 @end
 
@@ -22,30 +21,26 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
+    // Why search simulator sandbox?
     NSLog(@"%@", NSHomeDirectory());
     
-    NotebooksTableViewController *notebooks = [[NotebooksTableViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:notebooks];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:235.0/255.0 green:134.0/255.0 blue:13.0/255.0 alpha:1.0]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [nav.navigationController.navigationBar setTranslucent:NO];
-    nav.navigationBar.tintColor = [UIColor whiteColor];
+    UIViewController *leftDrawer = [RearViewController new];
+    UIViewController *notebooks = [NotebooksTableViewController new];
     
-    RearViewController *rearViewController = [[RearViewController alloc] init];
-    UINavigationController *rearNavigationController = [[UINavigationController alloc] initWithRootViewController:rearViewController];
+    UINavigationController *appNav = [[UINavigationController alloc] initWithRootViewController:notebooks];
+    appNav.navigationBar.translucent = NO;
+    appNav.navigationBar.barTintColor = [UIColor orangeColor];
+    appNav.navigationBar.tintColor = [UIColor whiteColor];
+    appNav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
+    MMDrawerController *drawerCtrl = [[MMDrawerController alloc] initWithCenterViewController:appNav
+                                                                     leftDrawerViewController:leftDrawer];
     
-    SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
-                                                    initWithRearViewController:rearNavigationController frontViewController:nav];
-    mainRevealController.delegate = self;
+    [drawerCtrl setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [drawerCtrl setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     
-    
-    self.viewController = mainRevealController;
-    self.window.rootViewController = self.viewController;
-    
-    nav.navigationBar.translucent = NO;
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = drawerCtrl;
     [self.window makeKeyAndVisible];
     
     return YES;
