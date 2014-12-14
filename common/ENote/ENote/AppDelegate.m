@@ -25,8 +25,13 @@
     NSLog(@"%@", NSHomeDirectory());
     
     UIViewController *leftDrawer = [RearViewController new];
-    UIViewController *notebooks = [NotebooksTableViewController new];
+    UINavigationController *drawerNav = [[UINavigationController alloc] initWithRootViewController:leftDrawer];
+    drawerNav.navigationBar.translucent = NO;
+    drawerNav.navigationBar.barTintColor = [UIColor orangeColor];
+    drawerNav.navigationBar.tintColor = [UIColor whiteColor];
+    drawerNav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
+    UIViewController *notebooks = [NotebooksTableViewController new];
     UINavigationController *appNav = [[UINavigationController alloc] initWithRootViewController:notebooks];
     appNav.navigationBar.translucent = NO;
     appNav.navigationBar.barTintColor = [UIColor orangeColor];
@@ -34,10 +39,10 @@
     appNav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
     MMDrawerController *drawerCtrl = [[MMDrawerController alloc] initWithCenterViewController:appNav
-                                                                     leftDrawerViewController:leftDrawer];
+                                                                     leftDrawerViewController:drawerNav];
     
-    [drawerCtrl setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
-    [drawerCtrl setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    [drawerCtrl setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeBezelPanningCenterView];
+    [drawerCtrl setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = drawerCtrl;
