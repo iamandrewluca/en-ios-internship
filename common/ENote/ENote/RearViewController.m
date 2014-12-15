@@ -56,8 +56,10 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     
     if (!cell) {
-        cell = [UITableViewCell new];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
     }
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     switch (indexPath.row) {
         case 0:

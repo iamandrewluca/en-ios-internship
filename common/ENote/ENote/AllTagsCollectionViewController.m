@@ -11,6 +11,8 @@
 #import "TagsStore.h"
 #import "Tag.h"
 
+static NSString *const kTagCollectionViewCell = @"TagCollectionViewCell";
+
 @interface AllTagsCollectionViewController () <UISearchBarDelegate, UICollectionViewDelegateFlowLayout, TagCellDelegate>
 
 @property (nonatomic) NSMutableArray *foundTags;
@@ -21,8 +23,6 @@
 {
     TagCollectionViewCell *_sizingCell;
 }
-
-static NSString * const reuseIdentifier = @"TagCell";
 
 - (void)buttonPressedInCell:(TagCollectionViewCell *)cell
 {
@@ -60,8 +60,8 @@ static NSString * const reuseIdentifier = @"TagCell";
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPattern"]];
     
-    UINib *nib = [UINib nibWithNibName:@"TagCollectionViewCell" bundle:nil];
-    [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
+    UINib *nib = [UINib nibWithNibName:kTagCollectionViewCell bundle:nil];
+    [self.collectionView registerNib:nib forCellWithReuseIdentifier:kTagCollectionViewCell];
     
     _sizingCell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
 }
@@ -81,8 +81,9 @@ static NSString * const reuseIdentifier = @"TagCell";
     }
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    TagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    TagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kTagCollectionViewCell forIndexPath:indexPath];
     
     if ([_foundTags count] != 0) {
         Tag *tag = [_foundTags objectAtIndex:indexPath.row];
@@ -126,6 +127,5 @@ static NSString * const reuseIdentifier = @"TagCell";
         [searchBar resignFirstResponder];
     }
 }
-
 
 @end

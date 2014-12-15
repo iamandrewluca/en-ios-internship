@@ -17,7 +17,7 @@
 static NSString *const kAddTagCellIdentifier = @"AddTagCollectionViewCell";
 static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 
-@interface NotesDetailViewController () <TagCellDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface NotesDetailViewController () <TagCellDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic) BOOL noteWasDeleted;
 

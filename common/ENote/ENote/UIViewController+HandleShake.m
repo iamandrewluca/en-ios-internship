@@ -24,7 +24,7 @@
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Credits go to:" message:@"Iurii Boicenco\nLuca Andrei\nAlex Maimescu\nNicolae Ghimbovschi" preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction *okay = [UIAlertAction actionWithTitle:@"👏" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        UIAlertAction *okay = [UIAlertAction actionWithTitle:@"👏 👏 👏" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
             
             SystemSoundID sound;
             NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"aplause" ofType:@"wav"];

@@ -7,7 +7,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotesDetailViewController">
             <connections>
                 <outlet property="addNotesTextView" destination="T8x-fQ-2Vh" id="lPG-wf-DTD"/>
-                <outlet property="searchDisplayController" destination="1ud-qF-Ldf" id="Lrf-fl-Pms"/>
                 <outlet property="tagsCollectionView" destination="TdD-ke-QJv" id="5ee-FF-cQ1"/>
                 <outlet property="textViewBottomSpace" destination="DPP-Gu-ePw" id="rUs-5Y-NcO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -45,23 +44,15 @@
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="T8x-fQ-2Vh" secondAttribute="bottom" constant="8" id="DPP-Gu-ePw"/>
+                <constraint firstItem="TdD-ke-QJv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="bYz-T0-yVK"/>
                 <constraint firstAttribute="trailing" secondItem="TdD-ke-QJv" secondAttribute="trailing" id="d7J-QL-xUE"/>
                 <constraint firstAttribute="trailing" secondItem="T8x-fQ-2Vh" secondAttribute="trailing" constant="8" id="eB5-O0-1XN"/>
                 <constraint firstItem="TdD-ke-QJv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eFe-qo-kKf"/>
                 <constraint firstItem="T8x-fQ-2Vh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="n4R-sp-3x2"/>
                 <constraint firstItem="T8x-fQ-2Vh" firstAttribute="top" secondItem="TdD-ke-QJv" secondAttribute="bottom" constant="8" id="p0l-UM-GCF"/>
-                <constraint firstItem="TdD-ke-QJv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="zeh-Mw-NHD"/>
             </constraints>
             <point key="canvasLocation" x="-86" y="459"/>
         </view>
-        <searchDisplayController id="1ud-qF-Ldf">
-            <connections>
-                <outlet property="delegate" destination="-1" id="Ity-Qh-tJK"/>
-                <outlet property="searchContentsController" destination="-1" id="hJh-I7-EkB"/>
-                <outlet property="searchResultsDataSource" destination="-1" id="G8U-A1-BXK"/>
-                <outlet property="searchResultsDelegate" destination="-1" id="5AD-kn-s0b"/>
-            </connections>
-        </searchDisplayController>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

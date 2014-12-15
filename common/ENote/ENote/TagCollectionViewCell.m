@@ -22,6 +22,8 @@
     [super awakeFromNib];
     
     self.container.layer.cornerRadius = 12.0f;
+    self.container.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.container.layer.borderWidth = 1.0;
     
     UIImage *image = [[UIImage imageNamed:@"Remove"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
