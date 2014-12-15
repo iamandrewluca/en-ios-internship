@@ -32,13 +32,18 @@
     drawerNav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
     UIViewController *notebooks = [NotebooksTableViewController new];
-    UINavigationController *appNav = [[UINavigationController alloc] initWithRootViewController:notebooks];
-    appNav.navigationBar.translucent = NO;
-    appNav.navigationBar.barTintColor = [UIColor orangeColor];
-    appNav.navigationBar.tintColor = [UIColor whiteColor];
-    appNav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+    self.appNav = [[UINavigationController alloc] initWithRootViewController:notebooks];
+    self.appNav.navigationBar.translucent = NO;
+    self.appNav.navigationBar.barTintColor = [UIColor orangeColor];
+    self.appNav.navigationBar.tintColor = [UIColor whiteColor];
+    self.appNav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
-    MMDrawerController *drawerCtrl = [[MMDrawerController alloc] initWithCenterViewController:appNav
+    // Disable Navigation Controller Back Bezel Swipe
+    if ([self.appNav respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.appNav.interactivePopGestureRecognizer.enabled = NO;
+    }
+    
+    MMDrawerController *drawerCtrl = [[MMDrawerController alloc] initWithCenterViewController:self.appNav
                                                                      leftDrawerViewController:drawerNav];
     
     [drawerCtrl setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeBezelPanningCenterView];
