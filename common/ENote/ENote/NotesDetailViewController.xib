@@ -7,7 +7,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotesDetailViewController">
             <connections>
                 <outlet property="addNotesTextView" destination="T8x-fQ-2Vh" id="lPG-wf-DTD"/>
-                <outlet property="searchBar" destination="ad8-6S-HD8" id="xNy-fn-cs3"/>
                 <outlet property="searchDisplayController" destination="1ud-qF-Ldf" id="Lrf-fl-Pms"/>
                 <outlet property="tagsCollectionView" destination="TdD-ke-QJv" id="5ee-FF-cQ1"/>
                 <outlet property="textViewBottomSpace" destination="DPP-Gu-ePw" id="rUs-5Y-NcO"/>
@@ -20,20 +19,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add some notes..." translatesAutoresizingMaskIntoConstraints="NO" id="T8x-fQ-2Vh">
-                    <rect key="frame" x="8" y="78" width="304" height="482"/>
+                    <rect key="frame" x="8" y="42" width="304" height="518"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search or Add tags..." translatesAutoresizingMaskIntoConstraints="NO" id="ad8-6S-HD8">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="YGB-D3-XNM"/>
-                    </connections>
-                </searchBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="TdD-ke-QJv">
-                    <rect key="frame" x="0.0" y="44" width="320" height="26"/>
+                    <rect key="frame" x="0.0" y="8" width="320" height="26"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="26" id="o1F-0U-VcM"/>
@@ -52,16 +44,13 @@
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
-                <constraint firstItem="ad8-6S-HD8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ap9-jV-g7t"/>
                 <constraint firstAttribute="bottom" secondItem="T8x-fQ-2Vh" secondAttribute="bottom" constant="8" id="DPP-Gu-ePw"/>
-                <constraint firstItem="ad8-6S-HD8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Zlc-9f-ooT"/>
                 <constraint firstAttribute="trailing" secondItem="TdD-ke-QJv" secondAttribute="trailing" id="d7J-QL-xUE"/>
                 <constraint firstAttribute="trailing" secondItem="T8x-fQ-2Vh" secondAttribute="trailing" constant="8" id="eB5-O0-1XN"/>
                 <constraint firstItem="TdD-ke-QJv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eFe-qo-kKf"/>
-                <constraint firstItem="TdD-ke-QJv" firstAttribute="top" secondItem="ad8-6S-HD8" secondAttribute="bottom" id="emk-S1-MuS"/>
-                <constraint firstAttribute="trailing" secondItem="ad8-6S-HD8" secondAttribute="trailing" id="kU2-6O-C4z"/>
                 <constraint firstItem="T8x-fQ-2Vh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="n4R-sp-3x2"/>
                 <constraint firstItem="T8x-fQ-2Vh" firstAttribute="top" secondItem="TdD-ke-QJv" secondAttribute="bottom" constant="8" id="p0l-UM-GCF"/>
+                <constraint firstItem="TdD-ke-QJv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="zeh-Mw-NHD"/>
             </constraints>
             <point key="canvasLocation" x="-86" y="459"/>
         </view>

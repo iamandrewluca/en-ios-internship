@@ -12,8 +12,12 @@
 #import "Tag.h"
 #import "TagsStore.h"
 #import "Note.h"
+#import "AddTagCollectionViewCell.h"
 
-@interface NotesDetailViewController () <TagCellDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
+static NSString *const kAddTagCellIdentifier = @"AddTagCollectionViewCell";
+static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
+
+@interface NotesDetailViewController () <TagCellDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic) BOOL noteWasDeleted;
 
@@ -21,9 +25,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *addNotesTextView;
 @property (weak, nonatomic) IBOutlet UICollectionView *tagsCollectionView;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
-@property (nonatomic) NSArray *foundTags;
 
 @end
 
@@ -53,64 +54,10 @@
 {
     NSIndexPath *indexPath = [_tagsCollectionView indexPathForCell:cell];
     
-    // nested ifs need optimization ))
-    if (cell.canBeDeleted) {
-        
-        if ([_foundTags count]) {
-            
-            Tag *tag = [_foundTags objectAtIndex:indexPath.row];
-            [_note removeTagID:tag.ID];
-            [_notesStore saveNote:_note];
-            cell.canBeDeleted = NO;
-            
-        } else {
-            
-            NSString *tagID = [_note.tagsIDs objectAtIndex:indexPath.row];
-            [_note removeTagID:tagID];
-            [_notesStore saveNote:_note];
-            [_tagsCollectionView deleteItemsAtIndexPaths:@[indexPath]];
-        }
-        
-    } else {
-        Tag *tag = [_foundTags objectAtIndex:indexPath.row];
-        [_note addTagID:tag.ID];
-        [_notesStore saveNote:_note];
-        cell.canBeDeleted = YES;
-    }
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    if (![searchBar.text isEqualToString:@""]) {
-        Tag *tag = [[TagsStore sharedStore] createTagWithName:searchBar.text];
-        
-        BOOL addedTag = [_note addTagID:tag.ID];
-        
-        if (addedTag) {
-            searchBar.text = @"";
-            [_notesStore saveNote:_note];
-            
-            if ([_foundTags count]) {
-                _foundTags = nil;
-                [self.tagsCollectionView reloadData];
-            } else {
-                [_tagsCollectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
-            }
-            
-            [searchBar resignFirstResponder];
-        }
-    }
-}
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    NSUInteger foundTagsLastTime = [_foundTags count] != 0;
-    
-    _foundTags = [[TagsStore sharedStore] tagsWhichContainText:searchText];
-    
-    if ([_foundTags count] || ([_foundTags count] == 0 && foundTagsLastTime)) {
-        [self.tagsCollectionView reloadData];
-    }
+    NSString *tagID = [_note.tagsIDs objectAtIndex:indexPath.row];
+    [_note removeTagID:tagID];
+    [_notesStore saveNote:_note];
+    [_tagsCollectionView deleteItemsAtIndexPaths:@[indexPath]];
 }
 
 - (void)viewDidLoad
@@ -143,13 +90,14 @@
     _addNotesTextView.autocorrectionType = UITextAutocorrectionTypeNo;
     
     // Tag registering
-    UINib *cellNib = [UINib nibWithNibName:@"TagCollectionViewCell" bundle:nil];
-    [self.tagsCollectionView registerNib:cellNib forCellWithReuseIdentifier:@"TagCell"];
+    UINib *cellNib = [UINib nibWithNibName:kTagCellIdentifier bundle:nil];
+    [self.tagsCollectionView registerNib:cellNib forCellWithReuseIdentifier:kTagCellIdentifier];
     
     // get a cell as template for sizing
     _sizingCell = [[cellNib instantiateWithOwner:nil options:nil] objectAtIndex:0];
     
-    _searchBar.returnKeyType = UIReturnKeyDone;
+    cellNib = [UINib nibWithNibName:kAddTagCellIdentifier bundle:nil];
+    [self.tagsCollectionView registerNib:cellNib forCellWithReuseIdentifier:kAddTagCellIdentifier];
 }
 
 - (void)resizeNoteTextView:(NSNotification *)notification
@@ -174,39 +122,40 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if ([_foundTags count] != 0) {
-        return [_foundTags count];
-    } else {
-        return [_note.tagsIDs count];
-    }
+    return [_note.tagsIDs count] + 1;
+}
+
+- (BOOL)isLastIndexPath:(NSIndexPath *)indexPath
+{
+    return indexPath.row == ([self.tagsCollectionView numberOfItemsInSection:0] - 1);
 }
 
 - (void)_configureCell:(TagCollectionViewCell *)cell forIndexPath:(NSIndexPath *)indexPath
 {
-    if ([_foundTags count] != 0) {
-        Tag *tag = [_foundTags objectAtIndex:indexPath.row];
-        cell.label.text = tag.name;
-        
-        if ([_note hasTagID:tag.ID]) {
-            cell.canBeDeleted = YES;
-        } else {
-            cell.canBeDeleted = NO;
-        }
-    } else {
-        NSString *tagID = [[_note tagsIDs] objectAtIndex:indexPath.row];
-        Tag *tag = [[TagsStore sharedStore] getTagWithID:tagID];
-        cell.label.text = tag.name;
-        cell.canBeDeleted = YES;
-    }
+    NSString *tagID = [[_note tagsIDs] objectAtIndex:indexPath.row];
+    Tag *tag = [[TagsStore sharedStore] getTagWithID:tagID];
+    cell.label.text = tag.name;
+    cell.delegate = self;
+}
+
+- (void)addTag:(id)sender
+{
+    NSLog(@"add tag modal");
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    TagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TagCell" forIndexPath:indexPath];
+    UICollectionViewCell *cell = nil;
     
-    cell.delegate = self;
-    
-    [self _configureCell:cell forIndexPath:indexPath];
+    if ([self isLastIndexPath:indexPath]) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:kAddTagCellIdentifier forIndexPath:indexPath];
+        AddTagCollectionViewCell *addCell = (AddTagCollectionViewCell *)cell;
+        [addCell.addButton addTarget:self action:@selector(addTag:) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:kTagCellIdentifier forIndexPath:indexPath];
+        TagCollectionViewCell *tagCell = (TagCollectionViewCell *)cell;        
+        [self _configureCell:tagCell forIndexPath:indexPath];
+    }
     
     return cell;
 }
@@ -214,25 +163,22 @@
 // called for each cell to know the size it will take
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    // set cell content
-    if ([_foundTags count] != 0) {
-        Tag *tag = [_foundTags objectAtIndex:indexPath.row];
-        _sizingCell.label.text = tag.name;
+    if ([self isLastIndexPath:indexPath]) {
+        return CGSizeMake(34, 26);
     } else {
         NSString *tagID = [[_note tagsIDs] objectAtIndex:indexPath.row];
         Tag *tag = [[TagsStore sharedStore] getTagWithID:tagID];
         _sizingCell.label.text = tag.name;
+        
+        // return size it will take from default _sizingCell
+        return [_sizingCell systemLayoutSizeFittingSize:UILayoutFittingExpandedSize];
     }
-    
-    // return size it will take from default _sizingCell
-    return [_sizingCell systemLayoutSizeFittingSize:UILayoutFittingExpandedSize];
 }
 
 - (void)actioSheetMenu
 {
     
     [_addNotesTextView resignFirstResponder];
-    [_searchBar resignFirstResponder];
     
     NSString *hasImageText = nil;
     

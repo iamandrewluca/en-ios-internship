@@ -11,17 +11,15 @@
 @class TagCollectionViewCell;
 
 @protocol TagCellDelegate <NSObject>
+
 @optional
 - (void)buttonPressedInCell:(TagCollectionViewCell *)cell;
+
 @end
 
 @interface TagCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, assign) id<TagCellDelegate> delegate;
-
 @property (nonatomic, weak) IBOutlet UILabel *label;
-@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
-
-@property (nonatomic) BOOL canBeDeleted;
 
 @end

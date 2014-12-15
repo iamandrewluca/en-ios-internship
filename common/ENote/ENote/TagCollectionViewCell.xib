@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" reuseIdentifier="TagCell" id="2" customClass="TagCollectionViewCell">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" reuseIdentifier="TagCollectionViewCell" id="2" customClass="TagCollectionViewCell">
             <rect key="frame" x="0.0" y="0.0" width="106" height="26"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -17,13 +17,14 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i8X-Zu-weR">
                         <rect key="frame" x="8" y="0.0" width="98" height="26"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34">
                                 <rect key="frame" x="2" y="2" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="lWZ-J4-n8P"/>
                                     <constraint firstAttribute="width" secondItem="34" secondAttribute="height" multiplier="1:1" id="mGi-11-eWe"/>
                                 </constraints>
-                                <state key="normal">
+                                <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                <state key="normal" backgroundImage="Remove">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -31,10 +32,11 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3">
-                                <rect key="frame" x="32" y="2" width="58" height="22"/>
+                                <rect key="frame" x="24" y="2" width="66" height="20"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="etT-zS-Hi6"/>
-                                    <constraint firstAttribute="height" constant="22" id="gq2-id-p56"/>
+                                    <constraint firstAttribute="height" constant="20" id="gq2-id-p56"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -44,12 +46,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="34" secondAttribute="bottom" constant="2" id="2Jz-pT-Obb"/>
-                            <constraint firstAttribute="bottom" secondItem="3" secondAttribute="bottom" constant="2" id="EFf-XW-fSI"/>
+                            <constraint firstAttribute="bottom" secondItem="3" secondAttribute="bottom" constant="4" id="EFf-XW-fSI"/>
                             <constraint firstAttribute="trailing" secondItem="3" secondAttribute="trailing" constant="8" id="gjl-AQ-82o"/>
                             <constraint firstItem="34" firstAttribute="leading" secondItem="i8X-Zu-weR" secondAttribute="leading" constant="2" id="ogY-ek-F09"/>
                             <constraint firstItem="34" firstAttribute="top" secondItem="i8X-Zu-weR" secondAttribute="top" constant="2" id="tHv-xU-UE4"/>
                             <constraint firstItem="3" firstAttribute="top" secondItem="i8X-Zu-weR" secondAttribute="top" constant="2" id="urC-mq-owe"/>
-                            <constraint firstItem="3" firstAttribute="leading" secondItem="34" secondAttribute="trailing" constant="8" id="xzb-xs-fsh"/>
+                            <constraint firstItem="3" firstAttribute="leading" secondItem="34" secondAttribute="trailing" id="xzb-xs-fsh"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -70,4 +72,7 @@
             <point key="canvasLocation" x="120" y="453"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="Remove" width="20" height="20"/>
+    </resources>
 </document>
