@@ -13,6 +13,7 @@
 @interface TagsStore ()
 
 @property (nonatomic) NSMutableArray *allPrivateTags;
+@property (nonatomic, copy) NSDictionary *tagSections;
 
 @end
 
