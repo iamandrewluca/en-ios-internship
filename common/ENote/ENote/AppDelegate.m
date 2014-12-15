@@ -8,12 +8,11 @@
 
 #import "AppDelegate.h"
 #import "NotebooksTableViewController.h"
-#import "NotebooksStore.h"
-#import "AllTagsCollectionViewController.h"
 #import "RearViewController.h"
-#import "SWRevealViewController.h"
+#import "MMDrawerController.h"
+#import "MMDrawerVisualState.h"
 
-@interface AppDelegate () <SWRevealViewControllerDelegate>
+@interface AppDelegate ()
 
 @end
 
@@ -22,30 +21,36 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
+    // Why search simulator sandbox?
     NSLog(@"%@", NSHomeDirectory());
     
-    NotebooksTableViewController *notebooks = [[NotebooksTableViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:notebooks];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:235.0/255.0 green:134.0/255.0 blue:13.0/255.0 alpha:1.0]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [nav.navigationController.navigationBar setTranslucent:NO];
-    nav.navigationBar.tintColor = [UIColor whiteColor];
+    UIViewController *leftDrawer = [RearViewController new];
+    UINavigationController *drawerNav = [[UINavigationController alloc] initWithRootViewController:leftDrawer];
+    drawerNav.navigationBar.translucent = NO;
+    drawerNav.navigationBar.barTintColor = [UIColor orangeColor];
+    drawerNav.navigationBar.tintColor = [UIColor whiteColor];
+    drawerNav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
-    RearViewController *rearViewController = [[RearViewController alloc] init];
-    UINavigationController *rearNavigationController = [[UINavigationController alloc] initWithRootViewController:rearViewController];
+    UIViewController *notebooks = [NotebooksTableViewController new];
+    self.appNav = [[UINavigationController alloc] initWithRootViewController:notebooks];
+    self.appNav.navigationBar.translucent = NO;
+    self.appNav.navigationBar.barTintColor = [UIColor orangeColor];
+    self.appNav.navigationBar.tintColor = [UIColor whiteColor];
+    self.appNav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
+    // Disable Navigation Controller Back Bezel Swipe
+    if ([self.appNav respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.appNav.interactivePopGestureRecognizer.enabled = NO;
+    }
     
-    SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
-                                                    initWithRearViewController:rearNavigationController frontViewController:nav];
-    mainRevealController.delegate = self;
+    MMDrawerController *drawerCtrl = [[MMDrawerController alloc] initWithCenterViewController:self.appNav
+                                                                     leftDrawerViewController:drawerNav];
     
+    [drawerCtrl setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeBezelPanningCenterView];
+    [drawerCtrl setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
     
-    self.viewController = mainRevealController;
-    self.window.rootViewController = self.viewController;
-    
-    nav.navigationBar.translucent = NO;
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = drawerCtrl;
     [self.window makeKeyAndVisible];
     
     return YES;
