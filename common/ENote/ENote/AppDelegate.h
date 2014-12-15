@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @class NotesCollectionViewController;
-@class SWRevealViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
