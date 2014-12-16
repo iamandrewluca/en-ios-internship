@@ -29,6 +29,8 @@
 		A705D6741A3ED6C900B06FB6 /* UIViewController+HandleShake.m in Sources */ = {isa = PBXBuildFile; fileRef = A705D6731A3ED6C900B06FB6 /* UIViewController+HandleShake.m */; };
 		A705D67B1A3EED8900B06FB6 /* AddTagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A705D6791A3EED8900B06FB6 /* AddTagCollectionViewCell.m */; };
 		A705D67C1A3EED8900B06FB6 /* AddTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A705D67A1A3EED8900B06FB6 /* AddTagCollectionViewCell.xib */; };
+		A70A33921A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A70A33901A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.m */; };
+		A70A33931A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70A33911A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib */; };
 		A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */; };
 		A71D35021A1B744100EA301B /* NotesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D35011A1B744100EA301B /* NotesStore.m */; };
 		A72183011A10E950006E47E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A72183001A10E950006E47E3 /* main.m */; };
@@ -99,6 +101,9 @@
 		A705D6781A3EED8900B06FB6 /* AddTagCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagCollectionViewCell.h; sourceTree = "<group>"; };
 		A705D6791A3EED8900B06FB6 /* AddTagCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagCollectionViewCell.m; sourceTree = "<group>"; };
 		A705D67A1A3EED8900B06FB6 /* AddTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTagCollectionViewCell.xib; sourceTree = "<group>"; };
+		A70A338F1A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsSectionHeadersCollectionReusableView.h; sourceTree = "<group>"; };
+		A70A33901A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsSectionHeadersCollectionReusableView.m; sourceTree = "<group>"; };
+		A70A33911A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsSectionHeadersCollectionReusableView.xib; sourceTree = "<group>"; };
 		A71D04111A1112DB00308DD0 /* NotebooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebooksTableViewController.h; sourceTree = "<group>"; };
 		A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebooksTableViewController.m; sourceTree = "<group>"; };
 		A71D35001A1B744100EA301B /* NotesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesStore.h; sourceTree = "<group>"; };
@@ -371,6 +376,9 @@
 		A7D73BD01A3850C7009A21FA /* AllTagsCVC */ = {
 			isa = PBXGroup;
 			children = (
+				A70A338F1A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.h */,
+				A70A33901A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.m */,
+				A70A33911A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib */,
 				A7D73BD61A3855CD009A21FA /* UICollectionViewLeftAlignedLayout */,
 				A7D73BD11A3850E0009A21FA /* AllTagsCollectionViewController.h */,
 				A7D73BD21A3850E0009A21FA /* AllTagsCollectionViewController.m */,
@@ -471,6 +479,7 @@
 				6100EA151A31C53800AA6A4B /* NoteCell.xib in Resources */,
 				A7D73BD51A3850E0009A21FA /* AllTagsCollectionViewController.xib in Resources */,
 				755594F31A3DB03700B30234 /* RearViewController.xib in Resources */,
+				A70A33931A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib in Resources */,
 				A7D9ACC41A1357A900B8376A /* NotebooksTableViewController.xib in Resources */,
 				75CD431E1A3E259D002141ED /* NotesAddCell.xib in Resources */,
 				A70355281A319FC5008742C9 /* TagCollectionViewCell.xib in Resources */,
@@ -526,6 +535,7 @@
 				A7D9ACBF1A12511700B8376A /* NotebooksTableViewCell.m in Sources */,
 				A71D35021A1B744100EA301B /* NotesStore.m in Sources */,
 				A7D9ACB61A12486300B8376A /* NotebooksStore.m in Sources */,
+				A70A33921A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

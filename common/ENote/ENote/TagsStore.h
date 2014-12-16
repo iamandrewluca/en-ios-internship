@@ -19,6 +19,10 @@
 - (Tag *)getTagWithID:(NSString *)ID;
 - (Tag *)getTagWithName:(NSString *)name;
 - (NSMutableArray *)tagsWhichContainText:(NSString *)text;
+- (NSUInteger)countAvailableSections;
+- (NSUInteger)countInSection:(NSUInteger)section;
+- (NSArray *)tagsForSection:(NSUInteger)section;
+- (NSString *)characterForSection:(NSInteger)section;
 
 + (instancetype)sharedStore;
 

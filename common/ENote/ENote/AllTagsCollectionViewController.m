@@ -10,10 +10,12 @@
 #import "TagCollectionViewCell.h"
 #import "TagsStore.h"
 #import "Tag.h"
+#import "TagsSectionHeadersCollectionReusableView.h"
 
 static NSString *const kTagCollectionViewCell = @"TagCollectionViewCell";
+static NSString *const kTagsSectionHeader = @"TagsSectionHeadersCollectionReusableView";
 
-@interface AllTagsCollectionViewController () <UISearchBarDelegate, UICollectionViewDelegateFlowLayout, TagCellDelegate>
+@interface AllTagsCollectionViewController () <UISearchBarDelegate, UICollectionViewDelegateFlowLayout, TagCellDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic) NSMutableArray *foundTags;
 
@@ -48,7 +50,8 @@ static NSString *const kTagCollectionViewCell = @"TagCollectionViewCell";
         Tag *tag = [_foundTags objectAtIndex:indexPath.row];
         _sizingCell.label.text = tag.name;
     } else {
-        _sizingCell.label.text = [[[[TagsStore sharedStore] allTags] objectAtIndex:indexPath.row] name];
+        NSArray *tags = [[TagsStore sharedStore] tagsForSection:indexPath.section];
+        _sizingCell.label.text = [[tags objectAtIndex:indexPath.row] name];
     }
     
     // return size it will take from default _sizingCell
@@ -63,6 +66,9 @@ static NSString *const kTagCollectionViewCell = @"TagCollectionViewCell";
     UINib *nib = [UINib nibWithNibName:kTagCollectionViewCell bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:kTagCollectionViewCell];
     
+    nib = [UINib nibWithNibName:kTagsSectionHeader bundle:nil];
+    [self.collectionView registerNib:nib forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kTagsSectionHeader];
+    
     _sizingCell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
 }
 
@@ -73,13 +79,48 @@ static NSString *const kTagCollectionViewCell = @"TagCollectionViewCell";
 
 #pragma mark <UICollectionViewDataSource>
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *view = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        view = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kTagsSectionHeader forIndexPath:indexPath];
+        TagsSectionHeadersCollectionReusableView *headerView = (TagsSectionHeadersCollectionReusableView *)view;
+        headerView.label.text = [[TagsStore sharedStore] characterForSection:indexPath.section];        
+    }
+    
+    return view;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return [[TagsStore sharedStore] countAvailableSections];
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if ([_foundTags count] != 0) {
         return [_foundTags count];
     } else {
-        return [[[TagsStore sharedStore] allTags] count];
+        return [[TagsStore sharedStore] countInSection:section];
     }
+    
+    return 0;
 }
+
+//- (NSString *)characterForSection:(NSInteger)section
+//{
+//    NSString *sectionString = nil;
+//    
+//    if (section < 26) {
+//        sectionString = [NSString stringWithFormat:@"%c", (char)(65 + section)];
+//    } else if (section < 36) {
+//        sectionString = [NSString stringWithFormat:@"%c", (char)(48 + section)];
+//    } else {
+//        sectionString = @"#";
+//    }
+//    
+//    return sectionString;
+//}
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -89,7 +130,8 @@ static NSString *const kTagCollectionViewCell = @"TagCollectionViewCell";
         Tag *tag = [_foundTags objectAtIndex:indexPath.row];
         cell.label.text = tag.name;
     } else {
-        cell.label.text = [[[[TagsStore sharedStore] allTags] objectAtIndex:indexPath.row] name];
+        NSArray *tags = [[TagsStore sharedStore] tagsForSection:indexPath.section];
+        cell.label.text = [[tags objectAtIndex:indexPath.row] name];
     }
     
     cell.delegate = self;
@@ -121,7 +163,7 @@ static NSString *const kTagCollectionViewCell = @"TagCollectionViewCell";
             _foundTags = nil;
             [_collectionView reloadData];
         } else {
-            [_collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
+            [self.collectionView reloadData];
         }
         searchBar.text = @"";
         [searchBar resignFirstResponder];
