@@ -9,10 +9,12 @@
 #import "TagsStore.h"
 #import "Tag.h"
 #import "ENoteCommons.h"
+#import <UIKit/UIKit.h>
 
 @interface TagsStore ()
 
 @property (nonatomic, copy) NSMutableDictionary *tagSections;
+@property (nonatomic) NSMutableArray *sortedKeys;
 
 @end
 
@@ -22,7 +24,7 @@
 {
     NSUInteger count = 0;
     
-    for (NSString *key in _tagSections) {
+    for (NSString *key in _sortedKeys) {
         if ([_tagSections[key] count] > 0) {
             count++;
         }
@@ -35,7 +37,7 @@
 {
     NSUInteger iterator = 0;
     
-    for (NSString *key in _tagSections) {
+    for (NSString *key in _sortedKeys) {
         if ([_tagSections[key] count]) {
             if (iterator == section) {
                 return [_tagSections[key] count];
@@ -52,7 +54,7 @@
 {
     NSUInteger iterator = 0;
     
-    for (NSString *key in _tagSections) {
+    for (NSString *key in _sortedKeys) {
         if ([_tagSections[key] count]) {
             if (iterator == section) {
                 return key;
@@ -64,15 +66,14 @@
     
     return nil;
 }
-
 - (NSString *)nameFirstChar:(NSString *)name
 {
     NSString *firstCharacter = [[name substringToIndex:1] uppercaseString];
     
     char firstChar = [firstCharacter UTF8String][0];
     
-    if (((firstChar >= 65) && (firstChar <= 90)) ||
-        ((firstChar >= 48) && (firstChar <= 57))) {
+    if (((firstChar >= 'A') && (firstChar <= 'Z')) ||
+        ((firstChar >= '0') && (firstChar <= '9'))) {
         
         return firstCharacter;
     } else {
@@ -96,7 +97,7 @@
     Tag *tag = [[Tag alloc] initWithName:name];
     
     [self addTag:tag];
-    [self saveTags];
+    
     return tag;
 }
 
@@ -115,7 +116,6 @@
 
 + (instancetype)sharedStore
 {
-    
     static TagsStore *sharedStore = nil;
     
     static dispatch_once_t onceToken;
@@ -132,21 +132,27 @@
     
     if (self) {
         
-        _tagSections = [[NSMutableDictionary alloc] initWithCapacity:37];
-        
-        _tagSections[@"#"] = [NSMutableArray new];
-        
         NSString *firstChar;
+        _sortedKeys = [NSMutableArray arrayWithCapacity:37];
         
         for (char c = 'A'; c <= 'Z'; c++) {
             firstChar = [NSString stringWithFormat:@"%c", c];
-            _tagSections[firstChar] = [NSMutableArray new];
+            [_sortedKeys addObject:firstChar];
         }
         
         for (char c = '0'; c <= '9'; c++) {
             firstChar = [NSString stringWithFormat:@"%c", c];
-            _tagSections[firstChar] = [NSMutableArray new];
+            [_sortedKeys addObject:firstChar];
         }
+        
+        [_sortedKeys addObject:@"#"];
+        
+        NSMutableArray *values = [NSMutableArray arrayWithCapacity:37];
+        for (int i  = 0; i < 37; i++) {
+            values[i] = [NSMutableArray new];
+        }
+        
+        _tagSections = [NSMutableDictionary dictionaryWithObjects:values forKeys:_sortedKeys];
         
         [self loadTags];
     }
@@ -175,7 +181,7 @@
 
 - (Tag *)getTagWithID:(NSString *)ID
 {
-    for (NSString *key in _tagSections) {
+    for (NSString *key in _sortedKeys) {
         for (Tag *tag in _tagSections[key]) {
             if ([ID isEqualToString:tag.ID]) {
                 return tag;
@@ -210,7 +216,7 @@
 {
     NSUInteger iterator = 0;
     
-    for (NSString *key in _tagSections) {
+    for (NSString *key in _sortedKeys) {
         if ([_tagSections[key] count]) {
             if (iterator == section) {
                 return _tagSections[key];
@@ -227,7 +233,7 @@
 {
     NSMutableDictionary *tags = [[NSMutableDictionary alloc] init];
     
-    for (NSString *key in _tagSections) {
+    for (NSString *key in _sortedKeys) {
         tags[key] = [NSMutableArray new];
         for (Tag *tag in _tagSections[key]) {
             [tags[key] addObject:[tag dictionaryRepresentation]];
@@ -263,7 +269,7 @@
 {
     NSMutableArray *foundTags = [NSMutableArray new];
     
-    for (NSString *key in _tagSections) {
+    for (NSString *key in _sortedKeys) {
         for (Tag *tag in _tagSections[key]) {
             if ([tag.name containsString:text]) {
                 [foundTags addObject:tag];

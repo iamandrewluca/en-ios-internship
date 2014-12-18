@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i8X-Zu-weR">
-                        <rect key="frame" x="8" y="0.0" width="98" height="26"/>
+                        <rect key="frame" x="0.0" y="0.0" width="106" height="26"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34">
                                 <rect key="frame" x="2" y="2" width="22" height="22"/>
@@ -32,7 +32,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3">
-                                <rect key="frame" x="24" y="2" width="66" height="20"/>
+                                <rect key="frame" x="24" y="2" width="74" height="20"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="etT-zS-Hi6"/>
@@ -61,7 +61,7 @@
                 <constraint firstAttribute="trailing" secondItem="i8X-Zu-weR" secondAttribute="trailing" id="315-Em-Jpj"/>
                 <constraint firstItem="i8X-Zu-weR" firstAttribute="top" secondItem="2" secondAttribute="top" id="533-Qs-WQl"/>
                 <constraint firstAttribute="bottom" secondItem="i8X-Zu-weR" secondAttribute="bottom" id="G3j-ri-DJQ"/>
-                <constraint firstItem="i8X-Zu-weR" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="8" id="sJy-X1-RDj"/>
+                <constraint firstItem="i8X-Zu-weR" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="sJy-X1-RDj"/>
             </constraints>
             <size key="customSize" width="434" height="390"/>
             <connections>
