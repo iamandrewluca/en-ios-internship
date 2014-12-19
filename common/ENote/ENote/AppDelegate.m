@@ -12,6 +12,11 @@
 #import "MMDrawerController.h"
 #import "MMDrawerVisualState.h"
 
+#import "MapPinViewController.h"
+
+//#import <GoogleMaps/GoogleMaps.h>
+//#define GOOGLE_MAPS_API_KEY @"AIzaSyCXv_-FAsbTIgGESqgePjkgBKuB6eYu4-4"
+
 @interface AppDelegate ()
 
 @end
@@ -22,7 +27,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // Why search simulator sandbox?
-    NSLog(@"%@", NSHomeDirectory());
+    //NSLog(@"%@", NSHomeDirectory());
+    
+    // API Key
+//    [GMSServices provideAPIKey:@"GOOGLE_MAPS_API_KEY"];
     
     UIViewController *leftDrawer = [RearViewController new];
     UINavigationController *drawerNav = [[UINavigationController alloc] initWithRootViewController:leftDrawer];

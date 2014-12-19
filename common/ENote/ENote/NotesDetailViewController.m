@@ -14,6 +14,8 @@
 #import "TagsStore.h"
 #import "Tag.h"
 #import "Note.h"
+#import "GMLocationViewController.h"
+#import "MapPinViewController.h"
 
 
 static NSString *const kAddTagCellIdentifier = @"AddTagCollectionViewCell";
@@ -67,7 +69,7 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     UIBarButtonItem *location = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"location"]
                                                                 style:UIBarButtonItemStylePlain
                                                                target:self
-                                                               action:@selector(GMLocation)];
+                                                               action:@selector(MapKitLocation)];
     
     NSArray *buttons = @[menuButton, location];
     self.navigationItem.rightBarButtonItems = buttons;
@@ -132,9 +134,10 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     [_tagsCollectionView deleteItemsAtIndexPaths:@[indexPath]];
 }
 
--(void)GMLocation
+-(void)MapKitLocation
 {
-    
+    MapPinViewController *mapKitVC = [[MapPinViewController alloc]init];
+    [self.navigationController pushViewController:mapKitVC animated:YES];
 }
 
 
@@ -272,7 +275,7 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
                 [self removeImage];
             }
         } else if (buttonIndex == 3) {
-            [self GMLocation];
+            [self MapKitLocation];
         }
     }
     
