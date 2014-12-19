@@ -14,7 +14,6 @@
 #import "TagsStore.h"
 #import "Tag.h"
 #import "Note.h"
-#import "GMLocationViewController.h"
 #import "MapPinViewController.h"
 
 
