@@ -36,23 +36,6 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     TagCollectionViewCell *_sizingCell;
 }
 
-- (instancetype)init
-{
-    self = [super init];
-    
-    if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeNoteTextView:) name:UIKeyboardDidShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeNoteTextView:) name:UIKeyboardDidHideNotification object:nil];
-    }
-    
-    return self;
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)buttonPressedInCell:(TagCollectionViewCell *)cell
 {
     NSIndexPath *indexPath = [_tagsCollectionView indexPathForCell:cell];
@@ -341,6 +324,8 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 {
     [super viewWillDisappear:animated];
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     if (self.noteWasDeleted == NO) {
         self.note.text = self.addNotesTextView.text;
         [_notesStore saveNote:_note];
@@ -350,6 +335,9 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeNoteTextView:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeNoteTextView:) name:UIKeyboardDidHideNotification object:nil];
     
     // maybe forin within SharedStore all tags?
     for (int i = 0; i < [_note.tagsIDs count]; i++) {

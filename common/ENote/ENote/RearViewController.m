@@ -14,6 +14,7 @@
 
 @interface RearViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -84,6 +85,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    _imageView.layer.masksToBounds = YES;
+    _imageView.layer.cornerRadius = _imageView.bounds.size.width / 2;
 }
 
 - (void)didReceiveMemoryWarning {
