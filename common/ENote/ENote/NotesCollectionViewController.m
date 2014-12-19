@@ -252,7 +252,6 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
         [_notesStore removeNote:note];
     }
     
-    
     [self.collectionView deleteItemsAtIndexPaths:self.collectionView.indexPathsForSelectedItems];
 }
 

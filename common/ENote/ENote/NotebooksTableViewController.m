@@ -92,9 +92,11 @@
     // Prepare tableView empty background
     UIImage *image = [UIImage imageNamed:@"addSomeNotebooks"];
     emptyTableViewBackground = [[UIImageView alloc] initWithImage:image];
+    [emptyTableViewBackground setUserInteractionEnabled:YES];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addNewNotebook)];
+    [emptyTableViewBackground addGestureRecognizer:tap];
     
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.frame];
-    
     [self.tableView.backgroundView addSubview:emptyTableViewBackground];
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
