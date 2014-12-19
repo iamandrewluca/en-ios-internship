@@ -11,6 +11,8 @@
 		6150D0A11A14C03300E4590C /* NotesDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6150D09F1A14C03300E4590C /* NotesDetailViewController.m */; };
 		6150D0A21A14C03300E4590C /* NotesDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6150D0A01A14C03300E4590C /* NotesDetailViewController.xib */; };
 		6155EC4D1A137C3E00BE143B /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 6155EC4B1A137C3E00BE143B /* Note.m */; };
+		617450CA1A442ECF0018D6AA /* NoteCellGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 617450C71A442ECF0018D6AA /* NoteCellGrid.m */; };
+		617450CB1A442ECF0018D6AA /* NoteCellLarge.m in Sources */ = {isa = PBXBuildFile; fileRef = 617450C91A442ECF0018D6AA /* NoteCellLarge.m */; };
 		6190C2271A124CE70046F016 /* NotesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C2251A124CE70046F016 /* NotesCollectionViewController.m */; };
 		6190C2281A124CE70046F016 /* NotesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6190C2261A124CE70046F016 /* NotesCollectionViewController.xib */; };
 		6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C22B1A124EBA0046F016 /* NotesLayout.m */; };
@@ -72,6 +74,10 @@
 		6150D0A01A14C03300E4590C /* NotesDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesDetailViewController.xib; sourceTree = "<group>"; };
 		6155EC4A1A137C3E00BE143B /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		6155EC4B1A137C3E00BE143B /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		617450C61A442ECF0018D6AA /* NoteCellGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCellGrid.h; sourceTree = "<group>"; };
+		617450C71A442ECF0018D6AA /* NoteCellGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCellGrid.m; sourceTree = "<group>"; };
+		617450C81A442ECF0018D6AA /* NoteCellLarge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCellLarge.h; sourceTree = "<group>"; };
+		617450C91A442ECF0018D6AA /* NoteCellLarge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCellLarge.m; sourceTree = "<group>"; };
 		6190C2241A124CE70046F016 /* NotesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesCollectionViewController.h; sourceTree = "<group>"; };
 		6190C2251A124CE70046F016 /* NotesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesCollectionViewController.m; sourceTree = "<group>"; };
 		6190C2261A124CE70046F016 /* NotesCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesCollectionViewController.xib; sourceTree = "<group>"; };
@@ -250,6 +256,10 @@
 				75CD431D1A3E259D002141ED /* NotesAddCell.xib */,
 				75CD431F1A3E2CB8002141ED /* NotesAddCell.h */,
 				75CD43201A3E2CB8002141ED /* NotesAddCell.m */,
+				617450C61A442ECF0018D6AA /* NoteCellGrid.h */,
+				617450C71A442ECF0018D6AA /* NoteCellGrid.m */,
+				617450C81A442ECF0018D6AA /* NoteCellLarge.h */,
+				617450C91A442ECF0018D6AA /* NoteCellLarge.m */,
 			);
 			name = NoteCell;
 			sourceTree = "<group>";
@@ -527,6 +537,7 @@
 				A74FE0B81A1B86BA0005F74D /* ENoteCommons.m in Sources */,
 				75CD43211A3E2CB8002141ED /* NotesAddCell.m in Sources */,
 				6155EC4D1A137C3E00BE143B /* Note.m in Sources */,
+				617450CA1A442ECF0018D6AA /* NoteCellGrid.m in Sources */,
 				A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */,
 				755594E61A3DAE2800B30234 /* MMDrawerBarButtonItem.m in Sources */,
 				755594F21A3DB03700B30234 /* RearViewController.m in Sources */,
@@ -534,6 +545,7 @@
 				A70B587F1A440DB700BD434B /* AddTagsViewController.m in Sources */,
 				6190C2301A1254920046F016 /* NoteCell.m in Sources */,
 				A705D6741A3ED6C900B06FB6 /* UIViewController+HandleShake.m in Sources */,
+				617450CB1A442ECF0018D6AA /* NoteCellLarge.m in Sources */,
 				A7D73BD91A3855F3009A21FA /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				A7D73BD41A3850E0009A21FA /* AllTagsCollectionViewController.m in Sources */,
 				6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */,
@@ -670,6 +682,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ENote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -681,6 +697,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ENote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

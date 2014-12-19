@@ -15,6 +15,9 @@
 #import "NotebooksStore.h"
 #import "NotesAddCell.h"
 
+#import "NoteCellGrid.h"
+#import "NoteCellLarge.h"
+
 static NSString *const NoteCellIdentifier = @"NoteCell";
 static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
 
@@ -22,22 +25,43 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
     NSIndexPath *selectedNoteIndexPath;
     UILongPressGestureRecognizer *longPress;
     UIBarButtonItem *addNote;
-    UIImageView *noNotesBack;
+    UIBarButtonItem *gridViewButton;
+    UIBarButtonItem *tableViewButton;
 }
 
 @property (nonatomic) NSMutableArray *selectedItems;
+@property (nonatomic, copy)   NSArray *buttons;
+@property (nonatomic, strong) NoteCellLarge *largeLayout;
+@property (nonatomic, strong) NoteCellGrid *gridLayout;
 
 @end
 
 @implementation NotesCollectionViewController
 
 #pragma mark - Lifecycle
+
+-(void)loadView
+{
+    // Important to override this when not using a nib. Otherwise, the collection
+    // view will be instantiated with a nil layout, crashing the app.
+    
+    self.gridLayout = [[NoteCellGrid alloc] init];
+    self.largeLayout = [[NoteCellLarge alloc] init];
+    
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.gridLayout];
+    [self.collectionView registerClass:[NoteCell class] forCellWithReuseIdentifier:NoteCellIdentifier];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    
+    self.collectionView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.navigationItem.title = _notesStore.notebook.name;
+    self.collectionView.backgroundView = [[UIView alloc] initWithFrame:self.collectionView.frame];
     self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPattern"]];
+    self.navigationItem.title = _notesStore.notebook.name;
 
     // Register cells for collection view
     UINib *nib = [UINib nibWithNibName:NoteCellIdentifier bundle:nil];
@@ -46,8 +70,6 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
     // Regsiter notes add cell for collection viewce
     nib = [UINib nibWithNibName:AddNoteCellIdentifier bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:AddNoteCellIdentifier];
-    
-    [self.collectionView setAllowsMultipleSelection:YES];
     
     // Long press for entering editing mode
     longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(enterEditMode:)];
@@ -59,25 +81,26 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
                                                                      action:@selector(addNewNote)];
     
     self.navigationItem.rightBarButtonItem = addNote;
+    
+    // grid layout button
+    gridViewButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"gridView"]
+                                                     style:UIBarButtonItemStylePlain
+                                                    target:self
+                                                    action:@selector(buttonLayoutControlValueDidChange:)];
+    // table layout button
+    tableViewButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"tableView"]
+                                                      style:UIBarButtonItemStylePlain
+                                                     target:self
+                                                     action:@selector(buttonLayoutControlValueDidChange:)];
+    
+    self.buttons = @[addNote, tableViewButton];
+    self.navigationItem.rightBarButtonItems = self.buttons;
+    
     self.selectedItems = [[NSMutableArray alloc] init];
-    
-    // Prepare collectionView empty background
-    UIImage *image = [UIImage imageNamed:@"addSomeNotebooks"];
-    noNotesBack = [[UIImageView alloc] initWithImage:image];
-    
-    self.collectionView.backgroundView = [[UIView alloc] initWithFrame:self.collectionView.frame];
-    
-    [self.collectionView.backgroundView addSubview:noNotesBack];
+    [self.collectionView setAllowsMultipleSelection:YES];
     
 }
 
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    
-    // Center emptyTableViewBackground every time layout will change
-    [noNotesBack setCenter:CGPointMake(self.collectionView.center.x, self.collectionView.center.y - noNotesBack.image.size.height / 2)];
-}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -89,6 +112,25 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
 }
 
 #pragma mark - Button actions
+-(void)buttonLayoutControlValueDidChange:(id)sender
+{
+    if (self.collectionView.collectionViewLayout == self.gridLayout) {
+        gridViewButton.image = [UIImage imageNamed:@"gridView"];
+        self.buttons = @[addNote, gridViewButton];
+        self.navigationItem.rightBarButtonItems = self.buttons;
+        
+        [self.largeLayout invalidateLayout];
+        [self.collectionView setCollectionViewLayout:self.largeLayout animated:YES];
+    } else {
+        tableViewButton.image = [UIImage imageNamed:@"tableView"];
+        self.buttons = @[addNote, tableViewButton];
+        self.navigationItem.rightBarButtonItems = self.buttons;
+        
+        [self.gridLayout invalidateLayout];
+        [self.collectionView setCollectionViewLayout:self.gridLayout animated:YES];
+    }
+}
+
 -(void)addNewNote
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Enter note title"
