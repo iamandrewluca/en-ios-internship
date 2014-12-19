@@ -11,6 +11,8 @@
 #import "UIViewController+MMDrawerController.h"
 #import "AllTagsCollectionViewController.h"
 #import "AppDelegate.h"
+#import "AllNotesTVC.h"
+#import "NotebooksTableViewController.h"
 
 @interface RearViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -26,7 +28,7 @@
     
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
-    AllTagsCollectionViewController *allTags = nil;
+    UIViewController *vc = nil;
     
     switch (indexPath.row) {
         case 0:
@@ -34,12 +36,13 @@
             break;
             
         case 1:
-            NSLog(@"Show all notes controller");
+            vc = [AllNotesTVC new];
+            [appDelegate.appNav pushViewController:vc animated:YES];
             break;
             
         case 2:
-            allTags = [AllTagsCollectionViewController new];
-            [appDelegate.appNav pushViewController:allTags animated:YES];
+            vc = [AllTagsCollectionViewController new];
+            [appDelegate.appNav pushViewController:vc animated:YES];
             break;
             
         default:
@@ -88,21 +91,18 @@
     
     _imageView.layer.masksToBounds = YES;
     _imageView.layer.cornerRadius = _imageView.bounds.size.width / 2;
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -43,14 +43,14 @@
         self.appNav.interactivePopGestureRecognizer.enabled = NO;
     }
     
-    MMDrawerController *drawerCtrl = [[MMDrawerController alloc] initWithCenterViewController:self.appNav
+    _drawerCtrl = [[MMDrawerController alloc] initWithCenterViewController:self.appNav
                                                                      leftDrawerViewController:drawerNav];
     
-    [drawerCtrl setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeBezelPanningCenterView];
-    [drawerCtrl setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+    [_drawerCtrl setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeBezelPanningCenterView];
+    [_drawerCtrl setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = drawerCtrl;
+    self.window.rootViewController = _drawerCtrl;
     [self.window makeKeyAndVisible];
     
     return YES;
