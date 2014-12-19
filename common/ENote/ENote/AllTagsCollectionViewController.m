@@ -164,8 +164,6 @@ static NSString *const kTagsSectionHeader = @"TagsSectionHeadersCollectionReusab
     return 5.0f;
 }
 
-
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     if ([_foundTags count]) {

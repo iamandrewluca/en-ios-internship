@@ -13,6 +13,7 @@
 #import "TagsStore.h"
 #import "Note.h"
 #import "AddTagCollectionViewCell.h"
+#import "AddTagsViewController.h"
 
 static NSString *const kAddTagCellIdentifier = @"AddTagCollectionViewCell";
 static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
@@ -25,6 +26,8 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 
 @property (weak, nonatomic) IBOutlet UITextView *addNotesTextView;
 @property (weak, nonatomic) IBOutlet UICollectionView *tagsCollectionView;
+
+@property (nonatomic) NSUInteger currentTagsCount;
 
 @end
 
@@ -54,7 +57,7 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 {
     NSIndexPath *indexPath = [_tagsCollectionView indexPathForCell:cell];
     
-    NSString *tagID = [_note.tagsIDs objectAtIndex:indexPath.row];
+    NSString *tagID = [_note.tagsIDs objectAtIndex:indexPath.row - 1];
     [_note removeTagID:tagID];
     [_notesStore saveNote:_note];
     [_tagsCollectionView deleteItemsAtIndexPaths:@[indexPath]];
@@ -125,14 +128,9 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     return [_note.tagsIDs count] + 1;
 }
 
-- (BOOL)isLastIndexPath:(NSIndexPath *)indexPath
-{
-    return indexPath.row == ([self.tagsCollectionView numberOfItemsInSection:0] - 1);
-}
-
 - (void)_configureCell:(TagCollectionViewCell *)cell forIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *tagID = [[_note tagsIDs] objectAtIndex:indexPath.row];
+    NSString *tagID = [[_note tagsIDs] objectAtIndex:indexPath.row - 1];
     Tag *tag = [[TagsStore sharedStore] getTagWithID:tagID];
     cell.label.text = tag.name;
     cell.delegate = self;
@@ -140,21 +138,27 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 
 - (void)addTag:(id)sender
 {
-    NSLog(@"add tag modal");
+    AddTagsViewController *addTags = [AddTagsViewController new];
+    addTags.notesStore = _notesStore;
+    addTags.note = _note;
+    
+    _currentTagsCount = [_note.tagsIDs count];
+    
+    [self.navigationController pushViewController:addTags animated:YES];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = nil;
     
-    if ([self isLastIndexPath:indexPath]) {
+    if (indexPath.row) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:kTagCellIdentifier forIndexPath:indexPath];
+        TagCollectionViewCell *tagCell = (TagCollectionViewCell *)cell;
+        [self _configureCell:tagCell forIndexPath:indexPath];
+    } else {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:kAddTagCellIdentifier forIndexPath:indexPath];
         AddTagCollectionViewCell *addCell = (AddTagCollectionViewCell *)cell;
         [addCell.addButton addTarget:self action:@selector(addTag:) forControlEvents:UIControlEventTouchUpInside];
-    } else {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:kTagCellIdentifier forIndexPath:indexPath];
-        TagCollectionViewCell *tagCell = (TagCollectionViewCell *)cell;        
-        [self _configureCell:tagCell forIndexPath:indexPath];
     }
     
     return cell;
@@ -163,16 +167,26 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 // called for each cell to know the size it will take
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self isLastIndexPath:indexPath]) {
-        return CGSizeMake(34, 26);
-    } else {
-        NSString *tagID = [[_note tagsIDs] objectAtIndex:indexPath.row];
+    if (indexPath.row) {
+        NSString *tagID = [[_note tagsIDs] objectAtIndex:indexPath.row - 1];
         Tag *tag = [[TagsStore sharedStore] getTagWithID:tagID];
         _sizingCell.label.text = tag.name;
         
         // return size it will take from default _sizingCell
         return [_sizingCell systemLayoutSizeFittingSize:UILayoutFittingExpandedSize];
+    } else {
+        return CGSizeMake(26, 26);
     }
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(0, 10, 0, 10);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 5.0f;
 }
 
 - (void)actioSheetMenu
@@ -347,6 +361,10 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     }
     
     [_notesStore saveNote:_note];
+    
+    if ([_note.tagsIDs count] != _currentTagsCount) {
+        [_tagsCollectionView reloadData];
+    }
     
     [self.tagsCollectionView reloadData];
 }

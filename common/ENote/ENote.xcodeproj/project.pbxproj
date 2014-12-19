@@ -31,6 +31,8 @@
 		A705D67C1A3EED8900B06FB6 /* AddTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A705D67A1A3EED8900B06FB6 /* AddTagCollectionViewCell.xib */; };
 		A70A33921A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A70A33901A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.m */; };
 		A70A33931A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70A33911A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib */; };
+		A70B587F1A440DB700BD434B /* AddTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70B587D1A440DB700BD434B /* AddTagsViewController.m */; };
+		A70B58801A440DB700BD434B /* AddTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70B587E1A440DB700BD434B /* AddTagsViewController.xib */; };
 		A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */; };
 		A71D35021A1B744100EA301B /* NotesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D35011A1B744100EA301B /* NotesStore.m */; };
 		A72183011A10E950006E47E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A72183001A10E950006E47E3 /* main.m */; };
@@ -104,6 +106,9 @@
 		A70A338F1A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsSectionHeadersCollectionReusableView.h; sourceTree = "<group>"; };
 		A70A33901A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsSectionHeadersCollectionReusableView.m; sourceTree = "<group>"; };
 		A70A33911A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsSectionHeadersCollectionReusableView.xib; sourceTree = "<group>"; };
+		A70B587C1A440DB700BD434B /* AddTagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagsViewController.h; sourceTree = "<group>"; };
+		A70B587D1A440DB700BD434B /* AddTagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagsViewController.m; sourceTree = "<group>"; };
+		A70B587E1A440DB700BD434B /* AddTagsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTagsViewController.xib; sourceTree = "<group>"; };
 		A71D04111A1112DB00308DD0 /* NotebooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebooksTableViewController.h; sourceTree = "<group>"; };
 		A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebooksTableViewController.m; sourceTree = "<group>"; };
 		A71D35001A1B744100EA301B /* NotesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesStore.h; sourceTree = "<group>"; };
@@ -249,6 +254,16 @@
 			name = NoteCell;
 			sourceTree = "<group>";
 		};
+		A70B58811A440DBD00BD434B /* AddTagsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A70B587C1A440DB700BD434B /* AddTagsViewController.h */,
+				A70B587D1A440DB700BD434B /* AddTagsViewController.m */,
+				A70B587E1A440DB700BD434B /* AddTagsViewController.xib */,
+			);
+			name = AddTagsViewController;
+			sourceTree = "<group>";
+		};
 		A71048331A30A4630005470B /* TagCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +303,7 @@
 		A71D35031A1B7B1A00EA301B /* NotesDetailVC */ = {
 			isa = PBXGroup;
 			children = (
+				A70B58811A440DBD00BD434B /* AddTagsViewController */,
 				A71048331A30A4630005470B /* TagCollectionViewCell */,
 				6150D09E1A14C03300E4590C /* NotesDetailViewController.h */,
 				6150D09F1A14C03300E4590C /* NotesDetailViewController.m */,
@@ -490,6 +506,7 @@
 				A721830C1A10E950006E47E3 /* Images.xcassets in Resources */,
 				A705D6711A3ED25300B06FB6 /* aplause.wav in Resources */,
 				6150D0A21A14C03300E4590C /* NotesDetailViewController.xib in Resources */,
+				A70B58801A440DB700BD434B /* AddTagsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +531,7 @@
 				755594E61A3DAE2800B30234 /* MMDrawerBarButtonItem.m in Sources */,
 				755594F21A3DB03700B30234 /* RearViewController.m in Sources */,
 				755594E71A3DAE2800B30234 /* MMDrawerController.m in Sources */,
+				A70B587F1A440DB700BD434B /* AddTagsViewController.m in Sources */,
 				6190C2301A1254920046F016 /* NoteCell.m in Sources */,
 				A705D6741A3ED6C900B06FB6 /* UIViewController+HandleShake.m in Sources */,
 				A7D73BD91A3855F3009A21FA /* UICollectionViewLeftAlignedLayout.m in Sources */,
