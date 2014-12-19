@@ -144,7 +144,7 @@
 }
 
 - (void)addNote:(Note *)note {
-    [_allPrivateNotes insertObject:note atIndex:0];
+    [_allPrivateNotes addObject:note];
 }
 
 - (Note *)createNoteWithName:(NSString *)name {
