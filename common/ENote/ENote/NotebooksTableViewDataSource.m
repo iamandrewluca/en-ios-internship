@@ -67,6 +67,7 @@
     }
     
     if ([notebook.notesIDs count]) {
+        cell.notesNumberLabel.hidden = NO;
         [cell.notesNumberLabel setTitle:[NSString stringWithFormat:@"%lu", (unsigned long)[notebook.notesIDs count]] forState:UIControlStateNormal];
     } else {
         cell.notesNumberLabel.hidden = YES;
