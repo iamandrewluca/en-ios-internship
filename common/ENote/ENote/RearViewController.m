@@ -30,6 +30,10 @@
     
     UIViewController *vc = nil;
     
+    if ([appDelegate.appNav.topViewController class] != [NotebooksTableViewController class]) {
+        [appDelegate.appNav popToRootViewControllerAnimated:NO];
+    }
+    
     switch (indexPath.row) {
         case 0:
             [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
