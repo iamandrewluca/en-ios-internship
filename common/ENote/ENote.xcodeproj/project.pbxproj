@@ -53,6 +53,10 @@
 		A70A33931A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70A33911A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib */; };
 		A70B587F1A440DB700BD434B /* AddTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70B587D1A440DB700BD434B /* AddTagsViewController.m */; };
 		A70B58801A440DB700BD434B /* AddTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70B587E1A440DB700BD434B /* AddTagsViewController.xib */; };
+		A70B588B1A44326700BD434B /* AllNotesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A70B58891A44326700BD434B /* AllNotesTVC.m */; };
+		A70B588C1A44326700BD434B /* AllNotesTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70B588A1A44326700BD434B /* AllNotesTVC.xib */; };
+		A70B58911A4432C600BD434B /* AllNotesTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A70B588F1A4432C600BD434B /* AllNotesTVCell.m */; };
+		A70B58921A4432C600BD434B /* AllNotesTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70B58901A4432C600BD434B /* AllNotesTVCell.xib */; };
 		A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */; };
 		A71D35021A1B744100EA301B /* NotesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D35011A1B744100EA301B /* NotesStore.m */; };
 		A72183011A10E950006E47E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A72183001A10E950006E47E3 /* main.m */; };
@@ -154,6 +158,12 @@
 		A70B587C1A440DB700BD434B /* AddTagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagsViewController.h; sourceTree = "<group>"; };
 		A70B587D1A440DB700BD434B /* AddTagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagsViewController.m; sourceTree = "<group>"; };
 		A70B587E1A440DB700BD434B /* AddTagsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTagsViewController.xib; sourceTree = "<group>"; };
+		A70B58881A44326700BD434B /* AllNotesTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllNotesTVC.h; sourceTree = "<group>"; };
+		A70B58891A44326700BD434B /* AllNotesTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllNotesTVC.m; sourceTree = "<group>"; };
+		A70B588A1A44326700BD434B /* AllNotesTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllNotesTVC.xib; sourceTree = "<group>"; };
+		A70B588E1A4432C600BD434B /* AllNotesTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllNotesTVCell.h; sourceTree = "<group>"; };
+		A70B588F1A4432C600BD434B /* AllNotesTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllNotesTVCell.m; sourceTree = "<group>"; };
+		A70B58901A4432C600BD434B /* AllNotesTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllNotesTVCell.xib; sourceTree = "<group>"; };
 		A71D04111A1112DB00308DD0 /* NotebooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebooksTableViewController.h; sourceTree = "<group>"; };
 		A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebooksTableViewController.m; sourceTree = "<group>"; };
 		A71D35001A1B744100EA301B /* NotesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesStore.h; sourceTree = "<group>"; };
@@ -285,6 +295,7 @@
 		6190C2291A124DEC0046F016 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A70B58871A44324800BD434B /* AllNotesTVC */,
 				755594DC1A3DAE2800B30234 /* MMDrawerController */,
 				619957D71A39B18800AFFDE2 /* RearViewController */,
 				A7D73BD01A3850C7009A21FA /* AllTagsCVC */,
@@ -369,6 +380,27 @@
 				A70B587E1A440DB700BD434B /* AddTagsViewController.xib */,
 			);
 			name = AddTagsViewController;
+			sourceTree = "<group>";
+		};
+		A70B58871A44324800BD434B /* AllNotesTVC */ = {
+			isa = PBXGroup;
+			children = (
+				A70B588D1A44326D00BD434B /* AllNotesTVCell */,
+				A70B58881A44326700BD434B /* AllNotesTVC.h */,
+				A70B58891A44326700BD434B /* AllNotesTVC.m */,
+				A70B588A1A44326700BD434B /* AllNotesTVC.xib */,
+			);
+			name = AllNotesTVC;
+			sourceTree = "<group>";
+		};
+		A70B588D1A44326D00BD434B /* AllNotesTVCell */ = {
+			isa = PBXGroup;
+			children = (
+				A70B588E1A4432C600BD434B /* AllNotesTVCell.h */,
+				A70B588F1A4432C600BD434B /* AllNotesTVCell.m */,
+				A70B58901A4432C600BD434B /* AllNotesTVCell.xib */,
+			);
+			name = AllNotesTVCell;
 			sourceTree = "<group>";
 		};
 		A71048331A30A4630005470B /* TagCollectionViewCell */ = {
@@ -600,6 +632,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A70B58921A4432C600BD434B /* AllNotesTVCell.xib in Resources */,
 				6100EA151A31C53800AA6A4B /* NoteCell.xib in Resources */,
 				A7D73BD51A3850E0009A21FA /* AllTagsCollectionViewController.xib in Resources */,
 				755594F31A3DB03700B30234 /* RearViewController.xib in Resources */,
@@ -617,6 +650,7 @@
 				A705D6711A3ED25300B06FB6 /* aplause.wav in Resources */,
 				6150D0A21A14C03300E4590C /* NotesDetailViewController.xib in Resources */,
 				A70B58801A440DB700BD434B /* AddTagsViewController.xib in Resources */,
+				A70B588C1A44326700BD434B /* AllNotesTVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +695,8 @@
 				A7AEEB621A28C4460091FE09 /* Tag.m in Sources */,
 				A7D9ACCD1A13754400B8376A /* NotebooksTableViewDataSource.m in Sources */,
 				A7D9ACB31A1246D600B8376A /* Notebook.m in Sources */,
+				A70B588B1A44326700BD434B /* AllNotesTVC.m in Sources */,
+				A70B58911A4432C600BD434B /* AllNotesTVCell.m in Sources */,
 				A72183011A10E950006E47E3 /* main.m in Sources */,
 				6150D0A11A14C03300E4590C /* NotesDetailViewController.m in Sources */,
 				A70355271A319FC5008742C9 /* TagCollectionViewCell.m in Sources */,

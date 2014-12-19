@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMDrawerController.h"
 
 @class NotesCollectionViewController;
 
@@ -15,6 +16,7 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property (nonatomic) UINavigationController *appNav;
+@property (nonatomic) MMDrawerController *drawerCtrl;
 
 @end
 
