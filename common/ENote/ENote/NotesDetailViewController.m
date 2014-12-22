@@ -15,6 +15,7 @@
 #import "Tag.h"
 #import "Note.h"
 #import "MapPinViewController.h"
+#import "NoteImagesCollectionViewController.h"
 
 
 static NSString *const kAddTagCellIdentifier = @"AddTagCollectionViewCell";
@@ -28,8 +29,10 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomSpace;
 @property (weak, nonatomic) IBOutlet UITextView *addNotesTextView;
 @property (weak, nonatomic) IBOutlet UICollectionView *tagsCollectionView;
+@property (weak, nonatomic) IBOutlet UIView *noteImagesPlaceholder;
 @property (nonatomic) NSUInteger currentTagsCount;
 
+@property (nonatomic) NoteImagesCollectionViewController *imagesCVC;
 @end
 
 @implementation NotesDetailViewController
@@ -72,6 +75,22 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     
     NSArray *buttons = @[menuButton, location];
     self.navigationItem.rightBarButtonItems = buttons;
+    
+    [self setupNoteImagesPlaceholder];
+}
+
+- (void)setupNoteImagesPlaceholder
+{
+    _imagesCVC = [[NoteImagesCollectionViewController alloc] initWithNibName:@"NoteImagesCollectionViewController" bundle:nil];
+    
+    _imagesCVC.note = _note;
+    _imagesCVC.notesStore = _notesStore;
+    
+    _imagesCVC.view.frame = _noteImagesPlaceholder.bounds;
+    [_imagesCVC willMoveToParentViewController:self];
+    [self addChildViewController:_imagesCVC];
+    [_noteImagesPlaceholder addSubview:_imagesCVC.view];
+    [_imagesCVC didMoveToParentViewController:self];
 }
 
 

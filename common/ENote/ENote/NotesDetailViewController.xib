@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotesDetailViewController">
             <connections>
                 <outlet property="addNotesTextView" destination="T8x-fQ-2Vh" id="lPG-wf-DTD"/>
+                <outlet property="noteImagesPlaceholder" destination="yBu-VN-9Gy" id="5Fi-OJ-vcY"/>
                 <outlet property="tagsCollectionView" destination="TdD-ke-QJv" id="5ee-FF-cQ1"/>
                 <outlet property="textViewBottomSpace" destination="DPP-Gu-ePw" id="rUs-5Y-NcO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,19 +24,6 @@
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="34K-9u-DhQ">
-                    <rect key="frame" x="0.0" y="8" width="320" height="64"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="64" id="u9W-6F-6Q5"/>
-                    </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="a3d-ox-f5x">
-                        <size key="itemSize" width="64" height="64"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="TdD-ke-QJv">
                     <rect key="frame" x="0.0" y="80" width="320" height="26"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -53,19 +41,26 @@
                         <outlet property="delegate" destination="-1" id="Jz7-1G-Z33"/>
                     </connections>
                 </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBu-VN-9Gy">
+                    <rect key="frame" x="0.0" y="8" width="320" height="64"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="1HV-77-POh"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="34K-9u-DhQ" secondAttribute="trailing" id="1hu-mi-0Wh"/>
                 <constraint firstAttribute="bottom" secondItem="T8x-fQ-2Vh" secondAttribute="bottom" constant="8" id="DPP-Gu-ePw"/>
-                <constraint firstItem="34K-9u-DhQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="FOe-F7-nDs"/>
-                <constraint firstItem="TdD-ke-QJv" firstAttribute="top" secondItem="34K-9u-DhQ" secondAttribute="bottom" constant="8" id="Lfx-jJ-x7p"/>
-                <constraint firstItem="34K-9u-DhQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ywx-ND-iba"/>
+                <constraint firstItem="yBu-VN-9Gy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="FAJ-ed-pzI"/>
+                <constraint firstItem="yBu-VN-9Gy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LX5-HQ-S8H"/>
                 <constraint firstAttribute="trailing" secondItem="TdD-ke-QJv" secondAttribute="trailing" id="d7J-QL-xUE"/>
                 <constraint firstAttribute="trailing" secondItem="T8x-fQ-2Vh" secondAttribute="trailing" constant="8" id="eB5-O0-1XN"/>
                 <constraint firstItem="TdD-ke-QJv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eFe-qo-kKf"/>
                 <constraint firstItem="T8x-fQ-2Vh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="n4R-sp-3x2"/>
                 <constraint firstItem="T8x-fQ-2Vh" firstAttribute="top" secondItem="TdD-ke-QJv" secondAttribute="bottom" constant="8" id="p0l-UM-GCF"/>
+                <constraint firstItem="TdD-ke-QJv" firstAttribute="top" secondItem="yBu-VN-9Gy" secondAttribute="bottom" constant="8" id="rfi-Lf-y69"/>
+                <constraint firstAttribute="trailing" secondItem="yBu-VN-9Gy" secondAttribute="trailing" id="wB0-55-HfL"/>
             </constraints>
             <point key="canvasLocation" x="-86" y="517"/>
         </view>

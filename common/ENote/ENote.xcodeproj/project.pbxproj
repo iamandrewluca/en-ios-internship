@@ -51,6 +51,12 @@
 		A721831B1A10E950006E47E3 /* ENoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A721831A1A10E950006E47E3 /* ENoteTests.m */; };
 		A74FE0B81A1B86BA0005F74D /* ENoteCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = A74FE0B71A1B86BA0005F74D /* ENoteCommons.m */; };
 		A756D0C41A24D4A200A7F374 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = A756D0C31A24D4A200A7F374 /* Item.m */; };
+		A7AE42DC1A484FB300356C84 /* NoteImagesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7AE42DA1A484FB300356C84 /* NoteImagesCollectionViewController.m */; };
+		A7AE42DD1A484FB300356C84 /* NoteImagesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7AE42DB1A484FB300356C84 /* NoteImagesCollectionViewController.xib */; };
+		A7AE42E21A48551500356C84 /* NoteImagesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7AE42E01A48551500356C84 /* NoteImagesCollectionViewCell.m */; };
+		A7AE42E31A48551500356C84 /* NoteImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7AE42E11A48551500356C84 /* NoteImagesCollectionViewCell.xib */; };
+		A7AE42E81A4858B300356C84 /* AddNoteImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7AE42E61A4858B300356C84 /* AddNoteImageCollectionViewCell.m */; };
+		A7AE42E91A4858B300356C84 /* AddNoteImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7AE42E71A4858B300356C84 /* AddNoteImageCollectionViewCell.xib */; };
 		A7AEEB621A28C4460091FE09 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = A7AEEB611A28C4460091FE09 /* Tag.m */; };
 		A7AEEB681A28CEBF0091FE09 /* TagsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A7AEEB671A28CEBF0091FE09 /* TagsStore.m */; };
 		A7D73BD41A3850E0009A21FA /* AllTagsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D73BD21A3850E0009A21FA /* AllTagsCollectionViewController.m */; };
@@ -151,6 +157,15 @@
 		A74FE0B71A1B86BA0005F74D /* ENoteCommons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ENoteCommons.m; sourceTree = "<group>"; };
 		A756D0C21A24D4A200A7F374 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		A756D0C31A24D4A200A7F374 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		A7AE42D91A484FB300356C84 /* NoteImagesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteImagesCollectionViewController.h; sourceTree = "<group>"; };
+		A7AE42DA1A484FB300356C84 /* NoteImagesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteImagesCollectionViewController.m; sourceTree = "<group>"; };
+		A7AE42DB1A484FB300356C84 /* NoteImagesCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteImagesCollectionViewController.xib; sourceTree = "<group>"; };
+		A7AE42DF1A48551500356C84 /* NoteImagesCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteImagesCollectionViewCell.h; sourceTree = "<group>"; };
+		A7AE42E01A48551500356C84 /* NoteImagesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteImagesCollectionViewCell.m; sourceTree = "<group>"; };
+		A7AE42E11A48551500356C84 /* NoteImagesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteImagesCollectionViewCell.xib; sourceTree = "<group>"; };
+		A7AE42E51A4858B300356C84 /* AddNoteImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNoteImageCollectionViewCell.h; sourceTree = "<group>"; };
+		A7AE42E61A4858B300356C84 /* AddNoteImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNoteImageCollectionViewCell.m; sourceTree = "<group>"; };
+		A7AE42E71A4858B300356C84 /* AddNoteImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNoteImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		A7AEEB601A28C4460091FE09 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		A7AEEB611A28C4460091FE09 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		A7AEEB661A28CEBF0091FE09 /* TagsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsStore.h; sourceTree = "<group>"; };
@@ -374,6 +389,7 @@
 		A71D35031A1B7B1A00EA301B /* NotesDetailVC */ = {
 			isa = PBXGroup;
 			children = (
+				A7AE42DE1A484FBD00356C84 /* NoteImagesCollectionViewController */,
 				A70B58811A440DBD00BD434B /* AddTagsViewController */,
 				A71048331A30A4630005470B /* TagCollectionViewCell */,
 				6150D09E1A14C03300E4590C /* NotesDetailViewController.h */,
@@ -446,6 +462,38 @@
 				A72183191A10E950006E47E3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A7AE42DE1A484FBD00356C84 /* NoteImagesCollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A7AE42EA1A4858BC00356C84 /* AddNoteImageCollectionViewCell */,
+				A7AE42E41A48551C00356C84 /* NoteImagesCollectionViewCell */,
+				A7AE42D91A484FB300356C84 /* NoteImagesCollectionViewController.h */,
+				A7AE42DA1A484FB300356C84 /* NoteImagesCollectionViewController.m */,
+				A7AE42DB1A484FB300356C84 /* NoteImagesCollectionViewController.xib */,
+			);
+			name = NoteImagesCollectionViewController;
+			sourceTree = "<group>";
+		};
+		A7AE42E41A48551C00356C84 /* NoteImagesCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				A7AE42DF1A48551500356C84 /* NoteImagesCollectionViewCell.h */,
+				A7AE42E01A48551500356C84 /* NoteImagesCollectionViewCell.m */,
+				A7AE42E11A48551500356C84 /* NoteImagesCollectionViewCell.xib */,
+			);
+			name = NoteImagesCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		A7AE42EA1A4858BC00356C84 /* AddNoteImageCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				A7AE42E51A4858B300356C84 /* AddNoteImageCollectionViewCell.h */,
+				A7AE42E61A4858B300356C84 /* AddNoteImageCollectionViewCell.m */,
+				A7AE42E71A4858B300356C84 /* AddNoteImageCollectionViewCell.xib */,
+			);
+			name = AddNoteImageCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		A7AEEB5C1A28BC600091FE09 /* Stores */ = {
@@ -565,9 +613,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A70B58921A4432C600BD434B /* AllNotesTVCell.xib in Resources */,
+				A7AE42E91A4858B300356C84 /* AddNoteImageCollectionViewCell.xib in Resources */,
 				6100EA151A31C53800AA6A4B /* NoteCell.xib in Resources */,
 				A7D73BD51A3850E0009A21FA /* AllTagsCollectionViewController.xib in Resources */,
 				755594F31A3DB03700B30234 /* RearViewController.xib in Resources */,
+				A7AE42DD1A484FB300356C84 /* NoteImagesCollectionViewController.xib in Resources */,
 				A70A33931A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib in Resources */,
 				A7D9ACC41A1357A900B8376A /* NotebooksTableViewController.xib in Resources */,
 				75CD431E1A3E259D002141ED /* NotesAddCell.xib in Resources */,
@@ -579,6 +629,7 @@
 				A7D9ACC01A12511700B8376A /* NotebooksTableViewCell.xib in Resources */,
 				A721830C1A10E950006E47E3 /* Images.xcassets in Resources */,
 				A705D6711A3ED25300B06FB6 /* aplause.wav in Resources */,
+				A7AE42E31A48551500356C84 /* NoteImagesCollectionViewCell.xib in Resources */,
 				6150D0A21A14C03300E4590C /* NotesDetailViewController.xib in Resources */,
 				A70B58801A440DB700BD434B /* AddTagsViewController.xib in Resources */,
 				A70B588C1A44326700BD434B /* AllNotesTVC.xib in Resources */,
@@ -599,6 +650,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7AE42E81A4858B300356C84 /* AddNoteImageCollectionViewCell.m in Sources */,
 				A74FE0B81A1B86BA0005F74D /* ENoteCommons.m in Sources */,
 				75CD43211A3E2CB8002141ED /* NotesAddCell.m in Sources */,
 				6155EC4D1A137C3E00BE143B /* Note.m in Sources */,
@@ -610,6 +662,7 @@
 				A70B587F1A440DB700BD434B /* AddTagsViewController.m in Sources */,
 				6190C2301A1254920046F016 /* NoteCell.m in Sources */,
 				A705D6741A3ED6C900B06FB6 /* UIViewController+HandleShake.m in Sources */,
+				A7AE42DC1A484FB300356C84 /* NoteImagesCollectionViewController.m in Sources */,
 				617450FA1A4448DD0018D6AA /* MapPinViewController.m in Sources */,
 				617450CB1A442ECF0018D6AA /* NoteCellLarge.m in Sources */,
 				A7D73BD91A3855F3009A21FA /* UICollectionViewLeftAlignedLayout.m in Sources */,
@@ -630,6 +683,7 @@
 				A72183011A10E950006E47E3 /* main.m in Sources */,
 				6150D0A11A14C03300E4590C /* NotesDetailViewController.m in Sources */,
 				A70355271A319FC5008742C9 /* TagCollectionViewCell.m in Sources */,
+				A7AE42E21A48551500356C84 /* NoteImagesCollectionViewCell.m in Sources */,
 				A756D0C41A24D4A200A7F374 /* Item.m in Sources */,
 				A7D9ACBF1A12511700B8376A /* NotebooksTableViewCell.m in Sources */,
 				A71D35021A1B744100EA301B /* NotesStore.m in Sources */,
