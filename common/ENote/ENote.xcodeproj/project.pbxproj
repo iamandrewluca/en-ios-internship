@@ -44,6 +44,7 @@
 		A70B58921A4432C600BD434B /* AllNotesTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70B58901A4432C600BD434B /* AllNotesTVCell.xib */; };
 		A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */; };
 		A71D35021A1B744100EA301B /* NotesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D35011A1B744100EA301B /* NotesStore.m */; };
+		A720977C1A497E4F00086670 /* ImagesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A720977B1A497E4F00086670 /* ImagesStore.m */; };
 		A72183011A10E950006E47E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A72183001A10E950006E47E3 /* main.m */; };
 		A72183041A10E950006E47E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A72183031A10E950006E47E3 /* AppDelegate.m */; };
 		A721830C1A10E950006E47E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A721830B1A10E950006E47E3 /* Images.xcassets */; };
@@ -143,6 +144,8 @@
 		A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebooksTableViewController.m; sourceTree = "<group>"; };
 		A71D35001A1B744100EA301B /* NotesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesStore.h; sourceTree = "<group>"; };
 		A71D35011A1B744100EA301B /* NotesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesStore.m; sourceTree = "<group>"; };
+		A720977A1A497E4F00086670 /* ImagesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesStore.h; sourceTree = "<group>"; };
+		A720977B1A497E4F00086670 /* ImagesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesStore.m; sourceTree = "<group>"; };
 		A72182FB1A10E950006E47E3 /* ENote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ENote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72182FF1A10E950006E47E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A72183001A10E950006E47E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -505,6 +508,8 @@
 				A7D9ACB51A12486300B8376A /* NotebooksStore.m */,
 				A7AEEB661A28CEBF0091FE09 /* TagsStore.h */,
 				A7AEEB671A28CEBF0091FE09 /* TagsStore.m */,
+				A720977A1A497E4F00086670 /* ImagesStore.h */,
+				A720977B1A497E4F00086670 /* ImagesStore.m */,
 			);
 			name = Stores;
 			sourceTree = "<group>";
@@ -685,6 +690,7 @@
 				A70355271A319FC5008742C9 /* TagCollectionViewCell.m in Sources */,
 				A7AE42E21A48551500356C84 /* NoteImagesCollectionViewCell.m in Sources */,
 				A756D0C41A24D4A200A7F374 /* Item.m in Sources */,
+				A720977C1A497E4F00086670 /* ImagesStore.m in Sources */,
 				A7D9ACBF1A12511700B8376A /* NotebooksTableViewCell.m in Sources */,
 				A71D35021A1B744100EA301B /* NotesStore.m in Sources */,
 				A7D9ACB61A12486300B8376A /* NotebooksStore.m in Sources */,

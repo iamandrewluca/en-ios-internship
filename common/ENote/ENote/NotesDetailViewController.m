@@ -16,6 +16,7 @@
 #import "Note.h"
 #import "MapPinViewController.h"
 #import "NoteImagesCollectionViewController.h"
+#import "ImagesStore.h"
 
 
 static NSString *const kAddTagCellIdentifier = @"AddTagCollectionViewCell";
@@ -215,10 +216,10 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     
     NSString *hasImageText = nil;
     
-    if ([_note.imageName isEqualToString:@""]) {
-        hasImageText = @"Add Image";
-    } else {
+    if ([_note.imagesIDs count]) {
         hasImageText = @"Remove Image";
+    } else {
+        hasImageText = @"Add Image";
     }
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"What do you want to do with the note?"
@@ -287,10 +288,10 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
         } else if(buttonIndex == 1) {
             [self renameNote];
         } else if(buttonIndex == 2) {
-            if ([_note.imageName isEqualToString:@""]) {
-                [self addImage];
-            } else {
+            if ([_note.imagesIDs count]) {
                 [self removeImage];
+            } else {
+                [self addImage];
             }
         } else if (buttonIndex == 3) {
             [self MapKitLocation];
@@ -319,7 +320,7 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
-    [_notesStore addImage:info[UIImagePickerControllerOriginalImage] forNote:_note];
+    [[ImagesStore sharedStore] addImage:info[UIImagePickerControllerOriginalImage] forNote:_note];
 }
 
 - (void)manageImageSouce
@@ -354,7 +355,7 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 
 - (void)removeImage
 {
-    [_notesStore removeImageForNote:_note];
+    [[ImagesStore sharedStore] removeImageForNote:_note withImageID:@""];
 }
 
 #pragma mark - Custom methods

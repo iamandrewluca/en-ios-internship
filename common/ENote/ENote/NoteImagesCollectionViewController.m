@@ -9,6 +9,7 @@
 #import "NoteImagesCollectionViewController.h"
 #import "NoteImagesCollectionViewCell.h"
 #import "AddNoteImageCollectionViewCell.h"
+#import "ImagesStore.h"
 
 @interface NoteImagesCollectionViewController ()
 
@@ -45,9 +46,10 @@ static NSString * const kNoteImageReuseIdentifier = @"NoteImagesCollectionViewCe
 {
     UICollectionViewCell *cell = nil;
     
-    if (indexPath.row != 0) {
+    if (indexPath.row) {
         NoteImagesCollectionViewCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:kNoteImageReuseIdentifier forIndexPath:indexPath];
-        noteCell.thumbImage.image = [_notesStore imageForNote:_note];
+        NSString *preview = [_note.imagesIDs objectAtIndex:indexPath.row];
+        noteCell.thumbImage.image = [[ImagesStore sharedStore] previewForNote:_note withImageID:preview];
         cell = noteCell;
     } else {
         AddNoteImageCollectionViewCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:kAddNoteImageReuseIdentifier forIndexPath:indexPath];

@@ -7,6 +7,7 @@
 
 #import "Note.h"
 #import <UIKit/UIKit.h>
+#import "ENoteCommons.h"
 
 @interface Note ()
 
@@ -16,6 +17,11 @@
 @end
 
 @implementation Note
+
+- (NSString *)path
+{
+    return [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], self.notebookID, self.ID];
+}
 
 - (void)addImageID:(NSString *)ID
 {

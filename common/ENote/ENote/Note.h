@@ -29,5 +29,6 @@
 - (void)addImageID:(NSString *)ID;
 - (void)removeImageID:(NSString *)ID;
 - (void)setLocationLongitude:(CGFloat)longitude andLatitude:(CGFloat)latitude;
+- (NSString *)path;
 
 @end
