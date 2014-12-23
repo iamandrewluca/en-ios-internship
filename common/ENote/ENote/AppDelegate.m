@@ -27,7 +27,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // Why search simulator sandbox?
-    //NSLog(@"%@", NSHomeDirectory());
+    // Iura nu mai comenta linia asta ))
+    NSLog(@"%@", NSHomeDirectory());
     
     // API Key
 //    [GMSServices provideAPIKey:@"GOOGLE_MAPS_API_KEY"];

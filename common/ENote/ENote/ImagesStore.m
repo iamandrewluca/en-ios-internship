@@ -139,12 +139,35 @@ typedef NS_ENUM(NSUInteger, ImageSizeType)
 
 - (UIImage *)thumbForNote:(Note *)note
 {
-    return [self imageWithSize:ImageSizeThumb forNote:note withImageID:note.thumbID];
+    if ([note.thumbID isEqualToString:@""]) {
+        return nil;
+    } else {
+        return [self imageWithSize:ImageSizeThumb forNote:note withImageID:note.thumbID];
+    }
 }
 
 - (UIImage *)previewForNote:(Note *)note withImageID:(NSString *)ID
 {
     return [self imageWithSize:ImageSizePreview forNote:note withImageID:ID];
+}
+
+- (void)setThumbForNote:(Note *)note withImageID:(NSString *)ID
+{
+    if ([ID isEqualToString:note.thumbID]) {
+        return;
+    }
+    
+    if (![note.thumbID isEqualToString:@""]) {
+        [[NSFileManager defaultManager] removeItemAtPath:[self pathForImageWithID:note.thumbID forNote:note withSize:ImageSizeThumb] error:nil];
+    }
+    
+    note.thumbID = ID;
+    
+    UIImage *originalImage = [self imageForNote:note withImageID:ID];
+    
+    UIImage *thumb = [self prepareThumbForImage:originalImage];
+    NSData *thumbData = UIImageJPEGRepresentation(thumb, 1.0f);
+    [[NSFileManager defaultManager] createFileAtPath:[self pathForImageWithID:ID forNote:note withSize:ImageSizeThumb] contents:thumbData attributes:nil];
 }
 
 @end

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface AddNoteImageCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end

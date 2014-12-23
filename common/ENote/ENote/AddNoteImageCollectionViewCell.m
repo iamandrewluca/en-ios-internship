@@ -16,6 +16,7 @@
 
 - (void)awakeFromNib
 {
+    self.layer.cornerRadius = 10.0f;
     _border = [CAShapeLayer layer];
     _border.strokeColor = [UIColor lightGrayColor].CGColor;
     _border.fillColor = nil;
@@ -25,7 +26,7 @@
 
 - (void)layoutSubviews
 {
-    _border.path = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
+    _border.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:10.0f].CGPath;
     _border.frame = self.bounds;
 }
 

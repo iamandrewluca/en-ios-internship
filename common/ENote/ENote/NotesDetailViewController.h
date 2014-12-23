@@ -15,4 +15,6 @@
 @property (nonatomic) Note *note;
 @property (nonatomic) NotesStore *notesStore;
 
+- (void)addImage;
+
 @end

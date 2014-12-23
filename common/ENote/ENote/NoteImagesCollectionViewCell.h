@@ -8,7 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class NoteImagesCollectionViewCell;
+
+@protocol NoteImagesCollectionViewCellDelegate <NSObject>
+- (void)deleteButtonPressedInCell:(NoteImagesCollectionViewCell *)cell;
+@end
+
 @interface NoteImagesCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *thumbImage;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UIButton *thumbCheck;
 
+@property (nonatomic, assign) id<NoteImagesCollectionViewCellDelegate> delegate;
 @end
+
+

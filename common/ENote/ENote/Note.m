@@ -25,7 +25,7 @@
 
 - (void)addImageID:(NSString *)ID
 {
-    [_privateImagesIDs insertObject:ID atIndex:0];
+    [_privateImagesIDs addObject:ID];
 }
 
 - (void)removeImageID:(NSString *)ID

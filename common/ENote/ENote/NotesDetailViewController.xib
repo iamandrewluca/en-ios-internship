@@ -7,7 +7,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotesDetailViewController">
             <connections>
                 <outlet property="addNotesTextView" destination="T8x-fQ-2Vh" id="lPG-wf-DTD"/>
+                <outlet property="noteImagesHeightConstraint" destination="1HV-77-POh" id="wy8-td-JX9"/>
                 <outlet property="noteImagesPlaceholder" destination="yBu-VN-9Gy" id="5Fi-OJ-vcY"/>
+                <outlet property="noteImagesTopConstraint" destination="FAJ-ed-pzI" id="FqQ-Ai-5o2"/>
                 <outlet property="tagsCollectionView" destination="TdD-ke-QJv" id="5ee-FF-cQ1"/>
                 <outlet property="textViewBottomSpace" destination="DPP-Gu-ePw" id="rUs-5Y-NcO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

@@ -21,6 +21,9 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <connections>
+                <outlet property="label" destination="G5g-Ol-5Bk" id="LHd-Ms-1Ce"/>
+            </connections>
         </collectionViewCell>
     </objects>
 </document>

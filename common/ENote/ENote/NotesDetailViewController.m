@@ -31,6 +31,8 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 @property (weak, nonatomic) IBOutlet UITextView *addNotesTextView;
 @property (weak, nonatomic) IBOutlet UICollectionView *tagsCollectionView;
 @property (weak, nonatomic) IBOutlet UIView *noteImagesPlaceholder;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *noteImagesTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *noteImagesHeightConstraint;
 @property (nonatomic) NSUInteger currentTagsCount;
 
 @property (nonatomic) NoteImagesCollectionViewController *imagesCVC;
@@ -82,6 +84,8 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 
 - (void)setupNoteImagesPlaceholder
 {
+    [_noteImagesPlaceholder.layer setMasksToBounds:NO];
+    
     _imagesCVC = [[NoteImagesCollectionViewController alloc] initWithNibName:@"NoteImagesCollectionViewController" bundle:nil];
     
     _imagesCVC.note = _note;
@@ -92,6 +96,11 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     [self addChildViewController:_imagesCVC];
     [_noteImagesPlaceholder addSubview:_imagesCVC.view];
     [_imagesCVC didMoveToParentViewController:self];
+    
+    if (![_note.imagesIDs count]) {
+        _noteImagesHeightConstraint.constant = 0;
+        _noteImagesTopConstraint.constant = 0;
+    }
 }
 
 
@@ -214,19 +223,11 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 {
     [_addNotesTextView resignFirstResponder];
     
-    NSString *hasImageText = nil;
-    
-    if ([_note.imagesIDs count]) {
-        hasImageText = @"Remove Image";
-    } else {
-        hasImageText = @"Add Image";
-    }
-    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"What do you want to do with the note?"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:@"Delete note"
-                                                    otherButtonTitles:@"Rename", hasImageText, @"Add Location", nil];
+                                                    otherButtonTitles:@"Rename", @"Add Image", @"Add Location", nil];
     
     [actionSheet showInView:self.view];
     actionSheet.tag = 100;
@@ -288,11 +289,7 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
         } else if(buttonIndex == 1) {
             [self renameNote];
         } else if(buttonIndex == 2) {
-            if ([_note.imagesIDs count]) {
-                [self removeImage];
-            } else {
-                [self addImage];
-            }
+            [self addImage];
         } else if (buttonIndex == 3) {
             [self MapKitLocation];
         }
@@ -319,8 +316,26 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 #pragma mark - <UIImagePickerControllerDelegate>
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [picker dismissViewControllerAnimated:YES completion:nil];
     [[ImagesStore sharedStore] addImage:info[UIImagePickerControllerOriginalImage] forNote:_note];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    if ([_note.imagesIDs count] != 1) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[_note.imagesIDs count] - 1 inSection:0];
+        [_imagesCVC.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
+        [_imagesCVC.collectionView insertItemsAtIndexPaths:@[indexPath]];
+        indexPath = [NSIndexPath indexPathForItem:[_note.imagesIDs count] inSection:0];
+        [_imagesCVC.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+    } else {
+        _noteImagesTopConstraint.constant = 8;
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            _noteImagesHeightConstraint.constant = 64;
+            [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            [_imagesCVC.collectionView reloadData];
+        }];
+    }
+    
 }
 
 - (void)manageImageSouce
@@ -346,16 +361,12 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 
 - (void)addImage
 {
+    [_imagesCVC setEditing:NO];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         [self manageImageSouce];
     } else {
         [self showImagePickerType:(UIImagePickerControllerSourceTypePhotoLibrary)];
     }
-}
-
-- (void)removeImage
-{
-    [[ImagesStore sharedStore] removeImageForNote:_note withImageID:@""];
 }
 
 #pragma mark - Custom methods

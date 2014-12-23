@@ -14,6 +14,7 @@
 
 - (void)addImage:(UIImage *)image forNote:(Note *)note;
 - (void)removeImageForNote:(Note *)note withImageID:(NSString *)ID;
+- (void)setThumbForNote:(Note *)note withImageID:(NSString *)ID;
 - (UIImage *)imageForNote:(Note *)note withImageID:(NSString *)ID;
 - (UIImage *)thumbForNote:(Note *)note;
 - (UIImage *)previewForNote:(Note *)note withImageID:(NSString *)ID;
