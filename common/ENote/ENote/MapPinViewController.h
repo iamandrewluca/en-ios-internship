@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 #import "MyPin.h"
-#import <CoreLocation/CoreLocation.h>
 
-@interface MapPinViewController : UIViewController <MKMapViewDelegate>
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property(nonatomic,retain) CLLocationManager *locationManager;
+@interface MapPinViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
+
+@property (nonatomic, strong) IBOutlet MKMapView *mapView;
+@property (nonatomic, retain) CLLocationManager *locationManager;
 
 
 @end

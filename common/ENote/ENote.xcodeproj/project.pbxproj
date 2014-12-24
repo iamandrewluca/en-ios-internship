@@ -20,6 +20,7 @@
 		6190C2281A124CE70046F016 /* NotesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6190C2261A124CE70046F016 /* NotesCollectionViewController.xib */; };
 		6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C22B1A124EBA0046F016 /* NotesLayout.m */; };
 		6190C2301A1254920046F016 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C22F1A1254920046F016 /* NoteCell.m */; };
+		61EB9CF11A4AF4E400D2BBAF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EB9CF01A4AF4E400D2BBAF /* MapKit.framework */; };
 		755594E61A3DAE2800B30234 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 755594DE1A3DAE2800B30234 /* MMDrawerBarButtonItem.m */; };
 		755594E71A3DAE2800B30234 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 755594E11A3DAE2800B30234 /* MMDrawerController.m */; };
 		755594E81A3DAE2800B30234 /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = 755594E31A3DAE2800B30234 /* MMDrawerVisualState.m */; };
@@ -106,6 +107,7 @@
 		6190C22B1A124EBA0046F016 /* NotesLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesLayout.m; sourceTree = "<group>"; };
 		6190C22E1A1254920046F016 /* NoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCell.h; sourceTree = "<group>"; };
 		6190C22F1A1254920046F016 /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
+		61EB9CF01A4AF4E400D2BBAF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		755594DD1A3DAE2800B30234 /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
 		755594DE1A3DAE2800B30234 /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
 		755594DF1A3DAE2800B30234 /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61EB9CF11A4AF4E400D2BBAF /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +234,7 @@
 		617450F31A4443E90018D6AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				61EB9CF01A4AF4E400D2BBAF /* MapKit.framework */,
 			);
 			name = Frameworks;
 			path = ENote;
@@ -602,6 +606,11 @@
 				TargetAttributes = {
 					A72182FA1A10E950006E47E3 = {
 						CreatedOnToolsVersion = 6.0.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					A72183131A10E950006E47E3 = {
 						CreatedOnToolsVersion = 6.0.1;
