@@ -50,6 +50,8 @@
 		A721830C1A10E950006E47E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A721830B1A10E950006E47E3 /* Images.xcassets */; };
 		A721830F1A10E950006E47E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A721830D1A10E950006E47E3 /* LaunchScreen.xib */; };
 		A721831B1A10E950006E47E3 /* ENoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A721831A1A10E950006E47E3 /* ENoteTests.m */; };
+		A74C00EE1A4AD54300216ADB /* NoteImagePreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A74C00EC1A4AD54300216ADB /* NoteImagePreviewController.m */; };
+		A74C00EF1A4AD54300216ADB /* NoteImagePreviewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74C00ED1A4AD54300216ADB /* NoteImagePreviewController.xib */; };
 		A74FE0B81A1B86BA0005F74D /* ENoteCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = A74FE0B71A1B86BA0005F74D /* ENoteCommons.m */; };
 		A756D0C41A24D4A200A7F374 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = A756D0C31A24D4A200A7F374 /* Item.m */; };
 		A7AE42DC1A484FB300356C84 /* NoteImagesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7AE42DA1A484FB300356C84 /* NoteImagesCollectionViewController.m */; };
@@ -156,6 +158,9 @@
 		A72183141A10E950006E47E3 /* ENoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ENoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72183191A10E950006E47E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A721831A1A10E950006E47E3 /* ENoteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ENoteTests.m; sourceTree = "<group>"; };
+		A74C00EB1A4AD54300216ADB /* NoteImagePreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteImagePreviewController.h; sourceTree = "<group>"; };
+		A74C00EC1A4AD54300216ADB /* NoteImagePreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteImagePreviewController.m; sourceTree = "<group>"; };
+		A74C00ED1A4AD54300216ADB /* NoteImagePreviewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteImagePreviewController.xib; sourceTree = "<group>"; };
 		A74FE0B61A1B86BA0005F74D /* ENoteCommons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ENoteCommons.h; sourceTree = "<group>"; };
 		A74FE0B71A1B86BA0005F74D /* ENoteCommons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ENoteCommons.m; sourceTree = "<group>"; };
 		A756D0C21A24D4A200A7F374 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
@@ -467,9 +472,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A74C00F01A4AD54F00216ADB /* NoteImagePreviewController */ = {
+			isa = PBXGroup;
+			children = (
+				A74C00EB1A4AD54300216ADB /* NoteImagePreviewController.h */,
+				A74C00EC1A4AD54300216ADB /* NoteImagePreviewController.m */,
+				A74C00ED1A4AD54300216ADB /* NoteImagePreviewController.xib */,
+			);
+			name = NoteImagePreviewController;
+			sourceTree = "<group>";
+		};
 		A7AE42DE1A484FBD00356C84 /* NoteImagesCollectionViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A74C00F01A4AD54F00216ADB /* NoteImagePreviewController */,
 				A7AE42EA1A4858BC00356C84 /* AddNoteImageCollectionViewCell */,
 				A7AE42E41A48551C00356C84 /* NoteImagesCollectionViewCell */,
 				A7AE42D91A484FB300356C84 /* NoteImagesCollectionViewController.h */,
@@ -633,6 +649,7 @@
 				A705D67C1A3EED8900B06FB6 /* AddTagCollectionViewCell.xib in Resources */,
 				A7D9ACC01A12511700B8376A /* NotebooksTableViewCell.xib in Resources */,
 				A721830C1A10E950006E47E3 /* Images.xcassets in Resources */,
+				A74C00EF1A4AD54300216ADB /* NoteImagePreviewController.xib in Resources */,
 				A705D6711A3ED25300B06FB6 /* aplause.wav in Resources */,
 				A7AE42E31A48551500356C84 /* NoteImagesCollectionViewCell.xib in Resources */,
 				6150D0A21A14C03300E4590C /* NotesDetailViewController.xib in Resources */,
@@ -689,6 +706,7 @@
 				6150D0A11A14C03300E4590C /* NotesDetailViewController.m in Sources */,
 				A70355271A319FC5008742C9 /* TagCollectionViewCell.m in Sources */,
 				A7AE42E21A48551500356C84 /* NoteImagesCollectionViewCell.m in Sources */,
+				A74C00EE1A4AD54300216ADB /* NoteImagePreviewController.m in Sources */,
 				A756D0C41A24D4A200A7F374 /* Item.m in Sources */,
 				A720977C1A497E4F00086670 /* ImagesStore.m in Sources */,
 				A7D9ACBF1A12511700B8376A /* NotebooksTableViewCell.m in Sources */,

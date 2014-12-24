@@ -11,9 +11,9 @@
 #import "AddNoteImageCollectionViewCell.h"
 #import "ImagesStore.h"
 #import "NotesDetailViewController.h"
+#import "NoteImagePreviewController.h"
 
 @interface NoteImagesCollectionViewController () <NoteImagesCollectionViewCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-
 @end
 
 @implementation NoteImagesCollectionViewController
@@ -134,7 +134,12 @@ static NSString * const kNoteImageReuseIdentifier = @"NoteImagesCollectionViewCe
         if (self.isEditing) {
             [self changeThumbToIndexPath:indexPath];
         } else {
-            // image popover
+            // show image picker
+            NoteImagePreviewController *preview = [NoteImagePreviewController new];
+            preview.image = [[ImagesStore sharedStore] imageForNote:_note withImageID:[_note.imagesIDs objectAtIndex:indexPath.row]];
+            preview.modalPresentationStyle = UIModalPresentationFullScreen;
+            preview.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            [self presentViewController:preview animated:YES completion:nil];
         }
     }
 }

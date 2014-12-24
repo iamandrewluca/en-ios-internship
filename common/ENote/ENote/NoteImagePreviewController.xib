@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C78c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoteImagePreviewController">
+            <connections>
+                <outlet property="imagePreview" destination="ZIW-z3-eKd" id="OwI-tq-vcd"/>
+                <outlet property="scrollView" destination="5RF-ez-U18" id="dfP-os-b4L"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="5RF-ez-U18">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZIW-z3-eKd">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="centerY" secondItem="ZIW-z3-eKd" secondAttribute="centerY" id="4z4-9Q-tEN"/>
+                        <constraint firstAttribute="trailing" secondItem="ZIW-z3-eKd" secondAttribute="trailing" id="5uc-g0-3vp"/>
+                        <constraint firstItem="ZIW-z3-eKd" firstAttribute="top" secondItem="5RF-ez-U18" secondAttribute="top" id="J1b-HE-ctc"/>
+                        <constraint firstAttribute="centerX" secondItem="ZIW-z3-eKd" secondAttribute="centerX" id="UQb-8O-7G0"/>
+                        <constraint firstAttribute="bottom" secondItem="ZIW-z3-eKd" secondAttribute="bottom" id="l7b-QF-0t5"/>
+                        <constraint firstItem="ZIW-z3-eKd" firstAttribute="leading" secondItem="5RF-ez-U18" secondAttribute="leading" id="zSo-Hj-Eey"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="7Nn-Rl-m4R"/>
+                    </connections>
+                </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHQ-tc-mSD">
+                    <rect key="frame" x="8" y="8" width="32" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="SHQ-tc-mSD" secondAttribute="height" multiplier="1:1" id="SXC-Uf-UfT"/>
+                        <constraint firstAttribute="width" constant="32" id="jHP-ZK-Jve"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="RemoveWhite">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="closeButton:" destination="-1" eventType="touchUpInside" id="Qgc-uh-Dg9"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="SHQ-tc-mSD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="3Ft-WB-e6U"/>
+                <constraint firstItem="5RF-ez-U18" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IXY-yL-CV3"/>
+                <constraint firstItem="SHQ-tc-mSD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="kaA-eA-eAk"/>
+                <constraint firstAttribute="trailing" secondItem="5RF-ez-U18" secondAttribute="trailing" id="ma7-he-VnC"/>
+                <constraint firstItem="5RF-ez-U18" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uqF-Qh-UZt"/>
+                <constraint firstAttribute="bottom" secondItem="5RF-ez-U18" secondAttribute="bottom" id="zJl-Mb-1DJ"/>
+            </constraints>
+            <point key="canvasLocation" x="339" y="313"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="RemoveWhite" width="20" height="20"/>
+    </resources>
+</document>
