@@ -14,12 +14,13 @@
     return [self initWithName:@"Item Sample"];
 }
 
-- (instancetype)initWithName:(NSString *)name {
+- (instancetype)initWithName:(NSString *)name
+{
     return [self initWithName:name withID:[[NSUUID UUID] UUIDString] atDate:[NSDate date]];
 }
 
-- (instancetype)initWithName:(NSString *)name withID:(NSString *)ID atDate:(NSDate *)date {
-    
+- (instancetype)initWithName:(NSString *)name withID:(NSString *)ID atDate:(NSDate *)date
+{
     self = [super init];
     
     if (self) {
@@ -31,11 +32,13 @@
     return self;
 }
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary
+{
     return [self initWithName:dictionary[@"name"] withID:dictionary[@"ID"] atDate:[NSDate dateWithTimeIntervalSince1970:[dictionary[@"dateCreated"] doubleValue]]];
 }
 
-- (NSMutableDictionary *)dictionaryRepresentation {
+- (NSMutableDictionary *)dictionaryRepresentation
+{
     return [[NSMutableDictionary alloc] initWithDictionary:@{
                                                              @"ID": _ID,
                                                              @"name": _name,

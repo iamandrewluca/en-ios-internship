@@ -15,6 +15,8 @@
 #import "Tag.h"
 #import "Note.h"
 #import "MapPinViewController.h"
+#import "NoteImagesCollectionViewController.h"
+#import "ImagesStore.h"
 
 
 static NSString *const kAddTagCellIdentifier = @"AddTagCollectionViewCell";
@@ -28,8 +30,10 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomSpace;
 @property (weak, nonatomic) IBOutlet UITextView *addNotesTextView;
 @property (weak, nonatomic) IBOutlet UICollectionView *tagsCollectionView;
+@property (weak, nonatomic) IBOutlet UIView *noteImagesPlaceholder;
 @property (nonatomic) NSUInteger currentTagsCount;
 
+@property (nonatomic) NoteImagesCollectionViewController *imagesCVC;
 @end
 
 @implementation NotesDetailViewController
@@ -72,6 +76,29 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     
     NSArray *buttons = @[menuButton, location];
     self.navigationItem.rightBarButtonItems = buttons;
+    
+    [self setupNoteImagesPlaceholder];
+}
+
+- (void)setupNoteImagesPlaceholder
+{
+    [_noteImagesPlaceholder.layer setMasksToBounds:NO];
+    
+    _imagesCVC = [[NoteImagesCollectionViewController alloc] initWithNibName:@"NoteImagesCollectionViewController" bundle:nil];
+    
+    _imagesCVC.note = _note;
+    _imagesCVC.notesStore = _notesStore;
+    
+    _imagesCVC.view.frame = _noteImagesPlaceholder.bounds;
+    [_imagesCVC willMoveToParentViewController:self];
+    [self addChildViewController:_imagesCVC];
+    [_noteImagesPlaceholder addSubview:_imagesCVC.view];
+    [_imagesCVC didMoveToParentViewController:self];
+    
+    if (![_note.imagesIDs count]) {
+        _noteImagesHeightConstraint.constant = 0;
+        _noteImagesTopConstraint.constant = 0;
+    }
 }
 
 
@@ -194,19 +221,11 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 {
     [_addNotesTextView resignFirstResponder];
     
-    NSString *hasImageText = nil;
-    
-    if ([_note.imageName isEqualToString:@""]) {
-        hasImageText = @"Add Image";
-    } else {
-        hasImageText = @"Remove Image";
-    }
-    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"What do you want to do with the note?"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:@"Delete note"
-                                                    otherButtonTitles:@"Rename", hasImageText, @"Add Location", nil];
+                                                    otherButtonTitles:@"Rename", @"Add Image", @"Add Location", nil];
     
     [actionSheet showInView:self.view];
     actionSheet.tag = 100;
@@ -268,11 +287,7 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
         } else if(buttonIndex == 1) {
             [self renameNote];
         } else if(buttonIndex == 2) {
-            if ([_note.imageName isEqualToString:@""]) {
-                [self addImage];
-            } else {
-                [self removeImage];
-            }
+            [self addImage];
         } else if (buttonIndex == 3) {
             [self MapKitLocation];
         }
@@ -288,19 +303,11 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     
     if (actionSheet.tag == 300) {
         if (buttonIndex == 0) {
-            [self showImagePickerType:UIImagePickerControllerSourceTypeCamera];
+            [_imagesCVC showImagePickerType:UIImagePickerControllerSourceTypeCamera];
         } else if (buttonIndex == 1) {
-            [self showImagePickerType:UIImagePickerControllerSourceTypePhotoLibrary];
+            [_imagesCVC showImagePickerType:UIImagePickerControllerSourceTypePhotoLibrary];
         }
     }
-}
-
-
-#pragma mark - <UIImagePickerControllerDelegate>
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    [_notesStore addImage:info[UIImagePickerControllerOriginalImage] forNote:_note];
 }
 
 - (void)manageImageSouce
@@ -315,27 +322,14 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     actionSheet.tag = 300;
 }
 
-- (void)showImagePickerType:(UIImagePickerControllerSourceType)sourceType
-{
-    UIImagePickerController *ipc = [UIImagePickerController new];
-    ipc.sourceType = sourceType;
-    ipc.delegate = self;
-    
-    [self presentViewController:ipc animated:YES completion:nil];
-}
-
 - (void)addImage
 {
+    [_imagesCVC setEditing:NO];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         [self manageImageSouce];
     } else {
-        [self showImagePickerType:(UIImagePickerControllerSourceTypePhotoLibrary)];
+        [_imagesCVC showImagePickerType:(UIImagePickerControllerSourceTypePhotoLibrary)];
     }
-}
-
-- (void)removeImage
-{
-    [_notesStore removeImageForNote:_note];
 }
 
 #pragma mark - Custom methods
@@ -360,6 +354,5 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
         _textViewBottomSpace.constant = 8;
     }
 }
-
 
 @end

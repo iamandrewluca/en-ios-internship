@@ -15,7 +15,7 @@
 @interface NotesStore : NSObject
 
 @property (nonatomic, readonly) NSArray *allNotes;
-@property (nonatomic, weak) Notebook *notebook;
+@property (nonatomic) Notebook *notebook;
 
 - (instancetype)initWithNotebook:(Notebook *)notebook;
 - (void)addNote:(Note *)note;
@@ -25,9 +25,5 @@
 - (void)saveNoteWithID:(NSString *)ID;
 - (Note *)createNoteWithName:(NSString *)name;
 - (Note *)noteWithID:(NSString *)ID;
-
-- (void)addImage:(UIImage *)image forNote:(Note *)note;
-- (void)removeImageForNote:(Note *)note;
-- (UIImage *)imageForNote:(Note *)note;
 
 @end

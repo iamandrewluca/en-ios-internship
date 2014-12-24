@@ -14,6 +14,7 @@
 #import "Note.h"
 #import "NotebooksStore.h"
 #import "NotesAddCell.h"
+#import "ImagesStore.h"
 
 #import "NoteCellGrid.h"
 #import "NoteCellLarge.h"
@@ -227,7 +228,7 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
         NoteCell *noteCell = (NoteCell *)cell;
         noteCell.nameLabel.text = note.name;
         
-        UIImage *thumbImage = [_notesStore imageForNote:note];
+        UIImage *thumbImage = [[ImagesStore sharedStore] thumbForNote:note];
         
         if (thumbImage) {
             noteCell.thumbnailImage.image = thumbImage;

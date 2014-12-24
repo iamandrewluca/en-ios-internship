@@ -11,8 +11,8 @@
 @interface Item : NSObject
 
 @property (nonatomic, copy, readonly) NSString *ID;
-@property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy, readonly) NSDate *dateCreated;
+@property (nonatomic, copy) NSString *name;
 
 - (instancetype)initWithName:(NSString *)name;
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;

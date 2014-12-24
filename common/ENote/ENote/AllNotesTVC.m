@@ -14,6 +14,7 @@
 #import "NotesStore.h"
 #import "Note.h"
 #import "NotesDetailViewController.h"
+#import "ImagesStore.h"
 
 static NSString *const kAllNotesCellIdentifier = @"AllNotesTVCell";
 
@@ -73,7 +74,7 @@ static NSString *const kAllNotesCellIdentifier = @"AllNotesTVCell";
     
     cell.nameLabel.text = note.name;
     
-    UIImage *thumbImage = [store imageForNote:note];
+    UIImage *thumbImage = [[ImagesStore sharedStore] thumbForNote:note];
     
     if (thumbImage) {
         cell.thumbnailImage.image = thumbImage;
