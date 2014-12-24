@@ -20,7 +20,7 @@
                             <constraint firstAttribute="width" secondItem="3dC-jv-mOG" secondAttribute="height" multiplier="1:1" id="xuQ-fF-XbE"/>
                         </constraints>
                     </imageView>
-                    <button hidden="YES" opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tlu-fZ-WRA">
+                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tlu-fZ-WRA">
                         <rect key="frame" x="44" y="0.0" width="20" height="20"/>
                         <color key="backgroundColor" red="0.97254901959999995" green="0.58039215690000001" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" backgroundImage="Remove">
@@ -30,12 +30,9 @@
                             <action selector="deletePressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="fRf-Dj-pdh"/>
                         </connections>
                     </button>
-                    <button hidden="YES" opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZB-qg-OIu">
+                    <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="unchecked" translatesAutoresizingMaskIntoConstraints="NO" id="x1i-8U-JZA">
                         <rect key="frame" x="2" y="42" width="20" height="20"/>
-                        <state key="normal" backgroundImage="checked">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                    </button>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -47,13 +44,13 @@
             </constraints>
             <connections>
                 <outlet property="deleteButton" destination="Tlu-fZ-WRA" id="zGD-GB-CEv"/>
-                <outlet property="thumbCheck" destination="nZB-qg-OIu" id="joB-4u-gpQ"/>
+                <outlet property="thumbCheck" destination="x1i-8U-JZA" id="4Xm-pL-Gyk"/>
                 <outlet property="thumbImage" destination="3dC-jv-mOG" id="3ou-Ve-whx"/>
             </connections>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="Remove" width="20" height="20"/>
-        <image name="checked" width="42" height="42"/>
+        <image name="unchecked" width="42" height="42"/>
     </resources>
 </document>

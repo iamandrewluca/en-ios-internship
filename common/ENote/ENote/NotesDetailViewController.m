@@ -31,8 +31,6 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 @property (weak, nonatomic) IBOutlet UITextView *addNotesTextView;
 @property (weak, nonatomic) IBOutlet UICollectionView *tagsCollectionView;
 @property (weak, nonatomic) IBOutlet UIView *noteImagesPlaceholder;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *noteImagesTopConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *noteImagesHeightConstraint;
 @property (nonatomic) NSUInteger currentTagsCount;
 
 @property (nonatomic) NoteImagesCollectionViewController *imagesCVC;
@@ -305,37 +303,11 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     
     if (actionSheet.tag == 300) {
         if (buttonIndex == 0) {
-            [self showImagePickerType:UIImagePickerControllerSourceTypeCamera];
+            [_imagesCVC showImagePickerType:UIImagePickerControllerSourceTypeCamera];
         } else if (buttonIndex == 1) {
-            [self showImagePickerType:UIImagePickerControllerSourceTypePhotoLibrary];
+            [_imagesCVC showImagePickerType:UIImagePickerControllerSourceTypePhotoLibrary];
         }
     }
-}
-
-
-#pragma mark - <UIImagePickerControllerDelegate>
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    [[ImagesStore sharedStore] addImage:info[UIImagePickerControllerOriginalImage] forNote:_note];
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
-    if ([_note.imagesIDs count] != 1) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[_note.imagesIDs count] - 1 inSection:0];
-        [_imagesCVC.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
-        [_imagesCVC.collectionView insertItemsAtIndexPaths:@[indexPath]];
-        indexPath = [NSIndexPath indexPathForItem:[_note.imagesIDs count] inSection:0];
-        [_imagesCVC.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
-    } else {
-        _noteImagesTopConstraint.constant = 8;
-        
-        [UIView animateWithDuration:0.5 animations:^{
-            _noteImagesHeightConstraint.constant = 64;
-            [self.view layoutIfNeeded];
-        } completion:^(BOOL finished) {
-            [_imagesCVC.collectionView reloadData];
-        }];
-    }
-    
 }
 
 - (void)manageImageSouce
@@ -350,22 +322,13 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     actionSheet.tag = 300;
 }
 
-- (void)showImagePickerType:(UIImagePickerControllerSourceType)sourceType
-{
-    UIImagePickerController *ipc = [UIImagePickerController new];
-    ipc.sourceType = sourceType;
-    ipc.delegate = self;
-    
-    [self presentViewController:ipc animated:YES completion:nil];
-}
-
 - (void)addImage
 {
     [_imagesCVC setEditing:NO];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         [self manageImageSouce];
     } else {
-        [self showImagePickerType:(UIImagePickerControllerSourceTypePhotoLibrary)];
+        [_imagesCVC showImagePickerType:(UIImagePickerControllerSourceTypePhotoLibrary)];
     }
 }
 
@@ -391,6 +354,5 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
         _textViewBottomSpace.constant = 8;
     }
 }
-
 
 @end

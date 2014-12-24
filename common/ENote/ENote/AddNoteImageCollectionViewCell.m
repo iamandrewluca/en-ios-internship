@@ -30,4 +30,27 @@
     _border.frame = self.bounds;
 }
 
+- (void)setEditing:(BOOL)editing
+{
+    [self setEditing:editing animated:NO];
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    _editing = editing;
+    
+    NSTimeInterval timeInterval = 0.0f;
+    
+    if (animated) {
+        timeInterval = 0.2f;
+    }
+    
+    [UIView animateWithDuration:timeInterval animations:^{
+        // swap without third )
+        self.addLabel.alpha += self.doneLabel.alpha;
+        self.doneLabel.alpha = self.addLabel.alpha - self.doneLabel.alpha;
+        self.addLabel.alpha -= self.doneLabel.alpha;
+    }];
+}
+
 @end

@@ -12,7 +12,7 @@
 #import "ImagesStore.h"
 #import "NotesDetailViewController.h"
 
-@interface NoteImagesCollectionViewController () <NoteImagesCollectionViewCellDelegate>
+@interface NoteImagesCollectionViewController () <NoteImagesCollectionViewCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end
 
@@ -45,78 +45,21 @@ static NSString * const kNoteImageReuseIdentifier = @"NoteImagesCollectionViewCe
     }
 }
 
-- (void)changeButtonsStateTo:(BOOL)hide
-{
-    for (int i = 0; i < [self.collectionView numberOfItemsInSection:0] - 1; i++) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
-        NoteImagesCollectionViewCell *cell = (NoteImagesCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-        
-        NSString *imageID = [_note.imagesIDs objectAtIndex:indexPath.row];
-        
-        if ([imageID isEqualToString:_note.thumbID]) {
-            cell.thumbCheck.hidden = hide;
-        }
-        
-        cell.deleteButton.hidden = hide;
-    }
-}
-
-- (void)hideButtons:(BOOL)hide animated:(BOOL)animated
-{
-    NSTimeInterval interval = 0.0f;
-    CGFloat alpha = 1.0f;
-    
-    if (animated) {
-        interval = 0.2f;
-    }
-    
-    if (hide) {
-        alpha = 0.0f;
-    }
-    
-    if (!hide) {
-        [self changeButtonsStateTo:hide];
-    }
-    
-    [UIView animateWithDuration:interval animations:^{
-        for (int i = 0; i < [self.collectionView numberOfItemsInSection:0] - 1; i++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
-            NoteImagesCollectionViewCell *cell = (NoteImagesCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-            
-            NSString *imageID = [_note.imagesIDs objectAtIndex:indexPath.row];
-            
-            if ([imageID isEqualToString:_note.thumbID]) {
-                cell.thumbCheck.alpha = alpha;
-            }
-            
-            cell.deleteButton.alpha = alpha;
-        }
-    } completion:^(BOOL finished) {
-        if (hide) {
-            [self changeButtonsStateTo:hide];
-        }
-    }];
-}
-
-- (void)showButtons:(BOOL)show animated:(BOOL)animated
-{
-    [self hideButtons:!show animated:animated];
-}
-
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[_note.imagesIDs count] inSection:0];
-    AddNoteImageCollectionViewCell *cell = (AddNoteImageCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-    
-    if (editing) {
-        cell.label.text = @"done";
-        [self showButtons:YES animated:animated];
-    } else {
-        cell.label.text = @"add";
-        [self hideButtons:YES animated:animated];
+    for (int i = 0; i < [self.collectionView numberOfItemsInSection:0]; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+        
+        if (i == [self.collectionView numberOfItemsInSection:0] - 1) {
+            [((AddNoteImageCollectionViewCell *)cell) setEditing:editing animated:animated];
+        } else {
+            [((NoteImagesCollectionViewCell *)cell) setEditing:editing animated:animated];
+        }
     }
+
 }
 
 - (void)setEditing:(BOOL)editing
@@ -136,16 +79,13 @@ static NSString * const kNoteImageReuseIdentifier = @"NoteImagesCollectionViewCe
 {
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
     
-    cell.deleteButton.hidden = YES;
-    cell.thumbCheck.hidden = YES;
-    
     NSString *imageID = [_note.imagesIDs objectAtIndex:indexPath.row];
     [[ImagesStore sharedStore] removeImageForNote:_note withImageID:imageID];
     
     [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
     
     if (![_note.imagesIDs count]) {
-        [self setEditing:NO];
+        [self setEditing:NO animated:YES];
     }
 }
 
@@ -158,37 +98,24 @@ static NSString * const kNoteImageReuseIdentifier = @"NoteImagesCollectionViewCe
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = nil;
-    
     if (indexPath.row == [self.collectionView numberOfItemsInSection:0] - 1) {
-        AddNoteImageCollectionViewCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:kAddNoteImageReuseIdentifier forIndexPath:indexPath];
-        cell = noteCell;
+        return [collectionView dequeueReusableCellWithReuseIdentifier:kAddNoteImageReuseIdentifier forIndexPath:indexPath];
     } else {
         NoteImagesCollectionViewCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:kNoteImageReuseIdentifier forIndexPath:indexPath];
         noteCell.delegate = self;
         NSString *preview = [_note.imagesIDs objectAtIndex:indexPath.row];
         noteCell.thumbImage.image = [[ImagesStore sharedStore] previewForNote:_note withImageID:preview];
         
-        if (self.isEditing) {
-            noteCell.deleteButton.hidden = NO;
-            noteCell.deleteButton.alpha = 1.0f;
-            noteCell.thumbCheck.alpha = 1.0f;
-            
-            if ([_note.thumbID isEqualToString:[_note.imagesIDs objectAtIndex:indexPath.row]]) {
-                            NSLog(@"Asd");
-                noteCell.thumbCheck.hidden = YES;
-            } else {
-                noteCell.thumbCheck.hidden = NO;
-            }
-        } else {
-            noteCell.thumbCheck.hidden = YES;
-            noteCell.deleteButton.hidden = YES;
+        if ([[_note.imagesIDs objectAtIndex:indexPath.row] isEqualToString:_note.thumbID]) {
+            noteCell.thumbCheck.image = [UIImage imageNamed:@"checked"];
         }
         
-        cell = noteCell;
+        if (self.isEditing) {
+            [noteCell setEditing:YES animated:YES];
+        }
+        
+        return noteCell;
     }
-    
-    return cell;
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -196,19 +123,70 @@ static NSString * const kNoteImageReuseIdentifier = @"NoteImagesCollectionViewCe
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == [self.collectionView numberOfItemsInSection:0] - 1) {
+        
         if (self.isEditing) {
             [self setEditing:NO animated:YES];
         } else {
             [((NotesDetailViewController *)self.parentViewController) addImage];
         }
     } else {
+        
         if (self.isEditing) {
-            NSString *imageID = [_note.imagesIDs objectAtIndex:indexPath.row];
-            [[ImagesStore sharedStore] setThumbForNote:_note withImageID:imageID];
-            [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+            [self changeThumbToIndexPath:indexPath];
         } else {
             // image popover
         }
+    }
+}
+
+- (void)changeThumbToIndexPath:(NSIndexPath *)indexPath
+{
+    NSUInteger oldPosition = [_note.imagesIDs indexOfObject:_note.thumbID];
+    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForItem:oldPosition inSection:0];
+    
+    if (![oldIndexPath isEqual:indexPath]) {
+        NoteImagesCollectionViewCell *oldCell = (NoteImagesCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:oldIndexPath];
+        NoteImagesCollectionViewCell *newCell = (NoteImagesCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+        
+        NSString *imageID = [_note.imagesIDs objectAtIndex:indexPath.row];
+        [[ImagesStore sharedStore] setThumbForNote:_note withImageID:imageID];
+        
+        [oldCell uncheckCell];
+        [newCell checkCell];
+    }
+}
+
+- (void)showImagePickerType:(UIImagePickerControllerSourceType)sourceType
+{
+    UIImagePickerController *ipc = [UIImagePickerController new];
+    ipc.sourceType = sourceType;
+    ipc.delegate = self;
+    
+    [self presentViewController:ipc animated:YES completion:nil];
+}
+
+#pragma mark - <UIImagePickerControllerDelegate>
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [[ImagesStore sharedStore] addImage:info[UIImagePickerControllerOriginalImage] forNote:_note];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    if ([_note.imagesIDs count] != 1) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[_note.imagesIDs count] - 1 inSection:0];
+        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
+        [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
+        indexPath = [NSIndexPath indexPathForItem:[_note.imagesIDs count] inSection:0];
+        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+    } else {
+        ((NotesDetailViewController *)self.parentViewController).noteImagesTopConstraint.constant = 8;
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            ((NotesDetailViewController *)self.parentViewController).noteImagesHeightConstraint.constant = 64;
+            [self.parentViewController.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            [self.collectionView reloadData];
+        }];
     }
 }
 

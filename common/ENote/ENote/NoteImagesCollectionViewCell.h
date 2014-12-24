@@ -17,9 +17,12 @@
 @interface NoteImagesCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *thumbImage;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
-@property (weak, nonatomic) IBOutlet UIButton *thumbCheck;
-
+@property (weak, nonatomic) IBOutlet UIImageView *thumbCheck;
 @property (nonatomic, assign) id<NoteImagesCollectionViewCellDelegate> delegate;
+@property (nonatomic, getter=isEditing) BOOL editing;
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated;
+- (void)checkCell;
+- (void)uncheckCell;
 @end
 
 
