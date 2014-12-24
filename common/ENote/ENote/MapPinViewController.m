@@ -17,6 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.locationManager requestAlwaysAuthorization];
+
     self.mapView.delegate = self;
     self.navigationItem.title = @"Map Kit";
     [self.mapView setShowsUserLocation:YES];
@@ -37,7 +39,6 @@
     [self.mapView setRegion:coordinateRegion];
     [self.mapView regionThatFits:coordinateRegion];
     
-
 //    MyPin *annotation1 = [[MyPin alloc]initWithTitle:@"Endava" subtitle:@"Endava tower" coordinate:CLLocationCoordinate2DMake(47.024734, 28.820791)];
 //    [self.mapView addAnnotation:annotation1];
 
@@ -60,7 +61,6 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    [self.locationManager requestAlwaysAuthorization];
     [self.locationManager startUpdatingLocation];
 }
 

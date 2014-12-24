@@ -1,49 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C78c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C81h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddTagsViewController">
             <connections>
-                <outlet property="tableView" destination="eBD-xs-eyn" id="W7i-os-A1V"/>
-                <outlet property="tableViewBottom" destination="OXG-9h-WYN" id="aYn-jB-Cv2"/>
-                <outlet property="textField" destination="d98-iC-TGC" id="dbn-a9-edM"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="tableView" destination="2wb-Q6-Qbd" id="WN0-A5-1eO"/>
+                <outlet property="textField" destination="jcy-7j-7MF" id="okd-jf-PJf"/>
+                <outlet property="view" destination="YvS-vg-FEa" id="l4b-qr-e0S"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+        <view contentMode="scaleToFill" id="YvS-vg-FEa">
+            <rect key="frame" x="0.0" y="0.0" width="260" height="260"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Tags..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d98-iC-TGC">
-                    <rect key="frame" x="8" y="8" width="584" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Tags..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jcy-7j-7MF">
+                    <rect key="frame" x="27" y="14" width="207" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
-                        <outlet property="delegate" destination="-1" id="w7D-Fl-ogQ"/>
+                        <outlet property="delegate" destination="-1" id="LPd-wQ-Mb5"/>
                     </connections>
                 </textField>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eBD-xs-eyn">
-                    <rect key="frame" x="8" y="46" width="584" height="546"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2wb-Q6-Qbd">
+                    <rect key="frame" x="8" y="52" width="244" height="200"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="NdC-dX-jcK"/>
-                        <outlet property="delegate" destination="-1" id="xKv-cJ-y6i"/>
+                        <outlet property="dataSource" destination="-1" id="oUl-5K-V3A"/>
+                        <outlet property="delegate" destination="-1" id="wpK-cG-Ynu"/>
                     </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="d98-iC-TGC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="6wW-i2-ivW"/>
-                <constraint firstAttribute="trailing" secondItem="d98-iC-TGC" secondAttribute="trailing" constant="8" id="ILj-u5-zJG"/>
-                <constraint firstAttribute="bottom" secondItem="eBD-xs-eyn" secondAttribute="bottom" constant="8" id="OXG-9h-WYN"/>
-                <constraint firstAttribute="trailing" secondItem="eBD-xs-eyn" secondAttribute="trailing" constant="8" id="OpC-MW-eZX"/>
-                <constraint firstItem="eBD-xs-eyn" firstAttribute="top" secondItem="d98-iC-TGC" secondAttribute="bottom" constant="8" id="XBJ-pS-eUs"/>
-                <constraint firstItem="eBD-xs-eyn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="ax0-00-kZh"/>
-                <constraint firstItem="d98-iC-TGC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="kDF-Nf-91S"/>
+                <constraint firstItem="2wb-Q6-Qbd" firstAttribute="bottom" secondItem="YvS-vg-FEa" secondAttribute="bottomMargin" id="01j-Cg-9sd"/>
+                <constraint firstItem="2wb-Q6-Qbd" firstAttribute="leading" secondItem="YvS-vg-FEa" secondAttribute="leadingMargin" id="Rwd-7t-Wfa"/>
+                <constraint firstItem="2wb-Q6-Qbd" firstAttribute="top" secondItem="jcy-7j-7MF" secondAttribute="bottom" constant="8" symbolic="YES" id="bGb-jP-RHS"/>
+                <constraint firstItem="jcy-7j-7MF" firstAttribute="leading" secondItem="YvS-vg-FEa" secondAttribute="leading" constant="27" id="bvj-RT-K3d"/>
+                <constraint firstItem="jcy-7j-7MF" firstAttribute="centerX" secondItem="2wb-Q6-Qbd" secondAttribute="centerX" id="i0W-EQ-GbG"/>
+                <constraint firstItem="2wb-Q6-Qbd" firstAttribute="trailing" secondItem="YvS-vg-FEa" secondAttribute="trailingMargin" id="qgg-bM-ff3"/>
+                <constraint firstItem="jcy-7j-7MF" firstAttribute="top" secondItem="YvS-vg-FEa" secondAttribute="top" constant="14" id="wIr-aA-XMd"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="70" y="-293"/>
         </view>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>
