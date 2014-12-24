@@ -8,10 +8,15 @@
 
 #import "NotebooksTableViewCell.h"
 
+@interface NotebooksTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIView *notesNumberContainer;
+@end
+
 @implementation NotebooksTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
+    _notesNumberContainer.layer.cornerRadius = 10.0f;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
