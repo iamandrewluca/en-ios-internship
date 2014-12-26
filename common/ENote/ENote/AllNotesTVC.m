@@ -40,7 +40,13 @@ static NSString *const kAllNotesCellIdentifier = @"AllNotesTVCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[NotebooksStore sharedStore] allNotebooks] count];
+    NSInteger count = 0;
+    
+    for (Notebook *notebook in [[NotebooksStore sharedStore] allNotebooks]) {
+        if ([notebook.notesIDs count]) count++;
+    }
+    
+    return count;
 }
 
 
@@ -48,7 +54,7 @@ static NSString *const kAllNotesCellIdentifier = @"AllNotesTVCell";
 {
     AllNotesTVCell *cell = (AllNotesTVCell *)[tableView dequeueReusableCellWithIdentifier:kAllNotesCellIdentifier forIndexPath:indexPath];
     
-    Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
+    Notebook *notebook = [self notebookAtIndexPath:indexPath];
     cell.notebookLabel.text = notebook.name;
     cell.notesCollectionView.delegate = self;
     cell.notesCollectionView.dataSource = self;
@@ -60,15 +66,32 @@ static NSString *const kAllNotesCellIdentifier = @"AllNotesTVCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:collectionView.tag];
+    Notebook *notebook = [self notebookAtIndexPath:[NSIndexPath indexPathForItem:collectionView.tag inSection:0]];
     return [notebook.notesIDs count];
+}
+
+- (Notebook *)notebookAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger iterator = 0;
+    
+    for (Notebook *notebook in [[NotebooksStore sharedStore] allNotebooks]) {
+        if ([notebook.notesIDs count]) {
+            if (iterator == indexPath.row) {
+                return notebook;
+            } else {
+                iterator++;
+            }
+        }
+    }
+    
+    return nil;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NoteCell *cell = (NoteCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"NoteCell" forIndexPath:indexPath];
     
-    Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:collectionView.tag];
+    Notebook *notebook = [self notebookAtIndexPath:[NSIndexPath indexPathForItem:collectionView.tag inSection:0]];
     NotesStore *store = [[NotebooksStore sharedStore] notesStoreForNotebook:notebook];
     Note *note = [[store allNotes] objectAtIndex:indexPath.row];
     
@@ -87,7 +110,7 @@ static NSString *const kAllNotesCellIdentifier = @"AllNotesTVCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:collectionView.tag];
+    Notebook *notebook = [self notebookAtIndexPath:[NSIndexPath indexPathForItem:collectionView.tag inSection:0]];
     NotesStore *store = [[NotebooksStore sharedStore] notesStoreForNotebook:notebook];
     Note *note = [[store allNotes] objectAtIndex:indexPath.row];
     

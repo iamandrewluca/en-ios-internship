@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoteImagePreviewController">
             <connections>
+                <outlet property="closeButton" destination="SHQ-tc-mSD" id="phi-ab-8A9"/>
                 <outlet property="imagePreview" destination="ZIW-z3-eKd" id="OwI-tq-vcd"/>
                 <outlet property="scrollView" destination="5RF-ez-U18" id="dfP-os-b4L"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -20,16 +21,25 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="5RF-ez-U18">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZIW-z3-eKd">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ZIW-z3-eKd">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         </imageView>
                     </subviews>
+                    <constraints>
+                        <constraint firstItem="ZIW-z3-eKd" firstAttribute="top" secondItem="5RF-ez-U18" secondAttribute="top" id="F4J-8i-KXp"/>
+                        <constraint firstAttribute="trailing" secondItem="ZIW-z3-eKd" secondAttribute="trailing" id="ayO-BL-3Lz"/>
+                        <constraint firstAttribute="bottom" secondItem="ZIW-z3-eKd" secondAttribute="bottom" id="kXG-V9-EbT"/>
+                        <constraint firstItem="ZIW-z3-eKd" firstAttribute="leading" secondItem="5RF-ez-U18" secondAttribute="leading" id="r0k-8u-Zog"/>
+                        <constraint firstAttribute="centerY" secondItem="ZIW-z3-eKd" secondAttribute="centerY" id="sJ4-Me-ZUC"/>
+                        <constraint firstAttribute="centerX" secondItem="ZIW-z3-eKd" secondAttribute="centerX" id="z9O-we-Trh"/>
+                    </constraints>
                     <connections>
                         <outlet property="delegate" destination="-1" id="7Nn-Rl-m4R"/>
                     </connections>
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHQ-tc-mSD">
                     <rect key="frame" x="8" y="8" width="32" height="32"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="SHQ-tc-mSD" secondAttribute="height" multiplier="1:1" id="SXC-Uf-UfT"/>
                         <constraint firstAttribute="width" constant="32" id="jHP-ZK-Jve"/>
