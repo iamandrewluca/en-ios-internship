@@ -29,6 +29,18 @@ static NSString *const kAllNotesCellIdentifier = @"AllNotesTVCell";
     
     UINib *nib = [UINib nibWithNibName:kAllNotesCellIdentifier bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:kAllNotesCellIdentifier];
+    
+    // Prepare tableView empty background
+    UIImage *image = [UIImage imageNamed:@"Empty"];
+    UIImageView *emptyTableViewBackground = [[UIImageView alloc] initWithImage:image];
+    self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.frame];
+    [self.tableView.backgroundView addSubview:emptyTableViewBackground];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    ((UIImageView *)self.tableView.backgroundView.subviews[0]).center = self.tableView.backgroundView.center;
 }
 
 - (void)didReceiveMemoryWarning {
