@@ -118,6 +118,8 @@
     [[NSFileManager defaultManager] removeItemAtPath:itemPath error:nil];
     
     [_allPrivateNotebooks removeObject:notebook];
+    
+    [self saveNotebooksIDs];
 }
 
 - (void)removeNotebookWithID:(NSString *)ID {
@@ -129,7 +131,21 @@
     }
 }
 
-- (void)saveNotebook:(Notebook *)notebook {
+- (void)saveNotebooksIDs
+{
+    NSMutableArray *notebooksIDs = [NSMutableArray arrayWithCapacity:[_allPrivateNotebooks count]];
+    for (Notebook *notebook in _allPrivateNotebooks) {
+        [notebooksIDs addObject:notebook.ID];
+    }
+    NSMutableDictionary *notebooksIDsDictionary = [NSMutableDictionary new];
+    [notebooksIDsDictionary setValue:notebooksIDs forKey:@"notebooksIDs"];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:notebooksIDsDictionary options:0 error:nil];
+    [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@/root.json", [[ENoteCommons shared] documentDirectory]] contents:data attributes:nil];
+}
+
+- (void)saveNotebook:(Notebook *)notebook
+{
+    [self saveNotebooksIDs];
     
     NSString *notebookPath = [NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], notebook.ID];
     
@@ -156,19 +172,23 @@
     }
 }
 
-- (void)loadNotebooks {
+- (void)loadNotebooks
+{
+    NSData *data = [[NSFileManager defaultManager] contentsAtPath:[NSString stringWithFormat:@"%@/root.json", [[ENoteCommons shared] documentDirectory]]];
     
-    NSArray *itemPaths = [[ENoteCommons shared] getValidItemsPathsInFolder:[[ENoteCommons shared] documentDirectory]];
-    
-    for (NSString *itemPath in itemPaths) {
+    if (data) {
+        NSArray *itemPaths = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil][@"notebooksIDs"];
         
-        NSString *indexPath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], itemPath, [[ENoteCommons shared] indexFile]];
-        
-        if ([[NSFileManager defaultManager] fileExistsAtPath:indexPath]) {
+        for (NSString *itemPath in itemPaths) {
             
-            NSData *itemData = [[NSFileManager defaultManager] contentsAtPath:indexPath];
-            NSDictionary *itemDictionary = [NSJSONSerialization JSONObjectWithData:itemData options:NSJSONReadingMutableContainers error:nil];
-            [self addNotebookWithDictionary:itemDictionary];
+            NSString *indexPath = [NSString stringWithFormat:@"%@/%@/%@", [[ENoteCommons shared] documentDirectory], itemPath, [[ENoteCommons shared] indexFile]];
+            
+            if ([[NSFileManager defaultManager] fileExistsAtPath:indexPath]) {
+                
+                NSData *itemData = [[NSFileManager defaultManager] contentsAtPath:indexPath];
+                NSDictionary *itemDictionary = [NSJSONSerialization JSONObjectWithData:itemData options:NSJSONReadingMutableContainers error:nil];
+                [self addNotebookWithDictionary:itemDictionary];
+            }
         }
     }
 }
