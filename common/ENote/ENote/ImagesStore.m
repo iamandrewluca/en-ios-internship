@@ -115,14 +115,14 @@ typedef NS_ENUM(NSUInteger, ImageSizeType)
 
 - (NSString *)pathForImageWithID:(NSString *)ID forNote:(Note *)note withSize:(ImageSizeType)type
 {
-    return [NSString stringWithFormat:@"%@/%lu%@.jpg", [note path], type, ID];
+    return [NSString stringWithFormat:@"%@/%u%@.jpg", [note path], (unsigned)type, ID];
 }
 
 - (UIImage *)imageWithSize:(ImageSizeType)type forNote:(Note *)note withImageID:(NSString *)ID
 {
     NSString *notePath = [note path];
     
-    NSData *imageData = [[NSFileManager defaultManager] contentsAtPath:[NSString stringWithFormat:@"%@/%lu%@.jpg", notePath, type, ID]];
+    NSData *imageData = [[NSFileManager defaultManager] contentsAtPath:[NSString stringWithFormat:@"%@/%u%@.jpg", notePath, (unsigned)type, ID]];
     
     UIImage *finalImage = [UIImage imageWithData:imageData];
     

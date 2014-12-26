@@ -12,6 +12,5 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *datelabel;
-@property (weak, nonatomic) IBOutlet UIButton *notesNumberLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *notesNumberLabel;
 @end

@@ -66,12 +66,7 @@
         cell.datelabel.text = [dateFormatter stringFromDate:notebook.dateCreated];
     }
     
-    if ([notebook.notesIDs count]) {
-        cell.notesNumberLabel.hidden = NO;
-        [cell.notesNumberLabel setTitle:[NSString stringWithFormat:@"%lu", (unsigned long)[notebook.notesIDs count]] forState:UIControlStateNormal];
-    } else {
-        cell.notesNumberLabel.hidden = YES;
-    }
+    cell.notesNumberLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[notebook.notesIDs count]];
     
     return cell;
 }

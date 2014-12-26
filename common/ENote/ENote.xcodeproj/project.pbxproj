@@ -20,6 +20,10 @@
 		6190C2281A124CE70046F016 /* NotesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6190C2261A124CE70046F016 /* NotesCollectionViewController.xib */; };
 		6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C22B1A124EBA0046F016 /* NotesLayout.m */; };
 		6190C2301A1254920046F016 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C22F1A1254920046F016 /* NoteCell.m */; };
+		61EB9CF11A4AF4E400D2BBAF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EB9CF01A4AF4E400D2BBAF /* MapKit.framework */; };
+		61EB9CFD1A4AFC2500D2BBAF /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EB9CFA1A4AFC2500D2BBAF /* MJPopupBackgroundView.m */; };
+		61EB9CFE1A4AFC2500D2BBAF /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EB9CFC1A4AFC2500D2BBAF /* UIViewController+MJPopupViewController.m */; };
+		61EB9D011A4AFCF900D2BBAF /* AddTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61EB9D001A4AFCF900D2BBAF /* AddTagsViewController.xib */; };
 		755594E61A3DAE2800B30234 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 755594DE1A3DAE2800B30234 /* MMDrawerBarButtonItem.m */; };
 		755594E71A3DAE2800B30234 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 755594E11A3DAE2800B30234 /* MMDrawerController.m */; };
 		755594E81A3DAE2800B30234 /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = 755594E31A3DAE2800B30234 /* MMDrawerVisualState.m */; };
@@ -37,7 +41,6 @@
 		A70A33921A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A70A33901A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.m */; };
 		A70A33931A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70A33911A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib */; };
 		A70B587F1A440DB700BD434B /* AddTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70B587D1A440DB700BD434B /* AddTagsViewController.m */; };
-		A70B58801A440DB700BD434B /* AddTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70B587E1A440DB700BD434B /* AddTagsViewController.xib */; };
 		A70B588B1A44326700BD434B /* AllNotesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A70B58891A44326700BD434B /* AllNotesTVC.m */; };
 		A70B588C1A44326700BD434B /* AllNotesTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70B588A1A44326700BD434B /* AllNotesTVC.xib */; };
 		A70B58911A4432C600BD434B /* AllNotesTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A70B588F1A4432C600BD434B /* AllNotesTVCell.m */; };
@@ -106,6 +109,12 @@
 		6190C22B1A124EBA0046F016 /* NotesLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesLayout.m; sourceTree = "<group>"; };
 		6190C22E1A1254920046F016 /* NoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCell.h; sourceTree = "<group>"; };
 		6190C22F1A1254920046F016 /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
+		61EB9CF01A4AF4E400D2BBAF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		61EB9CF91A4AFC2500D2BBAF /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupBackgroundView.h; sourceTree = "<group>"; };
+		61EB9CFA1A4AFC2500D2BBAF /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
+		61EB9CFB1A4AFC2500D2BBAF /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
+		61EB9CFC1A4AFC2500D2BBAF /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
+		61EB9D001A4AFCF900D2BBAF /* AddTagsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTagsViewController.xib; sourceTree = "<group>"; };
 		755594DD1A3DAE2800B30234 /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
 		755594DE1A3DAE2800B30234 /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
 		755594DF1A3DAE2800B30234 /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
@@ -135,7 +144,6 @@
 		A70A33911A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsSectionHeadersCollectionReusableView.xib; sourceTree = "<group>"; };
 		A70B587C1A440DB700BD434B /* AddTagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagsViewController.h; sourceTree = "<group>"; };
 		A70B587D1A440DB700BD434B /* AddTagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagsViewController.m; sourceTree = "<group>"; };
-		A70B587E1A440DB700BD434B /* AddTagsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTagsViewController.xib; sourceTree = "<group>"; };
 		A70B58881A44326700BD434B /* AllNotesTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllNotesTVC.h; sourceTree = "<group>"; };
 		A70B58891A44326700BD434B /* AllNotesTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllNotesTVC.m; sourceTree = "<group>"; };
 		A70B588A1A44326700BD434B /* AllNotesTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllNotesTVC.xib; sourceTree = "<group>"; };
@@ -200,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61EB9CF11A4AF4E400D2BBAF /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +240,7 @@
 		617450F31A4443E90018D6AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				61EB9CF01A4AF4E400D2BBAF /* MapKit.framework */,
 			);
 			name = Frameworks;
 			path = ENote;
@@ -272,6 +282,17 @@
 				755594F11A3DB03700B30234 /* RearViewController.xib */,
 			);
 			name = RearViewController;
+			sourceTree = "<group>";
+		};
+		61EB9CFF1A4AFC2900D2BBAF /* MJPopup */ = {
+			isa = PBXGroup;
+			children = (
+				61EB9CF91A4AFC2500D2BBAF /* MJPopupBackgroundView.h */,
+				61EB9CFA1A4AFC2500D2BBAF /* MJPopupBackgroundView.m */,
+				61EB9CFB1A4AFC2500D2BBAF /* UIViewController+MJPopupViewController.h */,
+				61EB9CFC1A4AFC2500D2BBAF /* UIViewController+MJPopupViewController.m */,
+			);
+			name = MJPopup;
 			sourceTree = "<group>";
 		};
 		61FD75151A25EC41004C344D /* NotesCollectionVC */ = {
@@ -332,7 +353,7 @@
 			children = (
 				A70B587C1A440DB700BD434B /* AddTagsViewController.h */,
 				A70B587D1A440DB700BD434B /* AddTagsViewController.m */,
-				A70B587E1A440DB700BD434B /* AddTagsViewController.xib */,
+				61EB9D001A4AFCF900D2BBAF /* AddTagsViewController.xib */,
 			);
 			name = AddTagsViewController;
 			sourceTree = "<group>";
@@ -429,6 +450,7 @@
 		A72182FD1A10E950006E47E3 /* ENote */ = {
 			isa = PBXGroup;
 			children = (
+				61EB9CFF1A4AFC2900D2BBAF /* MJPopup */,
 				A7AEEB5C1A28BC600091FE09 /* Stores */,
 				6155EC471A137C3600BE143B /* Model */,
 				6190C2291A124DEC0046F016 /* View */,
@@ -602,6 +624,11 @@
 				TargetAttributes = {
 					A72182FA1A10E950006E47E3 = {
 						CreatedOnToolsVersion = 6.0.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					A72183131A10E950006E47E3 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -644,6 +671,7 @@
 				75CD431E1A3E259D002141ED /* NotesAddCell.xib in Resources */,
 				A70355281A319FC5008742C9 /* TagCollectionViewCell.xib in Resources */,
 				A721830F1A10E950006E47E3 /* LaunchScreen.xib in Resources */,
+				61EB9D011A4AFCF900D2BBAF /* AddTagsViewController.xib in Resources */,
 				6190C2281A124CE70046F016 /* NotesCollectionViewController.xib in Resources */,
 				617450FB1A4448DD0018D6AA /* MapPinViewController.xib in Resources */,
 				A705D67C1A3EED8900B06FB6 /* AddTagCollectionViewCell.xib in Resources */,
@@ -653,7 +681,6 @@
 				A705D6711A3ED25300B06FB6 /* aplause.wav in Resources */,
 				A7AE42E31A48551500356C84 /* NoteImagesCollectionViewCell.xib in Resources */,
 				6150D0A21A14C03300E4590C /* NotesDetailViewController.xib in Resources */,
-				A70B58801A440DB700BD434B /* AddTagsViewController.xib in Resources */,
 				A70B588C1A44326700BD434B /* AllNotesTVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -692,6 +719,7 @@
 				A7D73BD41A3850E0009A21FA /* AllTagsCollectionViewController.m in Sources */,
 				6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */,
 				A72183041A10E950006E47E3 /* AppDelegate.m in Sources */,
+				61EB9CFD1A4AFC2500D2BBAF /* MJPopupBackgroundView.m in Sources */,
 				6190C2271A124CE70046F016 /* NotesCollectionViewController.m in Sources */,
 				755594E81A3DAE2800B30234 /* MMDrawerVisualState.m in Sources */,
 				755594E91A3DAE2800B30234 /* UIViewController+MMDrawerController.m in Sources */,
@@ -707,6 +735,7 @@
 				A70355271A319FC5008742C9 /* TagCollectionViewCell.m in Sources */,
 				A7AE42E21A48551500356C84 /* NoteImagesCollectionViewCell.m in Sources */,
 				A74C00EE1A4AD54300216ADB /* NoteImagePreviewController.m in Sources */,
+				61EB9CFE1A4AFC2500D2BBAF /* UIViewController+MJPopupViewController.m in Sources */,
 				A756D0C41A24D4A200A7F374 /* Item.m in Sources */,
 				A720977C1A497E4F00086670 /* ImagesStore.m in Sources */,
 				A7D9ACBF1A12511700B8376A /* NotebooksTableViewCell.m in Sources */,

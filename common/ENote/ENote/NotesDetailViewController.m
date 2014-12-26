@@ -15,6 +15,7 @@
 #import "Tag.h"
 #import "Note.h"
 #import "MapPinViewController.h"
+#import "UIViewController+MJPopupViewController.h"
 #import "NoteImagesCollectionViewController.h"
 #import "ImagesStore.h"
 
@@ -141,13 +142,13 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
 #pragma mark - Button actions
 - (void)addTag:(id)sender
 {
-    AddTagsViewController *addTags = [AddTagsViewController new];
+    AddTagsViewController *addTags = [[AddTagsViewController alloc]init];
     addTags.notesStore = _notesStore;
     addTags.note = _note;
     
     _currentTagsCount = [_note.tagsIDs count];
     
-    [self.navigationController pushViewController:addTags animated:YES];
+    [self presentPopupViewController:addTags animationType:MJPopupViewAnimationFade];
 }
 
 - (void)buttonPressedInCell:(TagCollectionViewCell *)cell

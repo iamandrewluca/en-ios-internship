@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Endava. All rights reserved.
 //
 
+#import "UIViewController+MJPopupViewController.h"
 #import "AddTagsViewController.h"
 #import "TagsStore.h"
 #import "Tag.h"
@@ -13,7 +14,6 @@
 @interface AddTagsViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBottom;
 
 @property (nonatomic) NSArray *foundTags;
 
@@ -21,36 +21,36 @@
 
 @implementation AddTagsViewController
 
-- (instancetype)init
-{
-    self = [super init];
-    
-    if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeTableView:) name:UIKeyboardDidShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeTableView:) name:UIKeyboardDidHideNotification object:nil];
-    }
-    
-    return self;
-}
+//- (instancetype)init
+//{
+//    self = [super init];
+//    
+//    if (self) {
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeTableView:) name:UIKeyboardDidShowNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeTableView:) name:UIKeyboardDidHideNotification object:nil];
+//    }
+//    
+//    return self;
+//}
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)resizeTableView:(NSNotification *)notification
-{
-    if (notification.name == UIKeyboardDidShowNotification) {
-        NSDictionary *keyboardInfo = [notification userInfo];
-        NSValue *keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
-        CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
-        
-        _tableViewBottom.constant = 8 + keyboardFrameBeginRect.size.height;
-        
-    } else if (notification.name == UIKeyboardDidHideNotification) {
-        _tableViewBottom.constant = 8;
-    }
-}
+//- (void)resizeTableView:(NSNotification *)notification
+//{
+//    if (notification.name == UIKeyboardDidShowNotification) {
+//        NSDictionary *keyboardInfo = [notification userInfo];
+//        NSValue *keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
+//        CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
+//        
+//        _tableViewBottom.constant = 8 + keyboardFrameBeginRect.size.height;
+//        
+//    } else if (notification.name == UIKeyboardDidHideNotification) {
+//        _tableViewBottom.constant = 8;
+//    }
+//}
 
 - (void)viewDidLoad
 {
@@ -71,12 +71,6 @@
     [super viewDidAppear:animated];
     
     [_textField becomeFirstResponder];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -123,7 +117,7 @@
     [_notesStore saveNote:_note];
     
     [textField resignFirstResponder];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     return YES;
 }
 

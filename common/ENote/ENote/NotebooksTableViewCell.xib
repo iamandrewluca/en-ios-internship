@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14C78c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C78c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -14,29 +14,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkG-SS-8D4">
-                        <rect key="frame" x="279" y="9" width="33" height="25"/>
-                        <accessibility key="accessibilityConfiguration">
-                            <accessibilityTraits key="traits" none="YES" button="YES" notEnabled="YES"/>
-                            <bool key="isElement" value="NO"/>
-                        </accessibility>
+                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="elM-BS-kes">
+                        <rect key="frame" x="275" y="9" width="37" height="25"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9n-t9-D66">
+                                <rect key="frame" x="8" y="0.0" width="21" height="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.97254901959999995" green="0.58039215690000001" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="49f-WU-kbs"/>
-                            <constraint firstAttribute="height" constant="25" id="oC4-wt-AZc"/>
+                            <constraint firstAttribute="height" constant="25" id="6yt-vF-1s2"/>
+                            <constraint firstItem="B9n-t9-D66" firstAttribute="top" secondItem="elM-BS-kes" secondAttribute="top" id="I52-Ia-vg7"/>
+                            <constraint firstAttribute="bottom" secondItem="B9n-t9-D66" secondAttribute="bottom" id="Mlo-Ec-Yu0"/>
+                            <constraint firstItem="B9n-t9-D66" firstAttribute="leading" secondItem="elM-BS-kes" secondAttribute="leading" constant="8" id="SbY-Z1-Oar"/>
+                            <constraint firstAttribute="trailing" secondItem="B9n-t9-D66" secondAttribute="trailing" constant="8" id="gLL-Iq-DNL"/>
                         </constraints>
-                        <inset key="contentEdgeInsets" minX="6" minY="0.0" maxX="6" maxY="0.0"/>
-                        <state key="normal" title="99" backgroundImage="badge">
-                            <color key="titleColor" red="0.97254901959999995" green="0.58039215690000001" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="oC4-wt-AZc"/>
-                            </mask>
-                        </variation>
-                    </button>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Nov 99, 9999" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yzN-Ez-d4h">
-                        <rect key="frame" x="185" y="9" width="86" height="25"/>
+                        <rect key="frame" x="181" y="9" width="86" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="9H6-ub-ugq"/>
                         </constraints>
@@ -45,7 +43,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiT-Hy-cbW">
-                        <rect key="frame" x="8" y="11" width="169" height="21"/>
+                        <rect key="frame" x="8" y="11" width="165" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Nw9-xQ-SAC"/>
                         </constraints>
@@ -55,24 +53,22 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="fkG-SS-8D4" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="8oM-qN-8HO"/>
                     <constraint firstItem="yzN-Ez-d4h" firstAttribute="leading" secondItem="tiT-Hy-cbW" secondAttribute="trailing" constant="8" id="Cea-Jx-Zb0"/>
-                    <constraint firstAttribute="centerY" secondItem="fkG-SS-8D4" secondAttribute="centerY" id="OSa-uF-eS4"/>
+                    <constraint firstItem="elM-BS-kes" firstAttribute="leading" secondItem="yzN-Ez-d4h" secondAttribute="trailing" constant="8" id="HNt-N3-rlR"/>
+                    <constraint firstItem="elM-BS-kes" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="IyJ-yI-DQg"/>
                     <constraint firstItem="tiT-Hy-cbW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="VkC-Zh-QJT"/>
+                    <constraint firstAttribute="centerY" secondItem="elM-BS-kes" secondAttribute="centerY" id="f4t-Kg-hp7"/>
                     <constraint firstAttribute="centerY" secondItem="tiT-Hy-cbW" secondAttribute="centerY" id="iKB-WC-p3b"/>
-                    <constraint firstItem="fkG-SS-8D4" firstAttribute="leading" secondItem="yzN-Ez-d4h" secondAttribute="trailing" constant="8" id="kfm-N3-PyV"/>
                     <constraint firstAttribute="centerY" secondItem="yzN-Ez-d4h" secondAttribute="centerY" id="mXC-FU-Rgu"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="datelabel" destination="yzN-Ez-d4h" id="1Je-om-JG1"/>
                 <outlet property="nameLabel" destination="tiT-Hy-cbW" id="Byh-f9-n1C"/>
-                <outlet property="notesNumberLabel" destination="fkG-SS-8D4" id="riB-QE-oAX"/>
+                <outlet property="notesNumberContainer" destination="elM-BS-kes" id="OyR-Uw-tZ6"/>
+                <outlet property="notesNumberLabel" destination="B9n-t9-D66" id="ckm-5m-8km"/>
             </connections>
             <point key="canvasLocation" x="453" y="244"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="badge" width="24" height="24"/>
-    </resources>
 </document>
