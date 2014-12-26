@@ -105,7 +105,11 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
     [super viewWillAppear:animated];
     
     if (selectedNoteIndexPath) {
-        [self.collectionView reloadItemsAtIndexPaths:@[selectedNoteIndexPath]];
+        if (_noteWasDeleted) {
+            [self.collectionView deleteItemsAtIndexPaths:@[selectedNoteIndexPath]];
+        } else {
+            [self.collectionView reloadItemsAtIndexPaths:@[selectedNoteIndexPath]];
+        }
     }
 }
 

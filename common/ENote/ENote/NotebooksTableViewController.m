@@ -15,7 +15,6 @@
 #import "UIViewController+MMDrawerController.h"
 
 @interface NotebooksTableViewController () <UITableViewDelegate, UIGestureRecognizerDelegate> {
-    NSIndexPath *selectedNotebookIndexPath;
     UIImageView *emptyTableViewBackground;
 }
 
@@ -70,6 +69,7 @@
     
     // Setup Data Source
     self.dataSource = [[NotebooksTableViewDataSource alloc] init];
+    self.dataSource.ctrl = self;
     self.tableView.dataSource = self.dataSource;
     
     // Setup navigationItem left, center, right items
@@ -163,8 +163,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    if (selectedNotebookIndexPath) {
-        [self.tableView reloadRowsAtIndexPaths:@[selectedNotebookIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+    if (_selectedNotebookIndexPath) {
+        [self.tableView reloadRowsAtIndexPaths:@[_selectedNotebookIndexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
@@ -177,7 +177,7 @@
     Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
     notes.notesStore = [[NotebooksStore sharedStore] notesStoreForNotebook:notebook];
     
-    selectedNotebookIndexPath = indexPath;
+    _selectedNotebookIndexPath = indexPath;
     
     [[self navigationController] pushViewController:notes animated:YES];
 }

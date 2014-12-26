@@ -13,5 +13,6 @@
 @interface NotesCollectionViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic) NotesStore *notesStore;
+@property (nonatomic) BOOL noteWasDeleted;
 
 @end

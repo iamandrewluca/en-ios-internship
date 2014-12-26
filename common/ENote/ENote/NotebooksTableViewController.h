@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NotebooksTableViewController : UITableViewController
-
+@property (nonatomic) NSIndexPath *selectedNotebookIndexPath;
 @end

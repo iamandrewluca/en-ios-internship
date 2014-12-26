@@ -18,6 +18,7 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "NoteImagesCollectionViewController.h"
 #import "ImagesStore.h"
+#import "NotesCollectionViewController.h"
 
 
 static NSString *const kAddTagCellIdentifier = @"AddTagCollectionViewCell";
@@ -296,9 +297,10 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     
     if (actionSheet.tag == 200) {
         if(buttonIndex == 0) {
+            [_notesStore removeNote:self.note];
             self.noteWasDeleted = YES;
             [self.navigationController popViewControllerAnimated:TRUE];
-            [_notesStore removeNote:self.note];
+            ((NotesCollectionViewController *)[self.navigationController topViewController]).noteWasDeleted = YES;
         }
     }
     

@@ -60,7 +60,7 @@ static NSString *const kAllNotesCellIdentifier = @"AllNotesTVCell";
     for (Notebook *notebook in [[NotebooksStore sharedStore] allNotebooks]) {
         if ([notebook.notesIDs count]) count++;
     }
-    
+
     return count;
 }
 

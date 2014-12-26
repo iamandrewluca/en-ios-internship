@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "NotebooksTableViewController.h"
 
 @interface NotebooksTableViewDataSource : NSObject <UITableViewDataSource>
-
+@property (nonatomic) NotebooksTableViewController *ctrl;
 @end
