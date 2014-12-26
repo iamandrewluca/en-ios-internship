@@ -23,6 +23,9 @@ static NSString *const kAllNotesCellIdentifier = @"AllNotesTVCell";
 @end
 
 @implementation AllNotesTVC
+{
+    UIImageView *emptyTableViewBackground;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,7 +35,7 @@ static NSString *const kAllNotesCellIdentifier = @"AllNotesTVCell";
     
     // Prepare tableView empty background
     UIImage *image = [UIImage imageNamed:@"Empty"];
-    UIImageView *emptyTableViewBackground = [[UIImageView alloc] initWithImage:image];
+    emptyTableViewBackground = [[UIImageView alloc] initWithImage:image];
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.frame];
     [self.tableView.backgroundView addSubview:emptyTableViewBackground];
 }
@@ -40,7 +43,7 @@ static NSString *const kAllNotesCellIdentifier = @"AllNotesTVCell";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    ((UIImageView *)self.tableView.backgroundView.subviews[0]).center = self.tableView.backgroundView.center;
+    ((UIImageView *)[self.tableView.backgroundView.subviews firstObject]).center = CGPointMake((int)self.tableView.center.x, (int)self.tableView.center.y - 100);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,6 +67,12 @@ static NSString *const kAllNotesCellIdentifier = @"AllNotesTVCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([tableView numberOfRowsInSection:0] > 0) {
+        if (![[[tableView.backgroundView subviews] firstObject] isHidden]) {
+            [[[tableView.backgroundView subviews] firstObject] setHidden:YES];
+        }
+    }
+    
     AllNotesTVCell *cell = (AllNotesTVCell *)[tableView dequeueReusableCellWithIdentifier:kAllNotesCellIdentifier forIndexPath:indexPath];
     
     Notebook *notebook = [self notebookAtIndexPath:indexPath];
