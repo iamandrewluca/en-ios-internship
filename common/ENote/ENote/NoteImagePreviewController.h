@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Note.h"
 
 @interface NoteImagePreviewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *imagePreview;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (nonatomic) UIImage *image;
+@property (nonatomic) Note *note;
+@property (nonatomic, copy) NSString *imageID;
 @end

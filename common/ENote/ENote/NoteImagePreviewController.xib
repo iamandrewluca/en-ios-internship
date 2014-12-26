@@ -20,23 +20,13 @@
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="5RF-ez-U18">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ZIW-z3-eKd">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        </imageView>
-                    </subviews>
-                    <constraints>
-                        <constraint firstItem="ZIW-z3-eKd" firstAttribute="top" secondItem="5RF-ez-U18" secondAttribute="top" id="F4J-8i-KXp"/>
-                        <constraint firstAttribute="trailing" secondItem="ZIW-z3-eKd" secondAttribute="trailing" id="ayO-BL-3Lz"/>
-                        <constraint firstAttribute="bottom" secondItem="ZIW-z3-eKd" secondAttribute="bottom" id="kXG-V9-EbT"/>
-                        <constraint firstItem="ZIW-z3-eKd" firstAttribute="leading" secondItem="5RF-ez-U18" secondAttribute="leading" id="r0k-8u-Zog"/>
-                        <constraint firstAttribute="centerY" secondItem="ZIW-z3-eKd" secondAttribute="centerY" id="sJ4-Me-ZUC"/>
-                        <constraint firstAttribute="centerX" secondItem="ZIW-z3-eKd" secondAttribute="centerX" id="z9O-we-Trh"/>
-                    </constraints>
                     <connections>
                         <outlet property="delegate" destination="-1" id="7Nn-Rl-m4R"/>
                     </connections>
                 </scrollView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ZIW-z3-eKd">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHQ-tc-mSD">
                     <rect key="frame" x="8" y="8" width="32" height="32"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
@@ -54,8 +44,12 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="ZIW-z3-eKd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2SZ-8E-gNS"/>
                 <constraint firstItem="SHQ-tc-mSD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="3Ft-WB-e6U"/>
+                <constraint firstAttribute="bottom" secondItem="ZIW-z3-eKd" secondAttribute="bottom" id="FWd-Wg-fYI"/>
+                <constraint firstAttribute="trailing" secondItem="ZIW-z3-eKd" secondAttribute="trailing" id="Gc9-4w-kh1"/>
                 <constraint firstItem="5RF-ez-U18" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IXY-yL-CV3"/>
+                <constraint firstItem="ZIW-z3-eKd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UIM-1j-fy4"/>
                 <constraint firstItem="SHQ-tc-mSD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="kaA-eA-eAk"/>
                 <constraint firstAttribute="trailing" secondItem="5RF-ez-U18" secondAttribute="trailing" id="ma7-he-VnC"/>
                 <constraint firstItem="5RF-ez-U18" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uqF-Qh-UZt"/>

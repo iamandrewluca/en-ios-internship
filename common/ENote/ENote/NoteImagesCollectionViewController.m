@@ -136,7 +136,8 @@ static NSString * const kNoteImageReuseIdentifier = @"NoteImagesCollectionViewCe
         } else {
             // show image picker
             NoteImagePreviewController *preview = [NoteImagePreviewController new];
-            preview.image = [[ImagesStore sharedStore] imageForNote:_note withImageID:[_note.imagesIDs objectAtIndex:indexPath.row]];
+            preview.note = _note;
+            preview.imageID = [_note.imagesIDs objectAtIndex:indexPath.row];
             preview.modalPresentationStyle = UIModalPresentationFullScreen;
             preview.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
             [self presentViewController:preview animated:YES completion:nil];
