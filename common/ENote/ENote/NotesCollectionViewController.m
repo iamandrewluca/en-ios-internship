@@ -200,7 +200,15 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
 - (void)enterEditMode:(UIGestureRecognizer *)gestureRecognizer
 {
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        self.editing = YES;
+        if (self.isEditing) {
+            [self setEditing:NO animated:YES];
+        } else {
+            [self setEditing:YES animated:YES];
+        }
+        
+        CGPoint point = [gestureRecognizer locationInView:self.collectionView];
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+        [self collectionView:self.collectionView didSelectItemAtIndexPath:indexPath];
     }
 }
 
