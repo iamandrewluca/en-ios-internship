@@ -166,6 +166,7 @@
 		A72183141A10E950006E47E3 /* ENoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ENoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72183191A10E950006E47E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A721831A1A10E950006E47E3 /* ENoteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ENoteTests.m; sourceTree = "<group>"; };
+		A72E4FB31A5AA88C002B653A /* ENote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ENote.entitlements; sourceTree = "<group>"; };
 		A74C00EB1A4AD54300216ADB /* NoteImagePreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteImagePreviewController.h; sourceTree = "<group>"; };
 		A74C00EC1A4AD54300216ADB /* NoteImagePreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteImagePreviewController.m; sourceTree = "<group>"; };
 		A74C00ED1A4AD54300216ADB /* NoteImagePreviewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteImagePreviewController.xib; sourceTree = "<group>"; };
@@ -201,7 +202,6 @@
 		A7D9ACC31A1357A900B8376A /* NotebooksTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotebooksTableViewController.xib; sourceTree = "<group>"; };
 		A7D9ACCB1A13754400B8376A /* NotebooksTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebooksTableViewDataSource.h; sourceTree = "<group>"; };
 		A7D9ACCC1A13754400B8376A /* NotebooksTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebooksTableViewDataSource.m; sourceTree = "<group>"; };
-		A7FF9FCA1A5A838900C4EF0B /* ENote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ENote.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -451,7 +451,7 @@
 		A72182FD1A10E950006E47E3 /* ENote */ = {
 			isa = PBXGroup;
 			children = (
-				A7FF9FCA1A5A838900C4EF0B /* ENote.entitlements */,
+				A72E4FB31A5AA88C002B653A /* ENote.entitlements */,
 				61EB9CFF1A4AFC2900D2BBAF /* MJPopup */,
 				A7AEEB5C1A28BC600091FE09 /* Stores */,
 				6155EC471A137C3600BE143B /* Model */,
@@ -815,7 +815,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -851,7 +851,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -873,6 +873,7 @@
 					"$(PROJECT_DIR)/ENote",
 				);
 				INFOPLIST_FILE = ENote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -894,6 +895,7 @@
 					"$(PROJECT_DIR)/ENote",
 				);
 				INFOPLIST_FILE = ENote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
