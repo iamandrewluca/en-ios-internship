@@ -130,9 +130,11 @@ static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
         self.navigationItem.rightBarButtonItems = self.buttons;
         
         [self.largeLayout invalidateLayout];
-        [self.collectionView setCollectionViewLayout:self.largeLayout animated:YES completion:^(BOOL finished) {
+        [self.collectionView setCollectionViewLayout:self.largeLayout animated:NO completion:^(BOOL finished) {
             if (finished) {
-                [selfWeak.collectionView reloadData];
+                [selfWeak.collectionView performBatchUpdates:^{
+                    [selfWeak.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+                } completion:nil];
             }
         }];
     } else {
@@ -141,9 +143,11 @@ static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
         self.navigationItem.rightBarButtonItems = self.buttons;
         
         [self.gridLayout invalidateLayout];
-        [self.collectionView setCollectionViewLayout:self.gridLayout animated:YES completion:^(BOOL finished) {
+        [self.collectionView setCollectionViewLayout:self.gridLayout animated:NO completion:^(BOOL finished) {
             if (finished) {
-                [selfWeak.collectionView reloadData];
+                [selfWeak.collectionView performBatchUpdates:^{
+                    [selfWeak.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+                } completion:nil];
             }
         }];
     }
