@@ -67,7 +67,7 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
     self.navigationItem.rightBarButtonItem = addNote;
     
     self.largeLayout = [NoteCellLarge new];
-    self.largeLayout.itemSize = CGSizeMake(self.collectionView.bounds.size.width - self.largeLayout.sectionInset.left - self.largeLayout.sectionInset.right, 100);
+    self.largeLayout.itemSize = CGSizeMake(self.collectionView.bounds.size.width - self.largeLayout.sectionInset.left - self.largeLayout.sectionInset.right - 1, 100);
     
     self.gridLayout = [NoteCellGrid new];
     
@@ -91,10 +91,13 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
     
 }
 
-- (void)viewDidLayoutSubviews
+- (void)viewWillLayoutSubviews
 {
-    [super viewDidLayoutSubviews];
-    self.largeLayout.itemSize = CGSizeMake(self.collectionView.bounds.size.width - self.largeLayout.sectionInset.left - self.largeLayout.sectionInset.right, 100);
+    [super viewWillLayoutSubviews];
+    
+    if (self.collectionView.collectionViewLayout == self.largeLayout) {
+        self.largeLayout.itemSize = CGSizeMake(self.collectionView.bounds.size.width - self.largeLayout.sectionInset.left - self.largeLayout.sectionInset.right - 1, 100);
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
