@@ -429,8 +429,8 @@
 		A71D35031A1B7B1A00EA301B /* NotesDetailVC */ = {
 			isa = PBXGroup;
 			children = (
-				A78A190C1A5C1A0A00BD627A /* NoteTagsCollectionViewController */,
 				A7AE42DE1A484FBD00356C84 /* NoteImagesCollectionViewController */,
+				A78A190C1A5C1A0A00BD627A /* NoteTagsCollectionViewController */,
 				6150D09E1A14C03300E4590C /* NotesDetailViewController.h */,
 				6150D09F1A14C03300E4590C /* NotesDetailViewController.m */,
 				6150D0A01A14C03300E4590C /* NotesDetailViewController.xib */,

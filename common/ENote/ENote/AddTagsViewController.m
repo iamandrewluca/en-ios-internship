@@ -52,6 +52,12 @@
 //    }
 //}
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.pctrl.collectionView reloadData];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -98,9 +104,9 @@
     
     [_note addTagID:tag.ID];
     [_notesStore saveNote:_note];
-    
+    [self.pctrl.collectionView reloadData];
     [_textField resignFirstResponder];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
 
 - (void)textFieldDidChange:(UITextField *)textField
@@ -118,6 +124,7 @@
     
     [textField resignFirstResponder];
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    
     return YES;
 }
 

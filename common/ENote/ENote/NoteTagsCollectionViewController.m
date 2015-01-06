@@ -107,16 +107,6 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     }
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsMake(0, 10, 0, 10);
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 5.0f;
-}
-
 #pragma mark - Button actions
 
 - (void)addTag:(id)sender
@@ -124,6 +114,7 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     AddTagsViewController *addTags = [[AddTagsViewController alloc]init];
     addTags.notesStore = _notesStore;
     addTags.note = _note;
+    addTags.pctrl = self;
     
     [self presentPopupViewController:addTags animationType:MJPopupViewAnimationFade];
 }

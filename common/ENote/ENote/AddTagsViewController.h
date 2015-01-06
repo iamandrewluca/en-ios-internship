@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "Note.h"
 #import "NotesStore.h"
+#import "NoteTagsCollectionViewController.h"
 
 @interface AddTagsViewController : UIViewController
-
 @property (nonatomic) NotesStore *notesStore;
 @property (nonatomic) Note *note;
-
+@property (nonatomic) NoteTagsCollectionViewController *pctrl;
 @end
