@@ -11,5 +11,4 @@
 #import "NotebooksTableViewController.h"
 
 @interface NotebooksTableViewDataSource : NSObject <UITableViewDataSource>
-@property (nonatomic) NotebooksTableViewController *ctrl;
 @end

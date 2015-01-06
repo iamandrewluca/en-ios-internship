@@ -78,10 +78,6 @@
         
         [[NotebooksStore sharedStore] removeNotebook:notebook];
         
-        if (indexPath == _ctrl.selectedNotebookIndexPath) {
-            _ctrl.selectedNotebookIndexPath = nil;
-        }
-        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         if ([tableView numberOfRowsInSection:0] == 0) {

@@ -16,6 +16,7 @@
 
 @interface NotebooksTableViewController () <UITableViewDelegate, UIGestureRecognizerDelegate> {
     UIImageView *emptyTableViewBackground;
+    NSIndexPath *selectedNotebookIndexPath;
 }
 
 @property (nonatomic) NotebooksTableViewDataSource *dataSource;
@@ -69,7 +70,6 @@
     
     // Setup Data Source
     self.dataSource = [[NotebooksTableViewDataSource alloc] init];
-    self.dataSource.ctrl = self;
     self.tableView.dataSource = self.dataSource;
     
     // Setup navigationItem left, center, right items
@@ -163,8 +163,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    if (_selectedNotebookIndexPath) {
-        [self.tableView reloadRowsAtIndexPaths:@[_selectedNotebookIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+    if (selectedNotebookIndexPath) {
+        [self.tableView reloadRowsAtIndexPaths:@[selectedNotebookIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+        selectedNotebookIndexPath = nil;
     }
 }
 
@@ -177,7 +178,7 @@
     Notebook *notebook = [[[NotebooksStore sharedStore] allNotebooks] objectAtIndex:indexPath.row];
     notes.notesStore = [[NotebooksStore sharedStore] notesStoreForNotebook:notebook];
     
-    _selectedNotebookIndexPath = indexPath;
+    selectedNotebookIndexPath = indexPath;
     
     [[self navigationController] pushViewController:notes animated:YES];
 }
