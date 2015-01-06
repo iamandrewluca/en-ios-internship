@@ -10,7 +10,7 @@
                 <outlet property="noteImagesHeightConstraint" destination="1HV-77-POh" id="R32-hs-x5F"/>
                 <outlet property="noteImagesPlaceholder" destination="yBu-VN-9Gy" id="5Fi-OJ-vcY"/>
                 <outlet property="noteImagesTopConstraint" destination="FAJ-ed-pzI" id="XCg-Bs-6NY"/>
-                <outlet property="tagsCollectionView" destination="TdD-ke-QJv" id="5ee-FF-cQ1"/>
+                <outlet property="noteTagsPlaceholder" destination="An6-vQ-IDU" id="tIW-pm-4cv"/>
                 <outlet property="textViewBottomSpace" destination="DPP-Gu-ePw" id="rUs-5Y-NcO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -26,42 +26,35 @@
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="TdD-ke-QJv">
-                    <rect key="frame" x="0.0" y="80" width="320" height="26"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="26" id="o1F-0U-VcM"/>
-                    </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Ya9-EP-P2B">
-                        <size key="itemSize" width="50" height="50"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="AhW-s0-IIl"/>
-                        <outlet property="delegate" destination="-1" id="Jz7-1G-Z33"/>
-                    </connections>
-                </collectionView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBu-VN-9Gy">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBu-VN-9Gy" userLabel="Note Images Placeholder">
                     <rect key="frame" x="0.0" y="8" width="320" height="64"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <accessibility key="accessibilityConfiguration" hint="" label="">
+                        <bool key="isElement" value="NO"/>
+                    </accessibility>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="1HV-77-POh"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="An6-vQ-IDU" userLabel="Note Tags Placeholder">
+                    <rect key="frame" x="0.0" y="80" width="320" height="26"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="26" id="lYT-QS-ma5"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="An6-vQ-IDU" secondAttribute="trailing" id="1SS-Au-sCi"/>
                 <constraint firstAttribute="bottom" secondItem="T8x-fQ-2Vh" secondAttribute="bottom" constant="8" id="DPP-Gu-ePw"/>
                 <constraint firstItem="yBu-VN-9Gy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="FAJ-ed-pzI"/>
                 <constraint firstItem="yBu-VN-9Gy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LX5-HQ-S8H"/>
-                <constraint firstAttribute="trailing" secondItem="TdD-ke-QJv" secondAttribute="trailing" id="d7J-QL-xUE"/>
+                <constraint firstItem="An6-vQ-IDU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Rsr-zn-963"/>
                 <constraint firstAttribute="trailing" secondItem="T8x-fQ-2Vh" secondAttribute="trailing" constant="8" id="eB5-O0-1XN"/>
-                <constraint firstItem="TdD-ke-QJv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eFe-qo-kKf"/>
+                <constraint firstItem="An6-vQ-IDU" firstAttribute="top" secondItem="yBu-VN-9Gy" secondAttribute="bottom" constant="8" id="ih2-HN-qJm"/>
                 <constraint firstItem="T8x-fQ-2Vh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="n4R-sp-3x2"/>
-                <constraint firstItem="T8x-fQ-2Vh" firstAttribute="top" secondItem="TdD-ke-QJv" secondAttribute="bottom" constant="8" id="p0l-UM-GCF"/>
-                <constraint firstItem="TdD-ke-QJv" firstAttribute="top" secondItem="yBu-VN-9Gy" secondAttribute="bottom" constant="8" id="rfi-Lf-y69"/>
+                <constraint firstItem="T8x-fQ-2Vh" firstAttribute="top" secondItem="An6-vQ-IDU" secondAttribute="bottom" constant="8" id="uZT-Oz-HJh"/>
                 <constraint firstAttribute="trailing" secondItem="yBu-VN-9Gy" secondAttribute="trailing" id="wB0-55-HfL"/>
             </constraints>
             <point key="canvasLocation" x="-86" y="517"/>
