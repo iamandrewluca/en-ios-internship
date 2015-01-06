@@ -36,6 +36,8 @@
     // API Key
 //    [GMSServices provideAPIKey:@"GOOGLE_MAPS_API_KEY"];
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     UIViewController *leftDrawer = [RearViewController new];
     UINavigationController *drawerNav = [[UINavigationController alloc] initWithRootViewController:leftDrawer];
     drawerNav.navigationBar.translucent = NO;
