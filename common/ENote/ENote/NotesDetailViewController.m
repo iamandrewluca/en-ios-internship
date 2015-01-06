@@ -66,7 +66,7 @@ static NSString *const kTagCellIdentifier = @"TagCollectionViewCell";
     [self.tagsCollectionView registerNib:cellNib forCellWithReuseIdentifier:kAddTagCellIdentifier];
     
     // menu button
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu"]
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"threeDots"]
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
                                                                  action:@selector(actioSheetMenu)];

@@ -40,22 +40,6 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
 
 #pragma mark - Lifecycle
 
--(void)loadView
-{
-    // Important to override this when not using a nib. Otherwise, the collection
-    // view will be instantiated with a nil layout, crashing the app.
-    
-    self.gridLayout = [[NoteCellGrid alloc] init];
-    self.largeLayout = [[NoteCellLarge alloc] init];
-    
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.gridLayout];
-    [self.collectionView registerClass:[NoteCell class] forCellWithReuseIdentifier:NoteCellIdentifier];
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    
-    self.collectionView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -82,6 +66,13 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
     
     self.navigationItem.rightBarButtonItem = addNote;
     
+    self.largeLayout = [NoteCellLarge new];
+    self.largeLayout.itemSize = CGSizeMake(self.collectionView.bounds.size.width - self.largeLayout.sectionInset.left - self.largeLayout.sectionInset.right, 100);
+    
+    self.gridLayout = [NoteCellGrid new];
+    
+    [self.collectionView setCollectionViewLayout:self.gridLayout];
+    
     // grid layout button
     gridViewButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"gridView"]
                                                      style:UIBarButtonItemStylePlain
@@ -100,6 +91,12 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
     
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.largeLayout.itemSize = CGSizeMake(self.collectionView.bounds.size.width - self.largeLayout.sectionInset.left - self.largeLayout.sectionInset.right, 100);
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -110,6 +107,7 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
         } else {
             [self.collectionView reloadItemsAtIndexPaths:@[selectedNoteIndexPath]];
         }
+        selectedNoteIndexPath = nil;
     }
 }
 
