@@ -57,6 +57,8 @@
 		A74C00EF1A4AD54300216ADB /* NoteImagePreviewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74C00ED1A4AD54300216ADB /* NoteImagePreviewController.xib */; };
 		A74FE0B81A1B86BA0005F74D /* ENoteCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = A74FE0B71A1B86BA0005F74D /* ENoteCommons.m */; };
 		A756D0C41A24D4A200A7F374 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = A756D0C31A24D4A200A7F374 /* Item.m */; };
+		A78A19051A5C062800BD627A /* NoteLargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A78A19031A5C062800BD627A /* NoteLargeCell.m */; };
+		A78A19061A5C062800BD627A /* NoteLargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A78A19041A5C062800BD627A /* NoteLargeCell.xib */; };
 		A7AE42DC1A484FB300356C84 /* NoteImagesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7AE42DA1A484FB300356C84 /* NoteImagesCollectionViewController.m */; };
 		A7AE42DD1A484FB300356C84 /* NoteImagesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7AE42DB1A484FB300356C84 /* NoteImagesCollectionViewController.xib */; };
 		A7AE42E21A48551500356C84 /* NoteImagesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7AE42E01A48551500356C84 /* NoteImagesCollectionViewCell.m */; };
@@ -174,6 +176,9 @@
 		A74FE0B71A1B86BA0005F74D /* ENoteCommons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ENoteCommons.m; sourceTree = "<group>"; };
 		A756D0C21A24D4A200A7F374 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		A756D0C31A24D4A200A7F374 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		A78A19021A5C062800BD627A /* NoteLargeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteLargeCell.h; sourceTree = "<group>"; };
+		A78A19031A5C062800BD627A /* NoteLargeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteLargeCell.m; sourceTree = "<group>"; };
+		A78A19041A5C062800BD627A /* NoteLargeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteLargeCell.xib; sourceTree = "<group>"; };
 		A7AE42D91A484FB300356C84 /* NoteImagesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteImagesCollectionViewController.h; sourceTree = "<group>"; };
 		A7AE42DA1A484FB300356C84 /* NoteImagesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteImagesCollectionViewController.m; sourceTree = "<group>"; };
 		A7AE42DB1A484FB300356C84 /* NoteImagesCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteImagesCollectionViewController.xib; sourceTree = "<group>"; };
@@ -345,6 +350,9 @@
 				617450C71A442ECF0018D6AA /* NoteCellGrid.m */,
 				617450C81A442ECF0018D6AA /* NoteCellLarge.h */,
 				617450C91A442ECF0018D6AA /* NoteCellLarge.m */,
+				A78A19021A5C062800BD627A /* NoteLargeCell.h */,
+				A78A19031A5C062800BD627A /* NoteLargeCell.m */,
+				A78A19041A5C062800BD627A /* NoteLargeCell.xib */,
 			);
 			name = NoteCell;
 			sourceTree = "<group>";
@@ -685,6 +693,7 @@
 				A721830C1A10E950006E47E3 /* Images.xcassets in Resources */,
 				A74C00EF1A4AD54300216ADB /* NoteImagePreviewController.xib in Resources */,
 				A705D6711A3ED25300B06FB6 /* aplause.wav in Resources */,
+				A78A19061A5C062800BD627A /* NoteLargeCell.xib in Resources */,
 				A7AE42E31A48551500356C84 /* NoteImagesCollectionViewCell.xib in Resources */,
 				6150D0A21A14C03300E4590C /* NotesDetailViewController.xib in Resources */,
 				A70B588C1A44326700BD434B /* AllNotesTVC.xib in Resources */,
@@ -740,6 +749,7 @@
 				6150D0A11A14C03300E4590C /* NotesDetailViewController.m in Sources */,
 				A70355271A319FC5008742C9 /* TagCollectionViewCell.m in Sources */,
 				A7AE42E21A48551500356C84 /* NoteImagesCollectionViewCell.m in Sources */,
+				A78A19051A5C062800BD627A /* NoteLargeCell.m in Sources */,
 				A74C00EE1A4AD54300216ADB /* NoteImagePreviewController.m in Sources */,
 				61EB9CFE1A4AFC2500D2BBAF /* UIViewController+MJPopupViewController.m in Sources */,
 				A756D0C41A24D4A200A7F374 /* Item.m in Sources */,

@@ -11,6 +11,7 @@
 #import "NotesStore.h"
 #import "Notebook.h"
 #import "NoteCell.h"
+#import "NoteLargeCell.h"
 #import "Note.h"
 #import "NotebooksStore.h"
 #import "NotesAddCell.h"
@@ -21,6 +22,7 @@
 
 static NSString *const NoteCellIdentifier = @"NoteCell";
 static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
+static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
 
 @interface NotesCollectionViewController () {
     NSIndexPath *selectedNoteIndexPath;
@@ -50,6 +52,9 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
     // Register cells for collection view
     UINib *nib = [UINib nibWithNibName:NoteCellIdentifier bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:NoteCellIdentifier];
+    
+    nib = [UINib nibWithNibName:NoteLargeCellIdentifier bundle:nil];
+    [self.collectionView registerNib:nib forCellWithReuseIdentifier:NoteLargeCellIdentifier];
     
     // Regsiter notes add cell for collection viewce
     nib = [UINib nibWithNibName:AddNoteCellIdentifier bundle:nil];
@@ -117,20 +122,30 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
 #pragma mark - Button actions
 -(void)buttonLayoutControlValueDidChange:(id)sender
 {
+    __weak NotesCollectionViewController *selfWeak = self;
+    
     if (self.collectionView.collectionViewLayout == self.gridLayout) {
         gridViewButton.image = [UIImage imageNamed:@"gridView"];
         self.buttons = @[addNote, gridViewButton];
         self.navigationItem.rightBarButtonItems = self.buttons;
         
         [self.largeLayout invalidateLayout];
-        [self.collectionView setCollectionViewLayout:self.largeLayout animated:YES];
+        [self.collectionView setCollectionViewLayout:self.largeLayout animated:YES completion:^(BOOL finished) {
+            if (finished) {
+                [selfWeak.collectionView reloadData];
+            }
+        }];
     } else {
         tableViewButton.image = [UIImage imageNamed:@"tableView"];
         self.buttons = @[addNote, tableViewButton];
         self.navigationItem.rightBarButtonItems = self.buttons;
         
         [self.gridLayout invalidateLayout];
-        [self.collectionView setCollectionViewLayout:self.gridLayout animated:YES];
+        [self.collectionView setCollectionViewLayout:self.gridLayout animated:YES completion:^(BOOL finished) {
+            if (finished) {
+                [selfWeak.collectionView reloadData];
+            }
+        }];
     }
 }
 
@@ -237,17 +252,29 @@ static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
         
         Note *note = [[_notesStore allNotes] objectAtIndex:indexPath.row];
         
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteCellIdentifier forIndexPath:indexPath];
-        NoteCell *noteCell = (NoteCell *)cell;
-        noteCell.nameLabel.text = note.name;
-        
-        UIImage *thumbImage = [[ImagesStore sharedStore] thumbForNote:note];
-        
-        if (thumbImage) {
-            noteCell.thumbnailImage.image = thumbImage;
+        if (collectionView.collectionViewLayout == self.largeLayout) {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteLargeCellIdentifier forIndexPath:indexPath];
+            ((NoteLargeCell *)cell).noteDescription.text = note.text;
+            
+            NSDateFormatter *dateFormatter = [NSDateFormatter new];
+            dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+            dateFormatter.timeStyle = NSDateFormatterNoStyle;
+            
+            ((NoteLargeCell *)cell).date.text = [dateFormatter stringFromDate:note.dateCreated];
         } else {
-            noteCell.thumbnailImage.image = [UIImage imageNamed:@"racoon-orange"];
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteCellIdentifier forIndexPath:indexPath];
+            NoteCell *noteCell = (NoteCell *)cell;
+            
+            UIImage *thumbImage = [[ImagesStore sharedStore] thumbForNote:note];
+            
+            if (thumbImage) {
+                noteCell.thumbnailImage.image = thumbImage;
+            } else {
+                noteCell.thumbnailImage.image = [UIImage imageNamed:@"racoon-orange"];
+            }
         }
+        
+        ((NoteCell *)cell).nameLabel.text = note.name;
     }
     
     return cell;
