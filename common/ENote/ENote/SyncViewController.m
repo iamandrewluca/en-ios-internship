@@ -27,7 +27,6 @@
     [[NotebooksStore sharedStore] synchronize];
     NSLog(@"after");
     // a game while waiting )
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
