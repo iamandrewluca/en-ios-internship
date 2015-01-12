@@ -24,9 +24,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [[NotebooksStore sharedStore] synchronize];
-    NSLog(@"after");
+    
+//    NSThread *syncThread = [[NSThread alloc] initWithTarget:[NotebooksStore sharedStore] selector:@selector(synchronize:) object:nil];
+//    [syncThread start];
     // a game while waiting )
+    
 }
 
 - (void)didReceiveMemoryWarning {

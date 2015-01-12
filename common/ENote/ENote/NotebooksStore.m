@@ -13,7 +13,6 @@
 #import "TagsStore.h"
 #import "AppDelegate.h"
 
-
 @interface NotebooksStore ()
 
 @property (nonatomic) NSMutableArray *allPrivateNotebooks;
@@ -22,22 +21,6 @@
 @end
 
 @implementation NotebooksStore
-
-// async
-- (void)synchronize
-{
-    NSThread *syncThread = [[NSThread alloc] initWithTarget:self selector:@selector(internalSync:) object:nil];
-    [syncThread start];
-}
-
-- (void)internalSync:(id)sender
-{
-    for (int i = 0; i < 1000000000; i++) {
-        // testing
-    }
-    NSLog(@"finished");
-}
-
 
 - (NSArray *)allNotebooks {
     return _allPrivateNotebooks;
