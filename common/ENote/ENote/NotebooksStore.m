@@ -25,10 +25,9 @@
 
 - (void)synchronize
 {
-    
-    [[NotebooksStore sharedStore] createNotebookWithName:@"asd"];
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    [appDelegate.appNav.topViewController.view setNeedsDisplay];
+    for (int i = 0; i < 1000000000; i++) {
+        // testing
+    }
 }
 
 - (NSArray *)allNotebooks {

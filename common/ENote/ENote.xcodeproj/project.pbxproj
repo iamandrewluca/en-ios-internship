@@ -45,6 +45,8 @@
 		A70B588C1A44326700BD434B /* AllNotesTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70B588A1A44326700BD434B /* AllNotesTVC.xib */; };
 		A70B58911A4432C600BD434B /* AllNotesTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A70B588F1A4432C600BD434B /* AllNotesTVCell.m */; };
 		A70B58921A4432C600BD434B /* AllNotesTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70B58901A4432C600BD434B /* AllNotesTVCell.xib */; };
+		A71414CD1A63E27B008DEB1E /* SyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71414CB1A63E27B008DEB1E /* SyncViewController.m */; };
+		A71414CE1A63E27B008DEB1E /* SyncViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A71414CC1A63E27B008DEB1E /* SyncViewController.xib */; };
 		A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */; };
 		A71D35021A1B744100EA301B /* NotesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A71D35011A1B744100EA301B /* NotesStore.m */; };
 		A720977C1A497E4F00086670 /* ImagesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A720977B1A497E4F00086670 /* ImagesStore.m */; };
@@ -154,6 +156,9 @@
 		A70B588E1A4432C600BD434B /* AllNotesTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllNotesTVCell.h; sourceTree = "<group>"; };
 		A70B588F1A4432C600BD434B /* AllNotesTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllNotesTVCell.m; sourceTree = "<group>"; };
 		A70B58901A4432C600BD434B /* AllNotesTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllNotesTVCell.xib; sourceTree = "<group>"; };
+		A71414CA1A63E27B008DEB1E /* SyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncViewController.h; sourceTree = "<group>"; };
+		A71414CB1A63E27B008DEB1E /* SyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncViewController.m; sourceTree = "<group>"; };
+		A71414CC1A63E27B008DEB1E /* SyncViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SyncViewController.xib; sourceTree = "<group>"; };
 		A71D04111A1112DB00308DD0 /* NotebooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebooksTableViewController.h; sourceTree = "<group>"; };
 		A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebooksTableViewController.m; sourceTree = "<group>"; };
 		A71D35001A1B744100EA301B /* NotesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesStore.h; sourceTree = "<group>"; };
@@ -403,15 +408,34 @@
 			name = TagCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		A71414CF1A63E283008DEB1E /* SyncViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A71414CA1A63E27B008DEB1E /* SyncViewController.h */,
+				A71414CB1A63E27B008DEB1E /* SyncViewController.m */,
+				A71414CC1A63E27B008DEB1E /* SyncViewController.xib */,
+			);
+			name = SyncViewController;
+			sourceTree = "<group>";
+		};
+		A71414D01A63E29F008DEB1E /* NotebooksTableViewDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				A7D9ACCB1A13754400B8376A /* NotebooksTableViewDataSource.h */,
+				A7D9ACCC1A13754400B8376A /* NotebooksTableViewDataSource.m */,
+			);
+			name = NotebooksTableViewDataSource;
+			sourceTree = "<group>";
+		};
 		A71D34FE1A1B733A00EA301B /* NotebooksTableView */ = {
 			isa = PBXGroup;
 			children = (
+				A71414D01A63E29F008DEB1E /* NotebooksTableViewDataSource */,
+				A71D34FF1A1B734C00EA301B /* NotebooksTableViewCell */,
+				A71414CF1A63E283008DEB1E /* SyncViewController */,
 				A71D04111A1112DB00308DD0 /* NotebooksTableViewController.h */,
 				A71D04121A1112DB00308DD0 /* NotebooksTableViewController.m */,
 				A7D9ACC31A1357A900B8376A /* NotebooksTableViewController.xib */,
-				A7D9ACCB1A13754400B8376A /* NotebooksTableViewDataSource.h */,
-				A7D9ACCC1A13754400B8376A /* NotebooksTableViewDataSource.m */,
-				A71D34FF1A1B734C00EA301B /* NotebooksTableViewCell */,
 			);
 			name = NotebooksTableView;
 			sourceTree = "<group>";
@@ -713,6 +737,7 @@
 				6190C2281A124CE70046F016 /* NotesCollectionViewController.xib in Resources */,
 				617450FB1A4448DD0018D6AA /* MapPinViewController.xib in Resources */,
 				A705D67C1A3EED8900B06FB6 /* AddTagCollectionViewCell.xib in Resources */,
+				A71414CE1A63E27B008DEB1E /* SyncViewController.xib in Resources */,
 				A7D9ACC01A12511700B8376A /* NotebooksTableViewCell.xib in Resources */,
 				A721830C1A10E950006E47E3 /* Images.xcassets in Resources */,
 				A74C00EF1A4AD54300216ADB /* NoteImagePreviewController.xib in Resources */,
@@ -760,6 +785,7 @@
 				6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */,
 				A72183041A10E950006E47E3 /* AppDelegate.m in Sources */,
 				61EB9CFD1A4AFC2500D2BBAF /* MJPopupBackgroundView.m in Sources */,
+				A71414CD1A63E27B008DEB1E /* SyncViewController.m in Sources */,
 				6190C2271A124CE70046F016 /* NotesCollectionViewController.m in Sources */,
 				755594E81A3DAE2800B30234 /* MMDrawerVisualState.m in Sources */,
 				755594E91A3DAE2800B30234 /* UIViewController+MMDrawerController.m in Sources */,

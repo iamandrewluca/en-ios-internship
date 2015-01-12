@@ -13,6 +13,7 @@
 #import "NotesCollectionViewController.h"
 #import "MMDrawerBarButtonItem.h"
 #import "UIViewController+MMDrawerController.h"
+#import "SyncViewController.h"
 
 @interface NotebooksTableViewController () <UITableViewDelegate, UIGestureRecognizerDelegate> {
     UIImageView *emptyTableViewBackground;
@@ -24,6 +25,18 @@
 @end
 
 @implementation NotebooksTableViewController
+
+- (void)synchronize
+{
+    SyncViewController *syncView = [SyncViewController new];
+    syncView.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    syncView.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
+    [self presentViewController:syncView animated:YES completion:^{
+        [self.tableView reloadData];
+    }];
+}
+
 
 - (void)addNewNotebook {
     

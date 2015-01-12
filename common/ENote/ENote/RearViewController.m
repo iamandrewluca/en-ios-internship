@@ -103,14 +103,27 @@
 
 - (void)sync:(id)sender
 {
-    [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
-    [[NotebooksStore sharedStore] synchronize];
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    
+    if ([appDelegate.appNav.topViewController class] != [NotebooksTableViewController class]) {
+        [appDelegate.appNav popToRootViewControllerAnimated:NO];
+    }
+    
+    [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
+        [((NotebooksTableViewController *)appDelegate.appNav.topViewController) synchronize];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
     [super viewWillAppear:animated];
+    
+    if ([[NSFileManager defaultManager] ubiquityIdentityToken] == nil) {
+        self.navigationItem.leftBarButtonItem.enabled = NO;
+    } else {
+        self.navigationItem.leftBarButtonItem.enabled = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
