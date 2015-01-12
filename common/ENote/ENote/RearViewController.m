@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "AllNotesTVC.h"
 #import "NotebooksTableViewController.h"
+#import "NotebooksStore.h"
 
 @interface RearViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -96,6 +97,14 @@
     _imageView.layer.masksToBounds = YES;
     _imageView.layer.cornerRadius = _imageView.bounds.size.width / 2;
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Sync"] style:UIBarButtonItemStylePlain target:self action:@selector(sync:)];
+    
+}
+
+- (void)sync:(id)sender
+{
+    [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
+    [[NotebooksStore sharedStore] synchronize];
 }
 
 - (void)viewWillAppear:(BOOL)animated

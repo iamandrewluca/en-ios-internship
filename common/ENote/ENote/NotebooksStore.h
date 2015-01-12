@@ -24,6 +24,8 @@
 - (NotesStore *)notesStoreForNotebook:(Notebook *)notebook;
 - (NotesStore *)notesStoreForNotebookID:(NSString *)ID;
 
+- (void)synchronize;
+
 + (instancetype)sharedStore;
 
 @end

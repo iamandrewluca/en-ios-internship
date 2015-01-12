@@ -11,6 +11,7 @@
 #import "NotesStore.h"
 #import "ENoteCommons.h"
 #import "TagsStore.h"
+#import "AppDelegate.h"
 
 
 @interface NotebooksStore ()
@@ -21,6 +22,14 @@
 @end
 
 @implementation NotebooksStore
+
+- (void)synchronize
+{
+    
+    [[NotebooksStore sharedStore] createNotebookWithName:@"asd"];
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate.appNav.topViewController.view setNeedsDisplay];
+}
 
 - (NSArray *)allNotebooks {
     return _allPrivateNotebooks;
