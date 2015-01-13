@@ -8,6 +8,7 @@
 
 #import "SyncViewController.h"
 #import "NotebooksStore.h"
+#import "AppSync.h"
 
 @interface SyncViewController ()
 
@@ -25,10 +26,7 @@
 {
     [super viewDidAppear:animated];
     
-//    NSThread *syncThread = [[NSThread alloc] initWithTarget:[NotebooksStore sharedStore] selector:@selector(synchronize:) object:nil];
-//    [syncThread start];
-    // a game while waiting )
-    
+    [[AppSync new] sync];
 }
 
 - (void)didReceiveMemoryWarning {

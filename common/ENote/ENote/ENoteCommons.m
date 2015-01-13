@@ -34,6 +34,10 @@
         NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         _documentDirectory = [documentDirectories firstObject];
         
+        if ([[NSFileManager defaultManager] ubiquityIdentityToken] != nil) {
+            _documentDirectory = [[[[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil] path] stringByAppendingString:@"/Documents/"];
+        }
+        
         _indexFile = @"index.json";
         
     }

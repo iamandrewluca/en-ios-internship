@@ -34,6 +34,7 @@
 		75CD43211A3E2CB8002141ED /* NotesAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CD43201A3E2CB8002141ED /* NotesAddCell.m */; };
 		A70355271A319FC5008742C9 /* TagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A70355251A319FC5008742C9 /* TagCollectionViewCell.m */; };
 		A70355281A319FC5008742C9 /* TagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70355261A319FC5008742C9 /* TagCollectionViewCell.xib */; };
+		A7038C201A65331900E6E88A /* AppSync.m in Sources */ = {isa = PBXBuildFile; fileRef = A7038C1F1A65331900E6E88A /* AppSync.m */; };
 		A705D6711A3ED25300B06FB6 /* aplause.wav in Resources */ = {isa = PBXBuildFile; fileRef = A705D6701A3ED25300B06FB6 /* aplause.wav */; };
 		A705D6741A3ED6C900B06FB6 /* UIViewController+HandleShake.m in Sources */ = {isa = PBXBuildFile; fileRef = A705D6731A3ED6C900B06FB6 /* UIViewController+HandleShake.m */; };
 		A705D67B1A3EED8900B06FB6 /* AddTagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A705D6791A3EED8900B06FB6 /* AddTagCollectionViewCell.m */; };
@@ -139,6 +140,8 @@
 		A70355241A319FC5008742C9 /* TagCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagCollectionViewCell.h; sourceTree = "<group>"; };
 		A70355251A319FC5008742C9 /* TagCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagCollectionViewCell.m; sourceTree = "<group>"; };
 		A70355261A319FC5008742C9 /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
+		A7038C1E1A65331900E6E88A /* AppSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSync.h; sourceTree = "<group>"; };
+		A7038C1F1A65331900E6E88A /* AppSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSync.m; sourceTree = "<group>"; };
 		A705D6701A3ED25300B06FB6 /* aplause.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = aplause.wav; sourceTree = "<group>"; };
 		A705D6721A3ED6C900B06FB6 /* UIViewController+HandleShake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HandleShake.h"; sourceTree = "<group>"; };
 		A705D6731A3ED6C900B06FB6 /* UIViewController+HandleShake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HandleShake.m"; sourceTree = "<group>"; };
@@ -606,6 +609,8 @@
 				A7AEEB671A28CEBF0091FE09 /* TagsStore.m */,
 				A720977A1A497E4F00086670 /* ImagesStore.h */,
 				A720977B1A497E4F00086670 /* ImagesStore.m */,
+				A7038C1E1A65331900E6E88A /* AppSync.h */,
+				A7038C1F1A65331900E6E88A /* AppSync.m */,
 			);
 			name = Stores;
 			sourceTree = "<group>";
@@ -784,6 +789,7 @@
 				A7D73BD41A3850E0009A21FA /* AllTagsCollectionViewController.m in Sources */,
 				6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */,
 				A72183041A10E950006E47E3 /* AppDelegate.m in Sources */,
+				A7038C201A65331900E6E88A /* AppSync.m in Sources */,
 				61EB9CFD1A4AFC2500D2BBAF /* MJPopupBackgroundView.m in Sources */,
 				A71414CD1A63E27B008DEB1E /* SyncViewController.m in Sources */,
 				6190C2271A124CE70046F016 /* NotesCollectionViewController.m in Sources */,

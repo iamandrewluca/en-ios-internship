@@ -161,6 +161,18 @@
     NSString *indexPath = [NSString stringWithFormat:@"%@/%@", notebookPath, [[ENoteCommons shared] indexFile]];
     
     [[NSFileManager defaultManager] createFileAtPath:indexPath contents:notebookData attributes:nil];
+    
+}
+
+- (NSURL *)iCloudURLforNotebook:(Notebook *)notebook
+{
+    if ([[NSFileManager defaultManager] ubiquityIdentityToken] == nil) return  nil;
+    
+    NSURL *iCloudContainer = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+    NSURL *notebookURL;
+    
+    
+    return notebookURL;
 }
 
 - (void)saveNotebookWithID:(NSString *)ID {
