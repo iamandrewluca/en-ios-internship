@@ -10,8 +10,8 @@
 
 @implementation ENoteCommons
 
-+ (instancetype)shared {
-    
++ (instancetype)shared
+{
     static ENoteCommons *sharedCommons = nil;
     
     if (!sharedCommons) {
@@ -21,12 +21,13 @@
     return  sharedCommons;
 }
 
-- (instancetype)init {
+- (instancetype)init
+{
     @throw [NSException exceptionWithName:@"Singleton" reason:@"Use +[NotebooksStore sharedStore]" userInfo:nil];
 }
 
-- (instancetype)initPrivate {
-    
+- (instancetype)initPrivate
+{
     self = [super init];
     
     if (self) {

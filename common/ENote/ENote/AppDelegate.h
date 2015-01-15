@@ -14,7 +14,6 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
 @property (nonatomic) UINavigationController *appNav;
 @property (nonatomic) MMDrawerController *drawerCtrl;
 

@@ -35,7 +35,6 @@
 
 - (BOOL)addTagID:(NSString *)ID
 {
-    
     if ([_privateTagsIDs indexOfObject:ID] == NSNotFound) {
         [_privateTagsIDs insertObject:ID atIndex:0];
         return YES;
@@ -89,7 +88,6 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary
 {
-    
     self = [super initWithDictionary:dictionary];
     
     if (self) {

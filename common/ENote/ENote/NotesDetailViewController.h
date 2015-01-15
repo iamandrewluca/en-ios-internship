@@ -16,5 +16,7 @@
 @property (nonatomic) NotesStore *notesStore;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *noteImagesTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *noteImagesHeightConstraint;
+
 - (void)addImage;
+
 @end

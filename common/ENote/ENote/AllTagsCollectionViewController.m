@@ -65,7 +65,8 @@ static NSString *const kTagsSectionHeader = @"TagsSectionHeadersCollectionReusab
     return [_sizingCell systemLayoutSizeFittingSize:UILayoutFittingExpandedSize];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPattern"]];
@@ -79,7 +80,8 @@ static NSString *const kTagsSectionHeader = @"TagsSectionHeadersCollectionReusab
     _sizingCell = [[cellNib instantiateWithOwner:nil options:nil] objectAtIndex:0];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

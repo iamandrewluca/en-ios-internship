@@ -10,6 +10,8 @@
 #import "Note.h"
 
 @interface NoteImagePreviewController : UIViewController
+
 @property (nonatomic) Note *note;
 @property (nonatomic, copy) NSString *imageID;
+
 @end

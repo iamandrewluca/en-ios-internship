@@ -66,6 +66,7 @@
     
     return nil;
 }
+
 - (NSString *)nameFirstChar:(NSString *)name
 {
     NSString *firstCharacter = [[name substringToIndex:1] uppercaseString];
@@ -85,7 +86,6 @@
 
 - (Tag *)createTagWithName:(NSString *)name
 {
-    
     NSString *firstChar = [self nameFirstChar:name];
     
     for (Tag *tag in _tagSections[firstChar]) {
@@ -248,8 +248,8 @@
     
 }
 
-- (void)loadTags {
-    
+- (void)loadTags
+{    
     NSString *tagsPath = [NSString stringWithFormat:@"%@/%@", [[ENoteCommons shared] documentDirectory], @"tags.json"];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:tagsPath]) {

@@ -9,7 +9,9 @@
 #import "AddNoteImageCollectionViewCell.h"
 
 @interface AddNoteImageCollectionViewCell ()
+
 @property (nonatomic) CAShapeLayer *border;
+
 @end
 
 @implementation AddNoteImageCollectionViewCell

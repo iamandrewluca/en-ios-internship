@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AllTagsCollectionViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 

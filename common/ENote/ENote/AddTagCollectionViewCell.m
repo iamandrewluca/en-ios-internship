@@ -9,13 +9,15 @@
 #import "AddTagCollectionViewCell.h"
 
 @interface AddTagCollectionViewCell ()
+
 @property (weak, nonatomic) IBOutlet UIView *backView;
 
 @end
 
 @implementation AddTagCollectionViewCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     // Initialization code
     self.backView.layer.cornerRadius = 12.0f;
     self.backView.layer.borderColor = [[UIColor lightGrayColor] CGColor];

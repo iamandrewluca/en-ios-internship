@@ -16,20 +16,23 @@
 
 @implementation Notebook
 
-- (void)addNoteID:(NSString *)ID {
+- (void)addNoteID:(NSString *)ID
+{
     [_privateNotesIDs addObject:ID];
 }
 
-- (void)removeNoteID:(NSString *)ID {
+- (void)removeNoteID:(NSString *)ID
+{
     [_privateNotesIDs removeObject:ID];
 }
 
-- (NSArray *)notesIDs {
+- (NSArray *)notesIDs
+{
     return _privateNotesIDs;
 }
 
-- (instancetype)initWithName:(NSString *)name {
-    
+- (instancetype)initWithName:(NSString *)name
+{
     self = [super initWithName:name];
     
     if (self) {
@@ -39,8 +42,8 @@
     return self;
 }
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-    
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary
+{
     self = [super initWithDictionary:dictionary];
     
     if (self) {
@@ -50,8 +53,8 @@
     return self;
 }
 
-- (NSMutableDictionary *)dictionaryRepresentation {
-    
+- (NSMutableDictionary *)dictionaryRepresentation
+{
     NSMutableDictionary *dictionaryRepresentation = [super dictionaryRepresentation];
     [dictionaryRepresentation setValue:_privateNotesIDs forKey:@"notesIDs"];
     

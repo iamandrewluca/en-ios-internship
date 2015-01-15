@@ -10,5 +10,4 @@
 #import "Item.h"
 
 @interface Tag : Item
-
 @end

@@ -19,7 +19,6 @@
 static NSString *const kAllNotesCellIdentifier = @"AllNotesTVCell";
 
 @interface AllNotesTVC () <UICollectionViewDataSource, UICollectionViewDelegate>
-
 @end
 
 @implementation AllNotesTVC
@@ -27,7 +26,8 @@ static NSString *const kAllNotesCellIdentifier = @"AllNotesTVCell";
     UIImageView *emptyTableViewBackground;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     UINib *nib = [UINib nibWithNibName:kAllNotesCellIdentifier bundle:nil];
@@ -46,7 +46,8 @@ static NSString *const kAllNotesCellIdentifier = @"AllNotesTVCell";
     ((UIImageView *)[self.tableView.backgroundView.subviews firstObject]).center = CGPointMake((int)self.tableView.center.x, (int)self.tableView.center.y - 100);
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

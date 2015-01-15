@@ -16,7 +16,6 @@
 @interface NotesStore ()
 
 @property (nonatomic) NSMutableArray *allPrivateNotes;
-
 @end
 
 @implementation NotesStore
@@ -82,6 +81,7 @@
 
     [self addNote:note];
     [self saveNote:note];
+    
     return note;
 }
 

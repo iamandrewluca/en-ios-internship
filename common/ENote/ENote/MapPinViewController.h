@@ -16,5 +16,4 @@
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 @property (nonatomic, retain) CLLocationManager *locationManager;
 
-
 @end

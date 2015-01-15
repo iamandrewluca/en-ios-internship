@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AllNotesTVCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *notebookLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *notesCollectionView;
 

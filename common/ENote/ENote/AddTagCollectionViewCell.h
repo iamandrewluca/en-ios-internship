@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AddTagCollectionViewCell : UICollectionViewCell
+
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
 
 @end

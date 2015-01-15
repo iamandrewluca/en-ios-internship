@@ -12,7 +12,9 @@
 #import "NoteTagsCollectionViewController.h"
 
 @interface AddTagsViewController : UIViewController
+
 @property (nonatomic) NotesStore *notesStore;
 @property (nonatomic) Note *note;
 @property (nonatomic) NoteTagsCollectionViewController *pctrl;
+
 @end

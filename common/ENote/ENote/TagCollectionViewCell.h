@@ -12,7 +12,6 @@
 
 @protocol TagCellDelegate <NSObject>
 
-@optional
 - (void)buttonPressedInCell:(TagCollectionViewCell *)cell;
 
 @end

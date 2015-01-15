@@ -15,7 +15,8 @@
 
 @implementation MapPinViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self.locationManager requestAlwaysAuthorization];
 
@@ -41,7 +42,6 @@
     
 //    MyPin *annotation1 = [[MyPin alloc]initWithTitle:@"Endava" subtitle:@"Endava tower" coordinate:CLLocationCoordinate2DMake(47.024734, 28.820791)];
 //    [self.mapView addAnnotation:annotation1];
-
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -56,7 +56,6 @@
     point.subtitle = @"I'm here!!!";
     
     [self.mapView addAnnotation:point];
-    
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations

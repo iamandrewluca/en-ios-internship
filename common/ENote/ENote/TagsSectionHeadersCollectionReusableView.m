@@ -10,8 +10,4 @@
 
 @implementation TagsSectionHeadersCollectionReusableView
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
 @end

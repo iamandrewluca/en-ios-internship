@@ -31,7 +31,8 @@
     _deleteButton.tintColor = [UIColor redColor];
 }
 
-- (IBAction)buttonPressed:(id)sender {
+- (IBAction)buttonPressed:(id)sender
+{
     [_delegate buttonPressedInCell:self];
 }
 

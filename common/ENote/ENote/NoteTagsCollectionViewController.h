@@ -12,6 +12,8 @@
 @class NotesStore;
 
 @interface NoteTagsCollectionViewController : UICollectionViewController
+
 @property (nonatomic) Note *note;
 @property (nonatomic) NotesStore *notesStore;
+
 @end

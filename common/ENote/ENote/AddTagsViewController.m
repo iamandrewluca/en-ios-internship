@@ -12,45 +12,19 @@
 #import "Tag.h"
 
 @interface AddTagsViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @property (nonatomic) NSArray *foundTags;
 
 @end
 
 @implementation AddTagsViewController
 
-//- (instancetype)init
-//{
-//    self = [super init];
-//    
-//    if (self) {
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeTableView:) name:UIKeyboardDidShowNotification object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeTableView:) name:UIKeyboardDidHideNotification object:nil];
-//    }
-//    
-//    return self;
-//}
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-//- (void)resizeTableView:(NSNotification *)notification
-//{
-//    if (notification.name == UIKeyboardDidShowNotification) {
-//        NSDictionary *keyboardInfo = [notification userInfo];
-//        NSValue *keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
-//        CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
-//        
-//        _tableViewBottom.constant = 8 + keyboardFrameBeginRect.size.height;
-//        
-//    } else if (notification.name == UIKeyboardDidHideNotification) {
-//        _tableViewBottom.constant = 8;
-//    }
-//}
 
 - (void)viewWillDisappear:(BOOL)animated
 {

@@ -10,6 +10,7 @@
 #import "ImagesStore.h"
 
 @interface NoteImagePreviewController () <UIScrollViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *imagePreview;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
@@ -17,9 +18,11 @@
 @property (nonatomic) UIImage *leftImage;
 @property (nonatomic) UIImage *rightImage;
 @property (nonatomic) NSUInteger position;
+
 @end
 
 @implementation NoteImagePreviewController
+
 @synthesize position = position;
 
 - (void)viewDidLoad

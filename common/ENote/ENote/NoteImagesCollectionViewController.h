@@ -11,7 +11,10 @@
 #import "NotesStore.h"
 
 @interface NoteImagesCollectionViewController : UICollectionViewController
+
 @property (nonatomic) NotesStore *notesStore;
 @property (nonatomic) Note *note;
+
 - (void)showImagePickerType:(UIImagePickerControllerSourceType)sourceType;
+
 @end

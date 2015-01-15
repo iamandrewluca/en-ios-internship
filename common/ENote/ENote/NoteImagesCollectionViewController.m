@@ -21,7 +21,8 @@
 static NSString * const kAddNoteImageReuseIdentifier = @"AddNoteImageCollectionViewCell";
 static NSString * const kNoteImageReuseIdentifier = @"NoteImagesCollectionViewCell";
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     UINib *nib = [UINib nibWithNibName:kAddNoteImageReuseIdentifier bundle:nil];
@@ -68,7 +69,8 @@ static NSString * const kNoteImageReuseIdentifier = @"NoteImagesCollectionViewCe
     [self setEditing:editing animated:NO];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

@@ -12,6 +12,7 @@ static NSUInteger const NoteCellBaseZIndex = 100;
 static NSString * const NoteLayoutCellKind = @"NoteCell";
 
 @interface NotesLayout ()
+
 @property (nonatomic, strong) NSDictionary *layoutInfo;
 
 - (CGRect)frameForNoteAtIndexPath:(NSIndexPath *)indexPath;
@@ -21,28 +22,36 @@ static NSString * const NoteLayoutCellKind = @"NoteCell";
 @implementation NotesLayout
 
 #pragma mark - Properties
-- (void)setItemInsets:(UIEdgeInsets)itemInsets {
+
+- (void)setItemInsets:(UIEdgeInsets)itemInsets
+{
     if (UIEdgeInsetsEqualToEdgeInsets(_itemInsets, itemInsets)) return;
     
     _itemInsets = itemInsets;
     
     [self invalidateLayout];
 }
-- (void)setItemSize:(CGSize)itemSize {
+
+- (void)setItemSize:(CGSize)itemSize
+{
     if (CGSizeEqualToSize(_itemSize, itemSize)) return;
     
     _itemSize = itemSize;
     
     [self invalidateLayout];
 }
-- (void)setInterItemSpacingY:(CGFloat)interItemSpacingY {
+
+- (void)setInterItemSpacingY:(CGFloat)interItemSpacingY
+{
     if (_interItemSpacingY == interItemSpacingY) return;
     
     _interItemSpacingY = interItemSpacingY;
     
     [self invalidateLayout];
 }
-- (void)setNumberOfColumns:(NSInteger)numberOfColumns {
+
+- (void)setNumberOfColumns:(NSInteger)numberOfColumns
+{
     if (_numberOfColumns == numberOfColumns) return;
     
     _numberOfColumns = numberOfColumns;
@@ -50,8 +59,8 @@ static NSString * const NoteLayoutCellKind = @"NoteCell";
     [self invalidateLayout];
 }
 
-
 #pragma mark - Lifecycle
+
 - (id)init
 {
     self = [super init];
@@ -83,6 +92,7 @@ static NSString * const NoteLayoutCellKind = @"NoteCell";
 
 
 #pragma mark - Layout
+
 -(void)prepareLayout
 {
     NSMutableDictionary *newLayoutInfo = [NSMutableDictionary dictionary];
@@ -108,7 +118,6 @@ static NSString * const NoteLayoutCellKind = @"NoteCell";
     
     newLayoutInfo[NoteLayoutCellKind] = cellLayoutInfo;
     self.layoutInfo = newLayoutInfo;
-    
 }
 
 - (CGSize)collectionViewContentSize
@@ -163,16 +172,3 @@ static NSString * const NoteLayoutCellKind = @"NoteCell";
 
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-

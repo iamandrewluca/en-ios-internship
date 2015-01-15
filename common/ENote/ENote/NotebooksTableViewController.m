@@ -14,7 +14,8 @@
 #import "MMDrawerBarButtonItem.h"
 #import "UIViewController+MMDrawerController.h"
 
-@interface NotebooksTableViewController () <UITableViewDelegate, UIGestureRecognizerDelegate> {
+@interface NotebooksTableViewController () <UITableViewDelegate, UIGestureRecognizerDelegate>
+{
     UIImageView *emptyTableViewBackground;
     NSIndexPath *selectedNotebookIndexPath;
 }
@@ -25,7 +26,8 @@
 
 @implementation NotebooksTableViewController
 
-- (void)addNewNotebook {
+- (void)addNewNotebook
+{
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Enter new name"
                                                                    message:@""
@@ -65,7 +67,8 @@
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     // Setup Data Source
@@ -160,7 +163,8 @@
                                                     emptyTableViewBackground.image.size.width / 2 )];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
 
     if (selectedNotebookIndexPath) {
@@ -183,7 +187,8 @@
     [[self navigationController] pushViewController:notes animated:YES];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 44.0;
 }
 

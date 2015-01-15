@@ -24,7 +24,8 @@ static NSString *const NoteCellIdentifier = @"NoteCell";
 static NSString *const AddNoteCellIdentifier = @"NotesAddCell";
 static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
 
-@interface NotesCollectionViewController () {
+@interface NotesCollectionViewController ()
+{
     NSIndexPath *selectedNoteIndexPath;
     UILongPressGestureRecognizer *longPress;
     UIBarButtonItem *addNote;
@@ -93,7 +94,6 @@ static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
     self.navigationItem.rightBarButtonItems = self.buttons;
     
     [self.collectionView setAllowsMultipleSelection:YES];
-    
 }
 
 - (void)viewWillLayoutSubviews
