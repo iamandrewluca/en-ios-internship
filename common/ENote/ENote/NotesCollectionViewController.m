@@ -74,10 +74,15 @@ static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
     
     self.largeLayout = [NoteCellLarge new];
     self.largeLayout.itemSize = CGSizeMake(self.collectionView.bounds.size.width - self.largeLayout.sectionInset.left - self.largeLayout.sectionInset.right - 1, 100);
-    
     self.gridLayout = [NoteCellGrid new];
     
-    [self.collectionView setCollectionViewLayout:self.gridLayout];
+    NSString *notesLayout = [[NSUserDefaults standardUserDefaults] valueForKey:@"notes_layout"];
+    
+    if (notesLayout && [notesLayout isEqualToString:@"list"]) {
+        [self.collectionView setCollectionViewLayout:self.largeLayout];
+    } else {
+        [self.collectionView setCollectionViewLayout:self.gridLayout];
+    }
     
     // grid layout button
     gridViewButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"gridView"]
@@ -125,6 +130,7 @@ static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
     __weak NotesCollectionViewController *selfWeak = self;
     
     if (self.collectionView.collectionViewLayout == self.gridLayout) {
+        [[NSUserDefaults standardUserDefaults] setValue:@"list" forKey:@"notes_layout"];
         gridViewButton.image = [UIImage imageNamed:@"gridView"];
         self.buttons = @[addNote, gridViewButton];
         self.navigationItem.rightBarButtonItems = self.buttons;
@@ -138,6 +144,7 @@ static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
             }
         }];
     } else {
+        [[NSUserDefaults standardUserDefaults] setValue:@"grid" forKey:@"notes_layout"];
         tableViewButton.image = [UIImage imageNamed:@"tableView"];
         self.buttons = @[addNote, tableViewButton];
         self.navigationItem.rightBarButtonItems = self.buttons;
