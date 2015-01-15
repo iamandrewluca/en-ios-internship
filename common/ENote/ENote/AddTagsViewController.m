@@ -106,7 +106,7 @@
     [_notesStore saveNote:_note];
     [self.pctrl.collectionView reloadData];
     [_textField resignFirstResponder];
-    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    [self.pctrl dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
 
 - (void)textFieldDidChange:(UITextField *)textField
@@ -123,7 +123,7 @@
     [_notesStore saveNote:_note];
     
     [textField resignFirstResponder];
-    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    [self.pctrl dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
     
     return YES;
 }
