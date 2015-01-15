@@ -26,15 +26,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Why search simulator sandbox?
-    // Iura nu mai comenta linia asta ))
     NSLog(@"%@", NSHomeDirectory());
-    
-    // App iCloud Sandbox
-    NSLog(@"%@", [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil]);
-    
-    // API Key
-//    [GMSServices provideAPIKey:@"GOOGLE_MAPS_API_KEY"];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
