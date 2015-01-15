@@ -72,18 +72,6 @@ static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
     
     self.navigationItem.rightBarButtonItem = addNote;
     
-    self.largeLayout = [NoteCellLarge new];
-    self.largeLayout.itemSize = CGSizeMake(self.collectionView.bounds.size.width - self.largeLayout.sectionInset.left - self.largeLayout.sectionInset.right - 1, 100);
-    self.gridLayout = [NoteCellGrid new];
-    
-    NSString *notesLayout = [[NSUserDefaults standardUserDefaults] valueForKey:@"notes_layout"];
-    
-    if (notesLayout && [notesLayout isEqualToString:@"list"]) {
-        [self.collectionView setCollectionViewLayout:self.largeLayout];
-    } else {
-        [self.collectionView setCollectionViewLayout:self.gridLayout];
-    }
-    
     // grid layout button
     gridViewButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"gridView"]
                                                      style:UIBarButtonItemStylePlain
@@ -95,7 +83,20 @@ static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
                                                      target:self
                                                      action:@selector(buttonLayoutControlValueDidChange:)];
     
-    self.buttons = @[addNote, tableViewButton];
+    self.largeLayout = [NoteCellLarge new];
+    self.largeLayout.itemSize = CGSizeMake(self.collectionView.bounds.size.width - self.largeLayout.sectionInset.left - self.largeLayout.sectionInset.right - 1, 100);
+    self.gridLayout = [NoteCellGrid new];
+    
+    NSString *notesLayout = [[NSUserDefaults standardUserDefaults] valueForKey:@"notes_layout"];
+    
+    if (notesLayout && [notesLayout isEqualToString:@"list"]) {
+        [self.collectionView setCollectionViewLayout:self.largeLayout];
+        self.buttons = @[addNote, gridViewButton];
+    } else {
+        [self.collectionView setCollectionViewLayout:self.gridLayout];
+        self.buttons = @[addNote, tableViewButton];
+    }
+    
     self.navigationItem.rightBarButtonItems = self.buttons;
     
     [self.collectionView setAllowsMultipleSelection:YES];
