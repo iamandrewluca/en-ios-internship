@@ -9,5 +9,4 @@
 #import "TagsSectionHeadersCollectionReusableView.h"
 
 @implementation TagsSectionHeadersCollectionReusableView
-
 @end

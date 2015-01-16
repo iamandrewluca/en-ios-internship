@@ -18,7 +18,6 @@
 		617450FC1A4448DD0018D6AA /* MyPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 617450F91A4448DD0018D6AA /* MyPin.m */; };
 		6190C2271A124CE70046F016 /* NotesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C2251A124CE70046F016 /* NotesCollectionViewController.m */; };
 		6190C2281A124CE70046F016 /* NotesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6190C2261A124CE70046F016 /* NotesCollectionViewController.xib */; };
-		6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C22B1A124EBA0046F016 /* NotesLayout.m */; };
 		6190C2301A1254920046F016 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C22F1A1254920046F016 /* NoteCell.m */; };
 		61EB9CF11A4AF4E400D2BBAF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EB9CF01A4AF4E400D2BBAF /* MapKit.framework */; };
 		61EB9CFD1A4AFC2500D2BBAF /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EB9CFA1A4AFC2500D2BBAF /* MJPopupBackgroundView.m */; };
@@ -110,8 +109,6 @@
 		6190C2241A124CE70046F016 /* NotesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesCollectionViewController.h; sourceTree = "<group>"; };
 		6190C2251A124CE70046F016 /* NotesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesCollectionViewController.m; sourceTree = "<group>"; };
 		6190C2261A124CE70046F016 /* NotesCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesCollectionViewController.xib; sourceTree = "<group>"; };
-		6190C22A1A124EBA0046F016 /* NotesLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesLayout.h; sourceTree = "<group>"; };
-		6190C22B1A124EBA0046F016 /* NotesLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesLayout.m; sourceTree = "<group>"; };
 		6190C22E1A1254920046F016 /* NoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCell.h; sourceTree = "<group>"; };
 		6190C22F1A1254920046F016 /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
 		61EB9CF01A4AF4E400D2BBAF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -282,7 +279,6 @@
 				A71D34FE1A1B733A00EA301B /* NotebooksTableView */,
 				61FD75151A25EC41004C344D /* NotesCollectionVC */,
 				A71D35031A1B7B1A00EA301B /* NotesDetailVC */,
-				61FD75161A25EE23004C344D /* NotesLayout */,
 				617450F41A4448B60018D6AA /* MapKitVC */,
 			);
 			name = View;
@@ -318,15 +314,6 @@
 				75CD431C1A3E254C002141ED /* NoteCell */,
 			);
 			name = NotesCollectionVC;
-			sourceTree = "<group>";
-		};
-		61FD75161A25EE23004C344D /* NotesLayout */ = {
-			isa = PBXGroup;
-			children = (
-				6190C22A1A124EBA0046F016 /* NotesLayout.h */,
-				6190C22B1A124EBA0046F016 /* NotesLayout.m */,
-			);
-			name = NotesLayout;
 			sourceTree = "<group>";
 		};
 		755594DC1A3DAE2800B30234 /* MMDrawerController */ = {
@@ -763,7 +750,6 @@
 				A7D73BD91A3855F3009A21FA /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				617450FC1A4448DD0018D6AA /* MyPin.m in Sources */,
 				A7D73BD41A3850E0009A21FA /* AllTagsCollectionViewController.m in Sources */,
-				6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */,
 				A72183041A10E950006E47E3 /* AppDelegate.m in Sources */,
 				61EB9CFD1A4AFC2500D2BBAF /* MJPopupBackgroundView.m in Sources */,
 				6190C2271A124CE70046F016 /* NotesCollectionViewController.m in Sources */,

@@ -60,7 +60,6 @@ static NSString * const kNoteImageReuseIdentifier = @"NoteImagesCollectionViewCe
             [((NoteImagesCollectionViewCell *)cell) setEditing:editing animated:animated];
         }
     }
-
 }
 
 - (void)setEditing:(BOOL)editing
