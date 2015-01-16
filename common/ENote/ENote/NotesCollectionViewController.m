@@ -16,6 +16,7 @@
 #import "NotebooksStore.h"
 #import "NotesAddCell.h"
 #import "ImagesStore.h"
+#import "NSDate+IfDay.h"
 
 #import "NoteCellGrid.h"
 #import "NoteCellLarge.h"
@@ -268,11 +269,19 @@ static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteLargeCellIdentifier forIndexPath:indexPath];
             ((NoteLargeCell *)cell).noteDescription.text = note.text;
             
-            NSDateFormatter *dateFormatter = [NSDateFormatter new];
-            dateFormatter.dateStyle = NSDateFormatterMediumStyle;
-            dateFormatter.timeStyle = NSDateFormatterNoStyle;
+            if ([note.dateCreated isToday]) {
+                ((NoteLargeCell *)cell).date.text = @"Today";
+            } else if (![note.dateCreated isBehindTodayWithDaysMoreThen:3]) {
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"EEEE"];
+                ((NoteLargeCell *)cell).date.text = [dateFormatter stringFromDate:note.dateCreated];
+            } else {
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+                [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+                ((NoteLargeCell *)cell).date.text = [dateFormatter stringFromDate:note.dateCreated];
+            }
             
-            ((NoteLargeCell *)cell).date.text = [dateFormatter stringFromDate:note.dateCreated];
         } else {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:NoteCellIdentifier forIndexPath:indexPath];
             NoteCell *noteCell = (NoteCell *)cell;

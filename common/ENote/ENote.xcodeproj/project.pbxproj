@@ -38,6 +38,7 @@
 		A705D6741A3ED6C900B06FB6 /* UIViewController+HandleShake.m in Sources */ = {isa = PBXBuildFile; fileRef = A705D6731A3ED6C900B06FB6 /* UIViewController+HandleShake.m */; };
 		A705D67B1A3EED8900B06FB6 /* AddTagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A705D6791A3EED8900B06FB6 /* AddTagCollectionViewCell.m */; };
 		A705D67C1A3EED8900B06FB6 /* AddTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A705D67A1A3EED8900B06FB6 /* AddTagCollectionViewCell.xib */; };
+		A70650801A6903310022A6F3 /* NSDate+IfDay.m in Sources */ = {isa = PBXBuildFile; fileRef = A706507F1A6903310022A6F3 /* NSDate+IfDay.m */; };
 		A70A33921A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A70A33901A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.m */; };
 		A70A33931A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70A33911A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib */; };
 		A70B587F1A440DB700BD434B /* AddTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70B587D1A440DB700BD434B /* AddTagsViewController.m */; };
@@ -143,6 +144,8 @@
 		A705D6781A3EED8900B06FB6 /* AddTagCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagCollectionViewCell.h; sourceTree = "<group>"; };
 		A705D6791A3EED8900B06FB6 /* AddTagCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagCollectionViewCell.m; sourceTree = "<group>"; };
 		A705D67A1A3EED8900B06FB6 /* AddTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTagCollectionViewCell.xib; sourceTree = "<group>"; };
+		A706507E1A6903310022A6F3 /* NSDate+IfDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+IfDay.h"; sourceTree = "<group>"; };
+		A706507F1A6903310022A6F3 /* NSDate+IfDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+IfDay.m"; sourceTree = "<group>"; };
 		A70A338F1A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsSectionHeadersCollectionReusableView.h; sourceTree = "<group>"; };
 		A70A33901A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsSectionHeadersCollectionReusableView.m; sourceTree = "<group>"; };
 		A70A33911A4045C500E81632 /* TagsSectionHeadersCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsSectionHeadersCollectionReusableView.xib; sourceTree = "<group>"; };
@@ -484,6 +487,8 @@
 				A72182FF1A10E950006E47E3 /* Info.plist */,
 				A72183001A10E950006E47E3 /* main.m */,
 				A705D6701A3ED25300B06FB6 /* aplause.wav */,
+				A706507E1A6903310022A6F3 /* NSDate+IfDay.h */,
+				A706507F1A6903310022A6F3 /* NSDate+IfDay.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -751,6 +756,7 @@
 				A70B587F1A440DB700BD434B /* AddTagsViewController.m in Sources */,
 				6190C2301A1254920046F016 /* NoteCell.m in Sources */,
 				A705D6741A3ED6C900B06FB6 /* UIViewController+HandleShake.m in Sources */,
+				A70650801A6903310022A6F3 /* NSDate+IfDay.m in Sources */,
 				A7AE42DC1A484FB300356C84 /* NoteImagesCollectionViewController.m in Sources */,
 				617450FA1A4448DD0018D6AA /* MapPinViewController.m in Sources */,
 				617450CB1A442ECF0018D6AA /* NoteCellLarge.m in Sources */,
