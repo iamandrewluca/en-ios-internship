@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import "Item.h"
 
 @class Notebook;
@@ -18,8 +19,9 @@
 @property (nonatomic, copy) NSString *notebookID;
 @property (nonatomic, copy, readonly) NSArray *tagsIDs;
 @property (nonatomic, copy, readonly) NSArray *imagesIDs;
-@property (nonatomic, readonly) CGFloat longitude;
-@property (nonatomic, readonly) CGFloat latitude;
+@property (nonatomic, copy) NSString *pinText;
+@property (nonatomic) CGFloat longitude;
+@property (nonatomic) CGFloat latitude;
 
 - (instancetype)initWithName:(NSString *)name forNotebookID:(NSString *)ID;
 
@@ -28,7 +30,7 @@
 - (BOOL)hasTagID:(NSString *)ID;
 - (void)addImageID:(NSString *)ID;
 - (void)removeImageID:(NSString *)ID;
-- (void)setLocationLongitude:(CGFloat)longitude andLatitude:(CGFloat)latitude;
+- (void)setLocation:(CLLocation *)location withText:(NSString *)pinText;
 - (NSString *)path;
 
 @end

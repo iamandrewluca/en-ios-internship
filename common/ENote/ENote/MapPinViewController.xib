@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapPinViewController">
             <connections>
                 <outlet property="mapView" destination="eFo-Y2-Xeg" id="yNo-E7-MkD"/>
+                <outlet property="toolbar" destination="tzA-r9-EWE" id="6yQ-RC-TjT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,18 +16,43 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eFo-Y2-Xeg">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" scrollEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFo-Y2-Xeg">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="Ra4-AQ-gqW"/>
+                    </connections>
                 </mapView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzA-r9-EWE">
+                    <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                    <color key="backgroundColor" red="1" green="0.50196078431372548" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <items>
+                        <barButtonItem systemItem="trash" id="na7-at-pA8">
+                            <connections>
+                                <action selector="clearPin:" destination="-1" id="gCx-ez-Q7c"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="flexibleSpace" id="rKo-EC-Cvh"/>
+                        <barButtonItem title="Set Note Location" width="98" id="gcO-kX-NIM">
+                            <connections>
+                                <action selector="dropPin:" destination="-1" id="SrR-2k-1ZA"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="flexibleSpace" id="joh-6m-GyY"/>
+                    </items>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </toolbar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="eFo-Y2-Xeg" secondAttribute="bottom" id="0aI-yZ-7JZ"/>
-                <constraint firstAttribute="trailing" secondItem="eFo-Y2-Xeg" secondAttribute="trailing" id="1Ng-j6-Sua"/>
-                <constraint firstItem="eFo-Y2-Xeg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Ype-DO-OAk"/>
-                <constraint firstItem="eFo-Y2-Xeg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lNU-fx-Coc"/>
+                <constraint firstItem="eFo-Y2-Xeg" firstAttribute="leading" secondItem="tzA-r9-EWE" secondAttribute="leading" id="8Jj-UO-smb"/>
+                <constraint firstItem="eFo-Y2-Xeg" firstAttribute="trailing" secondItem="tzA-r9-EWE" secondAttribute="trailing" id="Ohe-qe-jRs"/>
+                <constraint firstItem="eFo-Y2-Xeg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="T6u-8i-bhu"/>
+                <constraint firstItem="eFo-Y2-Xeg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YVD-y7-O2M"/>
+                <constraint firstAttribute="trailing" secondItem="tzA-r9-EWE" secondAttribute="trailing" id="e6i-sX-Z53"/>
+                <constraint firstItem="tzA-r9-EWE" firstAttribute="top" secondItem="eFo-Y2-Xeg" secondAttribute="bottom" id="eYk-5N-n92"/>
+                <constraint firstAttribute="bottom" secondItem="tzA-r9-EWE" secondAttribute="bottom" id="mpj-Gg-Z6g"/>
             </constraints>
-            <point key="canvasLocation" x="-876" y="313"/>
+            <point key="canvasLocation" x="-1566" y="331"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
