@@ -14,12 +14,15 @@
 		617450CA1A442ECF0018D6AA /* NoteCellGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 617450C71A442ECF0018D6AA /* NoteCellGrid.m */; };
 		617450CB1A442ECF0018D6AA /* NoteCellLarge.m in Sources */ = {isa = PBXBuildFile; fileRef = 617450C91A442ECF0018D6AA /* NoteCellLarge.m */; };
 		617450FA1A4448DD0018D6AA /* MapPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 617450F61A4448DD0018D6AA /* MapPinViewController.m */; };
-		617450FB1A4448DD0018D6AA /* MapPinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 617450F71A4448DD0018D6AA /* MapPinViewController.xib */; };
 		617450FC1A4448DD0018D6AA /* MyPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 617450F91A4448DD0018D6AA /* MyPin.m */; };
 		6190C2271A124CE70046F016 /* NotesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C2251A124CE70046F016 /* NotesCollectionViewController.m */; };
 		6190C2281A124CE70046F016 /* NotesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6190C2261A124CE70046F016 /* NotesCollectionViewController.xib */; };
 		6190C22C1A124EBA0046F016 /* NotesLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C22B1A124EBA0046F016 /* NotesLayout.m */; };
 		6190C2301A1254920046F016 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190C22F1A1254920046F016 /* NoteCell.m */; };
+		61C24EFE1A690F0C00433DA5 /* MapPinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61C24EFD1A690F0C00433DA5 /* MapPinViewController.xib */; };
+		61C24F021A690FE300433DA5 /* MapOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C24F001A690FE300433DA5 /* MapOptionsViewController.m */; };
+		61C24F031A690FE300433DA5 /* MapOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61C24F011A690FE300433DA5 /* MapOptionsViewController.xib */; };
+		61C24F061A690FED00433DA5 /* MKPointAnnotation+MapPreservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C24F051A690FED00433DA5 /* MKPointAnnotation+MapPreservation.m */; };
 		61EB9CF11A4AF4E400D2BBAF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EB9CF01A4AF4E400D2BBAF /* MapKit.framework */; };
 		61EB9CFD1A4AFC2500D2BBAF /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EB9CFA1A4AFC2500D2BBAF /* MJPopupBackgroundView.m */; };
 		61EB9CFE1A4AFC2500D2BBAF /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EB9CFC1A4AFC2500D2BBAF /* UIViewController+MJPopupViewController.m */; };
@@ -103,7 +106,6 @@
 		617450C91A442ECF0018D6AA /* NoteCellLarge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCellLarge.m; sourceTree = "<group>"; };
 		617450F51A4448DD0018D6AA /* MapPinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPinViewController.h; sourceTree = "<group>"; };
 		617450F61A4448DD0018D6AA /* MapPinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPinViewController.m; sourceTree = "<group>"; };
-		617450F71A4448DD0018D6AA /* MapPinViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapPinViewController.xib; sourceTree = "<group>"; };
 		617450F81A4448DD0018D6AA /* MyPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPin.h; sourceTree = "<group>"; };
 		617450F91A4448DD0018D6AA /* MyPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPin.m; sourceTree = "<group>"; };
 		6190C2241A124CE70046F016 /* NotesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesCollectionViewController.h; sourceTree = "<group>"; };
@@ -113,6 +115,12 @@
 		6190C22B1A124EBA0046F016 /* NotesLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesLayout.m; sourceTree = "<group>"; };
 		6190C22E1A1254920046F016 /* NoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCell.h; sourceTree = "<group>"; };
 		6190C22F1A1254920046F016 /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
+		61C24EFD1A690F0C00433DA5 /* MapPinViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapPinViewController.xib; sourceTree = "<group>"; };
+		61C24EFF1A690FE300433DA5 /* MapOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapOptionsViewController.h; sourceTree = "<group>"; };
+		61C24F001A690FE300433DA5 /* MapOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapOptionsViewController.m; sourceTree = "<group>"; };
+		61C24F011A690FE300433DA5 /* MapOptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapOptionsViewController.xib; sourceTree = "<group>"; };
+		61C24F041A690FED00433DA5 /* MKPointAnnotation+MapPreservation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKPointAnnotation+MapPreservation.h"; sourceTree = "<group>"; };
+		61C24F051A690FED00433DA5 /* MKPointAnnotation+MapPreservation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKPointAnnotation+MapPreservation.m"; sourceTree = "<group>"; };
 		61EB9CF01A4AF4E400D2BBAF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		61EB9CF91A4AFC2500D2BBAF /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupBackgroundView.h; sourceTree = "<group>"; };
 		61EB9CFA1A4AFC2500D2BBAF /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
@@ -262,9 +270,14 @@
 			children = (
 				617450F51A4448DD0018D6AA /* MapPinViewController.h */,
 				617450F61A4448DD0018D6AA /* MapPinViewController.m */,
-				617450F71A4448DD0018D6AA /* MapPinViewController.xib */,
+				61C24EFD1A690F0C00433DA5 /* MapPinViewController.xib */,
+				61C24EFF1A690FE300433DA5 /* MapOptionsViewController.h */,
+				61C24F001A690FE300433DA5 /* MapOptionsViewController.m */,
+				61C24F011A690FE300433DA5 /* MapOptionsViewController.xib */,
 				617450F81A4448DD0018D6AA /* MyPin.h */,
 				617450F91A4448DD0018D6AA /* MyPin.m */,
+				61C24F041A690FED00433DA5 /* MKPointAnnotation+MapPreservation.h */,
+				61C24F051A690FED00433DA5 /* MKPointAnnotation+MapPreservation.m */,
 			);
 			name = MapKitVC;
 			sourceTree = "<group>";
@@ -698,6 +711,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61C24F031A690FE300433DA5 /* MapOptionsViewController.xib in Resources */,
 				A70B58921A4432C600BD434B /* AllNotesTVCell.xib in Resources */,
 				A7AE42E91A4858B300356C84 /* AddNoteImageCollectionViewCell.xib in Resources */,
 				6100EA151A31C53800AA6A4B /* NoteCell.xib in Resources */,
@@ -711,7 +725,7 @@
 				A721830F1A10E950006E47E3 /* LaunchScreen.xib in Resources */,
 				61EB9D011A4AFCF900D2BBAF /* AddTagsViewController.xib in Resources */,
 				6190C2281A124CE70046F016 /* NotesCollectionViewController.xib in Resources */,
-				617450FB1A4448DD0018D6AA /* MapPinViewController.xib in Resources */,
+				61C24EFE1A690F0C00433DA5 /* MapPinViewController.xib in Resources */,
 				A705D67C1A3EED8900B06FB6 /* AddTagCollectionViewCell.xib in Resources */,
 				A7D9ACC01A12511700B8376A /* NotebooksTableViewCell.xib in Resources */,
 				A721830C1A10E950006E47E3 /* Images.xcassets in Resources */,
@@ -743,9 +757,11 @@
 				A74FE0B81A1B86BA0005F74D /* ENoteCommons.m in Sources */,
 				75CD43211A3E2CB8002141ED /* NotesAddCell.m in Sources */,
 				6155EC4D1A137C3E00BE143B /* Note.m in Sources */,
+				61C24F021A690FE300433DA5 /* MapOptionsViewController.m in Sources */,
 				617450CA1A442ECF0018D6AA /* NoteCellGrid.m in Sources */,
 				A71D04131A1112DB00308DD0 /* NotebooksTableViewController.m in Sources */,
 				755594E61A3DAE2800B30234 /* MMDrawerBarButtonItem.m in Sources */,
+				61C24F061A690FED00433DA5 /* MKPointAnnotation+MapPreservation.m in Sources */,
 				755594F21A3DB03700B30234 /* RearViewController.m in Sources */,
 				755594E71A3DAE2800B30234 /* MMDrawerController.m in Sources */,
 				A70B587F1A440DB700BD434B /* AddTagsViewController.m in Sources */,

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapOptionsViewController">
+            <connections>
+                <outlet property="headingControl" destination="SbD-Pw-0PA" id="C2E-07-F4M"/>
+                <outlet property="mapStyleControl" destination="VKu-hz-2ra" id="gpv-us-A23"/>
+                <outlet property="view" destination="iGQ-0Y-YRy" id="4Wn-oR-6Is"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iGQ-0Y-YRy">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="SbD-Pw-0PA">
+                    <rect key="frame" x="95" y="520" width="131" height="29"/>
+                    <segments>
+                        <segment title="North"/>
+                        <segment title="Heading"/>
+                    </segments>
+                    <connections>
+                        <action selector="changeHeading:" destination="-1" eventType="valueChanged" id="TnL-AX-864"/>
+                    </connections>
+                </segmentedControl>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VKu-hz-2ra">
+                    <rect key="frame" x="65" y="484" width="191" height="29"/>
+                    <segments>
+                        <segment title="Map"/>
+                        <segment title="Satellite"/>
+                        <segment title="Hybrid"/>
+                    </segments>
+                    <connections>
+                        <action selector="changeMapStyle:" destination="-1" eventType="valueChanged" id="NCD-Lj-owm"/>
+                    </connections>
+                </segmentedControl>
+            </subviews>
+            <color key="backgroundColor" white="0.89919354839999999" alpha="1" colorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="SbD-Pw-0PA" firstAttribute="centerX" secondItem="VKu-hz-2ra" secondAttribute="centerX" id="2cQ-f1-Z2y"/>
+                <constraint firstAttribute="bottom" secondItem="SbD-Pw-0PA" secondAttribute="bottom" constant="20" id="Sw8-mq-MGz"/>
+                <constraint firstItem="SbD-Pw-0PA" firstAttribute="top" secondItem="VKu-hz-2ra" secondAttribute="bottom" constant="8" symbolic="YES" id="Z0q-rb-QLl"/>
+                <constraint firstItem="VKu-hz-2ra" firstAttribute="centerX" secondItem="iGQ-0Y-YRy" secondAttribute="centerX" id="cd5-iW-bSc"/>
+            </constraints>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="afB-SP-4YP" appends="YES" id="ezr-fJ-FyJ"/>
+            </connections>
+            <point key="canvasLocation" x="-27" y="294"/>
+        </view>
+        <tapGestureRecognizer id="afB-SP-4YP">
+            <connections>
+                <action selector="done" destination="-1" id="QXK-jI-Bxf"/>
+                <outlet property="delegate" destination="iGQ-0Y-YRy" id="5sh-ss-KKL"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

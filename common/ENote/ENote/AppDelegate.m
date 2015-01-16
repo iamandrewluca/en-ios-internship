@@ -11,11 +11,7 @@
 #import "RearViewController.h"
 #import "MMDrawerController.h"
 #import "MMDrawerVisualState.h"
-
 #import "MapPinViewController.h"
-
-//#import <GoogleMaps/GoogleMaps.h>
-//#define GOOGLE_MAPS_API_KEY @"AIzaSyCXv_-FAsbTIgGESqgePjkgBKuB6eYu4-4"
 
 @interface AppDelegate ()
 
@@ -26,16 +22,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Why search simulator sandbox?
-    // Iura nu mai comenta linia asta ))
     NSLog(@"%@", NSHomeDirectory());
     
     // App iCloud Sandbox
-    NSLog(@"%@", [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil]);
-    
-    // API Key
-//    [GMSServices provideAPIKey:@"GOOGLE_MAPS_API_KEY"];
-    
+    //NSLog(@"%@", [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil]);
+
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     UIViewController *leftDrawer = [RearViewController new];
@@ -67,6 +58,12 @@
     self.window.rootViewController = _drawerCtrl;
     [self.window makeKeyAndVisible];
     
+    return YES;
+}
+
+-(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{kPreferenceHeading: @(MKUserTrackingModeFollow)}];
     return YES;
 }
 

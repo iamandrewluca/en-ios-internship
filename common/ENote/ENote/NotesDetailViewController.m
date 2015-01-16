@@ -40,20 +40,6 @@
     _addNotesTextView.layer.cornerRadius = 5.0f;
     _addNotesTextView.autocorrectionType = UITextAutocorrectionTypeNo;
     
-    // menu button
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"threeDots"]
-                                                                  style:UIBarButtonItemStylePlain
-                                                                 target:self
-                                                                 action:@selector(actioSheetMenu)];
-    // location button
-    UIBarButtonItem *location = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"location"]
-                                                                style:UIBarButtonItemStylePlain
-                                                               target:self
-                                                               action:@selector(MapKitLocation)];
-    
-    NSArray *buttons = @[menuButton, location];
-    self.navigationItem.rightBarButtonItems = buttons;
-    
     [self setupNoteTagsPlaceholder];
     [self setupNoteImagesPlaceholder];
 }
@@ -109,6 +95,26 @@
     }
     
     [_notesStore saveNote:_note];
+    
+    // menu button
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"threeDots"]
+                                                                  style:UIBarButtonItemStylePlain
+                                                                 target:self
+                                                                 action:@selector(actioSheetMenu)];
+    // location button
+    UIBarButtonItem *location = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"location"]
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self
+                                                               action:@selector(MapKitLocation)];
+    NSArray *buttons = nil;
+    
+    if (_note.longitude == -1.0f && _note.latitude == -1.0f) {
+        buttons = @[menuButton];
+    } else {
+        buttons = @[menuButton, location];
+    }
+    
+    self.navigationItem.rightBarButtonItems = buttons;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -126,6 +132,8 @@
 -(void)MapKitLocation
 {
     MapPinViewController *mapKitVC = [[MapPinViewController alloc]init];
+    mapKitVC.note = _note;
+    mapKitVC.notesStore = _notesStore;
     [self.navigationController pushViewController:mapKitVC animated:YES];
 }
 
