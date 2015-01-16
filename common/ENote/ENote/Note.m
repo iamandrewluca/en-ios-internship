@@ -43,10 +43,11 @@
     return NO;
 }
 
-- (void)setLocationLongitude:(CGFloat)longitude andLatitude:(CGFloat)latitude
+- (void)setLocation:(CLLocation *)location withText:(NSString *)pinText
 {
-    _longitude = longitude;
-    _latitude = latitude;
+    _longitude = location.coordinate.longitude;
+    _latitude = location.coordinate.latitude;
+    _pinText = pinText;
 }
 
 - (void)removeTagID:(NSString *)ID
@@ -79,8 +80,9 @@
         _notebookID = ID;
         _thumbID = [NSString new];
         _privateImagesIDs = [NSMutableArray new];
-        _longitude = 0.0f;
-        _latitude = 0.0f;
+        _longitude = -1.0f;
+        _latitude = -1.0f;
+        _pinText = [NSString new];
     }
     
     return self;
@@ -98,6 +100,8 @@
         _thumbID = dictionary[@"thumbID"];
         _longitude = [dictionary[@"longitude"] doubleValue];
         _latitude = [dictionary[@"latitude"] doubleValue];
+        _pinText = dictionary[@"pinText"];
+        
     }
     
     return self;
@@ -113,6 +117,7 @@
     [dictionaryRepresentation setValue:_privateImagesIDs forKey:@"imagesIDs"];
     [dictionaryRepresentation setValue:[NSString stringWithFormat:@"%f", _longitude] forKey:@"longitude"];
     [dictionaryRepresentation setValue:[NSString stringWithFormat:@"%f", _latitude] forKey:@"latitude"];
+    [dictionaryRepresentation setValue:_pinText forKey:@"pinText"];
     
     return dictionaryRepresentation;
 }
