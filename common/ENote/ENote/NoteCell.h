@@ -14,4 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *checked;
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailImage;
 
+- (void)setImage:(UIImage *)image;
+
 @end

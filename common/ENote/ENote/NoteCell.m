@@ -24,4 +24,9 @@
     self.layer.shadowOpacity = 0.5f;
 }
 
+- (void)setImage:(UIImage *)image
+{
+    self.checked.image = image;
+}
+
 @end

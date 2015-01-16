@@ -203,7 +203,7 @@ static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
         UICollectionViewCell *noteCell = [self.collectionView cellForItemAtIndexPath:indexPath];
         
         ((NoteCell *)noteCell).checked.hidden = hide;
-        ((NoteCell *)noteCell).checked.image = [UIImage imageNamed:@"unchecked"];
+        [((NoteCell *)noteCell) setImage:[UIImage imageNamed:@"unchecked"]];;
     }
 }
 
@@ -332,7 +332,7 @@ static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
         } else {
             UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
             [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-            ((NoteCell *)cell).checked.image = [UIImage imageNamed:@"checked"];
+            [((NoteCell *)cell) setImage:[UIImage imageNamed:@"checked"]];
         }
     }
 }
@@ -343,7 +343,7 @@ static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
         if (self.editing) {
             UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
             [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
-            ((NoteCell *)cell).checked.image = [UIImage imageNamed:@"unchecked"];
+            [((NoteCell *)cell) setImage:[UIImage imageNamed:@"unchecked"]];
         }
     }
 }
