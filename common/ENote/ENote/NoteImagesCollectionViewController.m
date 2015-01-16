@@ -35,6 +35,12 @@ static NSString * const kNoteImageReuseIdentifier = @"NoteImagesCollectionViewCe
     [self.collectionView addGestureRecognizer:longTap];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+}
+
 - (void)willEnterEditMode:(UIGestureRecognizer *)gesture
 {
     if (gesture.state == UIGestureRecognizerStateBegan) {
