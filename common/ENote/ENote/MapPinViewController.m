@@ -31,6 +31,12 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    
     [self.locationManager requestAlwaysAuthorization];
     [self.mapView setShowsUserLocation:YES];
     
@@ -38,10 +44,7 @@
     self.mapView.delegate = self;
     self.toolbar.backgroundColor = [UIColor orangeColor];
     
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    
     
     if (_note.longitude != -1.0f) {
         [self.locationManager startUpdatingLocation];
