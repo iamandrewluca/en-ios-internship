@@ -256,13 +256,7 @@ static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
 {
     UICollectionViewCell *cell = nil;
     
-    if ([self isLastIndexPath:indexPath]) {
-        // if is last cell
-        cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:AddNoteCellIdentifier forIndexPath:indexPath];
-        [((NotesAddCell *)cell).addNote addTarget:self action:@selector(addNewNote) forControlEvents:UIControlEventTouchUpInside];
-    } else {
-        // if is not last cell
-        
+    if (![self isLastIndexPath:indexPath]) {
         Note *note = [[_notesStore allNotes] objectAtIndex:indexPath.row];
         
         if (collectionView.collectionViewLayout == self.largeLayout) {
@@ -296,6 +290,9 @@ static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
         }
         
         ((NoteCell *)cell).nameLabel.text = note.name;
+    } else {
+        cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:AddNoteCellIdentifier forIndexPath:indexPath];
+        [((NotesAddCell *)cell).addNote addTarget:self action:@selector(addNewNote) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return cell;
@@ -325,18 +322,17 @@ static NSString *const NoteLargeCellIdentifier = @"NoteLargeCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (![self isLastIndexPath:indexPath]) {
-        if (self.editing) {
-            UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-            [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-            ((NoteCell *)cell).checked.image = [UIImage imageNamed:@"checked"];
-        } else {
-            
+        if (!self.editing) {
             NotesDetailViewController *nvc = [[NotesDetailViewController alloc]init];
             Note *note = [[_notesStore allNotes] objectAtIndex:indexPath.row];
             nvc.note = note;
             nvc.notesStore = _notesStore;
             selectedNoteIndexPath = indexPath;
             [[self navigationController] pushViewController:nvc animated:YES];
+        } else {
+            UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+            [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+            ((NoteCell *)cell).checked.image = [UIImage imageNamed:@"checked"];
         }
     }
 }

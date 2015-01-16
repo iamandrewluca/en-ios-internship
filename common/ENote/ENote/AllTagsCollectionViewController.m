@@ -42,7 +42,7 @@ static NSString *const kTagsSectionHeader = @"TagsSectionHeadersCollectionReusab
     
     [[TagsStore sharedStore] removeTag:tag];
 
-    // sdk/api/bug ))
+    // issue
     // http://stackoverflow.com/questions/12611292/uicollectionview-assertion-failure
     if (indexPath.row) {
         [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];

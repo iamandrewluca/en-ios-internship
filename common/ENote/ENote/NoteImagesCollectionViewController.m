@@ -99,9 +99,7 @@ static NSString * const kNoteImageReuseIdentifier = @"NoteImagesCollectionViewCe
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == [self.collectionView numberOfItemsInSection:0] - 1) {
-        return [collectionView dequeueReusableCellWithReuseIdentifier:kAddNoteImageReuseIdentifier forIndexPath:indexPath];
-    } else {
+    if (indexPath.row != [self.collectionView numberOfItemsInSection:0] - 1) {
         NoteImagesCollectionViewCell *noteCell = [collectionView dequeueReusableCellWithReuseIdentifier:kNoteImageReuseIdentifier forIndexPath:indexPath];
         noteCell.delegate = self;
         NSString *preview = [_note.imagesIDs objectAtIndex:indexPath.row];
@@ -116,6 +114,8 @@ static NSString * const kNoteImageReuseIdentifier = @"NoteImagesCollectionViewCe
         }
         
         return noteCell;
+    } else {
+        return [collectionView dequeueReusableCellWithReuseIdentifier:kAddNoteImageReuseIdentifier forIndexPath:indexPath];
     }
 }
 
@@ -123,15 +123,7 @@ static NSString * const kNoteImageReuseIdentifier = @"NoteImagesCollectionViewCe
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == [self.collectionView numberOfItemsInSection:0] - 1) {
-        
-        if (self.isEditing) {
-            [self setEditing:NO animated:YES];
-        } else {
-            [((NotesDetailViewController *)self.parentViewController) addImage];
-        }
-    } else {
-        
+    if (indexPath.row != [self.collectionView numberOfItemsInSection:0] - 1) {
         if (self.isEditing) {
             [self changeThumbToIndexPath:indexPath];
         } else {
@@ -142,6 +134,12 @@ static NSString * const kNoteImageReuseIdentifier = @"NoteImagesCollectionViewCe
             preview.modalPresentationStyle = UIModalPresentationFullScreen;
             preview.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
             [self presentViewController:preview animated:YES completion:nil];
+        }
+    } else {
+        if (self.isEditing) {
+            [self setEditing:NO animated:YES];
+        } else {
+            [((NotesDetailViewController *)self.parentViewController) addImage];
         }
     }
 }
